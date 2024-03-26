@@ -6,7 +6,7 @@ import TopLoader from "./_components/main/TopLoader";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 import "./globals.css";
-import { montserrat } from "@/utils/loadFont";
+import { Montserrat } from "next/font/google";
 
 export const metadata: Metadata = {
   title: {
