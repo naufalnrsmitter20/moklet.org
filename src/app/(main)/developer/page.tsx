@@ -45,7 +45,7 @@ const devs = [
   {
     name: "Pandhu Arya Munjalindra",
     role: "-",
-    picture: "https://pbs.twimg.com/media/GHK3FYNa8AAR21N.jpg",
+    picture: "https://www.pandhu-munjalindra.xyz/images/pandhu.jpg",
     instagram: "@pandhuu._",
     linkedin: "in/pandhu-arya",
     website: "pandhu-munjalindra.xyz",
@@ -56,7 +56,7 @@ const devs = [
     picture: "https://avatars.githubusercontent.com/u/67100526",
     instagram: "muhammad_zuhair_zuhdi",
     linkedin: "in/frostfire2007",
-    website: "https://frostfire.id/",
+    website: "frostfire.id",
   },
   {
     name: "Arsyad Ali Mahardika",
