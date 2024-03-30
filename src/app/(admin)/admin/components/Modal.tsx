@@ -18,7 +18,7 @@ export default function Content(user: { user: User }) {
 
   const updateUserWithId = async (form: FormData) => {
     "use server";
-    updateUser({ id: user.user.id }, {role: form.get("role") as Roles});
+    updateUser({ id: user.user.id }, { role: form.get("role") as Roles });
   };
 
   return (
