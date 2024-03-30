@@ -1,19 +1,14 @@
-import React from "react";
-import { findUserId } from "@/utils/database/user.query";
+import React, { useEffect, useState } from "react";
+import { findUser } from "@/utils/database/user.query";
+import Content from "../../components/Modal";
 
-export default async function detailRegistran({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function Detail({ params }: { params: { id: string } }) {
   const id = params.id;
-  const user = await findUserId(id);
+  const user = await findUser({ id: id });
 
-  return (
-    <React.Fragment>
-      <h1>Tes</h1>
-    </React.Fragment>
-  );
+  return(
+  <Content user={user!}></Content>
+  )
 }
 
 export const revalidate = 0;

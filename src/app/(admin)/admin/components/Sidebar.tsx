@@ -42,9 +42,7 @@ export function Sidebar({ nav, session }: navbarParam) {
                   className="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 "
                 >
                   <IoIosChatboxes className="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900" />
-                  <span className="ml-3 flex-1 whitespace-nowrap">
-                    Form
-                  </span>
+                  <span className="ml-3 flex-1 whitespace-nowrap">Form</span>
                 </Link>
               </li>
               {session?.user?.role == "SuperAdmin" ? (

@@ -10,19 +10,19 @@ interface User {
   user_pic: string;
 }
 
-interface UsersPromp {
-  users: User[];
-}
-
-interface UsersPageProps {
-  users: User[];
-}
-
 export default async function UsersPage() {
   const users: User[] = await findAllUsers();
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-4">User Management</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold mb-4">User Management</h1>
+        <a
+          href="/admin/users/add"
+          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300"
+        >
+          Add
+        </a>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -48,20 +48,22 @@ export default async function UsersPage() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {users.map((user: User) => (
-              <tr key={user.id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <a
-                    href={`/admin/users/${user.id}`}
-                    className="text-indigo-600 hover:text-indigo-900"
-                  >
-                    {user.name}
-                  </a>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{user.role}</td>
-              </tr>
-            ))}
+            {users.map((user: User) =>
+              user.role != "Guest" ? (
+                <tr key={user.id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a
+                      href={`/admin/users/${user.id}`}
+                      className="text-indigo-600 hover:text-indigo-900"
+                    >
+                      {user.name}
+                    </a>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{user.role}</td>
+                </tr>
+              ) : null,
+            )}
           </tbody>
         </table>
       </div>
