@@ -1,7 +1,7 @@
-import { H4, P } from "@/app/_components/global/Text";
 import { findUser, updateUser } from "@/utils/database/user.query";
-import Image from "@/app/_components/global/Image";
 import { Roles } from "@prisma/client";
+import Image from "@/app/_components/global/Image";
+import { H4, P } from "@/app/_components/global/Text";
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const id = params.id;
@@ -44,7 +44,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
                 <div>
                   <select
                     name="role"
-                    value={user.role}
+                    defaultValue={user.role}
                     className="block w-full border border-gray-300 rounded-md py-2 px-3 mt-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     {Object.values(Roles).map((role) => (
