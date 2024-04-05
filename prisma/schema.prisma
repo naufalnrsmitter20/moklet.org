@@ -147,11 +147,18 @@ model Submission_Field {
 }
 
 model Link_Shortener {
-  slug       String   @id @unique @db.VarChar(50)
-  target_url String   @db.LongText
-  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  slug       String                @id @unique @db.VarChar(50)
+  target_url String                @db.LongText
+  user       User                  @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  password   String?  @db.Char(32)
+  created_at DateTime              @default(now())
+  updated_at DateTime              @updatedAt
+  password   String?               @db.Char(32)
+  count      Link_Shortener_Count?
+}
+
+model Link_Shortener_Count {
+  id          String         @id @unique @db.VarChar(50)
+  Link        Link_Shortener @relation(fields: [id], references: [slug], onDelete: Cascade)
+  click_count Int            @default(0)
 }
