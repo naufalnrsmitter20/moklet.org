@@ -56,6 +56,7 @@ const devs = [
     picture: "https://avatars.githubusercontent.com/u/67100526",
     instagram: "muhammad_zuhair_zuhdi",
     linkedin: "in/frostfire2007",
+    website: "frostfire.id",
   },
   {
     name: "Arsyad Ali Mahardika",

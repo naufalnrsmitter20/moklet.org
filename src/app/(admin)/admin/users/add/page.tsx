@@ -10,18 +10,12 @@ interface User {
   user_pic: string;
 }
 
-export default async function UsersPage() {
+export default async function AddUsersPage() {
   const users: User[] = await findAllUsers();
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold mb-4">User Management</h1>
-        <a
-          href="/admin/users/add"
-          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300"
-        >
-          Add
-        </a>
+        <h1 className="text-2xl font-bold mb-4">Guest User</h1>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -49,7 +43,7 @@ export default async function UsersPage() {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {users.map((user: User) =>
-              user.role != "Guest" ? (
+              user.role == "Guest" ? (
                 <tr key={user.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <a
