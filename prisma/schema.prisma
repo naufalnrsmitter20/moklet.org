@@ -36,15 +36,16 @@ enum Roles {
 }
 
 model User {
-  id               String       @id @default(uuid()) @map("user_id") @db.Char(36)
+  id               String           @id @default(uuid()) @map("user_id") @db.Char(36)
   name             String
-  email            String       @unique
-  role             Roles        @default(Guest)
+  email            String           @unique
+  role             Roles            @default(Guest)
   user_pic         String
   userAuth         User_Auth?
   posts            Post[]
   forms            Form[]
   form_submissions Submission[]
+  Link_Shortener   Link_Shortener[]
 }
 
 model User_Auth {
@@ -143,4 +144,13 @@ model Submission_Field {
   field         Field      @relation(fields: [field_id], references: [id], onDelete: Cascade)
   field_id      Int
   value         String     @db.LongText
+}
+
+model Link_Shortener {
+  slug       String   @id @unique @db.VarChar(50)
+  target_url String   @db.LongText
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
