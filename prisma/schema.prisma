@@ -153,4 +153,5 @@ model Link_Shortener {
   user_id    String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  password   String?  @db.Char(32)
 }
