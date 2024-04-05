@@ -160,5 +160,5 @@ model Link_Shortener {
 model Link_Shortener_Count {
   id          String         @id @unique @db.VarChar(50)
   Link        Link_Shortener @relation(fields: [id], references: [slug], onDelete: Cascade)
-  click_count Int
+  click_count Int            @default(0)
 }
