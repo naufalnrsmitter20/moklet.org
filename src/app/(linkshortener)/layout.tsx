@@ -1,9 +1,9 @@
-import Navbar from "../_components/global/Navbar";
 import Footer from "../_components/global/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
+  title: "Link Shortener",
 };
 
 export default function MainLayout({
