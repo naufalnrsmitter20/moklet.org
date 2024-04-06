@@ -1,8 +1,5 @@
-import { H3 } from "@/app/_components/global/Text";
 import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
-import { TextField } from "@/app/_components/global/Input";
-import { PrimaryButton } from "@/app/_components/global/Button";
 import PasswordPrompt from "./_components/PasswordPrompt";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
