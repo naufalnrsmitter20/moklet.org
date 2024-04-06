@@ -15,25 +15,13 @@ export default function generateRandomSlug() {
     }
   });
 
-  const slug =
-    charset[
-      Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
-    ] +
-    charset[
-      Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
-    ] +
-    charset[
-      Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
-    ] +
-    charset[
-      Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
-    ] +
-    charset[
-      Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
-    ] +
-    charset[
+  let slug: string[] = [];
+
+  Array.from({ length: 6 }, (x, i) => i).forEach((n, i) => {
+    slug[i] = charset[
       Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
     ];
+  });
 
   return slug;
 }
