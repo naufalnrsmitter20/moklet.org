@@ -52,4 +52,4 @@ Technologies used in the project:
 
 <h2>🛡️ License:</h2>
 
-This project is licensed under the MIT License
+This project is licensed under the GNU [General Public License v3.0](https://github.com/mokletdev/moklet.org/blob/development/LICENSE.md)
