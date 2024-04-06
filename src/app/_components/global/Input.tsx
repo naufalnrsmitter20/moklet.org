@@ -2,10 +2,10 @@ import { ChangeEvent, KeyboardEventHandler } from "react";
 
 interface InputProps {
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
   required?: boolean;
-  name: string;
+  name?: string;
   value?: string;
   // eslint-disable-next-line no-unused-vars
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;

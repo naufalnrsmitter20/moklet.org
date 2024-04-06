@@ -78,3 +78,25 @@ export function TertiaryButton({
     </button>
   );
 }
+
+export function FullPrimaryButton({
+  children,
+  type,
+  onClick,
+  isDisabled,
+}: Readonly<ButtonProps>) {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
+      className="inline-block rounded-full bg-primary-400 px-6 py-3 w-full transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
+    >
+      <span
+        className={`text-base ${isDisabled ? "text-neutral-500" : "text-white"}`}
+      >
+        {children}
+      </span>
+    </button>
+  );
+}
