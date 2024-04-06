@@ -5,7 +5,7 @@ import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import Link from "next/link";
-import { NewsFigure } from "../../global/NewsFigure";
+import { NewsFigure } from "../global/NewsFigure";
 
 export default function News({
   latestPosts,
@@ -33,8 +33,8 @@ export default function News({
             </div>
           </Link>
         </div>
-        <div className="w-full overflow-x-none md:overflow-x-scroll">
-          <div className="flex flex-col md:flex-row w-full md:w-[200%] justify-start gap-[36px]">
+        <div className="w-full overflow-x-none">
+          <div className="flex flex-col md:flex-row w-full justify-between gap-[36px]">
             {latestPosts.map((post) => (
               <NewsFigure key={post.id} post={post} />
             ))}
