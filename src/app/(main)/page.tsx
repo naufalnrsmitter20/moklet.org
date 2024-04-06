@@ -7,7 +7,7 @@ import Aspiration from "../_components/parts/Aspiration";
 import { findNewestPost } from "@/utils/database/post.query";
 
 export default async function Home() {
-  const latestPosts = await findNewestPost(5);
+  const latestPosts = await findNewestPost(3);
 
   return (
     <>
