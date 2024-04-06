@@ -17,12 +17,12 @@ const nextConfig = {
         pathname: "**",
       },
     ],
-    experimental: {
-      serverActions: {
-        allowedForwardedHosts: ['go.moklet.org'],
-        allowedOrigins: ['https://go.moklet.org']
-      },
-    }
+  },
+  experimental: {
+    serverActions: {
+      allowedForwardedHosts: ["go.moklet.org"],
+      allowedOrigins: ["https://go.moklet.org"],
+    },
   },
 };
 
