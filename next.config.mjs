@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   poweredByHeader: false,
   images: {
@@ -16,6 +17,12 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    experimental: {
+      serverActions: {
+        allowedForwardedHosts: ['go.moklet.org'],
+        allowedOrigins: ['https://go.moklet.org']
+      },
+    }
   },
 };
 
