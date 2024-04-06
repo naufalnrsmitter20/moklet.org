@@ -4,21 +4,18 @@
 
 [moklet.org](https://www.moklet.org)
 
-  
-  
 <h2>🧐 Features</h2>
 
 Here are some of the project's pages:
 
-*   Landing Page
-*   News Page
-*   Organization Page
-*   About Page
-*   Developer Page
-*   Admin Page
+- Landing Page
+- News Page
+- Organization Page
+- About Page
+- Developer Page
+- Admin Page
 
-
-<h2>🏃‍♂️ How to run</h2> 
+<h2>🏃‍♂️ How to run</h2>
 
 Clone this repository:
 
@@ -44,14 +41,14 @@ pnpm dev
 # or
 bun dev
 ```
-  
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
 
-*   Next.JS
-*   NextAuth.JS
-*   Prisma
+- Next.JS
+- NextAuth.JS
+- Prisma
 
 <h2>🛡️ License:</h2>
 
