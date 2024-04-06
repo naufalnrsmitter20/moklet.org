@@ -18,11 +18,10 @@ export default async function RedirectToTarget({
   if (!findShortLink) return notFound();
   if (findShortLink.password) {
     return (
-    <SectionWrapper id="pass">
-
-      <PasswordPrompt slug={params.slug}/>
-    </SectionWrapper>
-    )
+      <SectionWrapper id="pass">
+        <PasswordPrompt slug={params.slug} />
+      </SectionWrapper>
+    );
   }
 
   // Increments the click count of the short link
