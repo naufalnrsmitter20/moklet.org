@@ -45,7 +45,8 @@ const devs = [
   {
     name: "Pandhu Arya Munjalindra",
     role: "Frontend Developer",
-    picture: "https://www.pandhu-munjalindra.xyz/images/pandhu.jpg",
+    picture:
+      "https://media.licdn.com/dms/image/D4D03AQEllrLNr0kXvA/profile-displayphoto-shrink_400_400/0/1696211384418?e=1717632000&v=beta&t=2yr4TE7s_qr2k4J-NBmoQGgWoFFWfGEAV-yEsjwAtfY",
     instagram: "pandhuu._",
     linkedin: "in/pandhu-arya",
     website: "pandhu-munjalindra.xyz",
