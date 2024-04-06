@@ -5,7 +5,7 @@ export default function generateRandomSlug() {
     "SbARtL8YDzncVl6ef02uXIH9OpaygPNjo1mFGCrMxZ75Eh3UTKQBdwksqvJW4i";
 
   let segmented = time.match(/[\s\S]{1,2}/g),
-    legal:string[] = [];
+    legal: string[] = [];
 
   segmented!.forEach((segment, index) => {
     if (parseInt(segment) > 60) {
@@ -35,5 +35,5 @@ export default function generateRandomSlug() {
       Math.floor(Math.random() * parseInt(legal[Math.floor(Math.random() * 6)]))
     ];
 
-  return(slug)
+  return slug;
 }
