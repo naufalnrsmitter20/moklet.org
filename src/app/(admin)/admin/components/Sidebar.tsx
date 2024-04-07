@@ -60,30 +60,30 @@ export function Sidebar({ nav, session }: navbarParam) {
                       <path
                         d="M22 9.02V4.48C22 3.07 21.36 2.5 19.77 2.5H15.73C14.14 2.5 13.5 3.07 13.5 4.48V9.01C13.5 10.43 14.14 10.99 15.73 10.99H19.77C21.36 11 22 10.43 22 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M22 20.27V16.23C22 14.64 21.36 14 19.77 14H15.73C14.14 14 13.5 14.64 13.5 16.23V20.27C13.5 21.86 14.14 22.5 15.73 22.5H19.77C21.36 22.5 22 21.86 22 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 9.02V4.48C10.5 3.07 9.86 2.5 8.27 2.5H4.23C2.64 2.5 2 3.07 2 4.48V9.01C2 10.43 2.64 10.99 4.23 10.99H8.27C9.86 11 10.5 10.43 10.5 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 20.27V16.23C10.5 14.64 9.86 14 8.27 14H4.23C2.64 14 2 14.64 2 16.23V20.27C2 21.86 2.64 22.5 4.23 22.5H8.27C9.86 22.5 10.5 21.86 10.5 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <P className="ml-3 whitespace-nowrap text-primary-400 font-semibold">
@@ -109,30 +109,30 @@ export function Sidebar({ nav, session }: navbarParam) {
                       <path
                         d="M22 9.02V4.48C22 3.07 21.36 2.5 19.77 2.5H15.73C14.14 2.5 13.5 3.07 13.5 4.48V9.01C13.5 10.43 14.14 10.99 15.73 10.99H19.77C21.36 11 22 10.43 22 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M22 20.27V16.23C22 14.64 21.36 14 19.77 14H15.73C14.14 14 13.5 14.64 13.5 16.23V20.27C13.5 21.86 14.14 22.5 15.73 22.5H19.77C21.36 22.5 22 21.86 22 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 9.02V4.48C10.5 3.07 9.86 2.5 8.27 2.5H4.23C2.64 2.5 2 3.07 2 4.48V9.01C2 10.43 2.64 10.99 4.23 10.99H8.27C9.86 11 10.5 10.43 10.5 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 20.27V16.23C10.5 14.64 9.86 14 8.27 14H4.23C2.64 14 2 14.64 2 16.23V20.27C2 21.86 2.64 22.5 4.23 22.5H8.27C9.86 22.5 10.5 21.86 10.5 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <P className="ml-3 whitespace-nowrap text-primary-400 font-semibold">
@@ -158,30 +158,30 @@ export function Sidebar({ nav, session }: navbarParam) {
                       <path
                         d="M22 9.02V4.48C22 3.07 21.36 2.5 19.77 2.5H15.73C14.14 2.5 13.5 3.07 13.5 4.48V9.01C13.5 10.43 14.14 10.99 15.73 10.99H19.77C21.36 11 22 10.43 22 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M22 20.27V16.23C22 14.64 21.36 14 19.77 14H15.73C14.14 14 13.5 14.64 13.5 16.23V20.27C13.5 21.86 14.14 22.5 15.73 22.5H19.77C21.36 22.5 22 21.86 22 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 9.02V4.48C10.5 3.07 9.86 2.5 8.27 2.5H4.23C2.64 2.5 2 3.07 2 4.48V9.01C2 10.43 2.64 10.99 4.23 10.99H8.27C9.86 11 10.5 10.43 10.5 9.02Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M10.5 20.27V16.23C10.5 14.64 9.86 14 8.27 14H4.23C2.64 14 2 14.64 2 16.23V20.27C2 21.86 2.64 22.5 4.23 22.5H8.27C9.86 22.5 10.5 21.86 10.5 20.27Z"
                         stroke="#E04E4E"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <P className="ml-3 whitespace-nowrap text-primary-400 font-semibold">
