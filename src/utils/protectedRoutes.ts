@@ -34,6 +34,12 @@ export const protectedRoutes: ProtectedRoutes[] = [
     roles: "All",
   },
   {
+    title: "Aspirasi",
+    path: "/admin/aspirasi",
+    regex: /\/admin\/aspiration(\/|)[A-Za-z]?/i,
+    roles: ["SuperAdmin", "Admin", "MPK"],
+  },
+  {
     title: "Users",
     path: "/admin/users",
     regex: /\/admin\/users(\/|)[A-Za-z]?/i,
