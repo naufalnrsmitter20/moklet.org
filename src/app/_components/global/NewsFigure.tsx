@@ -50,7 +50,7 @@ export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
           </Link>
         </div>
         <div className="flex w-full justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Image
               src={post.user.user_pic}
               alt={post.user.name + "'s Pfp"}
