@@ -7,7 +7,7 @@ export function WideNewsFigure({
   post,
 }: Readonly<{ post: PostWithTagsAndUser }>) {
   return (
-    <figure className="w-full h-[172px] lg:h-[140px] md:w-[45%] md:h-[140px] flex gap-[26px]">
+    <figure className="w-full h-[140px] md:w-[45%] flex gap-[26px]">
       <div className="min-w-[140px] h-full">
         <Image
           src={post.thumbnail}
@@ -18,7 +18,7 @@ export function WideNewsFigure({
           unoptimized
         />
       </div>
-      <div className="w-full flex flex-col gap-[22px] md:gap-[52px] text-wrap">
+      <div className="w-full flex flex-col gap-0 md:gap-[52px] text-wrap">
         <Link
           href={"/berita/" + post.slug}
           className="text-black hover:text-primary-400 transition-all duration-500"
