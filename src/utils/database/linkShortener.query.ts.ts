@@ -14,8 +14,7 @@ export const findAllLinks = async (
   });
 };
 
-
-export const findLink = async (filter: Prisma.Link_ShortenerWhereInput) =>{
+export const findLink = async (filter: Prisma.Link_ShortenerWhereInput) => {
   return prisma.link_Shortener.findFirst({
     where: filter,
     include: {
@@ -23,11 +22,13 @@ export const findLink = async (filter: Prisma.Link_ShortenerWhereInput) =>{
       count: { select: { click_count: true } },
     },
   });
-}
+};
 
-export const createLink = async (data: Prisma.Link_ShortenerUncheckedCreateInput) =>{
-  return prisma.link_Shortener.create({data})
-}
+export const createLink = async (
+  data: Prisma.Link_ShortenerUncheckedCreateInput,
+) => {
+  return prisma.link_Shortener.create({ data });
+};
 
 export const updateLink = async (
   where: Prisma.Link_ShortenerWhereUniqueInput,
