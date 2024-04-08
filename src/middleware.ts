@@ -1,14 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-
-// middleware is applied to all routes, use conditionals to select
-
-let protectedRoutes = [
-  {
-    path: /\/admin\/users(\/|)[A-Za-z]?/i,
-    roles: ["SuperAdmin"],
-  },
-];
+import { protectedRoutes } from "./utils/protectedRoutes";
 
 export default withAuth(
   function middleware(req) {
@@ -20,9 +12,16 @@ export default withAuth(
       return NextResponse.rewrite(new URL("/unauthorized", req.url));
     }
 
-    const route = protectedRoutes.find((route) => route.path.test(pathname));
+    const route = protectedRoutes.find((route) => route.regex.test(pathname));
+    const isSubOrgan = token.role.includes("Admin");
 
-    if (route && !route.roles.includes(token.role)) {
+    const hasAccess =
+      route &&
+      (route.roles == "All" ||
+        route.roles.includes(token.role) ||
+        (isSubOrgan && route.roles.includes("SubOrgan")));
+
+    if (route && !hasAccess) {
       return NextResponse.rewrite(new URL("/unauthorized", req.url));
     }
   },
