@@ -17,6 +17,7 @@ export default async function Shortener({
   const links = (await findAllLinks(
     {
       user_id: user?.role == "SuperAdmin" ? undefined : user?.id,
+      type: "User",
     },
     parseInt(searchParams.page ?? "1"),
   )) as PaginatedResult<LinkWithCountAndUser>;
