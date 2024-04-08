@@ -9,6 +9,7 @@ import { findAllLinks } from "@/utils/database/linkShortener.query.ts";
 import { nextGetServerSession } from "@/lib/next-auth";
 import Links from "./_components/Links";
 import Modal from "./_components/Modal";
+import { H1 } from "@/app/_components/global/Text";
 
 export default async function Shortener() {
   const session = await nextGetServerSession();
@@ -18,9 +19,10 @@ export default async function Shortener() {
   });
 
   return (
-    <SectionWrapper id="Form">
+    <>
+      <H1>URL Shortener</H1>
       <LinkForm />
       <Links links={links} />
-    </SectionWrapper>
+    </>
   );
 }
