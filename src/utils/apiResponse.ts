@@ -14,7 +14,7 @@ const success = (data?: any, message: string = "Success") => {
 const created = (data?: any, message: string = "Success create") => {
   return NextResponse.json(
     {
-      status: 200,
+      status: 201,
       data,
       message,
     },
