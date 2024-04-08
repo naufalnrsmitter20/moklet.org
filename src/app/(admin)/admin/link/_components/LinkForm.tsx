@@ -1,63 +1,62 @@
 "use client";
 
-import randomSlug from "@/utils/randomSlug";
-import { TextArea, TextField } from "@/app/_components/global/Input";
-import { useEffect, useRef, useState } from "react";
+import { TextField } from "@/app/_components/global/Input";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import FormButton from "./part/SubmitButton";
-import { P } from "@/app/_components/global/Text";
-import { CheckboxField } from "@/app/_components/global/Input";
-
 import { addLink } from "../action";
+import { H4 } from "@/app/_components/global/Text";
 
 export default function LinkForm() {
-  //type mu eror itu di page
   const ref = useRef<HTMLFormElement>(null);
   const [password, setPassword] = useState(false);
-
+  async function create(formdata: FormData) {
+    const toastId = toast.loading("Loading...");
+    const result = await addLink(formdata);
+    if (!result.error) {
+      toast.success(result.message, { id: toastId });
+      ref.current?.reset();
+    }
+    toast.error(result.message, { id: toastId });
+  }
   return (
     <>
-      <form
-        ref={ref}
-        action={async (formdata) => {
-          const result = await addLink(formdata);
-          if (!result.error) {
-            toast.success(result.message);
-            ref.current?.reset();
-          }
-          toast.error(result.message);
-        }}
-        className=""
-      >
-        <div className="flex gap-3  w-[500px]">
+      <form ref={ref} action={create} className="py-4">
+        <div className="gap-3 w-full p-6 bg-white rounded-lg">
+          <H4>Buat URL</H4>
           <div className="w-[80%] flex-col flex gap-3">
             <TextField
               type="text"
-              label="Shorten Link"
+              label="Target Link"
               name="destLink"
               placeholder="https://example.com/thisisaverylongstringthatyouwouldliketoshorten"
               required={true}
             />
             <TextField
               type="text"
-              label="slug"
+              label="Short URL"
               name="slug"
               placeholder="MokletHebat"
             />
+            {password && (
+              <TextField
+                type="password"
+                label="Password"
+                placeholder="*******"
+                name="password"
+              />
+            )}
             <span className="flex gap-1">
-              <input type="checkbox" onChange={() => setPassword(!password)} />
-              <P>Password</P>
+              <input
+                id="password"
+                type="checkbox"
+                className="p-2 text-primary-500 accent-primary-500  transition-all"
+                onChange={() => setPassword(!password)}
+              />
+              <label htmlFor="password">URL Pribadi</label>
             </span>
           </div>
-          {password && (
-            <TextField
-              type="password"
-              label="Password"
-              placeholder="*******"
-              name="password"
-            />
-          )}
-          <div className="flex w-fit justify-start items-center">
+          <div className="flex w-full justify-end items-center">
             <FormButton />
           </div>
         </div>

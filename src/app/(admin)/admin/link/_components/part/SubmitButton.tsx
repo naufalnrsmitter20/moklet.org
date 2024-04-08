@@ -6,7 +6,7 @@ export default function FormButton() {
 
   return (
     <PrimaryButton type="submit" isDisabled={pending}>
-      Shorten
+      Kirim
     </PrimaryButton>
   );
 }
