@@ -19,6 +19,7 @@ interface OptionFieldProps {
   className?: string;
   value?: string | Array<string>;
   name: string;
+  handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface TextFieldProps extends InputProps {
@@ -100,6 +101,7 @@ export function RadioField({
   required,
   value,
   name,
+  handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>
@@ -141,6 +143,7 @@ export function CheckboxField({
   required,
   value,
   name,
+  handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>

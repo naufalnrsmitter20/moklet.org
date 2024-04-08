@@ -13,7 +13,6 @@ export default async function News({
   searchParams: { [key: string]: string | undefined };
 }) {
   const page = parseInt(searchParams.page ?? "1");
-
   const paginatedPosts = (await findAllPosts(
     {},
     page,

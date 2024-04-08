@@ -12,11 +12,16 @@ const footToS: FootOption[] = [
   { title: "AUP", href: "/policies/tos/acceptable-use-policy" },
 ];
 
-const footOptions: FootOption[] = [
+const mainMenus: FootOption[] = [
   { title: "Berita", href: "/berita" },
   { title: "Sub-organ", href: "/sub-organ" },
   { title: "Tentang", href: "/tentang" },
   { title: "Developer", href: "/developer" },
+];
+
+const usefulLinks: FootOption[] = [
+  { title: "SMK Telkom Malang", href: "https://www.smktelkom-mlg.sch.id" },
+  { title: "SMK Telkom Malang", href: "https://www.smktelkom-mlg.sch.id" },
 ];
 
 export default function Footer() {
@@ -47,7 +52,7 @@ export default function Footer() {
           <div className="flex flex-col gap-[22px] w-full xl:w-1/4">
             <h3 className="font-normal text-neutral-500">Menu Utama</h3>
             <div className="flex flex-col gap-[14px] ">
-              {footOptions.map((footOption) => (
+              {mainMenus.map((footOption) => (
                 <TertiaryLinkButton
                   href={footOption.href}
                   key={footOption.title}
@@ -60,7 +65,7 @@ export default function Footer() {
           <div className="flex flex-col gap-[22px] w-full xl:w-1/4">
             <h3 className="font-normal text-neutral-500">Menu Utama</h3>
             <div className="flex flex-col gap-[14px] ">
-              {footOptions.map((footOption) => (
+              {mainMenus.map((footOption) => (
                 <TertiaryLinkButton
                   href={footOption.href}
                   key={footOption.title}
@@ -73,7 +78,7 @@ export default function Footer() {
           <div className="flex flex-col gap-[22px] w-full xl:w-1/4">
             <h3 className="font-normal text-neutral-500">Menu Utama</h3>
             <div className="flex flex-col gap-[14px] ">
-              {footOptions.map((footOption) => (
+              {mainMenus.map((footOption) => (
                 <TertiaryLinkButton
                   href={footOption.href}
                   key={footOption.title}
