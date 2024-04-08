@@ -23,15 +23,14 @@ export default async function Developers() {
     <SectionWrapper id="developer">
       <div>
         <div className="flex flex-col gap-[18px] mb-[54px] text-wrap">
-          <H1>Meet Our Team of Contributors</H1>
+          <H1>Kontributor Moklet.org</H1>
           <P>
-            Welcome to moklet.org&apos;s contributors page! you&apos;ll find a
-            list of our esteemed contributors along with a brief overview of
-            their roles or the contributions they&apos;ve made. Whether
-            it&apos;s through code contributions, bug fixes, documentation
-            improvements, design enhancements, or community support, each of
-            these individuals has played a significant role in shaping the
-            project and pushing it forward.
+            Selamat datang di halaman kontributor Moklet.org! Anda akan
+            menemukan daftar kontributor Moklet.org beserta gambaran singkat
+            tentang peran atau kontribusi yang mereka berikan. Baik melalui
+            kontribusi kode, perbaikan bug, peningkatan dokumentasi, perbaikan
+            desain, atau dukungan komunitas, setiap individu ini telah memainkan
+            peran penting dalam pembuatan proyek ini dan mendorongnya maju.
           </P>
         </div>
 
