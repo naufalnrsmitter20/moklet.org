@@ -12,17 +12,26 @@ import { stringifyDate } from "@/utils/atomics";
 import { FaGlobeAsia, FaUser, FaRegCopy } from "react-icons/fa";
 import Modal from "./Modal";
 import { useState } from "react";
+import { toast } from "sonner";
+import { deleteLink } from "../action";
 
 export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   function copyToClipboard() {
     navigator.clipboard.writeText("go.moklet.org/" + link.slug);
-
     alert("Link berhasil disalin!");
+  }
+
+  async function deleteAction(slug: string) {
+    if (!confirm("Anda yakin ingin menghapus item ini?")) return;
+    const toastId = toast.loading("Loading...");
+    const result = await deleteLink(slug);
+    if (!result.error) toast.success(result.message, { id: toastId });
+    toast.error(result.message, { id: toastId });
   }
   return (
     <figure className="flex justify-between w-full bg-white rounded-xl px-6 py-4">
-      {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} link={link} />}
       <div className="flex flex-col gap-2">
         <div className="flex gap-4 items-start">
           <span className="p-2   rounded-full bg-slate-100">
@@ -58,7 +67,7 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
       <div className="flex items-center gap-2">
         <button
           onClick={() => copyToClipboard()}
-          className="group border border-primary-400 px-6 py-3 rounded-xl hover:bg-primary-400 transition-all duration-500"
+          className="group border border-primary-400 px-4 py-2 rounded-xl hover:bg-primary-400 transition-all duration-500"
         >
           <span className="flex items-center gap-2 text-primary-400 group-hover:text-white transition-all duration-500">
             <FaRegCopy />
@@ -68,7 +77,7 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
           </span>
         </button>
         <button
-          onClick={() => {}}
+          onClick={() => setIsOpenModal(true)}
           className="group border border-primary-400 px-4 py-4 rounded-xl hover:bg-primary-400 transition-all duration-500"
         >
           <span className="flex items-center gap-2 text-primary-400 group-hover:text-white transition-all duration-500">
@@ -76,7 +85,7 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
           </span>
         </button>
         <button
-          onClick={() => {}}
+          onClick={() => deleteAction(link.slug)}
           className="group border border-primary-400 px-4 py-4 rounded-xl hover:bg-primary-400 transition-all duration-500"
         >
           <span className="flex items-center gap-2 text-primary-400 group-hover:text-white transition-all duration-500">
