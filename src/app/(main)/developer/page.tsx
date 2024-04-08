@@ -1,87 +1,36 @@
 import { H1, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import DeveloperFigure from "./_components/DeveloperFigure";
+import { promises as fs } from "fs";
 
-const devs = [
-  {
-    name: "Kusindra Aji Rabbany",
-    role: "Fullstack Developer",
-    picture: "https://avatars.githubusercontent.com/u/83589651",
-    instagram: "kusindr_",
-    linkedin: "in/kusindraaji",
-    website: "www.benspace.xyz",
-  },
-  {
-    name: "Ahsan Awadullah Azizan",
-    role: "Fullstack Developer",
-    picture: "https://avatars.githubusercontent.com/u/116133300",
-    instagram: "ahsanzizan",
-    linkedin: "in/ahsan-azizan",
-    website: "www.ahsanzizan.xyz",
-  },
-  {
-    name: "Teguh Bayu Pratama",
-    role: "Frontend Developer",
-    picture: "https://avatars.githubusercontent.com/u/149038828",
-    instagram: "soyuz_slav",
-    linkedin: "in/teguhbayupratama",
-    website: "bayu.xtero.live",
-  },
-  {
-    name: "Muhammad Fadhil Kholaf",
-    role: "Frontend Developer",
-    picture: "https://avatars.githubusercontent.com/u/110389260",
-    instagram: "tlg69.fadhil",
-    linkedin: "in/muhammad-fadhil-kholaf-7b1a7a270",
-    website: "fadhilkholaf.my.id",
-  },
-  {
-    name: "Moch. Gilang Ramadhan",
-    role: "Graphic & UI/UX Designer",
-    picture: "https://pbs.twimg.com/media/GHK3FYNa8AAR21N.jpg",
-    instagram: "guilangs_",
-    linkedin: "in/gilang-ramadhan-4420b8285",
-  },
-  {
-    name: "Pandhu Arya Munjalindra",
-    role: "Frontend Developer",
-    picture:
-      "https://media.licdn.com/dms/image/D4D03AQEllrLNr0kXvA/profile-displayphoto-shrink_400_400/0/1696211384418?e=1717632000&v=beta&t=2yr4TE7s_qr2k4J-NBmoQGgWoFFWfGEAV-yEsjwAtfY",
-    instagram: "pandhuu._",
-    linkedin: "in/pandhu-arya",
-    website: "pandhu-munjalindra.xyz",
-  },
-  {
-    name: "Muhammad Zuhair Zuhdi",
-    role: "Backend Developer",
-    picture: "https://avatars.githubusercontent.com/u/67100526",
-    instagram: "muhammad_zuhair_zuhdi",
-    linkedin: "in/frostfire2007",
-    website: "frostfire.id",
-  },
-  {
-    name: "Arsyad Ali Mahardika",
-    role: "Frontend Developer",
-    picture: "https://avatars.githubusercontent.com/u/90751730",
-    instagram: "arsyadam.id",
-    linkedin: "in/arsyadam",
-    website: "arsyadam.id",
-  },
-];
+interface Developer {
+  name: string;
+  role: string;
+  picture: string;
+  instagram: string;
+  linkedin: string;
+  website: string;
+}
 
-export default function Developer() {
+export default async function Developers() {
+  const file = await fs.readFile(
+    process.cwd() + "/public/contributors.json",
+    "utf-8",
+  );
+  const devs: Developer[] = JSON.parse(file);
+
   return (
     <SectionWrapper id="developer">
       <div>
         <div className="flex flex-col gap-[18px] mb-[54px] text-wrap">
-          <H1>Lorem ipsum dolor sit amet consectetur</H1>
+          <H1>Kontributor Moklet.org</H1>
           <P>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat
-            urna quis eleifend pharetra. Fusce suscipit magna quis ligula
-            commodo, vestibulum sodales orci tempor. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Duis dapibus quis enim nec auctor.
-            Donec rhoncus dui sit amet augue placerat, molestie consequat nulla
-            tempus.
+            Selamat datang di halaman kontributor Moklet.org! Anda akan
+            menemukan daftar kontributor Moklet.org beserta gambaran singkat
+            tentang peran atau kontribusi yang mereka berikan. Baik melalui
+            kontribusi kode, perbaikan bug, peningkatan dokumentasi, perbaikan
+            desain, atau dukungan komunitas, setiap individu ini telah memainkan
+            peran penting dalam pembuatan proyek ini dan mendorongnya maju.
           </P>
         </div>
 
