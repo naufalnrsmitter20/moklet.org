@@ -16,14 +16,8 @@ export default function RootLayout({
   const pathname = usePathname().split("/");
   pathname.shift();
   return (
-    <main className="flex w-full overflow-hidden bg-white">
+    <main className="flex w-full h-screen overflow-hidden bg-slate-100">
       <Sidebar nav={nav} session={session} />
-      <div
-        className={`bg-gray-900 opacity-50 ${
-          nav ? "" : "hidden"
-        } fixed inset-0 z-10`}
-        id="sidebarBackdrop"
-      />
       <div
         id="main-content"
         className="relative h-full w-full overflow-y-auto ps-24 py-4 lg:ml-64"
