@@ -23,7 +23,7 @@ export function Sidebar({ nav, session }: navbarParam) {
       id="sidebar"
       className={`fixed ${
         nav ? "w-80" : "w-0 opacity-0"
-      } left-0 top-0 z-20 flex h-full flex-shrink-0 transition-all duration-300 lg:w-80 lg:opacity-100`}
+      } left-0 bg-white top-0 z-20 flex h-full flex-shrink-0 transition-all duration-300 lg:w-80 lg:opacity-100`}
       aria-label="Sidebar"
     >
       <div className="relative flex min-h-0 flex-1 flex-col border-r px-4 border-red-200 bg-white pt-0">

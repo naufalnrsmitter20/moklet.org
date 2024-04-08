@@ -10,7 +10,7 @@ export function SectionWrapper({
   id,
 }: Readonly<SectionWrapperProps>) {
   return (
-    <section className="w-full py-[82px]" id={id}>
+    <section className="relative w-full py-[82px]" id={id}>
       {children}
     </section>
   );
