@@ -14,3 +14,10 @@ export type SubmissionWithFormAndFields = Prisma.SubmissionGetPayload<{
     form: { include: { fields: { include: { options: true } } } };
   };
 }>;
+
+export type LinkWithCountAndUser = Prisma.Link_ShortenerGetPayload<{
+  include: {
+    user: { select: { name: true } };
+    count: { select: { click_count: true } };
+  };
+}>;
