@@ -53,7 +53,9 @@ export default function Navbar() {
           <HamburgerIcon />
         </button>
       </div>
-      <div className={`block xl:hidden h-[300px] w-full z-[800] bg-white transition-all duration-500 ${isExpanded ? "translate-y-0" : " -translate-y-96" }`}>
+      <div
+        className={`block xl:hidden h-[300px] w-full z-[800] bg-white transition-all duration-500 ${isExpanded ? "translate-y-0" : " -translate-y-96"}`}
+      >
         <div className="flex flex-col gap-8 text-start justify-start items-start my-[21px] ms-[20px] lg:ms-[52px]">
           {navOptions.map((navOption) => (
             <Link
