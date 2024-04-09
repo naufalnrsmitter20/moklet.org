@@ -19,7 +19,7 @@ export function Sidebar({ nav, session }: navbarParam) {
   ];
 
   const superAdminItems = [
-    { href: "/admin/", text: "Users" },
+    { href: "/admin/users", text: "Users" },
     { href: "/admin/", text: "Permission" },
   ];
 

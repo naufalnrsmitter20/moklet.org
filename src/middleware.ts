@@ -3,6 +3,10 @@ import { withAuth } from "next-auth/middleware";
 // middleware is applied to all routes, use conditionals to select
 
 export default withAuth(function middleware(req) {}, {
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/error',
+  },
   callbacks: {
     authorized: ({ req, token }) => {
       const pathname = req.nextUrl.pathname;
