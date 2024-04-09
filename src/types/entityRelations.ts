@@ -8,6 +8,18 @@ export type FormWithFields = Prisma.FormGetPayload<{
   include: { fields: { include: { options: true } } };
 }>;
 
+export type FieldsWithOptions = Prisma.FieldGetPayload<{
+  include: { options: true };
+}>;
+
+export type FormWithFieldsAndUser = Prisma.FormGetPayload<{
+  include: {
+    fields: { include: { options: true } };
+    user: { select: { name: true } };
+    _count: { select: { submissions: true } };
+  };
+}>;
+
 export type SubmissionWithFormAndFields = Prisma.SubmissionGetPayload<{
   include: {
     fields: true;

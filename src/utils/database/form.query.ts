@@ -12,6 +12,17 @@ export const findForm = async (filter: Prisma.FormWhereInput) => {
   });
 };
 
+export const findFormsWithUser = async (filter?: Prisma.FormWhereInput) => {
+  return await prisma.form.findMany({
+    where: filter,
+    include: {
+      fields: { include: { options: true } },
+      user: { select: { name: true } },
+      _count: { select: { submissions: true } },
+    },
+  });
+};
+
 export const createForm = async (data: Prisma.FormUncheckedCreateInput) => {
   return await prisma.form.create({ data });
 };
