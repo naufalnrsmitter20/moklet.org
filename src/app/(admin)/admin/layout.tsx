@@ -20,7 +20,7 @@ export default function RootLayout({
       <Sidebar nav={nav} session={session} />
       <div
         id="main-content"
-        className="relative h-full w-full overflow-y-auto ps-10 md:ps-24 py-4 lg:ml-64"
+        className="relative h-full w-full overflow-y-auto ps-10 lg:ps-24 py-4 lg:ml-64"
       >
         <nav className="w-max rounded-lg bg-gray-200 p-2 font-sans text-sm capitalize md:p-3">
           <ol className="flex">
