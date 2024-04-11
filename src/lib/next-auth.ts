@@ -115,7 +115,7 @@ export const authOptions: AuthOptions = {
             name: user.name || "",
             user_pic:
               user.image ||
-              "https://res.cloudinary.com/mokletorg-cdn/image/upload/f_auto,q_auto/user",
+              "https://res.cloudinary.com/mokletorg/image/upload/f_auto,q_auto/user",
             userAuth: {
               create: {
                 last_login: new Date(),
