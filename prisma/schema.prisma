@@ -122,6 +122,7 @@ model Field {
   form_id     String
   options     Field_Option[]
   submissions Submission_Field[]
+  fieldNumber Int                @default(0)
 }
 
 model Field_Option {
