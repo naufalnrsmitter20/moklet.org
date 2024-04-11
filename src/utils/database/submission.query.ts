@@ -21,7 +21,12 @@ export const findSubmissionWithForm = async (
     where: filter,
     include: {
       fields: true,
-      form: { include: { fields: { include: { options: true } } } },
+      form: {
+        include: {
+          fields: { include: { options: true } },
+          _count: { select: { submissions: true } },
+        },
+      },
     },
   });
 };
