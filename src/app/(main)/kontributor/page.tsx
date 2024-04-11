@@ -29,28 +29,31 @@ export default async function Developers() {
         <div className="flex flex-col gap-[18px] mb-[54px] text-wrap">
           <H4>Informasi kontributor pada proyek open-source Moklet.org</H4>
           <ol className="px-6 list-decimal">
-            <Li>
-              <b>Manager</b> <br />
+            <Li className="text-neutral-500">
+              <b>Manager</b>
+              <br />
               Pemimpin utama dalam proyek ini yang bertanggung jawab sepenuhnya
               terhadap keseluruhan proyek dan memandu anggota tim lainnya.
             </Li>
-            <Li>
-              <b>Maintainer</b> <br />
+            <Li className="text-neutral-500">
+              <b>Maintainer</b>
+              <br />
               Individu yang bertanggung jawab atas perkembangan dan kelancaran
               proyek, serta memberikan kontribusi yang signifikan.
             </Li>
-            <Li>
+            <Li className="text-neutral-500">
               <b>Graphic & UI/UX Designer</b> <br />
               Bertanggung jawab merancang antarmuka pengguna (UI) yang intuitif
               dan menarik serta mengoptimalkan pengalaman pengguna (UX).
             </Li>
-            <Li>
-              <b>Committer</b> <br />
+            <Li className="text-neutral-500">
+              <b>Committer</b>
+              <br />
               Kontributor yang memberikan kontribusi berharga. Statusnya
               dinaikkan sebagai &quot;Committer&quot; menunjukkan tingkat
               kontribusi yang cukup tinggi dalam proyek ini.
             </Li>
-            <Li>
+            <Li className="text-neutral-500">
               <b>Contributor</b> <br />
               Individu yang berpartisipasi dalam menulis kode, patch
               dokumentasi, atau memberikan kontribusi positif lainnya terhadap
