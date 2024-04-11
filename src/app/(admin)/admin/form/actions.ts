@@ -184,8 +184,9 @@ export const cloneForm = async (id: string) => {
 export const deleteSubmission = async (id: string) => {
   try {
     await prisma.submission.deleteMany({ where: { form_id: id } });
+    return { error: false, message: "Berhasil menghapus jawaban" };
   } catch (e) {
     console.error(e);
-    return { error: true, message: "Gagal menghapus formulir" };
+    return { error: true, message: "Berhasil menghapus jawaban" };
   }
 };
