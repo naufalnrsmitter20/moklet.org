@@ -15,7 +15,7 @@ const navOptions: NavOption[] = [
   { title: "Berita", href: "/berita" },
   { title: "Sub-organ", href: "/sub-organ" },
   { title: "Tentang", href: "/tentang" },
-  { title: "Developer", href: "/developer" },
+  { title: "Kontributor", href: "/kontributor" },
 ];
 
 export default function Navbar() {
