@@ -33,7 +33,6 @@ export default function QuestionEdit({
     setField((prev) => {
       var array = [...prev];
       array.splice(index > id ? index + 1 : index, 0, array[id]);
-      console.log(array);
       array.splice(index < id ? id + 1 : id, 1);
       return array;
     });
@@ -89,16 +88,21 @@ export default function QuestionEdit({
   }
 
   const handleChange = (
-    e: ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     type FieldsProps = keyof (typeof fields)[0];
     const name = e.target.name;
+    const value = e.target.value;
     const index = parseInt(name.split("_")[0]);
     const props = name.split("_")[1] as FieldsProps;
 
     setField((prev) => {
       var array = [...prev];
-      (array[index][props] as FieldsProps) = e.target.value as FieldsProps;
+      (array[index][props] as FieldsProps) = (
+        e.target.type == "checkbox"
+          ? (e.target as HTMLInputElement).checked
+          : value
+      ) as FieldsProps;
       return array;
     });
     e.preventDefault();
@@ -116,6 +120,7 @@ export default function QuestionEdit({
           options: [],
           required: true,
           type: "text",
+          fieldNumber: fields.length,
         },
       ];
     });
@@ -162,7 +167,7 @@ export default function QuestionEdit({
               required
               handleChange={handleChange}
             />
-            {["radio", "checkbox"].includes(item.type) ? (
+            {["radio", "checkbox"].includes(item.type) && (
               <div>
                 <form
                   className="flex flex-col md:flex-row gap-2 md:items-end"
@@ -191,9 +196,24 @@ export default function QuestionEdit({
                 </ul>
                 <P>Klik untuk menghapus pilihan</P>
               </div>
-            ) : (
-              ""
             )}
+            <div className="flex gap-x-2 cursor-pointer items-center">
+              <input
+                type="checkbox"
+                name={index + "_required"}
+                value="true"
+                defaultChecked={item.required}
+                className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
+                id={index + "_required"}
+                onChange={handleChange}
+              />
+              <label
+                htmlFor={index + "_required"}
+                className="cursor-pointer ms-2"
+              >
+                Harus diisi
+              </label>
+            </div>
           </div>
         );
       })}

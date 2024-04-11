@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
-import { Toaster } from "sonner";
 import { NextAuthProvider } from "./_components/main/NextAuthProvider";
-import TopLoader from "./_components/main/TopLoader";
-import "./globals.css";
+import ProgressBarProvider from "./_components/main/ProgressBarProvider";
 import { Montserrat } from "next/font/google";
+import Toaster from "./_components/main/CustomToaster";
+import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -35,11 +34,8 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={montserrat.className}>
         <NextAuthProvider>
-          <Suspense>
-            <TopLoader />
-          </Suspense>
-          <Toaster duration={3000} pauseWhenPageIsHidden theme="light" />
-          {children}
+          <Toaster />
+          <ProgressBarProvider>{children}</ProgressBarProvider>
         </NextAuthProvider>
       </body>
     </html>

@@ -5,7 +5,10 @@ export type PostWithTagsAndUser = Prisma.PostGetPayload<{
 }>;
 
 export type FormWithFields = Prisma.FormGetPayload<{
-  include: { fields: { include: { options: true } } };
+  include: {
+    fields: { include: { options: true } };
+    _count: { select: { submissions: true } };
+  };
 }>;
 
 export type FieldsWithOptions = Prisma.FieldGetPayload<{
