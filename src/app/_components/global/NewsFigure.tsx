@@ -18,11 +18,11 @@ export function Tags({ tag }: Readonly<{ tag: Tag }>) {
 
 export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
   return (
-    <figure className="w-full md:w-[33%]">
+    <figure className="w-full md:w-[32%]">
       <div className="h-[200px] w-full">
         <Image
           src={post.thumbnail}
-          alt="wao"
+          alt={post.slug}
           unoptimized
           height={200}
           width={372}
@@ -50,7 +50,7 @@ export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
           </Link>
         </div>
         <div className="flex w-full justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Image
               src={post.user.user_pic}
               alt={post.user.name + "'s Pfp"}

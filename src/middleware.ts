@@ -1,26 +1,37 @@
 import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
+import { protectedRoutes } from "./utils/protectedRoutes";
 
-// middleware is applied to all routes, use conditionals to select
+export default withAuth(
+  function middleware(req) {
+    const { token } = req.nextauth;
+    const { pathname } = req.nextUrl;
 
-export default withAuth(function middleware(req) {}, {
-  pages: {
-    signIn: "/auth/signin",
-    error: "/auth/error",
+    if (!token) return NextResponse.redirect("/auth/signin");
+    if (token.role === "Guest") {
+      return NextResponse.rewrite(new URL("/unauthorized", req.url));
+    }
+
+    const route = protectedRoutes.find((route) => route.regex.test(pathname));
+    const isSubOrgan = token.role.includes("Admin");
+
+    const hasAccess =
+      route &&
+      (route.roles == "All" ||
+        route.roles.includes(token.role) ||
+        (isSubOrgan && route.roles.includes("SubOrgan")));
+
+    if (route && !hasAccess) {
+      return NextResponse.rewrite(new URL("/unauthorized", req.url));
+    }
   },
-  callbacks: {
-    authorized: ({ req, token }) => {
-      const pathname = req.nextUrl.pathname;
-      if (
-        pathname.startsWith("/admin") &&
-        (token?.role == "Guest" || !token?.role)
-      ) {
-        return false;
-      } else if (pathname == "/admin/users" && token?.role != "SuperAdmin") {
-        return false;
-      } else if (pathname.startsWith("/dashboard") && !token?.email) {
-        return false;
-      }
-      return true;
+  {
+    pages: {
+      signIn: "/auth/signin",
     },
   },
-});
+);
+
+export const config = {
+  matcher: ["/admin/:path*", "/admin"],
+};

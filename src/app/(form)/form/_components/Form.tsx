@@ -12,7 +12,7 @@ import { FormEvent, useEffect } from "react";
 import { toast } from "sonner";
 import { submitForm } from "../action";
 import { useState } from "react";
-import { default as useRouter } from "@/utils/customRouter";
+import { useRouter } from "next-nprogress-bar";
 import { formToJSON } from "@/utils/atomics";
 
 type FormPops = {

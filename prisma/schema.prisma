@@ -35,6 +35,11 @@ enum Roles {
   Guest
 }
 
+enum LinkType {
+  User
+  System
+}
+
 model User {
   id               String           @id @default(uuid()) @map("user_id") @db.Char(36)
   name             String
@@ -117,6 +122,7 @@ model Field {
   form_id     String
   options     Field_Option[]
   submissions Submission_Field[]
+  fieldNumber Int                @default(0)
 }
 
 model Field_Option {
@@ -154,6 +160,7 @@ model Link_Shortener {
   created_at DateTime              @default(now())
   updated_at DateTime              @updatedAt
   password   String?               @db.Char(32)
+  type       LinkType              @default(User)
   count      Link_Shortener_Count?
 }
 

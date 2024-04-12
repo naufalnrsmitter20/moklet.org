@@ -5,6 +5,7 @@ interface ButtonProps {
   type?: "button" | "reset" | "submit";
   onClick?: MouseEventHandler<HTMLButtonElement>;
   isDisabled?: boolean;
+  className?: string;
 }
 
 export function PrimaryButton({
@@ -12,13 +13,17 @@ export function PrimaryButton({
   type,
   onClick,
   isDisabled,
+  className = "",
 }: Readonly<ButtonProps>) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={isDisabled}
-      className="inline-block w-fit rounded-full bg-primary-400 px-6 py-3 transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
+      className={
+        className +
+        " inline-block w-fit rounded-full bg-primary-400 px-6 py-3 transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
+      }
     >
       <span
         className={`text-base ${isDisabled ? "text-neutral-500" : "text-white"}`}

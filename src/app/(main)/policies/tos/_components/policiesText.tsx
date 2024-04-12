@@ -37,8 +37,8 @@ export function SlaText() {
           <ul className="px-12 list-disc">
             <Li>
               MokletDev menyediakan dukungan pelanggan melalui email di
-              metic@smktelkom-mlg.sch.id untuk pertanyaan, keluhan, atau masalah
-              teknis terkait layanan Moklet.org.
+              dev@moklet.org untuk pertanyaan, keluhan, atau masalah teknis
+              terkait layanan Moklet.org.
             </Li>
             <Li>
               Waktu tanggapan untuk permintaan dukungan pelanggan adalah dalam

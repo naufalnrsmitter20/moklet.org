@@ -6,6 +6,8 @@ declare global {
       NEXTAUTH_SECRET: string;
       DATABASE_URL: string;
       SHADOW_DATABASE_URL: string;
+      NEXTAUTH_URL: string;
+      CLOUDINARY_URL: string;
       [key: string]: string | undefined;
     }
   }

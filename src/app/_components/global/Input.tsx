@@ -19,6 +19,17 @@ interface OptionFieldProps {
   className?: string;
   value?: string | Array<string>;
   name: string;
+  handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface SelectFieldProps {
+  label: string;
+  required?: boolean;
+  options: { value: string; label: string }[];
+  className?: string;
+  value?: string | Array<string>;
+  name: string;
+  handleChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 interface TextFieldProps extends InputProps {
@@ -40,7 +51,7 @@ export function TextField({
     <div className={"flex flex-col gap-2 " + className}>
       {label && (
         <label
-          htmlFor={label}
+          htmlFor={name}
           className={`first-letter:capitalize ${
             required ? "after:text-red-500 after:content-['*']" : ""
           }`}
@@ -54,6 +65,7 @@ export function TextField({
         defaultValue={value}
         placeholder={placeholder}
         onChange={handleChange}
+        id={name}
         className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
         required={required}
         onKeyDown={onKeyDown}
@@ -74,7 +86,7 @@ export function TextArea({
     <div className={"flex flex-col gap-2 " + className}>
       {label && (
         <label
-          htmlFor={label}
+          htmlFor={name}
           className={`first-letter:capitalize ${
             required ? "after:text-red-500 after:content-['*']" : ""
           }`}
@@ -87,8 +99,49 @@ export function TextArea({
         placeholder={placeholder}
         required={required}
         defaultValue={value}
+        id={name}
         className="h-[144px] rounded-xl border border-neutral-500 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
       />
+    </div>
+  );
+}
+
+export function SelectField({
+  label,
+  options,
+  className,
+  required,
+  value,
+  name,
+  handleChange,
+}: Readonly<SelectFieldProps>) {
+  return (
+    <div className={"flex flex-col gap-2 " + className}>
+      {label && (
+        <label
+          htmlFor={name}
+          className={`first-letter:capitalize ${
+            required ? "after:text-red-500 after:content-['*']" : ""
+          }`}
+        >
+          {label}
+        </label>
+      )}
+      <select
+        name={name}
+        defaultValue={value}
+        className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+        id={name}
+        required={required}
+        onChange={handleChange}
+      >
+        {options &&
+          options.map((option, index) => (
+            <option value={option.value} key={index}>
+              {option.label}
+            </option>
+          ))}
+      </select>
     </div>
   );
 }
@@ -100,12 +153,13 @@ export function RadioField({
   required,
   value,
   name,
+  handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>
       {label && (
         <label
-          htmlFor={label}
+          htmlFor={name}
           className={`first-letter:capitalize ${
             required ? "after:text-red-500 after:content-['*']" : ""
           }`}
@@ -141,6 +195,7 @@ export function CheckboxField({
   required,
   value,
   name,
+  handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>

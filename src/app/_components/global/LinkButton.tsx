@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ReactNode } from "react";
+import { HTMLAttributeAnchorTarget, ReactNode } from "react";
 
 interface LinkButtonProps {
   children?: ReactNode;
   href: string;
   scroll?: boolean;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export default function PrimaryLinkButton({
@@ -39,14 +40,16 @@ export function TertiaryLinkButton({
   children,
   href,
   scroll,
+  target,
 }: Readonly<LinkButtonProps>) {
   return (
     <Link
       href={href}
       scroll={scroll}
       className={
-        "text-base text-black hover:text-primary-400 transition-all duration-500"
+        "text-base text-black hover:text-primary-400 transition-all duration-500 w-fit"
       }
+      target={target}
     >
       {children}
     </Link>
