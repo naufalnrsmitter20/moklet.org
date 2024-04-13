@@ -42,6 +42,7 @@ export const findPopularPost = async (limit: number = 10) => {
   return await prisma.post.findMany({
     orderBy: [{ published_at: "desc" }, { view_count: "desc" }],
     take: limit,
+    where: { published: true },
     include: { tags: true, user: { select: { name: true, user_pic: true } } },
   });
 };

@@ -1,3 +1,4 @@
+import { NewsArticle, WithContext } from "schema-dts";
 import Image from "@/app/_components/global/Image";
 import { Tags } from "@/app/_components/global/NewsFigure";
 import { H2, H3, P } from "@/app/_components/global/Text";
@@ -15,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const post = await findPost({ slug: params.slug });
+  const post = await findPost({ slug: params.slug, published: true });
 
   if (!post)
     return {
@@ -26,15 +27,37 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     authors: { name: post.user.name },
-    keywords: post.tags.map((tag) => tag.tagName).join(", "),
+    creator: post.user.name,
+    openGraph: {
+      url: `https://moklet.org/berita/${post.slug}`,
+      images: post.thumbnail,
+      title: post.title,
+      description: post.description,
+      type: "article",
+    },
+    robots: "index, follow, max-image-preview:large",
+    keywords:
+      "smk telkom malang, moklet, " +
+      post.tags.map((tag) => tag.tagName).join(", "),
   };
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
-  const post = await findPost({ slug: params.slug });
+  const post = await findPost({ slug: params.slug, published: true });
 
   if (!post) notFound();
   else await updatePost({ id: post.id }, { view_count: { increment: 1 } });
+
+  const jsonLd: WithContext<NewsArticle> = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    image: post.thumbnail,
+    description: post.description,
+    headline: post.title,
+    datePublished: new Date(post.published_at!).toISOString(),
+    dateModified: new Date(post.updated_at!).toISOString(),
+    thumbnailUrl: post.thumbnail,
+  };
 
   return (
     <SmallSectionWrapper id={"Post-" + params.slug}>
@@ -92,6 +115,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
           <Related tags={post?.tags!} />
         </div>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </SmallSectionWrapper>
   );
 }

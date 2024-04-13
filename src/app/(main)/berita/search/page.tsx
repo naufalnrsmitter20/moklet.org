@@ -12,6 +12,7 @@ export default async function Search({
   searchParams: { [key: string]: string | undefined };
 }) {
   const Posts = (await findAllPosts({
+    published: true,
     OR: (searchParams.q as string).split(" ").map((query) => ({
       title: { contains: query },
     })),
