@@ -14,7 +14,7 @@ export default async function News({
 }) {
   const page = parseInt(searchParams.page ?? "1");
   const paginatedPosts = (await findAllPosts(
-    {},
+    { published: true },
     page,
   )) as PaginatedResult<PostWithTagsAndUser>;
 
