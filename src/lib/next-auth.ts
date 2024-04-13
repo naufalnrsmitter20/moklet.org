@@ -12,6 +12,7 @@ import { type DefaultSession } from "next-auth";
 import type { DefaultJWT } from "next-auth/jwt";
 import { createHash } from "crypto";
 import { getServerSession } from "next-auth";
+import { compareHash } from "@/utils/encryption";
 
 declare module "next-auth" {
   /**
@@ -67,25 +68,33 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials) {
-        let findUser = await prisma.user.findUnique({
-          where: { email: credentials?.email },
-          include: { userAuth: true },
-        });
-        if (!findUser) return null;
-        if (
-          findUser.userAuth?.password !=
-          createHash("md5").update(credentials?.password!).digest("hex")
-        )
-          return null;
+        try {
+          let findUser = await prisma.user.findUnique({
+            where: { email: credentials?.email },
+            include: { userAuth: true },
+          });
+          if (!findUser) return null;
 
-        const user = {
-          id: findUser.id,
-          role: findUser.role,
-          name: findUser.name,
-          email: findUser.email,
-          user_pic: findUser.user_pic,
-        };
-        return user;
+          const comparePassword = compareHash(
+            credentials?.password!,
+            findUser.userAuth?.password!,
+          );
+          console.log(credentials?.password!, findUser.userAuth?.password!);
+
+          if (!comparePassword) return null;
+
+          const user = {
+            id: findUser.id,
+            role: findUser.role,
+            name: findUser.name,
+            email: findUser.email,
+            user_pic: findUser.user_pic,
+          };
+          return user;
+        } catch (e) {
+          console.error(e);
+          return null;
+        }
       },
     }),
     GoogleProvider({
