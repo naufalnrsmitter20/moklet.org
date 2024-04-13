@@ -62,7 +62,7 @@ export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
             <span className="text-base text-black">{post.user.name}</span>
           </div>
           <span className="text-neutral-500">
-            {stringifyDate(post.created_at)}
+            {post.published_at && stringifyDate(post.published_at)}
           </span>
         </div>
       </div>
