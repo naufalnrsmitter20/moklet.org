@@ -79,7 +79,6 @@ export const authOptions: AuthOptions = {
             credentials?.password!,
             findUser.userAuth?.password!,
           );
-          console.log(credentials?.password!, findUser.userAuth?.password!);
 
           if (!comparePassword) return null;
 
