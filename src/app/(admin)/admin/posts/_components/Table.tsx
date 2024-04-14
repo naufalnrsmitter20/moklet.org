@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { FaRegCopy, FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
 import { postDelete, updatePostStatus } from "../action";
-// import { cloneForm, deleteForm } from "../actions";
 
 export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
