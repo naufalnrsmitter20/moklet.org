@@ -35,7 +35,7 @@ export async function generateMetadata({
       description: post.description,
       type: "article",
     },
-    robots: "index, follow, max-image-preview:large",
+    robots: "max-image-preview:large",
     keywords:
       "smk telkom malang, moklet, " +
       post.tags.map((tag) => tag.tagName).join(", "),
