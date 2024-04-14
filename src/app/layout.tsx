@@ -7,6 +7,9 @@ import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
+const robots =
+  process.env.APP_ENV != "production" ? "noindex, nofollow" : "index, follow";
+
 export const metadata: Metadata = {
   title: {
     default: "Moklet.org",
@@ -18,6 +21,7 @@ export const metadata: Metadata = {
   authors: { name: "MokletDev", url: "https://mokletdev.vercel.app" },
   creator: "MokletDev Team",
   publisher: "SMK Telkom Malang",
+  robots: robots,
 };
 
 export const viewport: Viewport = {
