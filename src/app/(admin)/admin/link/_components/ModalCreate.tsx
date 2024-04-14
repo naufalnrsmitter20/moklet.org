@@ -14,23 +14,23 @@ export default function ModalCreate({
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   link?: LinkWithCountAndUser;
 }) {
-    const ref = useRef<HTMLFormElement>(null);
-    const [password, setPassword] = useState(false);
-    async function create(formdata: FormData) {
-      const toastId = toast.loading("Loading...");
-      const result = await addLink(formdata);
-      if (!result.error) {
-        toast.error(result.message, { id: toastId });
-        ref.current?.reset();
-      }
-      toast.success(result.message, { id: toastId });
-      setIsOpenModal(true);
+  const ref = useRef<HTMLFormElement>(null);
+  const [password, setPassword] = useState(false);
+  async function create(formdata: FormData) {
+    const toastId = toast.loading("Loading...");
+    const result = await addLink(formdata);
+    if (!result.error) {
+      toast.error(result.message, { id: toastId });
+      ref.current?.reset();
     }
+    toast.success(result.message, { id: toastId });
+    setIsOpenModal(true);
+  }
   return (
     <div className="bg-gray-300/50 fixed w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-[calc(100%-1rem)] m-auto">
       <div className="relative p-4 w-full h-full max-w-2xl max-h-full m-auto top-20">
         <div className="relative bg-white rounded-lg">
-          <form ref={ref} action={create} >
+          <form ref={ref} action={create}>
             <div className="flex items-center justify-between p-4 md:p-5 border-b">
               <H3>Create Link</H3>
               <button
@@ -42,35 +42,35 @@ export default function ModalCreate({
             </div>
             <div className="p-4 md:p-5 space-y-4">
               <TextField
-              type="text"
-              label="Destination"
-              name="destLink"
-              placeholder="https://example.com/thisisaverylongstringthatyouwouldliketoshorten"
-              required={true}
-            />
-              <TextField
-              type="text"
-              label="Short URL"
-              name="slug"
-              placeholder="MokletHebat"
-            />
-            {password && (
-              <TextField
-                type="password"
-                label="Password"
-                placeholder="*******"
-                name="password"
+                type="text"
+                label="Destination"
+                name="destLink"
+                placeholder="https://example.com/thisisaverylongstringthatyouwouldliketoshorten"
+                required={true}
               />
-            )}
-            <span className="flex gap-1">
-              <input
-                id="password"
-                type="checkbox"
-                className="p-2 text-primary-500 accent-primary-500  transition-all"
-                onChange={() => setPassword(!password)}
+              <TextField
+                type="text"
+                label="Short URL"
+                name="slug"
+                placeholder="MokletHebat"
               />
-              <label htmlFor="password">URL Pribadi</label>
-            </span>
+              {password && (
+                <TextField
+                  type="password"
+                  label="Password"
+                  placeholder="*******"
+                  name="password"
+                />
+              )}
+              <span className="flex gap-1">
+                <input
+                  id="password"
+                  type="checkbox"
+                  className="p-2 text-primary-500 accent-primary-500  transition-all"
+                  onChange={() => setPassword(!password)}
+                />
+                <label htmlFor="password">URL Pribadi</label>
+              </span>
             </div>
             <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b justify-end">
               <FormButton />

@@ -54,7 +54,7 @@ export const findPost = async (filter: Prisma.PostWhereInput) => {
     include: { tags: true, user: { select: { name: true, user_pic: true } } },
   });
 };
-export const createPost = async (data: Prisma.PostUncheckedCreateInput) => {
+export const createPost = async (data: Prisma.PostCreateInput) => {
   return await prisma.post.create({ data });
 };
 
