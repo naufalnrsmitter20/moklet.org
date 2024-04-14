@@ -108,7 +108,6 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
       toast.success(action.message, { id: toastId });
     }, 3000);
     router.refresh();
-    // router.push(`/admin/form/${action.data?.id}`);
   }
 
   useEffect(() => {
