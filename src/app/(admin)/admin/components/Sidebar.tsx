@@ -52,7 +52,8 @@ export function Sidebar({ nav, session }: navbarParam) {
                     height="25"
                     viewBox="0 0 24 25"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M10.1103 11.65H7.4603C6.8303 11.65 6.32031 12.16 6.32031 12.79V17.91H10.1103V11.65V11.65Z"
                       stroke="#E04E4E"
@@ -100,7 +101,7 @@ export function Sidebar({ nav, session }: navbarParam) {
                       "group flex items-center rounded-lg p-2 text-base font-normal text-primary-400 hover:bg-red-200 transition-all"
                     }
                   >
-                    <div dangerouslySetInnerHTML={{__html: item.icon}} />
+                    <div dangerouslySetInnerHTML={{ __html: item.icon }} />
                     <P className="ml-3 whitespace-nowrap text-primary-400 font-semibold">
                       {item.title}
                     </P>

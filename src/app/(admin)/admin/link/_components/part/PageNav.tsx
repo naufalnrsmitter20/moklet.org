@@ -1,4 +1,3 @@
-import { TertiaryLinkButton } from "@/app/_components/global/LinkButton";
 import ArrowLeft from "@/app/(main)/berita/_components/icons/ArrowLeft";
 import ArrowRight from "@/app/(main)/berita/_components/icons/ArrowRight";
 import PrimaryLinkButton from "@/app/(main)/berita/_components/parts/Button";

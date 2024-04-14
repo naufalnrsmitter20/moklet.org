@@ -1,4 +1,3 @@
-
 import LinkForm from "./_components/LinkForm";
 import { findAllLinks } from "@/utils/database/linkShortener.query.ts";
 import { nextGetServerSession } from "@/lib/next-auth";
@@ -13,7 +12,6 @@ export default async function Shortener({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) {
-
   const session = await nextGetServerSession();
   const { user } = session!;
   const links = (await findAllLinks(
@@ -26,7 +24,6 @@ export default async function Shortener({
 
   return (
     <>
-      
       <LinkForm />
       <div className="flex flex-col gap-5 mt-8">
         <Links links={links.data} />

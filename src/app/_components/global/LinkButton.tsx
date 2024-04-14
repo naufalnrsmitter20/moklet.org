@@ -55,3 +55,17 @@ export function TertiaryLinkButton({
     </Link>
   );
 }
+
+export function FullPrimaryLinkButton({
+  children,
+  href,
+}: Readonly<LinkButtonProps>) {
+  return (
+    <Link
+      href={href}
+      className="inline-block rounded-full bg-primary-400 w-full px-6 py-3 transition-all duration-500 hover:bg-primary-200"
+    >
+      <span className="text-base text-white">{children}</span>
+    </Link>
+  );
+}
