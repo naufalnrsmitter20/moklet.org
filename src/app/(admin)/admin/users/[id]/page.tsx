@@ -2,15 +2,15 @@ import { findUser, updateUser } from "@/utils/database/user.query";
 import { Roles } from "@prisma/client";
 import Image from "@/app/_components/global/Image";
 import { H4, P } from "@/app/_components/global/Text";
+import { updateUserWithId } from "../action";
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const id = params.id;
   const user = await findUser({ id: id });
-  const updateUserWithId = async (form: FormData) => {
+  const updateUser = async (form: FormData) => {
     "use server";
-    updateUser({ id: id }, { role: form.get("role") as Roles });
+    updateUserWithId(form, id);
   };
-
   return (
     <>
       <header className="flex justify-between items-center">
@@ -33,6 +33,9 @@ export default async function Detail({ params }: { params: { id: string } }) {
               </>
             )}
           </div>
+          <button className="px-4 heigh h-10 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300">
+            Hapus
+          </button>
         </div>
       </header>
       <article className="my-6 flex flex-wrap gap-12">
@@ -40,7 +43,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
           <>
             <div className="w-1/3">
               <P>Role</P>
-              <form action={updateUserWithId}>
+              <form action={updateUser}>
                 <div>
                   <select
                     name="role"
