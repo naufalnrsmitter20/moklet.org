@@ -4,8 +4,6 @@ import { TextField } from "@/app/_components/global/Input";
 import { LinkWithCountAndUser } from "@/types/entityRelations";
 import { Dispatch, SetStateAction } from "react";
 import Form from "./parts/ImageForm";
-// import { updateLink } from "../action";
-// import FormButton from "./part/SubmitButton";
 
 export default function Modal({
   setIsOpenModal,
