@@ -47,7 +47,8 @@ export async function updateLink(data: FormData) {
   let slug = data.get("slug") as string;
   let id = data.get("id") as string;
   try {
-    if (data.get("password")) {
+    if (!data.get("private_url")) hashedpass = null;
+    else {
       hashedpass = createHash("md5")
         .update((data.get("password") as string) || "")
         .digest("hex");
@@ -63,7 +64,7 @@ export async function updateLink(data: FormData) {
       data: {
         slug,
         target_url: data.get("target_url") as string,
-        password: hashedpass ? hashedpass : undefined,
+        password: hashedpass,
       },
     });
     if (!update) throw new Error("Update failed");
