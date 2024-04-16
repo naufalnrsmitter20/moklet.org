@@ -12,7 +12,7 @@ const robots =
 
 export const metadata: Metadata = {
   title: {
-    default: "Moklet.org",
+    default: "Moklet Organization",
     template: "%s | Moklet.org",
   },
   description:
