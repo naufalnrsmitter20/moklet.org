@@ -19,7 +19,7 @@ export default function Modal({
     const toastId = toast.loading("Loading...");
     const result = await updateLink(formdata);
     if (!result.error) toast.success(result.message, { id: toastId });
-    toast.error(result.message, { id: toastId });
+    else toast.error(result.message, { id: toastId });
   }
   return (
     <div className="bg-gray-300/50 fixed w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-full m-auto">

@@ -5,6 +5,7 @@ import {
   findUser,
   createUser,
   updateUserAuth,
+  updateUser,
 } from "@/utils/database/user.query";
 import { Roles } from "@prisma/client";
 import prisma from "./prisma";
@@ -151,9 +152,12 @@ export const authOptions: AuthOptions = {
         session.user.id = token?.id!;
         session.user.user_pic = token?.user_pic!;
         session.user.name = token?.name!;
-        await updateUserAuth(
-          { userEmail: token.email },
-          { last_login: new Date() },
+        await updateUser(
+          { email: token.email },
+          {
+            user_pic: session.user.image ?? undefined,
+            userAuth: { update: { last_login: new Date() } },
+          },
         );
       }
       return session;

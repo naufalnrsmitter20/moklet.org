@@ -16,7 +16,7 @@ export default async function Forms() {
     <>
       <div className="flex items-center justify-between">
         <div>
-          <H2 className="font-semibold ">Formulir </H2>
+          <H2 className="font-semibold">Formulir </H2>
           <P>Easily create online surveys, forms, quizzes </P>
         </div>
         <PrimaryLinkButton href="/admin/form/new">

@@ -2,11 +2,17 @@ import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 export const findAllUsers = async (filter?: Prisma.UserWhereInput) => {
-  return await prisma.user.findMany({ where: filter });
+  return await prisma.user.findMany({
+    where: filter,
+    include: { userAuth: { select: { last_login: true } } },
+  });
 };
 
 export const findUser = async (filter: Prisma.UserWhereInput) => {
-  return await prisma.user.findFirst({ where: filter });
+  return await prisma.user.findFirst({
+    where: filter,
+    include: { userAuth: { select: { last_login: true } } },
+  });
 };
 
 export const findUserAuth = async (email: string) => {
