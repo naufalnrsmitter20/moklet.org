@@ -11,13 +11,16 @@ export default function LinkForm() {
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-col lg:flex-row">
         <div>
           <H2 className="font-semibold ">URL Shortener</H2>
           <P>Make your link more profesional</P>
         </div>
         <div>
-          <PrimaryButton onClick={() => setIsOpenModal(true)}>
+          <PrimaryButton
+            className="w-full flex justify-center mt-8 lg:mt-0"
+            onClick={() => setIsOpenModal(true)}
+          >
             <div className="flex items-center">
               <PlusIcon />
               Create Link

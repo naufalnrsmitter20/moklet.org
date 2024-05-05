@@ -1,7 +1,7 @@
 import { NewsArticle, WithContext } from "schema-dts";
 import Image from "@/app/_components/global/Image";
 import { Tags } from "@/app/_components/global/NewsFigure";
-import { H2, H3, P } from "@/app/_components/global/Text";
+import { H2, H3, H4, P } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { stringifyDate } from "@/utils/atomics";
 import { findPost, updatePost } from "@/utils/database/post.query";
@@ -61,14 +61,19 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   return (
     <SmallSectionWrapper id={"Post-" + params.slug}>
-      <div className="flex gap-[52px]">
-        <div className="max-w-[768px] flex flex-col gap-[52px]">
-          <div className="flex gap-[32px]">
+      <div className="flex gap-[52px] xl:flex-row flex-col">
+        <div className="w-full xl:w-[768px] flex flex-col gap-[52px]">
+          <div className="flex gap-[18px] lg:gap-[32px]">
             <GoBack />
-            <H2 className="text-wrap w-[686px]">{post?.title}</H2>
+            <H2 className="text-wrap w-[686px] hidden lg:block">
+              {post?.title}
+            </H2>
+            <H4 className="text-wrap w-[686px] block lg:hidden">
+              {post?.title}
+            </H4>
           </div>
           <div>
-            <div className="w-full h-[450px] mb-[72px]">
+            <div className="w-full h-[253px] md:h-[450px] xl:w-650px mb-[52px] lg:mb-[72px]">
               <Image
                 src={post?.thumbnail}
                 alt={"image-" + post?.title}
@@ -79,7 +84,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
               />
             </div>
             <div className="w-full">
-              <div className="mb-[42px] flex justify-between items-center">
+              <div className="mb-[42px] flex flex-col lg:flex-row justify-between items-start gap-[32px] lg:gap-0 lg:items-center">
                 <div className="flex gap-[10px]">
                   {post?.tags.map((tag) => (
                     <Tags tag={tag} key={tag.tagName} />

@@ -27,7 +27,7 @@ export default function ModalCreate({
     setIsOpenModal(false);
   }
   return (
-    <div className="bg-gray-300/50 fixed w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-[calc(100%-1rem)] m-auto">
+    <div className="bg-gray-300/50 fixed w-full lg:w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-[calc(100%-1rem)] m-auto">
       <div className="relative p-4 w-full h-full max-w-2xl max-h-full m-auto top-20">
         <div className="relative bg-white rounded-lg">
           <form ref={ref} action={create}>
