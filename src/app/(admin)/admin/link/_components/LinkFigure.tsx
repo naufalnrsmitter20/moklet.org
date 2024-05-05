@@ -34,7 +34,7 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
     const toastId = toast.loading("Loading...");
     const result = await deleteLink(slug);
     if (!result.error) toast.success(result.message, { id: toastId });
-    toast.error(result.message, { id: toastId });
+    else toast.error(result.message, { id: toastId });
   }
   return (
     <figure className="lg:flex justify-between w-full bg-white rounded-xl px-6 py-4">

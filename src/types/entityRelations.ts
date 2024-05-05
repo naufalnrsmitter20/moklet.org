@@ -44,3 +44,7 @@ export type TagWithPostCount = Prisma.TagGetPayload<{
     };
   };
 }>;
+
+export type UserWithLastlog = Prisma.UserGetPayload<{
+  include: { userAuth: { select: { last_login: true } } };
+}>;
