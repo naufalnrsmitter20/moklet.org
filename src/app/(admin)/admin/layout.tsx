@@ -30,10 +30,10 @@ export default function RootLayout({
         id="main-content"
         className="relative h-full w-full overflow-y-auto ps-2 lg:ps-24 py-4 lg:ml-64 mt-[90px] lg:mt-0"
       >
-        <nav className="w-max rounded-lg align-middle p-2 font-sans text-2xl capitalize md:p-3">
+        <nav className="w-max rounded-lg align-middle p-2 font-sans text-xl lg:text-2xl capitalize md:p-3">
           <ol className="flex ">
             <li>
-              <Link href="/" className="font-semibold ">
+              <Link href="/" className="font-semibold">
                 home
               </Link>
             </li>
@@ -74,7 +74,7 @@ export default function RootLayout({
           </ol>
         </nav>
         <main>
-          <div className="px-4 pt-6 ">{children}</div>
+          <div className="px-4 pt-6 min-h-screen lg:min-h-full">{children}</div>
         </main>
       </div>
     </main>
