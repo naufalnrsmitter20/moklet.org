@@ -5,6 +5,8 @@ import { P } from "@/app/_components/global/Text";
 import { protectedRoutes } from "@/utils/protectedRoutes";
 import { usePathname } from "next/navigation";
 import { DashboardIcon } from "./Icons";
+import { PrimaryButton } from "@/app/_components/global/Button";
+import { signOut } from "next-auth/react";
 
 type navbarParam = {
   nav: boolean;
@@ -70,6 +72,9 @@ export function Sidebar({ nav, session }: navbarParam) {
                   </Link>
                 </li>
               ))}
+              <PrimaryButton onClick={() => signOut()} className="w-full">
+                Log Out
+              </PrimaryButton>
             </ul>
           </div>
         </div>

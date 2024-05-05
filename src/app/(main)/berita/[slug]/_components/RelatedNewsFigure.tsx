@@ -3,12 +3,13 @@ import { Tags } from "@/app/_components/global/NewsFigure";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { stringifyDate } from "@/utils/atomics";
 import Link from "next/link";
+import cn from "@/lib/clsx";
 
 export default function RelatedNewsFigure({
   post,
 }: Readonly<{ post: PostWithTagsAndUser }>) {
   return (
-    <figure className="w-full">
+    <figure className="w-full lg:w-[339px] xl:w-[372px]">
       <div className="h-[200px] w-full">
         <Image
           src={post.thumbnail}

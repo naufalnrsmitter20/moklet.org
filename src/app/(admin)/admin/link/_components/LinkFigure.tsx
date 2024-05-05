@@ -45,16 +45,16 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
             <FaGlobeAsia className="text-3xl text-gray-400" />
           </span>
           <div className="text-wrap">
-            <H3>
+            <H3 className="lg:text-[28px] text-[20px]">
               <span
                 onClick={() => copyToClipboard()}
-                className="text-black hover:text-gray-8 font-semibold hover:cursor-pointer transition-all duration-500 cursor-pointer"
+                className="text-black text-wrap break-all hover:text-gray-8 font-semibold hover:cursor-pointer transition-all duration-500 cursor-pointer"
               >
                 {"go.moklet.org/" + link.slug}
               </span>
             </H3>
-            <P>{link.target_url}</P>
-            <div className="pt-5 flex gap-4 ">
+            <P className="max-w-full break-all">{link.target_url}</P>
+            <div className="pt-5 flex gap-4 flex-col lg:flex-row">
               <span className="flex gap-1 items-center ">
                 <StatsIcon />
 

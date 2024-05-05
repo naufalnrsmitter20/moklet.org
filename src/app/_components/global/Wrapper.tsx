@@ -21,7 +21,7 @@ export function SmallSectionWrapper({
   id,
 }: Readonly<SectionWrapperProps>) {
   return (
-    <section className="w-full py-[32px]" id={id}>
+    <section className="w-full py-[32px] mt-[42px] xl:mt-0" id={id}>
       {children}
     </section>
   );

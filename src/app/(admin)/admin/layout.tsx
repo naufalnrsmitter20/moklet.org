@@ -3,7 +3,7 @@ import { Sidebar } from "./components/Sidebar";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import Navbar from "./components/Navbar";
 import { useSession } from "next-auth/react";
 
 export default function RootLayout({
@@ -19,15 +19,16 @@ export default function RootLayout({
   return (
     <main className="flex w-full h-screen overflow-hidden bg-slate-50">
       <Sidebar nav={nav} session={session} />
+      <Navbar session={session} />
       <div
         className={`bg-gray-900 opacity-50 ${
           nav ? "" : "hidden"
-        } fixed inset-0 z-10 `}
+        } fixed inset-0 z-10`}
         id="sidebarBackdrop"
       />
       <div
         id="main-content"
-        className="relative h-full w-full overflow-y-auto ps-2 lg:ps-24 py-4 lg:ml-64 "
+        className="relative h-full w-full overflow-y-auto ps-2 lg:ps-24 py-4 lg:ml-64 mt-[90px] lg:mt-0"
       >
         <nav className="w-max rounded-lg align-middle p-2 font-sans text-2xl capitalize md:p-3">
           <ol className="flex ">
