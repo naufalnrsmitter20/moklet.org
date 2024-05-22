@@ -53,7 +53,8 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
                   height="20"
                   viewBox="0 0 20 20"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M1.66699 1.66663V15.8333C1.66699 17.2166 2.78366 18.3333 4.16699 18.3333H18.3337"
                     stroke="#8E8E8E"
@@ -208,7 +209,8 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
               height="25"
               viewBox="0 0 24 25"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg" >
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M17 13.9V16.9C17 20.9 15.4 22.5 11.4 22.5H7.6C3.6 22.5 2 20.9 2 16.9V13.1C2 9.1 3.6 7.5 7.6 7.5H10.6"
                 stroke="#E42413"
