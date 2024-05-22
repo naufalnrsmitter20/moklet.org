@@ -1,4 +1,7 @@
-import { ChangeEvent, KeyboardEventHandler } from "react";
+"use client";
+
+import { ChangeEvent, KeyboardEventHandler, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface InputProps {
   label?: string;
@@ -47,6 +50,7 @@ export function TextField({
   value,
   onKeyDown,
 }: Readonly<TextFieldProps>) {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className={"flex flex-col gap-2 " + className}>
       {label && (
@@ -59,17 +63,28 @@ export function TextField({
           {label}
         </label>
       )}
-      <input
-        type={type}
-        name={name}
-        defaultValue={value}
-        placeholder={placeholder}
-        onChange={handleChange}
-        id={name}
-        className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
-        required={required}
-        onKeyDown={onKeyDown}
-      />
+      <div>
+        {type == "password" && (
+          <button
+            className="absolute right-6 mt-4 flex items-center px-2 text-neutral-400 hover:text-neutral-500 transition-all"
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+          </button>
+        )}
+        <input
+          type={showPassword ? "text" : type}
+          name={name}
+          defaultValue={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+          id={name}
+          className="w-full rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+          required={required}
+          onKeyDown={onKeyDown}
+        />
+      </div>
     </div>
   );
 }

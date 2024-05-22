@@ -1,10 +1,7 @@
 "use client";
 
 import MDEditor, {
-  ContextStore,
   commands,
-  TextState,
-  TextAreaTextApi,
   bold,
   italic,
   strikethrough,
@@ -20,39 +17,87 @@ import MDEditor, {
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  TextAreaTextApi,
 } from "@uiw/react-md-editor";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, useRef } from "react";
 import { FaFileImage } from "react-icons/fa";
-import Modal from "./ImageModal";
+import { toast } from "sonner";
 
 export default function Editor({
   value,
   onChange,
-  isOpen,
-  setIsOpen,
 }: {
   value: string;
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
   onChange: (
     value?: string | undefined,
     event?: ChangeEvent<HTMLTextAreaElement> | undefined,
   ) => void;
 }) {
-  const upImage = {
-    name: "Upload image",
-    keyCommand: "Image upload",
-    buttonProps: { "aria-label": "Upload an image" },
+  const insertImageRef = useRef<HTMLInputElement>(null);
+
+  const insertImage: commands.ICommand = {
+    name: "Insert image",
+    keyCommand: "Insert upload",
+    buttonProps: { "aria-label": "Insert an image" },
     icon: <FaFileImage />,
-    execute: (state: TextState, api: TextAreaTextApi) => {
-      setIsOpen(!isOpen);
+    execute: async (_, api: TextAreaTextApi) => {
+      if (insertImageRef.current) {
+        const toastId = toast.loading("Uploading image...");
+        const result = await getImage();
+        if (!result) return alert("Failed to load image");
+
+        const data = new FormData();
+
+        data.append("file", result!);
+
+        const upload = await fetch("/api/upload/image", {
+          method: "POST",
+          body: data,
+        }).then((res) => res.json());
+
+        if (upload.status != 201) {
+          toast.error("Failed upload image", { id: toastId });
+          alert(upload.message);
+        } else {
+          let modifyText = `![user image](${upload.data?.url})\n`;
+          api.replaceSelection(modifyText);
+          toast.success("Success upload image", { id: toastId });
+        }
+        insertImageRef!.current!.value = "";
+      }
     },
   };
+
+  function getImage(): Promise<File | null | undefined> {
+    return new Promise((resolve, reject) => {
+      if (insertImageRef.current) {
+        insertImageRef.current.onchange = () => {
+          try {
+            if (!confirm("Upload this image?")) {
+              insertImageRef!.current!.value = "";
+              return;
+            }
+            resolve(insertImageRef.current?.files?.[0]!);
+          } catch (e) {
+            reject(e);
+          }
+        };
+        insertImageRef.current?.click();
+      }
+    });
+  }
 
   return (
     <>
       <div data-color-mode="light">
         <label>Text Editor</label>
+        <input
+          type="file"
+          hidden
+          name="insertImage"
+          ref={insertImageRef}
+          accept="image/gif,image/jpeg,image/jpg,image/png,image/webp,image/svg"
+        />
         <MDEditor
           value={value}
           onChange={onChange}
@@ -76,7 +121,7 @@ export default function Editor({
             code,
             codeBlock,
             comment,
-            upImage,
+            insertImage,
             table,
             divider,
             unorderedListCommand,

@@ -5,7 +5,7 @@ import { stringifyCompleteDate } from "@/utils/atomics";
 import { useEffect, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
-import { FaRegCopy, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
 import { postDelete, updatePostStatus } from "../action";
 
@@ -13,7 +13,6 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
   const router = useRouter();
 
-  var now = new Date().getTime();
   const columns: TableColumn<PostWithTagsAndUser>[] = [
     {
       name: "Title",
@@ -35,6 +34,7 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
     },
     {
       name: "Date",
+      selector: (row: PostWithTagsAndUser) => row.created_at.toString(),
       cell: (row: PostWithTagsAndUser) => (
         <span className=" flex flex-col justify-start">
           <span>
@@ -47,6 +47,7 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
     },
     {
       name: "Status",
+      selector: (row: PostWithTagsAndUser) => row.published,
       cell: (row: PostWithTagsAndUser) =>
         row.published ? (
           <span className="p-2 bg-green-600 rounded-md text-white">
@@ -79,11 +80,6 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
       ),
     },
   ];
-
-  function copyToClipboard(id: string) {
-    navigator.clipboard.writeText("https://moklet.org/form/" + id);
-    alert("Link berhasil disalin!");
-  }
 
   async function deletePost(id: string) {
     if (

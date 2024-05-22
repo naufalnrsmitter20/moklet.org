@@ -10,6 +10,18 @@ import {
   deletePost,
 } from "@/utils/database/post.query";
 import { MultiValue } from "react-select";
+import { Prisma } from "@prisma/client";
+
+export async function uploadInsert(data: Record<string, any>) {
+  try {
+    const result = await imageUploader(Buffer.from(data.data));
+
+    return result;
+  } catch (e) {
+    console.log(e);
+    return { error: true, message: "Gagal mengupload file!" };
+  }
+}
 
 export async function upload(data: FormData) {
   let image = data.get("image") as File;
@@ -31,9 +43,9 @@ export async function upload(data: FormData) {
 
 export async function createTag(inputValue: string) {
   try {
-    await prisma.tag.create({ data: { tagName: inputValue } });
+    const tag = await prisma.tag.create({ data: { tagName: inputValue } });
     revalidatePath("/admin/posts/create");
-    return { status: "OK", message: "Tag berhasil dibuat!" };
+    return { status: "OK", message: "Tag berhasil dibuat!", tag };
   } catch (e) {
     console.log(e);
     return { error: true, message: "Gagal membuat tag!" };
@@ -46,12 +58,16 @@ export async function postCreate(
   tags: MultiValue<{ value: string; label: string }>,
 ) {
   const session = await getServerSession();
-  session?.user?.user_pic;
   try {
     const title = data.get("title") as string;
     const slug = data.get("slug") as string;
     const description = data.get("desc") as string;
-    const tag = tags.map((tag) => ({ tagName: tag.value }));
+    const tag: Prisma.TagCreateOrConnectWithoutPostsInput[] = tags.map(
+      (tag) => ({
+        where: { tagName: tag.value },
+        create: { tagName: tag.value },
+      }),
+    );
     const image = data.get("thumbnail") as File;
     const ABuffer = await image.arrayBuffer();
     const upload = await imageUploader(Buffer.from(ABuffer));
@@ -64,7 +80,7 @@ export async function postCreate(
       description: description,
       thumbnail: upload.data?.url!,
       reaction: [],
-      tags: { connect: tag },
+      tags: { connectOrCreate: tag },
       user: { connect: session?.user },
       created_at: new Date(),
       updated_at: new Date(),
@@ -91,7 +107,12 @@ export async function postUpdate(
     const title = data.get("title") as string;
     const slug = data.get("slug") as string;
     const description = data.get("desc") as string;
-    const tag = tags.map((tag) => ({ tagName: tag.value }));
+    const tag: Prisma.TagCreateOrConnectWithoutPostsInput[] = tags.map(
+      (tag) => ({
+        where: { tagName: tag.value },
+        create: { tagName: tag.value },
+      }),
+    );
     const image = data.get("thumbnail") as File;
     let upload;
     if (image) {
@@ -109,7 +130,7 @@ export async function postUpdate(
         title: title ?? undefined,
         description: description ?? undefined,
         thumbnail: upload!.data?.url ?? undefined,
-        tags: { connect: tag ?? undefined },
+        tags: { connectOrCreate: tag },
         updated_at: new Date(),
       },
     );

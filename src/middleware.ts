@@ -9,11 +9,13 @@ export default withAuth(
 
     if (!token) return NextResponse.redirect("/auth/signin");
     if (token.role === "Guest") {
-      return NextResponse.rewrite(new URL("/unauthorized", req.url));
+      return NextResponse.rewrite(new URL("/unauthorized", req.url), {
+        status: 403,
+      });
     }
 
     const route = protectedRoutes.find((route) => route.regex.test(pathname));
-    const isSubOrgan = token.role.includes("Admin");
+    const isSubOrgan = !token.role.includes("Admin");
 
     const hasAccess =
       route &&
@@ -22,7 +24,9 @@ export default withAuth(
         (isSubOrgan && route.roles.includes("SubOrgan")));
 
     if (route && !hasAccess) {
-      return NextResponse.rewrite(new URL("/unauthorized", req.url));
+      return NextResponse.rewrite(new URL("/unauthorized", req.url), {
+        status: 403,
+      });
     }
   },
   {
