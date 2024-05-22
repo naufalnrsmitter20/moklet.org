@@ -5,6 +5,7 @@ import {
   findUser,
   createUser,
   updateUserAuth,
+  updateUser,
 } from "@/utils/database/user.query";
 import { Roles } from "@prisma/client";
 import prisma from "./prisma";
@@ -12,6 +13,7 @@ import { type DefaultSession } from "next-auth";
 import type { DefaultJWT } from "next-auth/jwt";
 import { createHash } from "crypto";
 import { getServerSession } from "next-auth";
+import { compareHash } from "@/utils/encryption";
 
 declare module "next-auth" {
   /**
@@ -67,25 +69,32 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials) {
-        let findUser = await prisma.user.findUnique({
-          where: { email: credentials?.email },
-          include: { userAuth: true },
-        });
-        if (!findUser) return null;
-        if (
-          findUser.userAuth?.password !=
-          createHash("md5").update(credentials?.password!).digest("hex")
-        )
-          return null;
+        try {
+          let findUser = await prisma.user.findUnique({
+            where: { email: credentials?.email },
+            include: { userAuth: true },
+          });
+          if (!findUser) return null;
 
-        const user = {
-          id: findUser.id,
-          role: findUser.role,
-          name: findUser.name,
-          email: findUser.email,
-          user_pic: findUser.user_pic,
-        };
-        return user;
+          const comparePassword = compareHash(
+            credentials?.password!,
+            findUser.userAuth?.password!,
+          );
+
+          if (!comparePassword) return null;
+
+          const user = {
+            id: findUser.id,
+            role: findUser.role,
+            name: findUser.name,
+            email: findUser.email,
+            user_pic: findUser.user_pic,
+          };
+          return user;
+        } catch (e) {
+          console.error(e);
+          return null;
+        }
       },
     }),
     GoogleProvider({
@@ -143,9 +152,12 @@ export const authOptions: AuthOptions = {
         session.user.id = token?.id!;
         session.user.user_pic = token?.user_pic!;
         session.user.name = token?.name!;
-        await updateUserAuth(
-          { userEmail: token.email },
-          { last_login: new Date() },
+        await updateUser(
+          { email: token.email },
+          {
+            user_pic: session.user.image ?? undefined,
+            userAuth: { update: { last_login: new Date() } },
+          },
         );
       }
       return session;

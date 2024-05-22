@@ -16,7 +16,7 @@ export default async function Forms() {
     <>
       <div className="flex items-center justify-between">
         <div>
-          <H2 className="font-semibold ">Formulir </H2>
+          <H2 className="font-semibold">Formulir </H2>
           <P>Easily create online surveys, forms, quizzes </P>
         </div>
         <PrimaryLinkButton href="/admin/form/new">
@@ -31,16 +31,16 @@ export default async function Forms() {
               <path
                 d="M6 12H18"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M12 18V6"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             Create Form

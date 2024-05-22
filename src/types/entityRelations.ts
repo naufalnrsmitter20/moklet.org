@@ -36,3 +36,15 @@ export type LinkWithCountAndUser = Prisma.Link_ShortenerGetPayload<{
     count: { select: { click_count: true } };
   };
 }>;
+
+export type TagWithPostCount = Prisma.TagGetPayload<{
+  include: {
+    _count: {
+      select: { posts: { where: { published: true } } };
+    };
+  };
+}>;
+
+export type UserWithLastlog = Prisma.UserGetPayload<{
+  include: { userAuth: { select: { last_login: true } } };
+}>;
