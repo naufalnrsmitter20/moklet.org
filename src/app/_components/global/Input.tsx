@@ -115,7 +115,7 @@ export function TextArea({
         required={required}
         defaultValue={value}
         id={name}
-        className="h-[144px] rounded-xl border border-neutral-500 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+        className="h-[144px] rounded-2xl border border-neutral-400 px-[18px] focus:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500"
       />
     </div>
   );
@@ -145,7 +145,7 @@ export function SelectField({
       <select
         name={name}
         defaultValue={value}
-        className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+        className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500"
         id={name}
         required={required}
         onChange={handleChange}
