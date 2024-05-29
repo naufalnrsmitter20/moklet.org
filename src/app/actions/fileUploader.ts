@@ -3,7 +3,7 @@
 import cloudinary from "@/lib/cloudinary";
 import { UploadApiResponse } from "cloudinary";
 
-export async function imageUploader(file: Buffer) {
+export async function imageUploader(file: Buffer | any) {
   try {
     const upload: UploadApiResponse | undefined = await new Promise(
       (resolve, reject) => {
@@ -15,7 +15,7 @@ export async function imageUploader(file: Buffer) {
               return resolve(uploadResult);
             },
           )
-          .end(file);
+          .end(file?.data ? file.data : file);
       },
     );
 

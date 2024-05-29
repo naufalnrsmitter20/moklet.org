@@ -1,10 +1,9 @@
 "use client";
 
 import { TagWithPostCount } from "@/types/entityRelations";
-import { Prisma, Tag } from "@prisma/client";
+import { Tag } from "@prisma/client";
 import { createTag } from "../../action";
 import CreatableSelect from "react-select/creatable";
-import Option from "react-select/creatable";
 import { toast } from "sonner";
 import { Dispatch, SetStateAction } from "react";
 import { MultiValue } from "react-select";
@@ -16,7 +15,7 @@ export default function Tags({
 }: {
   tags: TagWithPostCount[];
   setState: Dispatch<
-    SetStateAction<MultiValue<{ value: string; label: string }> | undefined>
+    SetStateAction<MultiValue<{ value: string; label: string }>>
   >;
   selected: MultiValue<{ value: string; label: string }>;
 }) {
@@ -38,7 +37,7 @@ export default function Tags({
         unstyled
         options={options}
         onChange={(e) => setState(e)}
-        defaultValue={selected}
+        value={selected}
         name="tags"
         required
         classNames={{
@@ -51,14 +50,6 @@ export default function Tags({
           menuList: () => "text-base flex flex-col gap-1",
           option: () =>
             "hover:bg-neutral-300 hover:cursor-pointer transition-all duration-500 rounded-lg p-2",
-        }}
-        onCreateOption={async (inputValue: string) => {
-          const toastId = toast.loading("Membuat Tag....");
-          const result = await createTag(inputValue);
-          if (result.error) {
-            return toast.error(result.message, { id: toastId });
-          }
-          toast.success(result.message, { id: toastId });
         }}
       />
     </div>
