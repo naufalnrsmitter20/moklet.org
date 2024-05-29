@@ -31,7 +31,7 @@ export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
       </div>
       <div className="flex flex-col items-start justify-start gap-[26px]">
         <div>
-          <div className="mb-[16px] mt-[26px] flex gap-[10px]">
+          <div className="mb-[16px] mt-[26px] flex gap-[10px] flex-wrap">
             {post.tags.map((tag) => (
               <Tags tag={tag} key={tag.tagName} />
             ))}

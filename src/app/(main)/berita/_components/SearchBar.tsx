@@ -7,7 +7,7 @@ import { useState } from "react";
 import Search from "./icons/Search";
 import { SearchButton, SmallSearchButton } from "./parts/Button";
 
-export function SearchBar({ query: q }: { query?: string }) {
+export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
   const router = useRouter();
   const [query, setQuery] = useState<string>(q ?? "");
 
@@ -17,10 +17,10 @@ export function SearchBar({ query: q }: { query?: string }) {
 
   return (
     <SmallSectionWrapper id="SearchBar">
-      <div className="flex gap-[12px] items-center w-full mt-[30px] lg:mt-0">
+      <div className="flex gap-[12px] items-center justify-between w-full mt-[30px] lg:mt-0">
         <TextField
           placeholder="Cari berita di moklet.org..."
-          className="w-[84%]"
+          className="w-[90%]"
           value={query}
           handleChange={(e) => {
             handleSearch(e.target.value);
