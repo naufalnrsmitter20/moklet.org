@@ -22,7 +22,7 @@ export function PrimaryButton({
       disabled={isDisabled}
       className={
         className +
-        " inline-block w-fit rounded-full bg-primary-400 px-6 py-3 transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
+        " inline-block w-fit rounded-full bg-primary-400 px-6 py-3 h-[54px] transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
       }
     >
       <span

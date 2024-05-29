@@ -58,7 +58,7 @@ export default function Opinions() {
               />
             </div>
           </div>
-          <div className="flex w-full md:w-[25%] items-center justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
+          <div className="flex w-full md:w-[25%] justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
             <Saying
               personData={{
                 name: "Budi Prasetyo",
