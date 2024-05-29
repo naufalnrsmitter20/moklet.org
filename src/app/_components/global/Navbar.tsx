@@ -1,9 +1,11 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import HamburgerIcon from "../icons/HamburgerIcon";
 import { useEffect, useState } from "react";
+import cn from "@/lib/clsx";
 
 interface NavOption {
   title: string;
@@ -32,10 +34,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  console.log(scrollY);
   return (
     <nav className="xl:relative fixed z-[999] mx-auto w-full flex flex-col">
-      <div className="w-full flex xl:max-w-[1192px] z-[999] py-4 xl:py-0 px-5 bg-white xl:bg-transparent justify-between">
+      <div className="w-full flex xl:max-w-[1192px] mx-auto z-[999] py-4 xl:py-0 px-5 bg-white xl:bg-transparent justify-between">
         <Link href={"/"} className="block xl:mt-8">
           <Image
             src={"/horizontal.svg"}
@@ -46,7 +47,7 @@ export default function Navbar() {
           />
         </Link>
         <div
-          className={`fixed hidden left-1/2 top-[24.5px] xl:flex w-full ${scrolled ? "max-w-[826px]" : "max-w-[602px]"} -translate-x-1/2 justify-between rounded-full border border-neutral-300 bg-white px-[50px] py-3 shadow-md`}
+          className={`fixed hidden left-1/2 top-[24.5px] xl:flex xl:items-center justify-between w-full transition-all duration-300 ${scrolled ? "max-w-[826px]" : "max-w-[602px]"} -translate-x-1/2 rounded-full border border-neutral-300 bg-white px-[50px] py-3 shadow-md`}
         >
           {scrolled && (
             <Image
@@ -54,7 +55,9 @@ export default function Navbar() {
               alt="Logo moklet.org"
               width={120}
               height={40}
-              className="pointer-events-none h-[40px] w-[120px]"
+              className={cn(
+                `pointer-events-none h-[40px] transition-all duration-300 ${scrolled ? "w-[120px]" : "w-0"}`,
+              )}
             />
           )}
           {navOptions.map((navOption) => (
