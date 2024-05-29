@@ -80,7 +80,7 @@ export function TextField({
           placeholder={placeholder}
           onChange={handleChange}
           id={name}
-          className="w-full rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+          className="w-full rounded-full border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
           required={required}
           onKeyDown={onKeyDown}
         />
