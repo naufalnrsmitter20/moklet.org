@@ -1,8 +1,13 @@
 import { imageUploader } from "@/app/actions/fileUploader";
+import Unauthorized from "@/app/unauthorized/page";
+import { nextGetServerSession } from "@/lib/next-auth";
 import { badRequest, internalServerError, created } from "@/utils/apiResponse";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
+  const session = await nextGetServerSession();
+  if (!session) return Unauthorized();
+
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File;
