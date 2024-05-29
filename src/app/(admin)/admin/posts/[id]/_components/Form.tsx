@@ -8,7 +8,6 @@ import FormButton from "../../_components/parts/SubmitButton";
 import { postUpdate } from "../../action";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
-import Modal from "../../_components/ImageModal";
 import Image from "@/app/_components/global/Image";
 
 export default function EditForm({
@@ -20,25 +19,25 @@ export default function EditForm({
 }) {
   const [value, setValue] = useState(post.content);
   const [image, setImage] = useState(post.thumbnail);
-  const [tag, setTag] =
-    useState<MultiValue<{ value: string; label: string }>>();
   const [slug, setSlug] = useState(post.slug);
-  const [isOpen, setIsOpen] = useState(false);
   const selected = post.tags.map((tag) => ({
     value: tag.tagName,
     label: tag.tagName,
   }));
 
+  const [tag, setTag] =
+    useState<MultiValue<{ value: string; label: string }>>(selected);
+
   return (
     <>
-      {isOpen && <Modal setIsOpenModal={setIsOpen} />}
       <form
         action={async (data) => {
+          const toastId = toast.loading("Loading...");
           const result = await postUpdate(data, value, tag!, post.id);
           if (result.error) {
-            return toast.error(result.message);
+            return toast.error(result.message, { id: toastId });
           }
-          toast.success(result.message);
+          toast.success(result.message, { id: toastId });
         }}
         className="flex flex-col gap-y-3"
       >
@@ -71,7 +70,7 @@ export default function EditForm({
           value={slug}
           placeholder="berita-paling-panas-2024"
         />
-        <Tags tags={tags} setState={setTag!} selected={selected} />
+        <Tags tags={tags} setState={setTag!} selected={tag} />
         <div className="flex flex-col">
           <label htmlFor="thumbnail" className="">
             Thumbnail
@@ -99,8 +98,6 @@ export default function EditForm({
             setValue(data!);
           }}
           value={value}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
         />
         <FormButton />
       </form>
