@@ -14,7 +14,7 @@ export default async function Forms() {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-5">
         <div>
           <H2 className="font-semibold">Formulir </H2>
           <P>Easily create online surveys, forms, quizzes </P>
