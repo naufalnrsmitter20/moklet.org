@@ -3,6 +3,8 @@ import { findAllUsers } from "@/utils/database/user.query";
 import UserTable from "./_components/Table";
 import { UserWithLastlog } from "@/types/entityRelations";
 import AddUser from "./_components/AddUser";
+import { H2, P } from "@/app/_components/global/Text";
+import PrimaryLinkButton from "@/app/_components/global/LinkButton";
 
 export default async function UsersPage() {
   const users: UserWithLastlog[] = await findAllUsers({
@@ -10,8 +12,11 @@ export default async function UsersPage() {
   });
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold ">User Management</h1>
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <H2 className="font-semibold">User Managements</H2>
+          <P>Change roles and permisson </P>
+        </div>
         <AddUser />
       </div>
       <UserTable data={users} />
