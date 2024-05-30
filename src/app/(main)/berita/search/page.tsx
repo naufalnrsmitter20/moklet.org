@@ -28,7 +28,7 @@ export default async function Search({
             Menampilkan hasil pencarian untuk &quot;
             {searchParams.q?.toString() ?? ""}&quot;
           </H2>
-          <div className="w-full flex flex-wrap gap-x-[36px] gap-y-[62px]">
+          <div className="w-full flex flex-wrap gap-x-[3.18%] gap-y-[62px]">
             {Posts.map((post) => (
               <NewsFigure post={post} key={post.id} />
             ))}
