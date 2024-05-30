@@ -6,12 +6,10 @@ export default function Image(props: Readonly<ImageProps>) {
     <NextImage
       {...props}
       referrerPolicy="no-referrer"
-      className={
-        cn(
-          "pointer-events-none object-cover bg-center bg-no-repeat"
-          , props.className
-        )
-      }
+      className={cn(
+        "pointer-events-none object-cover bg-center bg-no-repeat",
+        props.className,
+      )}
     />
   );
 }

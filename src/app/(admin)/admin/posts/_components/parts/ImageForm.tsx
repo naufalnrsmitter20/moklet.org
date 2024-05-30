@@ -1,6 +1,6 @@
 "use client";
 import { toast } from "sonner";
-import { upload } from "../../action";
+import { upload } from "@/app/actions/post";
 import FormButton from "./SubmitButton";
 import { Dispatch, SetStateAction } from "react";
 

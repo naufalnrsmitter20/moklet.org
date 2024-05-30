@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
 import FormButton from "./part/SubmitButton";
 import { useRef, useState } from "react";
-import { addLink } from "../action";
+import { addLink } from "@/app/actions/link";
 
 export default function ModalCreate({
   setIsOpenModal,

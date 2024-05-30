@@ -56,12 +56,11 @@ export function TextField({
       {label && (
         <label
           htmlFor={name}
-          className={
-            cn(
-              `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""
-              }`
-            )
-          }
+          className={cn(
+            `first-letter:capitalize ${
+              required ? "after:text-red-500 after:content-['*']" : ""
+            }`,
+          )}
         >
           {label}
         </label>
@@ -105,11 +104,9 @@ export function TextArea({
       {label && (
         <label
           htmlFor={name}
-          className={
-            cn(
-              `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`
-            )
-          }
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -140,11 +137,9 @@ export function SelectField({
       {label && (
         <label
           htmlFor={name}
-          className={
-            cn(
-              `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`
-            )
-          }
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -178,19 +173,13 @@ export function RadioField({
   handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
-    <div className={
-      cn(
-        "flex flex-col gap-2 " + className
-      )
-      }>
+    <div className={cn("flex flex-col gap-2 " + className)}>
       {label && (
         <label
           htmlFor={name}
-          className={
-            cn(
-              `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`
-            )
-          }
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -226,19 +215,13 @@ export function CheckboxField({
   handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
-    <div className={
-      cn(
-        "flex flex-col gap-2", className
-      )
-      }>
+    <div className={cn("flex flex-col gap-2", className)}>
       {label && (
         <label
           htmlFor={label}
-          className={
-            cn(
-              `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`
-            )
-          }
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>

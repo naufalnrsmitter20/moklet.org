@@ -7,7 +7,7 @@ import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
-import { postDelete, updatePostStatus } from "../action";
+import { postDelete, updatePostStatus } from "@/app/actions/post";
 
 export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
