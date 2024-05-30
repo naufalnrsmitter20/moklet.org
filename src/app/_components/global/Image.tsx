@@ -1,3 +1,4 @@
+import cn from "@/lib/clsx";
 import { default as NextImage, ImageProps } from "next/image";
 
 export default function Image(props: Readonly<ImageProps>) {
@@ -6,8 +7,10 @@ export default function Image(props: Readonly<ImageProps>) {
       {...props}
       referrerPolicy="no-referrer"
       className={
-        props.className +
-        " pointer-events-none object-cover bg-center bg-no-repeat"
+        cn(
+          "pointer-events-none object-cover bg-center bg-no-repeat"
+          , props.className
+        )
       }
     />
   );

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "./Image";
-import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
+
 import { Tag } from "@prisma/client";
+import { stringifyDate } from "@/utils/atomics";
+import { PostWithTagsAndUser } from "@/types/entityRelations";
 
 export function Tags({ tag }: Readonly<{ tag: Tag }>) {
   return (
