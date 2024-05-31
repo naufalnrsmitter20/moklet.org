@@ -1,5 +1,6 @@
 "use client";
 
+import cn from "@/lib/clsx";
 import { ChangeEvent, KeyboardEventHandler, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -10,7 +11,6 @@ interface InputProps {
   required?: boolean;
   name?: string;
   value?: string;
-  // eslint-disable-next-line no-unused-vars
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
@@ -52,13 +52,15 @@ export function TextField({
 }: Readonly<TextFieldProps>) {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className={"flex flex-col gap-2 " + className}>
+    <div className={cn("flex flex-col gap-2", className)}>
       {label && (
         <label
           htmlFor={name}
-          className={`first-letter:capitalize ${
-            required ? "after:text-red-500 after:content-['*']" : ""
-          }`}
+          className={cn(
+            `first-letter:capitalize ${
+              required ? "after:text-red-500 after:content-['*']" : ""
+            }`,
+          )}
         >
           {label}
         </label>
@@ -102,9 +104,9 @@ export function TextArea({
       {label && (
         <label
           htmlFor={name}
-          className={`first-letter:capitalize ${
-            required ? "after:text-red-500 after:content-['*']" : ""
-          }`}
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -135,9 +137,9 @@ export function SelectField({
       {label && (
         <label
           htmlFor={name}
-          className={`first-letter:capitalize ${
-            required ? "after:text-red-500 after:content-['*']" : ""
-          }`}
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -171,13 +173,13 @@ export function RadioField({
   handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
-    <div className={"flex flex-col gap-2 " + className}>
+    <div className={cn("flex flex-col gap-2 " + className)}>
       {label && (
         <label
           htmlFor={name}
-          className={`first-letter:capitalize ${
-            required ? "after:text-red-500 after:content-['*']" : ""
-          }`}
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>
@@ -213,13 +215,13 @@ export function CheckboxField({
   handleChange,
 }: Readonly<OptionFieldProps>) {
   return (
-    <div className={"flex flex-col gap-2 " + className}>
+    <div className={cn("flex flex-col gap-2", className)}>
       {label && (
         <label
           htmlFor={label}
-          className={`first-letter:capitalize ${
-            required ? "after:text-red-500 after:content-['*']" : ""
-          }`}
+          className={cn(
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
+          )}
         >
           {label}
         </label>

@@ -5,7 +5,7 @@ import { stringifyCompleteDate } from "@/utils/atomics";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
-import { deleteUserById } from "../action";
+import { deleteUserById } from "@/app/actions/user";
 import Modal from "./Modal";
 
 export default function UserTable({ data }: { data: UserWithLastlog[] }) {

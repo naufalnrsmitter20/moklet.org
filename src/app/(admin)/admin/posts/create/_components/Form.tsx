@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Editor from "../../_components/MdEditor";
 import { TextArea, TextField } from "@/app/_components/global/Input";
@@ -6,7 +7,7 @@ import Tags from "./Tags";
 import Image from "@/app/_components/global/Image";
 import { TagWithPostCount } from "@/types/entityRelations";
 import FormButton from "../../_components/parts/SubmitButton";
-import { postCreate } from "../../action";
+import { postCreate } from "@/app/actions/post";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
 import Modal from "../../_components/ImageModal";
@@ -97,8 +98,6 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
             setValue(data!);
           }}
           value={value}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
         />
         <FormButton />
       </form>
