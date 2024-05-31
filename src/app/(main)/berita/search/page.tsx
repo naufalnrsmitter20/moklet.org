@@ -11,7 +11,7 @@ export default async function Search({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) {
-  const Posts = (await findAllPosts({
+  const posts = (await findAllPosts({
     published: true,
     OR: (searchParams.q as string).split(" ").map((query) => ({
       title: { contains: query },
@@ -28,8 +28,8 @@ export default async function Search({
             Menampilkan hasil pencarian untuk &quot;
             {searchParams.q?.toString() ?? ""}&quot;
           </H2>
-          <div className="w-full flex flex-wrap gap-x-[3.18%] gap-y-[62px]">
-            {Posts.map((post) => (
+          <div className="w-full flex gap-x-[3.18%] gap-y-[62px]">
+            {posts.map((post) => (
               <NewsFigure post={post} key={post.id} />
             ))}
           </div>

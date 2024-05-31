@@ -62,3 +62,22 @@ export function H4({ children, className }: Readonly<TextProps>) {
     </h4>
   );
 }
+
+export function UnderlinedTitle({
+  children,
+  className,
+  underlineClassName,
+}: Readonly<TextProps & { underlineClassName: string }>) {
+  return (
+    <div className="flex flex-col items-start md:flex-row md:items-center justify-between gap-[18px] md:gap-0 mb-[18px]">
+      <div className="relative">
+        <H2 className={"z-10 font-bold text-black " + className}>{children}</H2>
+        <div
+          className={cn(
+            `absolute left-[3px] -z-10 h-[16px] bg-primary-100 ${underlineClassName}`,
+          )}
+        ></div>
+      </div>
+    </div>
+  );
+}
