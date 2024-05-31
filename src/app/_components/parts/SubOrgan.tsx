@@ -1,6 +1,6 @@
 import Image from "@/app/_components/global/Image";
 import PrimaryLinkButton from "../global/LinkButton";
-import { H1, H2, P } from "../global/Text";
+import { H1, H2, P, UnderlinedTitle } from "../global/Text";
 import { SectionWrapper } from "../global/Wrapper";
 
 function SubOrganCount({
@@ -21,17 +21,13 @@ export default function SubOrgan() {
       <div className="flex flex-col-reverse md:flex-row gap-[72px] md:gap-0 w-full items-start md:items-center justify-start md:justify-between">
         <div className="w-full max-w-3xl">
           <div className="mb-[42px]">
-            <div className="relative">
-              <H2 className={"z-10 font-bold text-black mb-[18px]"}>
-                Mengembangkan Bakat di Sub-organ
-              </H2>
-              <div
-                className={`absolute left-[3px] top-[32px] md:top-[28px] -z-10 h-[16px] bg-primary-100 w-[330px]`}
-              ></div>
-            </div>
+            <UnderlinedTitle underlineClassName="w-[145px] md:w-[220px] top-4 md:top-[24px]">
+              Kembangkan Bakat di Sub-organ
+            </UnderlinedTitle>
             <P>
-              Temukan potensi terbaik dalam pengembangan bakat melalui
-              Sub-Organisasi OSIS Moklet yang inspiratif dan beragam.
+              Temukan potensi terbaik bakatmu melalui Sub-Organisasi OSIS Moklet
+              yang beragam. Bergabunglah dengan Sub-organ dan kembangkan bakat
+              serta minat bersama komunitas yang kolaboratif serta inovatif.
             </P>
           </div>
           <div className="mb-11 flex flex-col sm:flex-row w-full md:items-center gap-[62px]">
