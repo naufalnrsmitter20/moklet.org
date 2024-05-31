@@ -1,3 +1,4 @@
+import cn from "@/lib/clsx";
 import { MouseEventHandler, ReactNode } from "react";
 
 interface ButtonProps {
@@ -20,10 +21,10 @@ export function PrimaryButton({
       type={type}
       onClick={onClick}
       disabled={isDisabled}
-      className={
-        className +
-        " inline-block w-fit rounded-full bg-primary-400 px-6 py-3 h-[54px] transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
-      }
+      className={cn(
+        "inline-block w-fit rounded-full bg-primary-400 px-6 py-3 h-[54px] transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300",
+        className,
+      )}
     >
       <span
         className={`text-base ${isDisabled ? "text-neutral-500" : "text-white"}`}
@@ -48,7 +49,9 @@ export function SecondaryButton({
       className="inline-block w-fit rounded-full border border-primary-400 hover:bg-primary-50 px-6 py-3 transition-all duration-500 disabled:border-none disabled:bg-neutral-300"
     >
       <span
-        className={`text-base ${isDisabled ? "text-neutral-500" : "text-primary-400"}`}
+        className={cn(
+          `text-base ${isDisabled ? "text-neutral-500" : "text-primary-400"}`,
+        )}
       >
         {children}
       </span>
@@ -72,11 +75,13 @@ export function TertiaryButton({
       }
     >
       <span
-        className={`text-base ${
-          isDisabled
-            ? "text-neutral-500"
-            : "text-black hover:text-primary-400 transition-all"
-        }`}
+        className={cn(
+          `text-base ${
+            isDisabled
+              ? "text-neutral-500"
+              : "text-black hover:text-primary-400 transition-all"
+          }`,
+        )}
       >
         {children}
       </span>
@@ -98,7 +103,9 @@ export function FullPrimaryButton({
       className="inline-block rounded-full bg-primary-400 px-6 py-3 w-full transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
     >
       <span
-        className={`text-base ${isDisabled ? "text-neutral-500" : "text-white"}`}
+        className={cn(
+          `text-base ${isDisabled ? "text-neutral-500" : "text-white"}`,
+        )}
       >
         {children}
       </span>

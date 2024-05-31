@@ -4,7 +4,7 @@ import { TextField, SelectField } from "@/app/_components/global/Input";
 import { UserWithLastlog } from "@/types/entityRelations";
 import { Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
-import { updateUserWithId } from "../action";
+import { updateUserWithId } from "@/app/actions/user";
 import FormButton from "./part/SubmitButton";
 import { Roles } from "@prisma/client";
 

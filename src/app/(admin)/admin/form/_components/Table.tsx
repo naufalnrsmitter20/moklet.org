@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
 import { FaRegCopy, FaRegTrashAlt, FaLink } from "react-icons/fa";
-import { cloneForm, deleteForm } from "../actions";
+import { cloneForm, deleteForm } from "@/app/actions/formAdmin";
 
 export default function LinkTable({ data }: { data: FormWithFieldsAndUser[] }) {
   const [loader, setLoader] = useState(true);

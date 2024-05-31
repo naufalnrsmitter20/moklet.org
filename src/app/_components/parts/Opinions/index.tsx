@@ -45,8 +45,8 @@ export default function Opinions() {
             <div className="flex w-full items-center justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
               <Saying
                 personData={{
-                  name: "Ibani Hillabi",
-                  role: "Ketua PASKATEMA 2023/2024",
+                  name: "Pandhu Arya",
+                  role: "Ketua Sregginllallik Periode 2023/2024",
                   image:
                     "https://i.scdn.co/image/ab67616d00001e02f99ee9d6d91c399522b0baf9",
                 }}
