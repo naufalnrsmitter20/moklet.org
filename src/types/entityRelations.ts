@@ -30,6 +30,17 @@ export type SubmissionWithFormAndFields = Prisma.SubmissionGetPayload<{
   };
 }>;
 
+export type FormWithSubmissions = Prisma.FormGetPayload<{
+  include: {
+    submissions: { include: { user: true; fields: true } };
+    fields: { include: { options: true } };
+  };
+}>;
+
+export type SubmissionWithUserAndFields = Prisma.SubmissionGetPayload<{
+  include: { user: true; fields: true };
+}>;
+
 export type LinkWithCountAndUser = Prisma.Link_ShortenerGetPayload<{
   include: {
     user: { select: { name: true } };
