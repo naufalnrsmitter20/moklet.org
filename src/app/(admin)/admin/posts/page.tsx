@@ -23,7 +23,7 @@ export default async function PostPanel({
         <div>
           <H2 className="font-semibold">Posts Blog </H2>
           <P>Share your organ activity, event, or promotion </P>
-        </div> 
+        </div>
         <div>
           <FullPrimaryLinkButton href="/admin/form/new">
             <div className="flex items-center">
