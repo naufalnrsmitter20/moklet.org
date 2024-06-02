@@ -5,8 +5,9 @@ import { stringifyDate } from "@/utils/atomics";
 import { useEffect, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
-import { FaRegCopy, FaRegTrashAlt, FaLink } from "react-icons/fa";
+import { FaRegCopy, FaRegTrashAlt, FaLink, FaComment } from "react-icons/fa";
 import { cloneForm, deleteForm } from "@/actions/formAdmin";
+import Link from "next/link";
 
 export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
   const [loader, setLoader] = useState(true);
@@ -61,6 +62,18 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
         ) : (
           <span className="p-2 bg-red-600 rounded-md text-white">Close</span>
         ),
+      sortable: true,
+    },
+    {
+      name: "Responses",
+      cell: (row: FormWithFieldsAndUser) => (
+        <Link
+          href={`/admin/form/${row.id}/responses`}
+          className="p-2 bg-green-300 rounded-md text-white hover:bg-green-700 transition-all"
+        >
+          <FaComment />
+        </Link>
+      ),
       sortable: true,
     },
     {
