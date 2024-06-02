@@ -10,7 +10,7 @@ import {
 import { FormWithFields } from "@/types/entityRelations";
 import { FormEvent, useEffect } from "react";
 import { toast } from "sonner";
-import { submitForm } from "../action";
+import { submitForm } from "@/app/actions/formAspirasi";
 import { useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { formToJSON } from "@/utils/atomics";

@@ -2,7 +2,7 @@
 
 import { TagWithPostCount } from "@/types/entityRelations";
 import { Tag } from "@prisma/client";
-import { createTag } from "../../action";
+import { createTag } from "@/app/actions/post";
 import CreatableSelect from "react-select/creatable";
 import { toast } from "sonner";
 import { Dispatch, SetStateAction } from "react";

@@ -4,7 +4,7 @@ import { TextField } from "@/app/_components/global/Input";
 import { LinkWithCountAndUser } from "@/types/entityRelations";
 import { Dispatch, SetStateAction, useState } from "react";
 import { toast } from "sonner";
-import { updateLink } from "../action";
+import { updateLink } from "@/app/actions/link";
 import FormButton from "./part/SubmitButton";
 
 export default function Modal({

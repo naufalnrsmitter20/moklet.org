@@ -5,7 +5,7 @@ import { TextArea, TextField } from "@/app/_components/global/Input";
 import Tags from "./Tags";
 import { PostWithTagsAndUser, TagWithPostCount } from "@/types/entityRelations";
 import FormButton from "../../_components/parts/SubmitButton";
-import { postUpdate } from "../../action";
+import { postUpdate } from "@/app/actions/post";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
 import Image from "@/app/_components/global/Image";

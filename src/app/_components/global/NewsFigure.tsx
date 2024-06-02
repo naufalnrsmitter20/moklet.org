@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "./Image";
-import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
+
 import { Tag } from "@prisma/client";
+import { stringifyDate } from "@/utils/atomics";
+import { PostWithTagsAndUser } from "@/types/entityRelations";
 
 export function Tags({ tag }: Readonly<{ tag: Tag }>) {
   return (
@@ -18,7 +19,7 @@ export function Tags({ tag }: Readonly<{ tag: Tag }>) {
 
 export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
   return (
-    <figure className="w-full md:w-[32%]">
+    <figure className="w-full md:w-[31.2%]">
       <div className="h-[200px] w-full">
         <Image
           src={post.thumbnail}

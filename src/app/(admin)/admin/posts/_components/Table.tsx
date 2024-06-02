@@ -7,7 +7,7 @@ import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
-import { postDelete, updatePostStatus } from "../action";
+import { postDelete, updatePostStatus } from "@/app/actions/post";
 
 export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
@@ -50,11 +50,11 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
       selector: (row: PostWithTagsAndUser) => row.published,
       cell: (row: PostWithTagsAndUser) =>
         row.published ? (
-          <span className="p-2 bg-green-600 rounded-md text-white">
+          <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">
             Published
           </span>
         ) : (
-          <span className="p-2 bg-red-600 rounded-md text-white">Draft</span>
+          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">Draft</span>
         ),
       sortable: true,
     },
@@ -65,14 +65,14 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
           <button
             onClick={() => updateStatus(row.published, row.id)}
             title={row.published ? "Unpublish post" : "Publish post"}
-            className="p-2 bg-blue-500 rounded-md text-white hover:bg-blue-700 transition-all"
+            className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2.5 rounded hover:text-white  hover:bg-blue-700 transition-all"
           >
             {row.published ? <MdUnpublished /> : <MdPublish />}
           </button>
           <button
             onClick={() => deletePost(row.id)}
             title="Delete Post"
-            className="p-2 bg-red-500 rounded-md text-white hover:bg-red-700 transition-all"
+            className="bg-red-100 text-red-800 text-xs font-medium me-2 p-2.5  rounded hover:text-white  hover:bg-red-700 transition-all"
           >
             <FaRegTrashAlt />
           </button>

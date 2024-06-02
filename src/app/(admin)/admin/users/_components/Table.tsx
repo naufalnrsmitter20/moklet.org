@@ -5,7 +5,7 @@ import { stringifyCompleteDate } from "@/utils/atomics";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
-import { deleteUserById } from "../action";
+import { deleteUserById } from "@/app/actions/user";
 import Modal from "./Modal";
 
 export default function UserTable({ data }: { data: UserWithLastlog[] }) {
@@ -45,14 +45,14 @@ export default function UserTable({ data }: { data: UserWithLastlog[] }) {
           <button
             onClick={() => editUser(row)}
             title="Edit User"
-            className="p-2 bg-blue-500 rounded-md text-white hover:bg-blue-700 transition-all"
+            className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2.5 rounded hover:text-white  hover:bg-blue-700 transition-all"
           >
             <FaPencilAlt />
           </button>
           <button
             onClick={() => deleteAction(row.id)}
             title="Delete User"
-            className="p-2 bg-red-500 rounded-md text-white hover:bg-red-700 transition-all"
+            className="bg-red-100 text-red-800 text-xs font-medium me-2 p-2.5 rounded hover:text-white  hover:bg-red-700 transition-all"
           >
             <FaRegTrashAlt />
           </button>

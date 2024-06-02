@@ -1,6 +1,6 @@
 import PrimaryLinkButton from "@/app/_components/global/LinkButton";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import { H2, P } from "@/app/_components/global/Text";
+import { H2, P, UnderlinedTitle } from "@/app/_components/global/Text";
 import Image from "@/app/_components/global/Image";
 
 export default function About() {
@@ -19,14 +19,9 @@ export default function About() {
         <div className="flex w-full max-w-[680px] flex-col">
           <div className="mb-11">
             <div className="mb-[42px]">
-              <div className="relative">
-                <H2 className={"z-10 font-bold text-black mb-[18px]"}>
-                  Kepemimpinan Siswa di Moklet melalui OSIS dan MPK
-                </H2>
-                <div
-                  className={`absolute left-[3px] top-[32px] md:top-[26px] -z-10 h-[16px] bg-primary-100 w-[288px]`}
-                ></div>
-              </div>
+              <UnderlinedTitle underlineClassName="w-[65px] md:w-[100px] top-4 md:top-[24px]">
+                Portal Kegiatan Organisasi dan Sub-Organisasi di Moklet
+              </UnderlinedTitle>
               <P>
                 moklet.org merupakan sebuah portal informasi yang berisikan
                 kegiatan-kegiatan yang dilakukan oleh organisasi dan
