@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 export async function addLink(data: FormData) {
   const session = await nextGetServerSession();
   let hashedpass;
-  let slug = data.get("slug") as string;
+  let slug = data.get("slug") as string | null;
   try {
     if (data.get("password")) {
       hashedpass = createHash("md5")

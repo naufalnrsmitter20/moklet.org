@@ -1,10 +1,9 @@
 import { FullPrimaryLinkButton } from "@/app/_components/global/LinkButton";
+import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findAllPosts } from "@/utils/database/post.query";
-import { FaPlus } from "react-icons/fa6";
 import PostTable from "./_components/Table";
-import { H2, P } from "@/app/_components/global/Text";
 
 export default async function PostPanel({
   searchParams,
@@ -12,10 +11,11 @@ export default async function PostPanel({
   searchParams: { [key: string]: string | undefined };
 }) {
   const session = await nextGetServerSession();
-  const posts = (await findAllPosts({
-    user_id:
-      session!.user?.role == "SuperAdmin" ? undefined : session!.user?.id,
-  })) as PostWithTagsAndUser[];
+  const posts = (await findAllPosts(
+    session?.user?.role === "Admin" || session?.user?.role === "SuperAdmin"
+      ? {}
+      : { user: { role: session?.user?.role! } },
+  )) as PostWithTagsAndUser[];
 
   return (
     <div className="flex flex-col gap-2">
@@ -25,7 +25,7 @@ export default async function PostPanel({
           <P>Share your organ activity, event, or promotion </P>
         </div>
         <div>
-          <FullPrimaryLinkButton href="/admin/form/new">
+          <FullPrimaryLinkButton href="/admin/posts/create">
             <div className="flex items-center">
               <svg
                 width="24"

@@ -9,7 +9,8 @@ import { PrimaryButton } from "@/app/_components/global/Button";
 import { TextField } from "@/app/_components/global/Input";
 import { FormWithFields } from "@/types/entityRelations";
 import { convertToDateTimeLocalString } from "@/utils/atomics";
-import { deleteSubmission, saveForm } from "@/app/actions/formAdmin";
+import { deleteSubmission, saveForm } from "@/actions/formAdmin";
+import { useRouter } from "next/navigation";
 
 export default function FormEditContent({
   form,
@@ -19,8 +20,9 @@ export default function FormEditContent({
   isNewForm: boolean;
 }) {
   const [formData, setFormData] = useState(form);
-  const [question, setQuestion] = useState(form.fields);
+  const [questions, setQuestions] = useState(form.fields);
   const [saved, setSaved] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     function unloadPage() {
@@ -37,17 +39,18 @@ export default function FormEditContent({
 
   useLayoutEffect(() => {
     setSaved(false);
-  }, [formData, question]);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setFormData({ ...formData, title: e.target.value });
+  }, [formData, questions]);
 
   async function save() {
     const toastId = toast.loading("Loading...");
-    const action = await saveForm({ ...formData, fields: question }, isNewForm);
+    const action = await saveForm(
+      { ...formData, fields: questions },
+      isNewForm,
+    );
     if (action?.error) return toast.error(action.message, { id: toastId });
     toast.success(action?.message, { id: toastId });
     setSaved(true);
+    router.push("/admin/form");
   }
 
   async function clearResponse() {
@@ -72,13 +75,18 @@ export default function FormEditContent({
         type="text"
         value={formData.title}
         required
-        handleChange={handleChange}
+        handleChange={(e) =>
+          setFormData({ ...formData, title: e.target.value })
+        }
       />
       <TextField
         name="description"
         label="description"
         type="text"
         value={formData.description || ""}
+        handleChange={(e) =>
+          setFormData({ ...formData, description: e.target.value })
+        }
       />
       <div className="flex flex-col gap-2">
         <p className="text-black">Pengaturan</p>
@@ -90,6 +98,12 @@ export default function FormEditContent({
             defaultChecked={formData.is_open}
             className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
             id="is_open"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                is_open: e.target.value === "true",
+              })
+            }
           />
           <label htmlFor="is_open" className="cursor-pointer ms-2">
             Formulir sedang menerima jawaban
@@ -103,6 +117,12 @@ export default function FormEditContent({
             defaultChecked={formData.allow_edit}
             className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
             id="allow_edit"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                allow_edit: e.target.value === "true",
+              })
+            }
           />
           <label htmlFor="allow_edit" className="cursor-pointer ms-2">
             Jawaban dapat dirubah
@@ -116,6 +136,12 @@ export default function FormEditContent({
             defaultChecked={formData.submit_once}
             className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
             id="submit_once"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                submit_once: e.target.value === "true",
+              })
+            }
           />
           <label htmlFor="submit_once" className="cursor-pointer ms-2">
             Hanya dapat mengisi sekali
@@ -130,15 +156,27 @@ export default function FormEditContent({
               convertToDateTimeLocalString(formData.open_at)) ||
             ""
           }
+          handleChange={(e) =>
+            setFormData({
+              ...formData,
+              open_at: new Date(e.target.value),
+            })
+          }
         />
         <TextField
-          name="open_at"
+          name="close_at"
           label="Ditutup pada"
           type="datetime-local"
           value={
             (formData.close_at &&
               convertToDateTimeLocalString(formData.close_at)) ||
             ""
+          }
+          handleChange={(e) =>
+            setFormData({
+              ...formData,
+              close_at: new Date(e.target.value),
+            })
           }
         />
       </div>
@@ -157,7 +195,11 @@ export default function FormEditContent({
           <MdDeleteOutline />
         </button>
       </div>
-      <QuestionEdit fields={question} setField={setQuestion} formId={form.id} />
+      <QuestionEdit
+        fields={questions}
+        setFields={setQuestions}
+        formId={form.id}
+      />
     </>
   );
 }

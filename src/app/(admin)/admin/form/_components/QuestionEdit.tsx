@@ -11,11 +11,11 @@ import { MouseEvent } from "react";
 
 export default function QuestionEdit({
   fields,
-  setField,
+  setFields,
   formId,
 }: {
   fields: FieldsWithOptions[];
-  setField: Dispatch<SetStateAction<FieldsWithOptions[]>>;
+  setFields: Dispatch<SetStateAction<FieldsWithOptions[]>>;
   formId: string;
 }) {
   //Dragable element
@@ -30,7 +30,7 @@ export default function QuestionEdit({
 
     let id = parseInt(e.dataTransfer.getData("index"));
 
-    setField((prev) => {
+    setFields((prev) => {
       var array = [...prev];
       array.splice(index > id ? index + 1 : index, 0, array[id]);
       array.splice(index < id ? id + 1 : id, 1);
@@ -38,11 +38,11 @@ export default function QuestionEdit({
     });
   }
 
-  function removeElement(index: number, e: MouseEvent<HTMLButtonElement>) {
+  function removeField(index: number, e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!confirm("Apakah Anda yakin ingin menghapus ini?")) return;
 
-    setField((prev) => {
+    setFields((prev) => {
       var array = [...prev];
       array.splice(index, 1);
       return array;
@@ -56,21 +56,26 @@ export default function QuestionEdit({
       index: { value: string };
       inputOption: { value: string };
     };
-    let indexNum = parseInt(index.value);
+    const indexNum = parseInt(index.value);
 
     if (!inputOption.value || inputOption.value == "") {
       return alert("Input tidak boleh kosong!");
     }
 
-    setField((prev) => {
-      var array = [...prev];
-      array[indexNum].options.push({
-        field_id: fields[indexNum].id,
-        id: 0,
-        value: inputOption.value,
-      });
-      return array;
-    });
+    var questions = [...fields];
+
+    questions[indexNum].options = Array.from(
+      new Set([
+        ...questions[indexNum].options,
+        {
+          field_id: fields[indexNum].id,
+          id: 0,
+          value: inputOption.value,
+        },
+      ]),
+    );
+
+    setFields(questions);
   }
 
   function removeOption(
@@ -80,7 +85,7 @@ export default function QuestionEdit({
   ) {
     e.preventDefault();
 
-    setField((prev) => {
+    setFields((prev) => {
       var array = [...prev];
       array[index].options.splice(indexOption, 1);
       return array;
@@ -96,7 +101,7 @@ export default function QuestionEdit({
     const index = parseInt(name.split("_")[0]);
     const props = name.split("_")[1] as FieldsProps;
 
-    setField((prev) => {
+    setFields((prev) => {
       var array = [...prev];
       (array[index][props] as FieldsProps) = (
         e.target.type == "checkbox"
@@ -110,7 +115,7 @@ export default function QuestionEdit({
 
   function addQuestion(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    setField((prev) => {
+    setFields((prev) => {
       return [
         ...prev,
         {
@@ -141,7 +146,7 @@ export default function QuestionEdit({
             <div className="w-full flex justify-between">
               <span className="text-black font-semibold">No. {index + 1}</span>
               <button
-                onClick={(e) => removeElement(index, e)}
+                onClick={(e) => removeField(index, e)}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-500 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center transition-all"
               >
                 <FaTrash />

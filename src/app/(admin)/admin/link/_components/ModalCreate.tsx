@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
 import FormButton from "./part/SubmitButton";
 import { useRef, useState } from "react";
-import { addLink } from "@/app/actions/link";
+import { addLink } from "@/actions/link";
 
 export default function ModalCreate({
   setIsOpenModal,
@@ -26,6 +26,7 @@ export default function ModalCreate({
     toast.success(result.message, { id: toastId });
     setIsOpenModal(false);
   }
+
   return (
     <div className="bg-gray-300/50 fixed w-full lg:w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-[calc(100%-1rem)] m-auto">
       <div className="relative p-4 w-full h-full max-w-2xl max-h-full m-auto top-20">
