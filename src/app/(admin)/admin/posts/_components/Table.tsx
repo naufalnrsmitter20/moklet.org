@@ -54,7 +54,9 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
             Published
           </span>
         ) : (
-          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">Draft</span>
+          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">
+            Draft
+          </span>
         ),
       sortable: true,
     },
