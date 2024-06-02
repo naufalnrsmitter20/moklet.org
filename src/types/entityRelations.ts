@@ -1,7 +1,10 @@
 import { Prisma } from "@prisma/client";
 
 export type PostWithTagsAndUser = Prisma.PostGetPayload<{
-  include: { tags: true; user: { select: { name: true; user_pic: true } } };
+  include: {
+    tags: true;
+    user: { select: { name: true; user_pic: true; role: true } };
+  };
 }>;
 
 export type FormWithFields = Prisma.FormGetPayload<{
@@ -32,13 +35,16 @@ export type SubmissionWithFormAndFields = Prisma.SubmissionGetPayload<{
 
 export type FormWithSubmissions = Prisma.FormGetPayload<{
   include: {
-    submissions: { include: { user: true; fields: true } };
+    submissions: {
+      include: { user: true; fields: { include: { field: true } } };
+    };
     fields: { include: { options: true } };
+    user: true;
   };
 }>;
 
 export type SubmissionWithUserAndFields = Prisma.SubmissionGetPayload<{
-  include: { user: true; fields: true };
+  include: { user: true; fields: { include: { field: true } } };
 }>;
 
 export type LinkWithCountAndUser = Prisma.Link_ShortenerGetPayload<{

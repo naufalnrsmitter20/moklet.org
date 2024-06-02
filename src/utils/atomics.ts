@@ -80,3 +80,13 @@ export const convertToDateTimeLocalString = (date: Date) => {
 
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 };
+
+export const countElements = (arr: any[]) => {
+  const uniqueElements = Array.from(new Set(arr));
+  const counts = uniqueElements.map((element) => ({
+    value: element,
+    count: arr.filter((item) => item === element).length,
+  }));
+
+  return counts;
+};

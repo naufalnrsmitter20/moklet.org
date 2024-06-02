@@ -22,8 +22,11 @@ export const findFormWithSubmission = async (filter: Prisma.FormWhereInput) => {
   return await prisma.form.findFirst({
     where: filter,
     include: {
-      submissions: { include: { user: true, fields: true } },
+      submissions: {
+        include: { user: true, fields: { include: { field: true } } },
+      },
       fields: { include: { options: true } },
+      user: true,
     },
   });
 };

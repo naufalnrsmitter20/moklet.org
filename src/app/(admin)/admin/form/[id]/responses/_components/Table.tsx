@@ -1,13 +1,10 @@
 "use client";
 
-import {
-  FormWithFieldsAndUser,
-  SubmissionWithUserAndFields,
-} from "@/types/entityRelations";
+import { SubmissionWithUserAndFields } from "@/types/entityRelations";
 import { stringifyDate } from "@/utils/atomics";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useState } from "react";
-import DataTable, { TableColumn } from "react-data-table-component";
+import DataTable from "react-data-table-component";
 
 export default function ResponsesTable({
   data,
@@ -26,8 +23,8 @@ export default function ResponsesTable({
       sortable: true,
     },
     {
-      name: "Fields filled",
-      selector: (row: SubmissionWithUserAndFields) => row.fields.length,
+      name: "Email",
+      selector: (row: SubmissionWithUserAndFields) => row.user.email,
       sortable: true,
     },
     {
