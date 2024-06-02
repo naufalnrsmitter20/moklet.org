@@ -51,7 +51,10 @@ export const findPost = async (filter: Prisma.PostWhereInput) => {
   return await prisma.post.findFirst({
     where: filter,
     orderBy: { published_at: "desc" },
-    include: { tags: true, user: { select: { name: true, user_pic: true } } },
+    include: {
+      tags: true,
+      user: { select: { name: true, user_pic: true, role: true } },
+    },
   });
 };
 export const createPost = async (data: Prisma.PostCreateInput) => {

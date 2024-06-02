@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Editor from "../../_components/MdEditor";
 import { TextArea, TextField } from "@/app/_components/global/Input";
 import Tags from "./Tags";
 import Image from "@/app/_components/global/Image";
 import { TagWithPostCount } from "@/types/entityRelations";
 import FormButton from "../../_components/parts/SubmitButton";
-import { postCreate } from "@/app/actions/post";
+import { postCreate } from "@/actions/post";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
 import Modal from "../../_components/ImageModal";
 import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
   const [value, setValue] = useState("");
@@ -22,6 +23,17 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
   const [image, setImage] = useState(
     "https://www.waterfieldtechnologies.com/wp-content/uploads/2019/02/placeholder-image-gray-3x2-300x200.png",
   );
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (
+      session?.user?.role! === "Admin" ||
+      session?.user?.role! === "SuperAdmin"
+    ) {
+      return;
+    }
+    setTag([{ label: session?.user?.role!, value: session?.user?.role! }]);
+  }, []);
 
   return (
     <>
@@ -65,7 +77,7 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
           value={slug}
           placeholder="berita-paling-panas-2024"
         />
-        <Tags tags={tags} setState={setTag} />
+        <Tags tags={tags} setState={setTag} state={tag} session={session} />
         <div className="flex flex-col">
           <label
             htmlFor="thumbnail"

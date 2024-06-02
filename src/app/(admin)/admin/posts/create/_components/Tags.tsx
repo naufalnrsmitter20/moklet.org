@@ -2,26 +2,61 @@
 
 import { TagWithPostCount } from "@/types/entityRelations";
 import { Prisma, Tag } from "@prisma/client";
-import { createTag } from "@/app/actions/post";
+import { createTag } from "@/actions/post";
 import CreatableSelect from "react-select/creatable";
 import Option from "react-select/creatable";
 import { toast } from "sonner";
 import { Dispatch, SetStateAction } from "react";
-import { MultiValue } from "react-select";
+import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { Session } from "next-auth";
+
+interface selectTag {
+  value: string;
+  label: string;
+}
 
 export default function Tags({
   tags,
   setState,
+  state,
+  session,
 }: {
   tags: TagWithPostCount[];
-  setState: Dispatch<
-    SetStateAction<MultiValue<{ value: string; label: string }> | undefined>
-  >;
+  setState: Dispatch<SetStateAction<MultiValue<selectTag> | undefined>>;
+  state: MultiValue<selectTag> | undefined;
+  session: Session | null;
 }) {
   const options = tags.map((option: Tag) => ({
     value: option.tagName,
     label: option.tagName,
   }));
+
+  const onChange = (
+    newValue: OnChangeValue<selectTag, true>,
+    actionMeta: ActionMeta<selectTag>,
+  ) => {
+    switch (actionMeta.action) {
+      case "remove-value":
+      case "pop-value":
+        if (actionMeta.removedValue.value === session?.user?.role) {
+          return;
+        }
+        break;
+      case "clear":
+        newValue = tags
+          .filter((v) => v.tagName === session?.user?.role)
+          .map((tag) => ({ value: tag.tagName, label: tag.tagName }));
+        break;
+    }
+
+    setState(
+      newValue
+        .filter((v) => v.value === session?.user?.role)
+        .concat(newValue.filter((v) => v.value !== session?.user?.role)),
+    );
+  };
 
   return (
     <div>
@@ -34,10 +69,12 @@ export default function Tags({
       <CreatableSelect
         isMulti
         unstyled
+        value={state}
         options={options}
-        onChange={(e) => setState(e)}
+        onChange={onChange}
         name="tags"
         required
+        isClearable={options.some((v) => v.value !== session?.user?.role)}
         classNames={{
           control: () =>
             "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",

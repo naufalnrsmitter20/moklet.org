@@ -36,7 +36,8 @@ export default function AddUser() {
               />
             </svg>
             Add User
-          </div></span>
+          </div>
+        </span>
       </button>
     </>
   );

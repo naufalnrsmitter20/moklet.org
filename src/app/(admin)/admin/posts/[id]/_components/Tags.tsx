@@ -1,28 +1,58 @@
 "use client";
 
 import { TagWithPostCount } from "@/types/entityRelations";
-import { Tag } from "@prisma/client";
-import { createTag } from "@/app/actions/post";
-import CreatableSelect from "react-select/creatable";
-import { toast } from "sonner";
+import { Roles, Tag } from "@prisma/client";
 import { Dispatch, SetStateAction } from "react";
-import { MultiValue } from "react-select";
+import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
+import CreatableSelect from "react-select/creatable";
+
+interface selectTag {
+  value: string;
+  label: string;
+}
 
 export default function Tags({
   tags,
   setState,
   selected,
+  role,
 }: {
   tags: TagWithPostCount[];
   setState: Dispatch<
     SetStateAction<MultiValue<{ value: string; label: string }>>
   >;
   selected: MultiValue<{ value: string; label: string }>;
+  role: Roles;
 }) {
   const options = tags.map((option: Tag) => ({
     value: option.tagName,
     label: option.tagName,
   }));
+
+  const onChange = (
+    newValue: OnChangeValue<selectTag, true>,
+    actionMeta: ActionMeta<selectTag>,
+  ) => {
+    switch (actionMeta.action) {
+      case "remove-value":
+      case "pop-value":
+        if (actionMeta.removedValue.value === role.toString()) {
+          return;
+        }
+        break;
+      case "clear":
+        newValue = tags
+          .filter((v) => v.tagName === role.toString())
+          .map((tag) => ({ value: tag.tagName, label: tag.tagName }));
+        break;
+    }
+
+    setState(
+      newValue
+        .filter((v) => v.value === role.toString())
+        .concat(newValue.filter((v) => v.value !== role.toString())),
+    );
+  };
 
   return (
     <div>
@@ -36,6 +66,7 @@ export default function Tags({
         isMulti
         unstyled
         options={options}
+        isClearable={options.some((v) => v.value !== role)}
         onChange={(e) => setState(e)}
         value={selected}
         name="tags"

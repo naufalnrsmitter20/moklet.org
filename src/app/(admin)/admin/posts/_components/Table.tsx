@@ -7,7 +7,7 @@ import { useRouter } from "next-nprogress-bar";
 import { toast } from "sonner";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
-import { postDelete, updatePostStatus } from "@/app/actions/post";
+import { postDelete, updatePostStatus } from "@/actions/post";
 
 export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
@@ -54,7 +54,9 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
             Published
           </span>
         ) : (
-          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">Draft</span>
+          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">
+            Draft
+          </span>
         ),
       sortable: true,
     },

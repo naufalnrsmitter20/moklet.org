@@ -1,4 +1,4 @@
-import { imageUploader } from "@/app/actions/fileUploader";
+import { imageUploader } from "@/actions/fileUploader";
 import Unauthorized from "@/app/unauthorized/page";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { badRequest, internalServerError, created } from "@/utils/apiResponse";
