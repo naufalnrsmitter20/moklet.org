@@ -3,7 +3,7 @@
 import { FullPrimaryButton } from "@/app/_components/global/Button";
 import { TextField } from "@/app/_components/global/Input";
 import { H3, P } from "@/app/_components/global/Text";
-import checkPass from "@/app/actions/linkShortener";
+import checkPass from "@/actions/linkShortener";
 import { useState } from "react";
 import { FaLock } from "react-icons/fa6";
 

@@ -7,7 +7,7 @@ import { FaGlobeAsia } from "react-icons/fa";
 import Modal from "./Modal";
 import { useState } from "react";
 import { toast } from "sonner";
-import { deleteLink } from "@/app/actions/link";
+import { deleteLink } from "@/actions/link";
 import {
   CopyIcon,
   DateIcon,

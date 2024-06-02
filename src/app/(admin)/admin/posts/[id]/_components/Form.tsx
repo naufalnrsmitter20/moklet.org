@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "../../_components/MdEditor";
 import { TextArea, TextField } from "@/app/_components/global/Input";
 import Tags from "./Tags";
 import { PostWithTagsAndUser, TagWithPostCount } from "@/types/entityRelations";
 import FormButton from "../../_components/parts/SubmitButton";
-import { postUpdate } from "@/app/actions/post";
+import { postUpdate } from "@/actions/post";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
 import Image from "@/app/_components/global/Image";
+import { useSession } from "next-auth/react";
 
 export default function EditForm({
   tags,
@@ -20,13 +21,28 @@ export default function EditForm({
   const [value, setValue] = useState(post.content);
   const [image, setImage] = useState(post.thumbnail);
   const [slug, setSlug] = useState(post.slug);
-  const selected = post.tags.map((tag) => ({
+  const { data: session } = useSession();
+  let selected = post.tags.map((tag) => ({
     value: tag.tagName,
     label: tag.tagName,
   }));
+  console.log(selected);
+  const [tag, setTag] = useState<MultiValue<{ value: string; label: string }>>(
+    [],
+  );
 
-  const [tag, setTag] =
-    useState<MultiValue<{ value: string; label: string }>>(selected);
+  useEffect(() => {
+    if (
+      selected.map((i) => i.value).indexOf(post.user.role.toString()!) === -1 &&
+      !(session?.user?.role === "Admin" || session?.user?.role === "SuperAdmin")
+    ) {
+      selected.unshift({
+        label: post.user.role.toString()!,
+        value: post.user.role.toString()!,
+      });
+    }
+    setTag(selected);
+  }, [selected]);
 
   return (
     <>
@@ -70,7 +86,12 @@ export default function EditForm({
           value={slug}
           placeholder="berita-paling-panas-2024"
         />
-        <Tags tags={tags} setState={setTag!} selected={tag} />
+        <Tags
+          tags={tags}
+          setState={setTag!}
+          selected={tag!}
+          role={post?.user?.role!}
+        />
         <div className="flex flex-col">
           <label htmlFor="thumbnail" className="">
             Thumbnail

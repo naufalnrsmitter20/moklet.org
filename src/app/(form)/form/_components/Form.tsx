@@ -10,12 +10,12 @@ import {
 import { FormWithFields } from "@/types/entityRelations";
 import { FormEvent, useEffect } from "react";
 import { toast } from "sonner";
-import { submitForm } from "@/app/actions/formAspirasi";
+import { submitForm } from "@/actions/formAspirasi";
 import { useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { formToJSON } from "@/utils/atomics";
 
-type FormPops = {
+type FormProps = {
   form: FormWithFields;
   a: string;
   b: string;
@@ -27,7 +27,7 @@ type FormPops = {
   }[];
 };
 
-export default function Form({ form, a, b, answers }: FormPops) {
+export default function Form({ form, a, b, answers }: FormProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { imageUploader } from "@/app/actions/fileUploader";
+import { imageUploader } from "@/actions/fileUploader";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { revalidatePath } from "next/cache";

@@ -12,6 +12,7 @@ import {
   updateSubmission,
 } from "@/utils/database/submission.query";
 import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export const findFormById = async (form_id: string, active: boolean) => {
   const form = await findForm({ id: form_id, is_open: active });
@@ -28,6 +29,7 @@ export const findFormByUserId = async (user_id: string) => {
 export const deleteFormById = async (form_id: string) => {
   const form = await deleteForm(form_id);
 
+  revalidatePath("/admin/form");
   return form;
 };
 
