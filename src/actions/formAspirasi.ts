@@ -39,6 +39,7 @@ export const submitForm = async (
   answers: Array<{ name: string; value: string }>,
   submission_id?: string,
 ) => {
+  console.log(answers);
   const form = await findForm({ id: form_id, is_open: true });
 
   if (submission_id) {

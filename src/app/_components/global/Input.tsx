@@ -190,7 +190,7 @@ export function RadioField({
             <input
               type="radio"
               name={name}
-              defaultChecked={option.value == value}
+              defaultChecked={option.value === value}
               value={option.value}
               className="w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear"
               id={option.id}
