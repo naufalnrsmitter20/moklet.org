@@ -14,17 +14,13 @@ import { submitForm } from "@/actions/formAspirasi";
 import { useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { formToJSON } from "@/utils/atomics";
+import { Submission_Field } from "@prisma/client";
 
 type FormProps = {
   form: FormWithFields;
   a: string;
   b: string;
-  answers?: {
-    id: string;
-    submission_id: string;
-    field_id: number;
-    value: string;
-  }[];
+  answers?: Submission_Field[];
 };
 
 export default function Form({ form, a, b, answers }: FormProps) {

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 
@@ -21,21 +20,7 @@ export default function SummaryTable({ data }: { data: string[] }) {
 
   return (
     <div className="p-2 rounded-md bg-white">
-      <DataTable
-        columns={columns}
-        data={data}
-        pagination
-        highlightOnHover
-        customStyles={{
-          cells: {
-            style: {
-              "&:hover": {
-                cursor: "pointer",
-              },
-            },
-          },
-        }}
-      />
+      <DataTable columns={columns} data={data} pagination highlightOnHover />
     </div>
   );
 }
