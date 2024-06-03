@@ -8,6 +8,7 @@ import { findSubmissionWithForm } from "@/utils/database/submission.query";
 import Form from "../../_components/Form";
 import ForbiddenForm from "../../_components/ForbiddenForm";
 import { Metadata } from "next";
+import { transformToArrayCheckbox } from "@/utils/atomics";
 
 type Props = {
   params: { id: string; id_submission: string };
@@ -20,23 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: form?.title ?? "Not Found",
     description: form?.description,
   };
-}
-
-function transformToArrayCheckbox(inputArray: Array<any>) {
-  return inputArray.reduce((acc, item) => {
-    const group = acc.find(
-      (group: { field_id: string }) => group.field_id === item.field_id,
-    );
-    if (group) {
-      group.value = [].concat(group.value, item.value);
-    } else {
-      acc.push({
-        ...item,
-        value: item.value,
-      });
-    }
-    return acc;
-  }, []);
 }
 
 const page = async ({ params }: Props) => {

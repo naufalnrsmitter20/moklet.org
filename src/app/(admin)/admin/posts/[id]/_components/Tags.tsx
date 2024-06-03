@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 
-interface selectTag {
+interface SelectTag {
   value: string;
   label: string;
 }
@@ -30,8 +30,8 @@ export default function Tags({
   }));
 
   const onChange = (
-    newValue: OnChangeValue<selectTag, true>,
-    actionMeta: ActionMeta<selectTag>,
+    newValue: OnChangeValue<SelectTag, true>,
+    actionMeta: ActionMeta<SelectTag>,
   ) => {
     switch (actionMeta.action) {
       case "remove-value":

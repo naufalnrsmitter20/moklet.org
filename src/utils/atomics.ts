@@ -63,9 +63,17 @@ export const formToJSON = (elements: HTMLElement) =>
           ? data[element.name]
             ? element.checked
               ? [...data[element.name], element.value]
+              : data[element.name].filter(
+                  (value: string) => value !== element.value,
+                )
+            : element.checked
+              ? [element.value]
+              : []
+          : element.type == "radio"
+            ? element.checked
+              ? element.value
               : data[element.name]
-            : [element.value]
-          : element.value;
+            : element.value;
       return data;
     },
     {},
@@ -89,4 +97,21 @@ export const countElements = (arr: any[]) => {
   }));
 
   return counts;
+};
+
+export const transformToArrayCheckbox = (inputArray: Array<any>) => {
+  return inputArray.reduce((acc, { field_id, value }) => {
+    const group = acc.find(
+      (group: { field_id: string }) => group.field_id === field_id,
+    );
+
+    if (group) {
+      group.value = Array.isArray(group.value)
+        ? group.value.concat(value)
+        : [group.value, value];
+    } else {
+      acc.push({ field_id, value: [value] });
+    }
+    return acc;
+  }, []);
 };

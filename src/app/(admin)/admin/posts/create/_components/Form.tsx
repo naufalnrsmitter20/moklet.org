@@ -33,7 +33,7 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
       return;
     }
     setTag([{ label: session?.user?.role!, value: session?.user?.role! }]);
-  }, []);
+  }, [session?.user?.role]);
 
   return (
     <>

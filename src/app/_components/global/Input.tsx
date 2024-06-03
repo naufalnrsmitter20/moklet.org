@@ -13,6 +13,7 @@ interface InputProps {
   value?: string;
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  disabled?: boolean;
 }
 
 interface OptionFieldProps {
@@ -23,6 +24,7 @@ interface OptionFieldProps {
   value?: string | Array<string>;
   name: string;
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 interface SelectFieldProps {
@@ -33,6 +35,7 @@ interface SelectFieldProps {
   value?: string | Array<string>;
   name: string;
   handleChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
 }
 
 interface TextFieldProps extends InputProps {
@@ -49,6 +52,7 @@ export function TextField({
   handleChange,
   value,
   onKeyDown,
+  disabled,
 }: Readonly<TextFieldProps>) {
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -85,6 +89,7 @@ export function TextField({
           className="w-full rounded-full border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
           required={required}
           onKeyDown={onKeyDown}
+          disabled={disabled}
         />
       </div>
     </div>
@@ -98,6 +103,7 @@ export function TextArea({
   required,
   name,
   value,
+  disabled,
 }: Readonly<InputProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>
@@ -118,6 +124,7 @@ export function TextArea({
         defaultValue={value}
         id={name}
         className="h-[144px] rounded-2xl border border-neutral-400 px-[18px] focus:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500"
+        disabled={disabled}
       />
     </div>
   );
@@ -131,6 +138,7 @@ export function SelectField({
   value,
   name,
   handleChange,
+  disabled,
 }: Readonly<SelectFieldProps>) {
   return (
     <div className={"flex flex-col gap-2 " + className}>
@@ -151,6 +159,7 @@ export function SelectField({
         id={name}
         required={required}
         onChange={handleChange}
+        disabled={disabled}
       >
         {options &&
           options.map((option, index) => (
@@ -171,6 +180,7 @@ export function RadioField({
   value,
   name,
   handleChange,
+  disabled,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={cn("flex flex-col gap-2 " + className)}>
@@ -190,11 +200,12 @@ export function RadioField({
             <input
               type="radio"
               name={name}
-              defaultChecked={option.value == value}
+              defaultChecked={option.value === value}
               value={option.value}
               className="w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear"
               id={option.id}
               required={required}
+              disabled={disabled}
             />
             <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
               {option.value}
@@ -213,6 +224,7 @@ export function CheckboxField({
   value,
   name,
   handleChange,
+  disabled,
 }: Readonly<OptionFieldProps>) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
@@ -237,6 +249,7 @@ export function CheckboxField({
               className="w-4 h-4 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
               id={option.id}
               data-required={required}
+              disabled={disabled}
             />
             <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
               {option.value}

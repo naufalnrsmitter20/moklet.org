@@ -9,7 +9,7 @@ export default async function Admin() {
   return (
     <>
       <H2 className="font-semibold ">Halo, Bro {name}👋</H2>
-      <P>Here’s what going on today</P>
+      <P>Here’s whats going on today</P>
     </>
   );
 }
