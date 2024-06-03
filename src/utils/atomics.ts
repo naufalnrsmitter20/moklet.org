@@ -63,9 +63,17 @@ export const formToJSON = (elements: HTMLElement) =>
           ? data[element.name]
             ? element.checked
               ? [...data[element.name], element.value]
+              : data[element.name].filter(
+                  (value: string) => value !== element.value,
+                )
+            : element.checked
+              ? [element.value]
+              : []
+          : element.type == "radio"
+            ? element.checked
+              ? element.value
               : data[element.name]
-            : [element.value]
-          : element.value;
+            : element.value;
       return data;
     },
     {},

@@ -42,7 +42,7 @@ export default function EditForm({
       });
     }
     setTag(selected);
-  }, [selected]);
+  }, [post.user.role, selected, session?.user?.role]);
 
   return (
     <>

@@ -79,13 +79,13 @@ export default function Form({ form, a, b, answers }: FormProps) {
           : [{ name: key, value: value }];
       });
 
-      const submit = await submitForm(
+      const submission = await submitForm(
         a,
         b,
         arrayAnswers,
         answers?.[0].submission_id,
       );
-      if (submit.success) {
+      if (submission.success) {
         toast.success("Jawaban terkirim!", {
           id: toastId,
         });
@@ -136,17 +136,14 @@ export default function Form({ form, a, b, answers }: FormProps) {
               <RadioField
                 label={field.label}
                 name={field.id.toString()}
-                options={field.options.map((item) => {
-                  return {
-                    id: item.field_id + "_" + item.id,
-                    name: item.id.toString(),
-                    value: item.value,
-                  };
-                })}
+                options={field.options.map((item) => ({
+                  id: item.field_id + "_" + item.id,
+                  value: item.value,
+                }))}
                 className="mb-6 w-full"
                 required={field.required}
                 value={
-                  answers?.find((item) => item.field_id == field.id)?.value
+                  answers?.find((item) => item.field_id === field.id)?.value
                 }
               />
             )}
@@ -154,12 +151,10 @@ export default function Form({ form, a, b, answers }: FormProps) {
               <CheckboxField
                 label={field.label}
                 name={field.id.toString()}
-                options={field.options.map((item) => {
-                  return {
-                    id: item.field_id + "_" + item.id,
-                    value: item.value,
-                  };
-                })}
+                options={field.options.map((item) => ({
+                  id: item.field_id + "_" + item.id,
+                  value: item.value,
+                }))}
                 className="mb-6 w-full"
                 required={field.required}
                 value={
