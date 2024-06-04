@@ -1,6 +1,7 @@
 import Image from "@/app/_components/global/Image";
-import { P } from "./Text";
+
 import { TertiaryLinkButton } from "./LinkButton";
+import { P } from "./Text";
 
 interface FootOption {
   title: string;

@@ -1,9 +1,11 @@
 "use client";
 
-import { TextField } from "@/app/_components/global/Input";
-import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
+
+import { TextField } from "@/app/_components/global/Input";
+import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
+
 import Search from "./icons/Search";
 import { SearchButton, SmallSearchButton } from "./parts/Button";
 

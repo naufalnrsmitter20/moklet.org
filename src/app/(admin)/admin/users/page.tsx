@@ -1,10 +1,11 @@
 import React from "react";
-import { findAllUsers } from "@/utils/database/user.query";
-import UserTable from "./_components/Table";
-import { UserWithLastlog } from "@/types/entityRelations";
-import AddUser from "./_components/AddUser";
+
 import { H2, P } from "@/app/_components/global/Text";
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
+import { UserWithLastlog } from "@/types/entityRelations";
+import { findAllUsers } from "@/utils/database/user.query";
+
+import AddUser from "./_components/AddUser";
+import UserTable from "./_components/Table";
 
 export default async function UsersPage() {
   const users: UserWithLastlog[] = await findAllUsers({

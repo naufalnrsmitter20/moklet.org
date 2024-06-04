@@ -1,12 +1,14 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
+
+import { PrimaryButton } from "@/app/_components/global/Button";
 import { P } from "@/app/_components/global/Text";
 import { protectedRoutes } from "@/utils/protectedRoutes";
-import { usePathname } from "next/navigation";
+
 import { DashboardIcon } from "./Icons";
-import { PrimaryButton } from "@/app/_components/global/Button";
-import { signOut } from "next-auth/react";
 
 type navbarParam = {
   nav: boolean;
@@ -15,20 +17,20 @@ type navbarParam = {
 export function Sidebar({ nav, session }: navbarParam) {
   const pathname = usePathname();
 
-  const allowedRoutes = protectedRoutes.filter(
-    (item) =>
+  const allowedRoutes = protectedRoutes.filter((item) => {
+    const userRole = session?.user?.role;
+
+    return (
       item.roles == "All" ||
-      item.roles.includes(session?.user?.role!) ||
-      (!session?.user?.role?.includes("Admin") &&
-        item.roles.includes("SubOrgan")),
-  );
+      (userRole && item.roles.includes(userRole)) ||
+      (!userRole?.includes("Admin") && item.roles.includes("SubOrgan"))
+    );
+  });
 
   return (
     <aside
       id="sidebar"
-      className={`fixed ${
-        nav ? "w-80" : "w-0 opacity-0"
-      } left-0 bg-white top-0 z-20 h-full flex-shrink-0 transition-all duration-300 lg:w-80 lg:opacity-100 hidden lg:flex`}
+      className={`fixed ${nav ? "w-80" : "w-0 opacity-0"} left-0 bg-white top-0 z-20 h-full flex-shrink-0 transition-all duration-300 lg:w-80 lg:opacity-100 hidden lg:flex`}
       aria-label="Sidebar"
     >
       <div className="relative flex min-h-0 flex-1 flex-col border-r px-4 border-gray-200 bg-white pt-0">

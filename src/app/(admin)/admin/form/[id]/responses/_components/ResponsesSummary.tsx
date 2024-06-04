@@ -1,9 +1,10 @@
 "use client";
 
 import { H3 } from "@/app/_components/global/Text";
-import SummaryTable from "./SummaryTable";
-import { BarChart, PieChart } from "./Chart";
 import { countElements } from "@/utils/atomics";
+
+import { BarChart, PieChart } from "./Chart";
+import SummaryTable from "./SummaryTable";
 
 interface SummaryProps {
   question: string;

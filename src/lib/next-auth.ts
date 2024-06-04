@@ -1,25 +1,20 @@
-import type { AuthOptions } from "next-auth";
+import { Roles } from "@prisma/client";
+import { type DefaultSession, AuthOptions } from "next-auth";
+import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import {
-  findUser,
-  createUser,
-  updateUserAuth,
-  updateUser,
-} from "@/utils/database/user.query";
-import { Roles } from "@prisma/client";
-import prisma from "./prisma";
-import { type DefaultSession } from "next-auth";
-import type { DefaultJWT } from "next-auth/jwt";
-import { createHash } from "crypto";
-import { getServerSession } from "next-auth";
+
+import { findUser, createUser, updateUser } from "@/utils/database/user.query";
 import { compareHash } from "@/utils/encryption";
+
+import prisma from "./prisma";
+
+import type { DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
-  // eslint-disable-next-line no-unused-vars
   interface Session {
     user?: {
       id: string;
@@ -34,7 +29,6 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-  // eslint-disable-next-line no-unused-vars
   interface JWT extends DefaultJWT {
     id: string;
     role: Roles;
@@ -70,15 +64,15 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         try {
-          let findUser = await prisma.user.findUnique({
+          const findUser = await prisma.user.findUnique({
             where: { email: credentials?.email },
             include: { userAuth: true },
           });
           if (!findUser) return null;
 
           const comparePassword = compareHash(
-            credentials?.password!,
-            findUser.userAuth?.password!,
+            credentials?.password as string,
+            findUser.userAuth?.password as string,
           );
 
           if (!comparePassword) return null;
@@ -117,7 +111,7 @@ export const authOptions: AuthOptions = {
       )
         return false;
       if (user.email) {
-        let userdb = await findUser({ email: user.email });
+        const userdb = await findUser({ email: user.email });
         if (!userdb) {
           await createUser({
             email: user.email,
@@ -138,20 +132,20 @@ export const authOptions: AuthOptions = {
     },
     async jwt({ token, user }) {
       if (user?.email) {
-        let userdb = await findUser({ email: user?.email! });
+        const userdb = await findUser({ email: user?.email as string });
         token.id = userdb?.id || "";
         token.role = userdb?.role || "Guest";
         token.name = userdb?.name || token?.name;
-        token.user_pic = userdb?.user_pic!;
+        token.user_pic = userdb?.user_pic as string;
       }
       return token;
     },
     async session({ session, token }) {
       if (token.email && session.user) {
         session.user.role = token?.role || "Guest";
-        session.user.id = token?.id!;
-        session.user.user_pic = token?.user_pic!;
-        session.user.name = token?.name!;
+        session.user.id = token?.id as string;
+        session.user.user_pic = token?.user_pic as string;
+        session.user.name = token?.name as string;
         await updateUser(
           { email: token.email },
           {

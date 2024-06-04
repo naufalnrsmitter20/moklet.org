@@ -1,10 +1,12 @@
 "use client";
 
-import { H2, UnderlinedTitle } from "@/app/_components/global/Text";
+import Link from "next/link";
+
+import { UnderlinedTitle } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-import Link from "next/link";
+
 import { NewsFigure } from "../global/NewsFigure";
 
 export default function News({

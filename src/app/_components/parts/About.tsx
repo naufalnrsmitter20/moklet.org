@@ -1,7 +1,7 @@
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import { H2, P, UnderlinedTitle } from "@/app/_components/global/Text";
 import Image from "@/app/_components/global/Image";
+import PrimaryLinkButton from "@/app/_components/global/LinkButton";
+import { P, UnderlinedTitle } from "@/app/_components/global/Text";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 export default function About() {
   return (

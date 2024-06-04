@@ -1,3 +1,8 @@
+/* eslint-disable prettier/prettier */
+
+import { Submission_Field } from "@prisma/client";
+import { notFound } from "next/navigation";
+
 import {
   CheckboxField,
   RadioField,
@@ -8,8 +13,6 @@ import { H2, P } from "@/app/_components/global/Text";
 import { transformToArrayCheckbox } from "@/utils/atomics";
 import { findForm } from "@/utils/database/form.query";
 import { findSubmission } from "@/utils/database/submission.query";
-import { Field, Submission_Field } from "@prisma/client";
-import { notFound } from "next/navigation";
 
 export default async function SubmissionDetail({
   params,

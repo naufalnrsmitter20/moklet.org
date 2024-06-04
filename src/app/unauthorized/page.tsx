@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import Image from "@/app/_components/global/Image";
 import PrimaryLinkButton from "@/app/_components/global/LinkButton";
 import { H1, P } from "@/app/_components/global/Text";

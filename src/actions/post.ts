@@ -1,17 +1,19 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { getServerSession } from "next-auth/next";
+import { MultiValue } from "react-select";
+
 import { imageUploader } from "@/actions/fileUploader";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { revalidatePath } from "next/cache";
 import {
   updatePost,
   createPost,
   deletePost,
 } from "@/utils/database/post.query";
-import { MultiValue } from "react-select";
-import { Prisma } from "@prisma/client";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function uploadInsert(data: Record<string, any>) {
   try {
     const result = await imageUploader(Buffer.from(data.data));
@@ -24,7 +26,7 @@ export async function uploadInsert(data: Record<string, any>) {
 }
 
 export async function upload(data: FormData) {
-  let image = data.get("image") as File;
+  const image = data.get("image") as File;
   const ABuffer = await image.arrayBuffer();
 
   try {
@@ -78,7 +80,7 @@ export async function postCreate(
       content: MD,
       title: title,
       description: description,
-      thumbnail: upload.data?.url!,
+      thumbnail: upload.data?.url as string,
       reaction: [],
       tags: { connectOrCreate: tag },
       user: { connect: session?.user },

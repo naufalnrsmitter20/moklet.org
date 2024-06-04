@@ -1,13 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import { FaGlobeAsia } from "react-icons/fa";
+import { toast } from "sonner";
+
+import { deleteLink } from "@/actions/link";
 import { H3, P } from "@/app/_components/global/Text";
 import { LinkWithCountAndUser } from "@/types/entityRelations";
 import { stringifyDate } from "@/utils/atomics";
-import { FaGlobeAsia } from "react-icons/fa";
-import Modal from "./Modal";
-import { useState } from "react";
-import { toast } from "sonner";
-import { deleteLink } from "@/actions/link";
+
 import {
   CopyIcon,
   DateIcon,
@@ -16,6 +17,7 @@ import {
   StatsIcon,
   UserIcon,
 } from "./Icons";
+import Modal from "./Modal";
 
 export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
   const [isOpenModal, setIsOpenModal] = useState(false);

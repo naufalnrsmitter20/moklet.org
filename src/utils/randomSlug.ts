@@ -1,10 +1,10 @@
 export default function generateRandomSlug() {
-  let time = Date.now().toString();
+  const time = Date.now().toString();
 
   const charset =
     "SbARtL8YDzncVl6ef02uXIH9OpaygPNjo1mFGCrMxZ75Eh3UTKQBdwksqvJW4i";
 
-  let segmented = time.match(/[\s\S]{1,2}/g),
+  const segmented = time.match(/[\s\S]{1,2}/g),
     legal: string[] = [];
 
   segmented!.forEach((segment, index) => {
@@ -15,7 +15,7 @@ export default function generateRandomSlug() {
     }
   });
 
-  let slug: string[] = [];
+  const slug: string[] = [];
 
   Array.from({ length: 6 }, (x, i) => i).forEach((n, i) => {
     slug[i] =

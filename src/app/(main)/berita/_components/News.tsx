@@ -1,11 +1,13 @@
+import { notFound } from "next/navigation";
+
 import { NewsFigure } from "@/app/_components/global/NewsFigure";
 import { H2, H4 } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findAllPosts } from "@/utils/database/post.query";
 import { PaginatedResult } from "@/utils/paginator";
+
 import PageNav from "./parts/PageNav";
-import { notFound } from "next/navigation";
 
 export default async function News({
   searchParams,

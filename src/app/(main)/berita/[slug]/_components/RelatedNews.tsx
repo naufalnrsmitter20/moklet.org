@@ -1,5 +1,7 @@
-import { findPostByTag } from "@/utils/database/tag.query";
 import { Tag } from "@prisma/client";
+
+import { findPostByTag } from "@/utils/database/tag.query";
+
 import RelatedNewsFigure from "./RelatedNewsFigure";
 
 export default async function Related({ tags }: { tags: Tag[] }) {

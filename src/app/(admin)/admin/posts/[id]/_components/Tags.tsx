@@ -1,15 +1,18 @@
 "use client";
 
-import { TagWithPostCount } from "@/types/entityRelations";
 import { Roles, Tag } from "@prisma/client";
 import { Dispatch, SetStateAction } from "react";
-import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
+import { MultiValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
 
+import { TagWithPostCount } from "@/types/entityRelations";
+
+/*
 interface SelectTag {
   value: string;
   label: string;
 }
+ */
 
 export default function Tags({
   tags,
@@ -29,7 +32,7 @@ export default function Tags({
     label: option.tagName,
   }));
 
-  const onChange = (
+  /* const onChange = (
     newValue: OnChangeValue<SelectTag, true>,
     actionMeta: ActionMeta<SelectTag>,
   ) => {
@@ -47,18 +50,21 @@ export default function Tags({
         break;
     }
 
-    setState(
+  setState(
       newValue
         .filter((v) => v.value === role.toString())
         .concat(newValue.filter((v) => v.value !== role.toString())),
     );
   };
+  */
 
   return (
     <div>
       <label
         htmlFor={"tags"}
-        className={`first-letter:capitalize after:text-red-500 after:content-['*']`}
+        className={
+          "first-letter:capitalize after:text-red-500 after:content-['*']"
+        }
       >
         Tags
       </label>

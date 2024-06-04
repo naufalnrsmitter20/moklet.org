@@ -1,29 +1,32 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 "use client";
 
-import { useState, useEffect } from "react";
-import Editor from "../../_components/MdEditor";
-import { TextArea, TextField } from "@/app/_components/global/Input";
-import Tags from "./Tags";
-import Image from "@/app/_components/global/Image";
-import { TagWithPostCount } from "@/types/entityRelations";
-import FormButton from "../../_components/parts/SubmitButton";
-import { postCreate } from "@/actions/post";
-import { MultiValue } from "react-select";
-import { toast } from "sonner";
-import Modal from "../../_components/ImageModal";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { MultiValue } from "react-select";
+import { toast } from "sonner";
+
+import { postCreate } from "@/actions/post";
+import Image from "@/app/_components/global/Image";
+import { TextArea, TextField } from "@/app/_components/global/Input";
+import { TagWithPostCount } from "@/types/entityRelations";
+
+import Tags from "./Tags";
+import Modal from "../../_components/ImageModal";
+import Editor from "../../_components/MdEditor";
+import FormButton from "../../_components/parts/SubmitButton";
 
 export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
-  const [value, setValue] = useState("");
   const [tag, setTag] =
     useState<MultiValue<{ value: string; label: string }>>();
-  const [slug, setSlug] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  const [value, setValue] = useState("");
+  const [slug, setSlug] = useState("");
   const [image, setImage] = useState(
     "https://www.waterfieldtechnologies.com/wp-content/uploads/2019/02/placeholder-image-gray-3x2-300x200.png",
   );
-  const { data: session } = useSession();
 
   useEffect(() => {
     if (

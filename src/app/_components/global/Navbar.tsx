@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import cn from "@/lib/clsx";
+
 import HamburgerIcon from "../icons/HamburgerIcon";
 
 interface NavOption {
@@ -53,15 +54,17 @@ export default function Navbar() {
           )}
         >
           {scrolled && (
-            <Image
-              src={"/horizontal.svg"}
-              alt="Logo moklet.org"
-              width={120}
-              height={40}
-              className={cn(
-                `pointer-events-none h-[40px] transition-all duration-300 ${scrolled ? "w-[120px]" : "w-0"}`,
-              )}
-            />
+            <Link href="/">
+              <Image
+                src={"/horizontal.svg"}
+                alt="Logo moklet.org"
+                width={120}
+                height={40}
+                className={cn(
+                  `pointer-events-none h-[40px] transition-all duration-300 ${scrolled ? "w-[120px]" : "w-0"}`,
+                )}
+              />
+            </Link>
           )}
           {navOptions.map((navOption) => (
             <Link

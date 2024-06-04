@@ -1,8 +1,10 @@
 "use client";
-import { toast } from "sonner";
-import { upload } from "@/actions/post";
-import FormButton from "./SubmitButton";
 import { Dispatch, SetStateAction } from "react";
+import { toast } from "sonner";
+
+import { upload } from "@/actions/post";
+
+import FormButton from "./SubmitButton";
 
 export default function Form({
   setIsOpenModal,
