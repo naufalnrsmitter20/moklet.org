@@ -169,3 +169,36 @@ model Link_Shortener_Count {
   Link        Link_Shortener @relation(fields: [id], references: [slug], onDelete: Cascade)
   click_count Int            @default(0)
 }
+
+enum Kategori {
+  KEOLAHRAGAAN
+  KEAGAMAAN
+  SENI_BAHASA
+}
+
+model Sub_Organ {
+  id          String   @id @default(uuid()) @map("sub_organ_id") @db.Char(36)
+  name        String   @unique
+  logo        String
+  description String   @db.LongText
+  visi        String
+  misi        String
+  kontak      String
+  struktur    String
+  kategori    Kategori
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model Organisasi {
+  id          String   @id @default(uuid()) @map("sub_organ_id") @db.Char(36)
+  name        String   @unique
+  logo        String
+  description String   @db.LongText
+  visi        String
+  misi        String
+  kontak      String
+  struktur    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
