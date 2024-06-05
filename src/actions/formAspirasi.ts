@@ -1,5 +1,8 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+
 import {
   deleteForm,
   findAllForms,
@@ -11,8 +14,6 @@ import {
   findSubmission,
   updateSubmission,
 } from "@/utils/database/submission.query";
-import { Prisma } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export const findFormById = async (form_id: string, active: boolean) => {
   const form = await findForm({ id: form_id, is_open: active });
@@ -83,7 +84,7 @@ export const submitForm = async (
     }
   }
 
-  let fields_create: Prisma.Submission_FieldUncheckedCreateWithoutSubmissionInput[] =
+  const fields_create: Prisma.Submission_FieldUncheckedCreateWithoutSubmissionInput[] =
     answers.map((answer) => {
       return { field_id: parseInt(answer.name), value: answer.value };
     });
@@ -98,7 +99,7 @@ export const submitForm = async (
 
     return { submission_id: submission_id, success: true };
   }
-  let submission = await createSubmission({
+  const submission = await createSubmission({
     user_id,
     form_id,
     fields: { create: fields_create },

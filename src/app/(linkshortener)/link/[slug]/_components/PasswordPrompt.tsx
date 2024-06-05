@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
+import { FaLock } from "react-icons/fa6";
+
+import checkPass from "@/actions/linkShortener";
 import { FullPrimaryButton } from "@/app/_components/global/Button";
 import { TextField } from "@/app/_components/global/Input";
 import { H3, P } from "@/app/_components/global/Text";
-import checkPass from "@/actions/linkShortener";
-import { useState } from "react";
-import { FaLock } from "react-icons/fa6";
 
 export default function PasswordPrompt({ slug }: { slug: string }) {
   const [error, setError] = useState("");

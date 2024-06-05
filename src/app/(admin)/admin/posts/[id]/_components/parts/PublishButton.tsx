@@ -1,8 +1,9 @@
 "use client";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
-import { updatePostStatus } from "@/actions/post";
 import { useState } from "react";
+
+import { updatePostStatus } from "@/actions/post";
+import { PrimaryButton } from "@/app/_components/global/Button";
 
 export default function PublishButton({
   state,

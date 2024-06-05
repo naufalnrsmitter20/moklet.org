@@ -1,10 +1,11 @@
-import Header from "../_components/parts/Header";
-import Opinions from "../_components/parts/Opinions";
-import About from "../_components/parts/About";
-import SubOrgan from "../_components/parts/SubOrgan";
-import News from "../_components/parts/News";
-import Aspiration from "../_components/parts/Aspiration";
 import { findNewestPost } from "@/utils/database/post.query";
+
+import About from "../_components/parts/About";
+import Aspiration from "../_components/parts/Aspiration";
+import Header from "../_components/parts/Header";
+import News from "../_components/parts/News";
+import Opinions from "../_components/parts/Opinions";
+import SubOrgan from "../_components/parts/SubOrgan";
 
 export default async function Home() {
   const latestPosts = await findNewestPost(3);

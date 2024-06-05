@@ -3,8 +3,9 @@ import { H2 } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findAllPosts } from "@/utils/database/post.query";
-import { SearchBar } from "../_components/SearchBar";
+
 import GoBack from "../[slug]/_components/BackButton";
+import { SearchBar } from "../_components/SearchBar";
 
 export default async function Search({
   searchParams,

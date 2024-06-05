@@ -1,8 +1,9 @@
+import { NextRequest } from "next/server";
+
 import { imageUploader } from "@/actions/fileUploader";
 import Unauthorized from "@/app/unauthorized/page";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { badRequest, internalServerError, created } from "@/utils/apiResponse";
-import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   const session = await nextGetServerSession();

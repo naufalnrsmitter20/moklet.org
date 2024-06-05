@@ -1,5 +1,6 @@
-import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
 
 export const findAllUsers = async (filter?: Prisma.UserWhereInput) => {
   return await prisma.user.findMany({

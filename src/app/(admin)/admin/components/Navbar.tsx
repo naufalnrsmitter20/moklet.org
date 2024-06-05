@@ -1,39 +1,30 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { DashboardIcon, HamburgerIcon } from "./Icons";
-import { useState } from "react";
-import { protectedRoutes } from "@/utils/protectedRoutes";
 import { Session } from "next-auth";
-import { P } from "@/app/_components/global/Text";
-import { PrimaryButton } from "@/app/_components/global/Button";
 import { signOut } from "next-auth/react";
+import { useState } from "react";
 
-interface NavOption {
-  title: string;
-  href: string;
-}
+import { PrimaryButton } from "@/app/_components/global/Button";
+import { P } from "@/app/_components/global/Text";
+import { protectedRoutes } from "@/utils/protectedRoutes";
 
-const navOptions: NavOption[] = [
-  { title: "Beranda", href: "/" },
-  { title: "Berita", href: "/berita" },
-  { title: "Sub-organ", href: "/sub-organ" },
-  { title: "Tentang", href: "/tentang" },
-  { title: "Kontributor", href: "/kontributor" },
-];
+import { DashboardIcon, HamburgerIcon } from "./Icons";
 
 export default function Navbar({ session }: { session: Session | null }) {
   const pathname = usePathname();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const allowedRoutes = protectedRoutes.filter(
-    (item) =>
+  const allowedRoutes = protectedRoutes.filter((item) => {
+    const userRole = session?.user?.role;
+
+    return (
       item.roles == "All" ||
-      item.roles.includes(session?.user?.role!) ||
-      (!session?.user?.role?.includes("Admin") &&
-        item.roles.includes("SubOrgan")),
-  );
+      (userRole && item.roles.includes(userRole)) ||
+      (!userRole?.includes("Admin") && item.roles.includes("SubOrgan"))
+    );
+  });
 
   return (
     <nav className="xl:relative fixed z-[999] mx-auto w-full flex flex-col lg:hidden">

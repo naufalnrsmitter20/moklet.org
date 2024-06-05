@@ -1,9 +1,9 @@
+import Link from "next/link";
+
 import Image from "@/app/_components/global/Image";
 import { Tags } from "@/app/_components/global/NewsFigure";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { stringifyDate } from "@/utils/atomics";
-import Link from "next/link";
-import cn from "@/lib/clsx";
 
 export default function RelatedNewsFigure({
   post,

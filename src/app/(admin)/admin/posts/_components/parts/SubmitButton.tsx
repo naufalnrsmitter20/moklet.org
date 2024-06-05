@@ -1,5 +1,6 @@
-import { PrimaryButton } from "@/app/_components/global/Button";
 import { useFormStatus } from "react-dom";
+
+import { PrimaryButton } from "@/app/_components/global/Button";
 
 export default function FormButton() {
   const { pending } = useFormStatus();

@@ -1,5 +1,6 @@
-import cn from "@/lib/clsx";
 import { default as NextImage, ImageProps } from "next/image";
+
+import cn from "@/lib/clsx";
 
 export default function Image(props: Readonly<ImageProps>) {
   return (

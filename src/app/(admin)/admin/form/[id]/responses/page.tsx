@@ -1,26 +1,27 @@
-import { H2, P } from "@/app/_components/global/Text";
-import { FormWithSubmissions } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
-import { findFormWithSubmission } from "@/utils/database/form.query";
+/* eslint-disable @typescript-eslint/ban-types */
+
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import {
   FaCalendar,
   FaEdit,
-  FaHandPaper,
   FaList,
   FaPaperPlane,
-  FaPen,
-  FaUpload,
   FaUser,
 } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
-import ResponsesTable from "./_components/Table";
+
+import { H2, P } from "@/app/_components/global/Text";
+import { FormWithSubmissions } from "@/types/entityRelations";
+import { stringifyDate } from "@/utils/atomics";
+import { findFormWithSubmission } from "@/utils/database/form.query";
+
 import {
   BarChartSummary,
   ListSummary,
   PieChartSummary,
 } from "./_components/ResponsesSummary";
+import ResponsesTable from "./_components/Table";
 
 function StatsCard({
   title,

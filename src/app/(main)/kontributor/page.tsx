@@ -1,8 +1,10 @@
+import { promises as fs } from "fs";
+
 import { H1, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import DeveloperFigure from "./_components/DeveloperFigure";
-import { promises as fs } from "fs";
 import { sortData, type Developer } from "@/utils/contributorsSorting";
+
+import DeveloperFigure from "./_components/DeveloperFigure";
 
 export default async function Developers() {
   const file = await fs.readFile(

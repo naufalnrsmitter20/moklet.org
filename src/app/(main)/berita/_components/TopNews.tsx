@@ -1,6 +1,7 @@
 import { H2, H4 } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { findPopularPost } from "@/utils/database/post.query";
+
 import { WideNewsFigure } from "./parts/WideNewsFigure";
 
 export default async function TopNews() {

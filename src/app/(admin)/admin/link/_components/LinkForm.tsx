@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { H2, P } from "@/app/_components/global/Text";
+
 import { PrimaryButton } from "@/app/_components/global/Button";
-import ModalCreate from "./ModalCreate";
+import { H2, P } from "@/app/_components/global/Text";
+
 import { PlusIcon } from "./Icons";
+import ModalCreate from "./ModalCreate";
 
 export default function LinkForm() {
   const [isOpenModal, setIsOpenModal] = useState(false);

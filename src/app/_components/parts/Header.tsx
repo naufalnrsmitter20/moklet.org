@@ -1,5 +1,7 @@
-import Image from "@/app/_components/global/Image";
 import Link from "next/link";
+
+import Image from "@/app/_components/global/Image";
+
 import { H1, H2, P } from "../global/Text";
 import ArrowIcon from "../icons/ArrowIcon";
 

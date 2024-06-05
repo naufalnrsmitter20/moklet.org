@@ -1,16 +1,14 @@
 "use client";
 
-import { TagWithPostCount } from "@/types/entityRelations";
-import { Prisma, Tag } from "@prisma/client";
-import { createTag } from "@/actions/post";
-import CreatableSelect from "react-select/creatable";
-import Option from "react-select/creatable";
-import { toast } from "sonner";
+import { Tag } from "@prisma/client";
+import { Session } from "next-auth";
 import { Dispatch, SetStateAction } from "react";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { Session } from "next-auth";
+import CreatableSelect from "react-select/creatable";
+import { toast } from "sonner";
+
+import { createTag } from "@/actions/post";
+import { TagWithPostCount } from "@/types/entityRelations";
 
 interface selectTag {
   value: string;
@@ -62,7 +60,9 @@ export default function Tags({
     <div>
       <label
         htmlFor={"tags"}
-        className={`first-letter:capitalize after:text-red-500 after:content-['*']`}
+        className={
+          "first-letter:capitalize after:text-red-500 after:content-['*']"
+        }
       >
         Tags
       </label>

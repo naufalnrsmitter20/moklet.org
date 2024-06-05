@@ -1,15 +1,19 @@
 "use client";
+
+import { Roles } from "@prisma/client";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Editor from "../../_components/MdEditor";
-import { TextArea, TextField } from "@/app/_components/global/Input";
-import Tags from "./Tags";
-import { PostWithTagsAndUser, TagWithPostCount } from "@/types/entityRelations";
-import FormButton from "../../_components/parts/SubmitButton";
-import { postUpdate } from "@/actions/post";
 import { MultiValue } from "react-select";
 import { toast } from "sonner";
+
+import { postUpdate } from "@/actions/post";
 import Image from "@/app/_components/global/Image";
-import { useSession } from "next-auth/react";
+import { TextArea, TextField } from "@/app/_components/global/Input";
+import { PostWithTagsAndUser, TagWithPostCount } from "@/types/entityRelations";
+
+import Tags from "./Tags";
+import Editor from "../../_components/MdEditor";
+import FormButton from "../../_components/parts/SubmitButton";
 
 export default function EditForm({
   tags,
@@ -22,7 +26,7 @@ export default function EditForm({
   const [image, setImage] = useState(post.thumbnail);
   const [slug, setSlug] = useState(post.slug);
   const { data: session } = useSession();
-  let selected = post.tags.map((tag) => ({
+  const selected = post.tags.map((tag) => ({
     value: tag.tagName,
     label: tag.tagName,
   }));
@@ -90,7 +94,7 @@ export default function EditForm({
           tags={tags}
           setState={setTag!}
           selected={tag!}
-          role={post?.user?.role!}
+          role={post?.user?.role as Roles}
         />
         <div className="flex flex-col">
           <label htmlFor="thumbnail" className="">
