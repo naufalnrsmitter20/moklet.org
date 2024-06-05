@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 import { internalServerError, success } from "@/utils/apiResponse";
 import { validatePage } from "@/utils/atomics";
-import { findAllPosts } from "@/utils/database/post.query";
+import { findPosts } from "@/utils/database/post.query";
 import { PaginatedResult } from "@/utils/paginator";
 
 export async function GET(
@@ -14,7 +14,7 @@ export async function GET(
   const page = req.nextUrl.searchParams.get("page");
 
   try {
-    const paginatedPosts = (await findAllPosts(
+    const paginatedPosts = (await findPosts(
       {
         published_at: {
           gte: new Date(`${year}-01-01`),
