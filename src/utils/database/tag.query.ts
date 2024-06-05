@@ -43,7 +43,7 @@ export const findPostByTag = async (
         take: limit,
         where: { published },
         include: {
-          user: { select: { name: true, user_pic: true } },
+          user: { select: { name: true, user_pic: true, role: true } },
           tags: true,
         },
       },

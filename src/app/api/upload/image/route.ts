@@ -1,13 +1,17 @@
 import { NextRequest } from "next/server";
 
 import { imageUploader } from "@/actions/fileUploader";
-import Unauthorized from "@/app/unauthorized/page";
 import { nextGetServerSession } from "@/lib/next-auth";
-import { badRequest, internalServerError, created } from "@/utils/apiResponse";
+import {
+  badRequest,
+  created,
+  internalServerError,
+  unauthorized,
+} from "@/utils/apiResponse";
 
 export async function POST(req: NextRequest) {
   const session = await nextGetServerSession();
-  if (!session) return Unauthorized();
+  if (!session) return unauthorized();
 
   try {
     const formData = await req.formData();
