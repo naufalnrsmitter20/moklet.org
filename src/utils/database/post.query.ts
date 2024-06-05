@@ -4,7 +4,7 @@ import { paginator } from "../paginator";
 
 const paginate = paginator({ perPage: 6 });
 
-export const findAllPosts = async (
+export const findPosts = async (
   filter?: Prisma.PostWhereInput,
   page?: number,
 ) => {

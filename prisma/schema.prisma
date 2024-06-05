@@ -186,15 +186,19 @@ model Sub_Organ {
   kontak      String
   struktur    String
   kategori    Kategori
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 model Organisasi {
-  id          String @id @default(uuid()) @map("sub_organ_id") @db.Char(36)
-  name        String @unique
+  id          String   @id @default(uuid()) @map("sub_organ_id") @db.Char(36)
+  name        String   @unique
   logo        String
-  description String @db.LongText
+  description String   @db.LongText
   visi        String
   misi        String
   kontak      String
   struktur    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }

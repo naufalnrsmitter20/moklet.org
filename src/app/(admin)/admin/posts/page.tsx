@@ -2,7 +2,7 @@ import { FullPrimaryLinkButton } from "@/app/_components/global/LinkButton";
 import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { findAllPosts } from "@/utils/database/post.query";
+import { findPosts } from "@/utils/database/post.query";
 import PostTable from "./_components/Table";
 
 export default async function PostPanel({
@@ -11,7 +11,7 @@ export default async function PostPanel({
   searchParams: { [key: string]: string | undefined };
 }) {
   const session = await nextGetServerSession();
-  const posts = (await findAllPosts(
+  const posts = (await findPosts(
     session?.user?.role === "Admin" || session?.user?.role === "SuperAdmin"
       ? {}
       : { user: { role: session?.user?.role! } },
