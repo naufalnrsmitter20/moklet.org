@@ -189,7 +189,6 @@ enum Suborgan_Type {
 
 model Period_Year {
   id         String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
-  start_date DateTime
   period     String       @unique
   suborgan   Suborgan[]
   Organisasi Organisasi[]
@@ -198,6 +197,7 @@ model Period_Year {
 model Suborgan {
   id            String        @id @default(uuid()) @map("suborgan_id") @db.Char(36)
   period_id     String
+  start_date    DateTime
   period        Period_Year   @relation(fields: [period_id], references: [id])
   suborgan      Suborgan_Type
   suborgan_name String
