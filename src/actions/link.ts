@@ -1,10 +1,12 @@
 "use server";
 
-import prisma from "@/lib/prisma";
 import { createHash } from "crypto";
-import { nextGetServerSession } from "@/lib/next-auth";
-import generateRandomSlug from "@/utils/randomSlug";
+
 import { revalidatePath } from "next/cache";
+
+import { nextGetServerSession } from "@/lib/next-auth";
+import prisma from "@/lib/prisma";
+import generateRandomSlug from "@/utils/randomSlug";
 
 export async function addLink(data: FormData) {
   const session = await nextGetServerSession();
@@ -23,14 +25,14 @@ export async function addLink(data: FormData) {
         slug,
         target_url: data.get("destLink") as string,
         password: hashedpass,
-        user_id: session?.user?.id!,
+        user_id: session?.user?.id as string,
       },
     });
     revalidatePath("/admin/link");
     return { message: "Berhasil menambahkan link!", error: false };
   } catch (e) {
     console.error(e);
-    let error = e as Error;
+    const error = e as Error;
     return {
       message: error.message.includes("PRIMARY")
         ? "Nama atau Short URL sudah ada!"
@@ -45,7 +47,7 @@ export async function updateLink(data: FormData) {
 
   let hashedpass;
   let slug = data.get("slug") as string;
-  let id = data.get("id") as string;
+  const id = data.get("id") as string;
   try {
     if (!data.get("private_url")) hashedpass = null;
     else {
@@ -72,7 +74,7 @@ export async function updateLink(data: FormData) {
     return { message: "Berhasil diperbarui!", error: false };
   } catch (e) {
     console.error(e);
-    let error = e as Error;
+    const error = e as Error;
     return {
       message: error.message.includes("PRIMARY")
         ? "Nama atau Short URL sudah ada!"

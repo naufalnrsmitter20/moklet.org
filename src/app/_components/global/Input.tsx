@@ -1,8 +1,9 @@
 "use client";
 
-import cn from "@/lib/clsx";
 import { ChangeEvent, KeyboardEventHandler, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import cn from "@/lib/clsx";
 
 interface InputProps {
   label?: string;
@@ -61,9 +62,7 @@ export function TextField({
         <label
           htmlFor={name}
           className={cn(
-            `first-letter:capitalize ${
-              required ? "after:text-red-500 after:content-['*']" : ""
-            }`,
+            `first-letter:capitalize ${required ? "after:text-red-500 after:content-['*']" : ""}`,
           )}
         >
           {label}
@@ -179,7 +178,6 @@ export function RadioField({
   required,
   value,
   name,
-  handleChange,
   disabled,
 }: Readonly<OptionFieldProps>) {
   return (
@@ -223,7 +221,6 @@ export function CheckboxField({
   required,
   value,
   name,
-  handleChange,
   disabled,
 }: Readonly<OptionFieldProps>) {
   return (

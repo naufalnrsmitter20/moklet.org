@@ -1,8 +1,9 @@
+import { notFound } from "next/navigation";
+
 import ArrowLeft from "@/app/(main)/berita/_components/icons/ArrowLeft";
 import ArrowRight from "@/app/(main)/berita/_components/icons/ArrowRight";
 import PrimaryLinkButton from "@/app/(main)/berita/_components/parts/Button";
 import { P } from "@/app/_components/global/Text";
-import { notFound } from "next/navigation";
 
 export default function PageNav({
   currentPage,

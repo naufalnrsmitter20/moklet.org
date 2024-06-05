@@ -1,5 +1,7 @@
-import prisma from "@/lib/prisma";
 import { Post, Prisma } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
+
 import { paginator } from "../paginator";
 
 const paginate = paginator({ perPage: 6 });

@@ -1,5 +1,6 @@
-import Image from "@/app/_components/global/Image";
 import Link from "next/link";
+
+import Image from "@/app/_components/global/Image";
 
 export default function SubOrganPage() {
   return (

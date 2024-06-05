@@ -1,6 +1,7 @@
-import { H4, P } from "@/app/_components/global/Text";
-import Image from "@/app/_components/global/Image";
 import Link from "next/link";
+
+import Image from "@/app/_components/global/Image";
+import { H4, P } from "@/app/_components/global/Text";
 
 interface DeveloperData {
   name: string;

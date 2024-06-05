@@ -1,12 +1,14 @@
-import { H3 } from "@/app/_components/global/Text";
-import { FaX } from "react-icons/fa6";
-import { TextField, SelectField } from "@/app/_components/global/Input";
-import { UserWithLastlog } from "@/types/entityRelations";
-import { Dispatch, SetStateAction } from "react";
-import { toast } from "sonner";
-import { updateUserWithId } from "@/actions/user";
-import FormButton from "./part/SubmitButton";
 import { Roles } from "@prisma/client";
+import { Dispatch, SetStateAction } from "react";
+import { FaX } from "react-icons/fa6";
+import { toast } from "sonner";
+
+import { updateUserWithId } from "@/actions/user";
+import { TextField, SelectField } from "@/app/_components/global/Input";
+import { H3 } from "@/app/_components/global/Text";
+import { UserWithLastlog } from "@/types/entityRelations";
+
+import FormButton from "./part/SubmitButton";
 
 export default function Modal({
   setIsOpenModal,
@@ -17,7 +19,7 @@ export default function Modal({
 }) {
   async function update(formdata: FormData) {
     const toastId = toast.loading("Loading...");
-    const result = await updateUserWithId(data?.id!, formdata);
+    const result = await updateUserWithId(data?.id as string, formdata);
     if (!result.error) {
       toast.success(result.message, { id: toastId });
       setIsOpenModal(false);

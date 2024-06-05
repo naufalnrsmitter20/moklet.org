@@ -1,6 +1,4 @@
-export default function Search({
-  className,
-}: Readonly<{ className?: string }>) {
+export default function Search() {
   return (
     <svg
       width="24"

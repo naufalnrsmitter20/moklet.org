@@ -1,4 +1,8 @@
 "use server";
+
+import { Roles } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+
 import { nextGetServerSession } from "@/lib/next-auth";
 import {
   createUser,
@@ -7,8 +11,6 @@ import {
   updateUser,
 } from "@/utils/database/user.query";
 import { encrypt } from "@/utils/encryption";
-import { Prisma, Roles } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export const updateUserWithId = async (id: string | null, data: FormData) => {
   try {
@@ -54,7 +56,7 @@ export const updateUserWithId = async (id: string | null, data: FormData) => {
     return { message: "Berhasil disimpan!", error: false };
   } catch (e) {
     console.error(e);
-    let error = e as Error;
+    const error = e as Error;
     return {
       message: error.message.includes("PRIMARY")
         ? "Email sudah ada!"

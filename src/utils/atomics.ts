@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { randomFillSync } from "crypto";
 
-//#region Date relateds
+// Region Date relateds
 export function getMonthName(month: number) {
   const months = [
     "Jan",
@@ -26,7 +27,7 @@ export function stringifyDate(date: Date) {
     day = date.getDate();
   return `${month} ${day}, ${year}`;
 }
-//#endregion
+// Endregion
 
 export function stringifyCompleteDate(date: Date) {
   const year = date.getFullYear(),

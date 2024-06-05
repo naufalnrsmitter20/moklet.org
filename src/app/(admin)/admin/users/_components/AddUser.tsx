@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import Modal from "./Modal";
 export default function AddUser() {
   const [showModalCreate, setShowModalCreate] = useState(false);

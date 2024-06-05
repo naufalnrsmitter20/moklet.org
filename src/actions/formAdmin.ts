@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
-import { deleteFormById } from "./";
-import { nextGetServerSession } from "@/lib/next-auth";
-import { FormWithFields } from "@/types/entityRelations";
-import prisma from "@/lib/prisma";
-import { findForm, findFormWithSubmission } from "@/utils/database/form.query";
-import { Field_Option, Prisma } from "@prisma/client";
-import generateRandomSlug from "@/utils/randomSlug";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+
+import { nextGetServerSession } from "@/lib/next-auth";
+import prisma from "@/lib/prisma";
+import { FormWithFields } from "@/types/entityRelations";
+import { findForm, findFormWithSubmission } from "@/utils/database/form.query";
+import generateRandomSlug from "@/utils/randomSlug";
+
+import { deleteFormById } from "./";
 
 export const deleteForm = async (form_id: string) => {
   try {
@@ -64,13 +67,13 @@ export const saveForm = async (data: FormWithFields, is_new = false) => {
               where: { field_id: field.id },
             });
           }
-          let options = field.options.map((option) => {
+          const options = field.options.map((option) => {
             return { ...option, id: undefined };
           });
 
           await prisma.field_Option.createMany({ data: options });
 
-          let newField = {
+          const newField = {
             ...field,
             fieldNumber: index + 1,
             form_id: data.id,
@@ -143,7 +146,7 @@ export const cloneForm = async (id: string) => {
     const session = await nextGetServerSession();
     const { user } = session!;
 
-    let form = await findForm({
+    const form = await findForm({
       id: id,
     });
     if (!form) throw new Error("Form tidak dimukan");
@@ -178,7 +181,7 @@ export const cloneForm = async (id: string) => {
 
     const options = form.fields
       .map((item, index) => {
-        let newOptions = item.options.map((option) => ({
+        const newOptions = item.options.map((option) => ({
           ...option,
           field_id: clonedForm?.fields[index].id || 0,
           id: undefined,

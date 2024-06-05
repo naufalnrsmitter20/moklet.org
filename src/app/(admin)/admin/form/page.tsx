@@ -1,8 +1,9 @@
-import { H1, H2, P } from "@/app/_components/global/Text";
-import Table from "./_components/Table";
-import { findFormsWithUser } from "@/utils/database/form.query";
-import { nextGetServerSession } from "@/lib/next-auth";
 import PrimaryLinkButton from "@/app/_components/global/LinkButton";
+import { H2, P } from "@/app/_components/global/Text";
+import { nextGetServerSession } from "@/lib/next-auth";
+import { findFormsWithUser } from "@/utils/database/form.query";
+
+import Table from "./_components/Table";
 
 export default async function Forms() {
   const session = await nextGetServerSession();

@@ -1,5 +1,6 @@
-import Footer from "../_components/global/Footer";
 import { Metadata } from "next";
+
+import Footer from "../_components/global/Footer";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import MDEditor, {
@@ -59,7 +60,7 @@ export default function Editor({
           toast.error("Failed upload image", { id: toastId });
           alert(upload.message);
         } else {
-          let modifyText = `![user image](${upload.data?.url})\n`;
+          const modifyText = `![user image](${upload.data?.url})\n`;
           api.replaceSelection(modifyText);
           toast.success("Success upload image", { id: toastId });
         }

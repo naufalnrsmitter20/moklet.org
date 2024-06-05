@@ -1,19 +1,20 @@
 "use client";
-import { FormWithFieldsAndUser } from "@/types/entityRelations";
-import DataTable, { TableColumn } from "react-data-table-component";
-import { stringifyDate } from "@/utils/atomics";
-import { useEffect, useState } from "react";
-import { useRouter } from "next-nprogress-bar";
-import { toast } from "sonner";
-import { FaRegCopy, FaRegTrashAlt, FaLink, FaComment } from "react-icons/fa";
-import { cloneForm, deleteForm } from "@/actions/formAdmin";
 import Link from "next/link";
+import { useRouter } from "next-nprogress-bar";
+import { useEffect, useState } from "react";
+import DataTable, { TableColumn } from "react-data-table-component";
+import { FaRegCopy, FaRegTrashAlt, FaLink, FaComment } from "react-icons/fa";
+import { toast } from "sonner";
+
+import { cloneForm, deleteForm } from "@/actions/formAdmin";
+import { FormWithFieldsAndUser } from "@/types/entityRelations";
+import { stringifyDate } from "@/utils/atomics";
 
 export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
   const [loader, setLoader] = useState(true);
   const router = useRouter();
 
-  var now = new Date().getTime();
+  const now = new Date().getTime();
   const columns: TableColumn<FormWithFieldsAndUser>[] = [
     {
       name: "Link",

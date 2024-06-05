@@ -1,5 +1,6 @@
-import cn from "@/lib/clsx";
 import { MouseEventHandler, ReactNode } from "react";
+
+import cn from "@/lib/clsx";
 
 interface ButtonProps {
   children?: ReactNode;

@@ -1,9 +1,10 @@
+import { Post } from "@prisma/client";
+import { NextRequest } from "next/server";
+
 import { internalServerError, success } from "@/utils/apiResponse";
 import { validatePage } from "@/utils/atomics";
 import { findPosts } from "@/utils/database/post.query";
 import { PaginatedResult } from "@/utils/paginator";
-import { Post } from "@prisma/client";
-import { NextRequest } from "next/server";
 
 type params = { year: string; month: string };
 

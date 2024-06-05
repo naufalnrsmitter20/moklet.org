@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import Image from "./_components/global/Image";
 import PrimaryLinkButton from "./_components/global/LinkButton";
 import { H1, P } from "./_components/global/Text";

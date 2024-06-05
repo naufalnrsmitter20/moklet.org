@@ -1,5 +1,5 @@
-import React from "react";
 import ReactECharts from "echarts-for-react";
+import React from "react";
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";

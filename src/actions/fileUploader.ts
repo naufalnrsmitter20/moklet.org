@@ -1,8 +1,10 @@
 "use server";
 
-import cloudinary from "@/lib/cloudinary";
 import { UploadApiResponse } from "cloudinary";
 
+import cloudinary from "@/lib/cloudinary";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function imageUploader(file: Buffer | any) {
   try {
     const upload: UploadApiResponse | undefined = await new Promise(
@@ -21,7 +23,7 @@ export async function imageUploader(file: Buffer | any) {
 
     if (!upload) return { error: true, message: "Terjadi kesalahan" };
 
-    let data = {
+    const data = {
       format: upload.format,
       url: upload.secure_url,
     };

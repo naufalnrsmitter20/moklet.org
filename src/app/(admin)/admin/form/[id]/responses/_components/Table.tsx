@@ -1,10 +1,11 @@
 "use client";
 
-import { SubmissionWithUserAndFields } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+
+import { SubmissionWithUserAndFields } from "@/types/entityRelations";
+import { stringifyDate } from "@/utils/atomics";
 
 export default function ResponsesTable({
   data,

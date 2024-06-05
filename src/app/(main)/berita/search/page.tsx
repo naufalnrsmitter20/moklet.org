@@ -5,6 +5,7 @@ import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findPosts } from "@/utils/database/post.query";
 import { SearchBar } from "../_components/SearchBar";
 import GoBack from "../[slug]/_components/BackButton";
+import { SearchBar } from "../_components/SearchBar";
 
 export default async function Search({
   searchParams,

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { NextResponse } from "next/server";
 
 const success = (data?: any, message: string = "Success") => {
