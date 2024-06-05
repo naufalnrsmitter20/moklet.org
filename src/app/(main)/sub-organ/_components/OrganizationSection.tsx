@@ -1,9 +1,10 @@
+import Link from "next/link";
+import { ReactElement } from "react";
+
 import Image from "@/app/_components/global/Image";
 import { H2, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
-import Link from "next/link";
-import { ReactElement } from "react";
 
 export interface organs {
   name: string;
@@ -37,6 +38,7 @@ export default function OrganizationSection({ data }: { data: organSections }) {
             <Link
               className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-neutral-500 duration-300"
               href={`/sub-organ/${organ.name}`}
+              key={organ.name}
             >
               <div className="flex items-center gap-[26px]">
                 <Image

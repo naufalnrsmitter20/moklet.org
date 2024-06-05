@@ -1,5 +1,5 @@
-import Image from "@/app/_components/global/Image";
 import LinkButton from "@/app/_components/global/Button";
+import Image from "@/app/_components/global/Image";
 import { P, UnderlinedTitle } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 

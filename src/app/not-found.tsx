@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-import Image from "./_components/global/Image";
 import LinkButton from "./_components/global/Button";
+import Image from "./_components/global/Image";
 import { H1, P } from "./_components/global/Text";
 import { SectionWrapper } from "./_components/global/Wrapper";
 

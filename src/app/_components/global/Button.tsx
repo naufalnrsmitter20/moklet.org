@@ -1,3 +1,4 @@
+import { cva, type VariantProps } from "class-variance-authority";
 import Link, { LinkProps as NextLinkProps } from "next/link";
 import {
   ComponentPropsWithoutRef,
@@ -5,7 +6,7 @@ import {
   MouseEventHandler,
   ReactNode,
 } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+
 import cn from "@/lib/clsx";
 
 const buttonVariants = cva(

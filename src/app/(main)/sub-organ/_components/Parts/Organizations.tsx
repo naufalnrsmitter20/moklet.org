@@ -1,8 +1,10 @@
-import Weight from "@/app/_components/icons/Weight";
-import OrganizationSection from "../OrganizationSection";
-import Language from "@/app/_components/icons/Language";
-import Book from "@/app/_components/icons/Book";
 import { ReactElement } from "react";
+
+import Book from "@/app/_components/icons/Book";
+import Language from "@/app/_components/icons/Language";
+import Weight from "@/app/_components/icons/Weight";
+
+import OrganizationSection from "../OrganizationSection";
 
 export interface organs {
   name: string;
@@ -109,7 +111,7 @@ export default function Organizations() {
   return (
     <>
       {organizations.map((org) => (
-        <OrganizationSection data={org} />
+        <OrganizationSection data={org} key={org.sectionName} />
       ))}
     </>
   );

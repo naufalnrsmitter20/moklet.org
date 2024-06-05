@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Image from "@/app/_components/global/Image";
 import { H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [index, setIndex] = useState<number>(0);
@@ -42,7 +43,9 @@ export default function Hero() {
         </div>
         <div className="flex gap-[62px] items-center h-[226px] w-full justify-between">
           <figure
-            className={`w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group`}
+            className={
+              "w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group"
+            }
             onClick={() => {
               setIsAuto(false);
               setIndex(0);
