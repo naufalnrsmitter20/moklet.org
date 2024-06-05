@@ -1,5 +1,6 @@
-import cn from "@/lib/clsx";
 import { ReactNode } from "react";
+
+import cn from "@/lib/clsx";
 
 interface TextProps {
   children?: ReactNode;

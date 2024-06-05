@@ -1,8 +1,9 @@
-import { PrimaryButton } from "../global/Button";
+import EclipseIcon from "@/app/_components/icons/EclipseIcon";
+
+import { Button } from "../global/Button";
 import { TextArea, TextField } from "../global/Input";
 import { H2, P } from "../global/Text";
 import { SectionWrapper } from "../global/Wrapper";
-import EclipseIcon from "@/app/_components/icons/EclipseIcon";
 
 export default function Aspiration() {
   return (
@@ -32,7 +33,9 @@ export default function Aspiration() {
             className="mb-[44px] w-full"
             name="aspirasi"
           />
-          <PrimaryButton isDisabled={false}>Kirim aspirasi</PrimaryButton>
+          <Button variant={"primary"} isDisabled={false}>
+            Kirim aspirasi
+          </Button>
         </form>
         <EclipseIcon className="absolute -top-[102px] -left-20 hidden md:block" />
         <EclipseIcon className="absolute bottom-24 left-[310px] hidden md:block" />

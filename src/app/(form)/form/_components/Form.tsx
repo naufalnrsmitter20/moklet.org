@@ -1,6 +1,12 @@
 "use client";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
+import { Submission_Field } from "@prisma/client";
+import { useRouter } from "next-nprogress-bar";
+import { FormEvent, useEffect, useState } from "react";
+import { toast } from "sonner";
+
+import { submitForm } from "@/actions/formAspirasi";
+import { Button } from "@/app/_components/global/Button";
 import {
   CheckboxField,
   RadioField,
@@ -8,13 +14,7 @@ import {
   TextField,
 } from "@/app/_components/global/Input";
 import { FormWithFields } from "@/types/entityRelations";
-import { FormEvent, useEffect } from "react";
-import { toast } from "sonner";
-import { submitForm } from "@/actions/formAspirasi";
-import { useState } from "react";
-import { useRouter } from "next-nprogress-bar";
 import { formToJSON } from "@/utils/atomics";
-import { Submission_Field } from "@prisma/client";
 
 type FormProps = {
   form: FormWithFields;
@@ -47,6 +47,7 @@ export default function Form({ form, a, b, answers }: FormProps) {
 
     function isChecked() {
       for (let i = 0; i < checkboxLength; i++) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if ((checkboxes?.[i] as any).checked) return true;
       }
 
@@ -68,8 +69,8 @@ export default function Form({ form, a, b, answers }: FormProps) {
     const toastId = toast.loading("Loading...");
     setLoading(true);
     try {
-      let jsonForm = formToJSON(e.target as HTMLFormElement);
-      let arrayAnswers = Object.entries(jsonForm).flatMap(([key, value]) => {
+      const jsonForm = formToJSON(e.target as HTMLFormElement);
+      const arrayAnswers = Object.entries(jsonForm).flatMap(([key, value]) => {
         return typeof value == "object"
           ? value.map((item) => ({ name: key, value: item }))
           : [{ name: key, value: value }];
@@ -161,9 +162,9 @@ export default function Form({ form, a, b, answers }: FormProps) {
           </div>
         ))}
       <div className="flex justify-between">
-        <PrimaryButton type="submit" isDisabled={loading}>
+        <Button variant={"primary"} type="submit" isDisabled={loading}>
           Kirim
-        </PrimaryButton>
+        </Button>
         <button
           type="reset"
           className="cursor-pointer text-neutral-500 hover:text-primary-500 transition-all"

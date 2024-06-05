@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+
+import LinkButton from "./_components/global/Button";
 import Image from "./_components/global/Image";
-import PrimaryLinkButton from "./_components/global/LinkButton";
 import { H1, P } from "./_components/global/Text";
 import { SectionWrapper } from "./_components/global/Wrapper";
 
@@ -28,7 +29,9 @@ export default function NotFound() {
                   ketidaknyamanan ini.
                 </P>
               </div>
-              <PrimaryLinkButton href="/">Kembali ke beranda</PrimaryLinkButton>
+              <LinkButton variant={"primary"} href="/">
+                Kembali ke beranda
+              </LinkButton>
             </div>
           </div>
         </SectionWrapper>

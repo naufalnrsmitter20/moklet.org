@@ -1,11 +1,12 @@
-import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { findAllPosts } from "@/utils/database/post.query";
-import { PaginatedResult } from "@/utils/paginator";
 import { MetadataRoute } from "next";
+
+import { PostWithTagsAndUser } from "@/types/entityRelations";
+import { findPosts } from "@/utils/database/post.query";
+import { PaginatedResult } from "@/utils/paginator";
 
 // TODO: Add all public routes to sitemap
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = (await findAllPosts()) as PaginatedResult<PostWithTagsAndUser>;
+  const posts = (await findPosts()) as PaginatedResult<PostWithTagsAndUser>;
 
   const conventionalRoutes = [
     "/berita",

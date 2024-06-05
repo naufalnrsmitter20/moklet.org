@@ -2,16 +2,17 @@ import { NewsFigure } from "@/app/_components/global/NewsFigure";
 import { H2 } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { findAllPosts } from "@/utils/database/post.query";
-import { SearchBar } from "../_components/SearchBar";
+import { findPosts } from "@/utils/database/post.query";
+
 import GoBack from "../[slug]/_components/BackButton";
+import { SearchBar } from "../_components/SearchBar";
 
 export default async function Search({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined };
 }) {
-  const posts = (await findAllPosts({
+  const posts = (await findPosts({
     published: true,
     OR: (searchParams.q as string).split(" ").map((query) => ({
       title: { contains: query },

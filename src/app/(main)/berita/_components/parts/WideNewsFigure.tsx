@@ -1,7 +1,8 @@
-import { PostWithTagsAndUser } from "@/types/entityRelations";
-import Image from "@/app/_components/global/Image";
-import { stringifyDate } from "@/utils/atomics";
 import Link from "next/link";
+
+import Image from "@/app/_components/global/Image";
+import { PostWithTagsAndUser } from "@/types/entityRelations";
+import { stringifyDate } from "@/utils/atomics";
 
 export function WideNewsFigure({
   post,

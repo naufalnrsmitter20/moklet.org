@@ -1,21 +1,23 @@
-import { H2, P } from "@/app/_components/global/Text";
-import React from "react";
-import { findForm } from "@/utils/database/form.query";
-import { nextGetServerSession } from "@/lib/next-auth";
-import { redirect, RedirectType, notFound } from "next/navigation";
-import Link from "next/link";
-import { findSubmission } from "@/utils/database/submission.query";
-import Form from "../_components/Form";
-import ForbiddenForm from "../_components/ForbiddenForm";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import Link from "next/link";
+import { redirect, RedirectType, notFound } from "next/navigation";
+import React from "react";
+
+import { H2, P } from "@/app/_components/global/Text";
+import { nextGetServerSession } from "@/lib/next-auth";
+import { findForm } from "@/utils/database/form.query";
+import { findSubmission } from "@/utils/database/submission.query";
+
+import ForbiddenForm from "../_components/ForbiddenForm";
+import Form from "../_components/Form";
 
 type Props = {
   params: { id: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let form = await findForm({ id: params.id });
+  const form = await findForm({ id: params.id });
 
   return {
     title: form?.title ?? "Not Found",
@@ -35,7 +37,7 @@ const page = async ({ params }: Props) => {
       RedirectType.replace,
     );
 
-  let form = await findForm({ id: params.id });
+  const form = await findForm({ id: params.id });
 
   if (!form) return notFound();
   if (!form.is_open) return <ForbiddenForm />;
@@ -72,7 +74,7 @@ const page = async ({ params }: Props) => {
           * Menunjukkan pertanyaan yang wajib diisi
         </P>
       </div>
-      <Form form={form} a={session.user?.id!} b={params.id} />
+      <Form form={form} a={session.user?.id as string} b={params.id} />
     </div>
   );
 };

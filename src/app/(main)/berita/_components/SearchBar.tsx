@@ -1,11 +1,13 @@
 "use client";
 
-import { TextField } from "@/app/_components/global/Input";
-import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
+
+import { Button } from "@/app/_components/global/Button";
+import { TextField } from "@/app/_components/global/Input";
+import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
+
 import Search from "./icons/Search";
-import { SearchButton, SmallSearchButton } from "./parts/Button";
 
 export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
   const router = useRouter();
@@ -33,20 +35,24 @@ export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
             }
           }}
         />
-        <SmallSearchButton
+        <Button
+          variant={"primary"}
+          className="w-[54px] h-[54px] flex justify-center items-center px-0 py-0"
           onClick={() => {
             router.push(`/berita/search?q=${query}`);
           }}
         >
           <Search />
-        </SmallSearchButton>
-        <SearchButton
+        </Button>
+        <Button
+          variant={"primary"}
+          className="h-[54px] flex justify-center items-center"
           onClick={() => {
             router.push(`/berita/search?q=${query}`);
           }}
         >
           Cari berita
-        </SearchButton>
+        </Button>
       </div>
     </SmallSectionWrapper>
   );

@@ -1,13 +1,14 @@
 "use client";
-import { PostWithTagsAndUser } from "@/types/entityRelations";
-import DataTable, { TableColumn } from "react-data-table-component";
-import { stringifyCompleteDate } from "@/utils/atomics";
-import { useEffect, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
-import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import DataTable, { TableColumn } from "react-data-table-component";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdPublish, MdUnpublished } from "react-icons/md";
+import { toast } from "sonner";
+
 import { postDelete, updatePostStatus } from "@/actions/post";
+import { PostWithTagsAndUser } from "@/types/entityRelations";
+import { stringifyCompleteDate } from "@/utils/atomics";
 
 export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
   const [loader, setLoader] = useState(true);
@@ -54,7 +55,7 @@ export default function PostTable({ data }: { data: PostWithTagsAndUser[] }) {
             Published
           </span>
         ) : (
-          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-3">
+          <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">
             Draft
           </span>
         ),

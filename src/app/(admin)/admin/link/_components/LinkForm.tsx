@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
+import { Button } from "@/app/_components/global/Button";
 import { H2, P } from "@/app/_components/global/Text";
-import { PrimaryButton } from "@/app/_components/global/Button";
-import ModalCreate from "./ModalCreate";
+
 import { PlusIcon } from "./Icons";
+import ModalCreate from "./ModalCreate";
 
 export default function LinkForm() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -17,7 +19,8 @@ export default function LinkForm() {
           <P>Make your link more profesional</P>
         </div>
         <div>
-          <PrimaryButton
+          <Button
+            variant={"primary"}
             className="w-full flex justify-center mt-8 lg:mt-0"
             onClick={() => setIsOpenModal(true)}
           >
@@ -25,7 +28,7 @@ export default function LinkForm() {
               <PlusIcon />
               Create Link
             </div>
-          </PrimaryButton>
+          </Button>
         </div>
       </div>
       {isOpenModal && <ModalCreate setIsOpenModal={setIsOpenModal} />}

@@ -1,10 +1,11 @@
 "use client";
-import { Sidebar } from "./components/Sidebar";
-import React, { useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Navbar from "./components/Navbar";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import Navbar from "./components/Navbar";
+import { Sidebar } from "./components/Sidebar";
 
 export default function RootLayout({
   children,
@@ -12,18 +13,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const { data: session } = useSession();
-
-  const [nav, setNav] = useState(false);
+  const navRef = React.useRef(false);
   const pathname = usePathname().split("/");
   pathname.shift();
+
   return (
     <main className="flex w-full h-screen overflow-hidden bg-slate-50">
-      <Sidebar nav={nav} session={session} />
+      <Sidebar nav={navRef.current} session={session} />
       <Navbar session={session} />
       <div
-        className={`bg-gray-900 opacity-50 ${
-          nav ? "" : "hidden"
-        } fixed inset-0 z-10`}
+        className={`bg-gray-900 opacity-50 ${navRef.current ? "" : "hidden"} fixed inset-0 z-10`}
         id="sidebarBackdrop"
       />
       <div
@@ -38,7 +37,7 @@ export default function RootLayout({
               </Link>
             </li>
             {pathname.map((path, i) => {
-              const last = i + 1 == pathname.length;
+              const href = "/" + pathname.slice(0, i + 1).join("/");
               return (
                 <React.Fragment key={i}>
                   <li className="px-3">
@@ -60,11 +59,7 @@ export default function RootLayout({
                     </svg>
                   </li>
                   <li>
-                    <Link
-                      className="font-semibold"
-                      href={"/" + pathname.slice(0, i + 1).join("/")}
-                      key={i}
-                    >
+                    <Link className="font-semibold" href={href}>
                       {path.replace(/-/g, " ").trim()}
                     </Link>
                   </li>

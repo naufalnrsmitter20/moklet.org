@@ -1,12 +1,13 @@
-import { H3 } from "@/app/_components/global/Text";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { FaX } from "react-icons/fa6";
-import { TextField } from "@/app/_components/global/Input";
-import { LinkWithCountAndUser } from "@/types/entityRelations";
-import { Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
-import FormButton from "./part/SubmitButton";
-import { useRef, useState } from "react";
+
 import { addLink } from "@/actions/link";
+import { TextField } from "@/app/_components/global/Input";
+import { H3 } from "@/app/_components/global/Text";
+import { LinkWithCountAndUser } from "@/types/entityRelations";
+
+import FormButton from "./part/SubmitButton";
 
 export default function ModalCreate({
   setIsOpenModal,

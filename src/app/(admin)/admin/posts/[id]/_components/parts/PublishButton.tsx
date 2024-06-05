@@ -1,8 +1,9 @@
 "use client";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
-import { updatePostStatus } from "@/actions/post";
 import { useState } from "react";
+
+import { updatePostStatus } from "@/actions/post";
+import { Button } from "@/app/_components/global/Button";
 
 export default function PublishButton({
   state,
@@ -14,7 +15,8 @@ export default function PublishButton({
   const [isDisabled, setDisabled] = useState(false);
 
   return (
-    <PrimaryButton
+    <Button
+      variant={"primary"}
       className={isDisabled ? "bg-neutral-500" : ""}
       isDisabled={isDisabled}
       onClick={async () => {
@@ -26,6 +28,6 @@ export default function PublishButton({
       }}
     >
       {isDisabled ? "Loading..." : `${state ? "Unpublish" : "Publish"}`}
-    </PrimaryButton>
+    </Button>
   );
 }

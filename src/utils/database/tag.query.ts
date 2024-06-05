@@ -1,6 +1,8 @@
-import prisma from "@/lib/prisma";
-import { paginator } from "../paginator";
 import { Prisma, Tag } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
+
+import { paginator } from "../paginator";
 
 const paginate = paginator({ perPage: 10 });
 
@@ -41,7 +43,7 @@ export const findPostByTag = async (
         take: limit,
         where: { published },
         include: {
-          user: { select: { name: true, user_pic: true } },
+          user: { select: { name: true, user_pic: true, role: true } },
           tags: true,
         },
       },

@@ -1,6 +1,7 @@
 import Image from "@/app/_components/global/Image";
-import PrimaryLinkButton from "../global/LinkButton";
-import { H1, H2, P, UnderlinedTitle } from "../global/Text";
+
+import LinkButton from "../global/Button";
+import { H1, P, UnderlinedTitle } from "../global/Text";
 import { SectionWrapper } from "../global/Wrapper";
 
 function SubOrganCount({
@@ -35,7 +36,9 @@ export default function SubOrgan() {
             <SubOrganCount count={2} title="Bidang Seni & Bahasa" />
             <SubOrganCount count={5} title="Bidang Lainnya" />
           </div>
-          <PrimaryLinkButton href="#">Explorasi lebih jauh</PrimaryLinkButton>
+          <LinkButton variant={"primary"} href="#">
+            Explorasi lebih jauh
+          </LinkButton>
         </div>
         <div className="w-full md:w-1/2">
           <Image

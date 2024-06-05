@@ -1,10 +1,12 @@
-import prisma from "@/lib/prisma";
 import { Post, Prisma } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
+
 import { paginator } from "../paginator";
 
 const paginate = paginator({ perPage: 6 });
 
-export const findAllPosts = async (
+export const findPosts = async (
   filter?: Prisma.PostWhereInput,
   page?: number,
 ) => {
@@ -34,7 +36,10 @@ export const findNewestPost = async (limit: number = 5) => {
   return await prisma.post.findMany({
     orderBy: { published_at: "desc" },
     take: limit,
-    include: { tags: true, user: { select: { name: true, user_pic: true } } },
+    include: {
+      tags: true,
+      user: { select: { name: true, user_pic: true, role: true } },
+    },
   });
 };
 
@@ -43,7 +48,10 @@ export const findPopularPost = async (limit: number = 10) => {
     orderBy: [{ published_at: "desc" }, { view_count: "desc" }],
     take: limit,
     where: { published: true },
-    include: { tags: true, user: { select: { name: true, user_pic: true } } },
+    include: {
+      tags: true,
+      user: { select: { name: true, user_pic: true, role: true } },
+    },
   });
 };
 

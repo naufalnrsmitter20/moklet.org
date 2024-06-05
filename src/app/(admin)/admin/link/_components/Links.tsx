@@ -1,4 +1,5 @@
 import { LinkWithCountAndUser } from "@/types/entityRelations";
+
 import LinkFigure from "./LinkFigure";
 
 export default function Links({ links }: { links: LinkWithCountAndUser[] }) {

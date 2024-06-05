@@ -1,7 +1,7 @@
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import { H2, P, UnderlinedTitle } from "@/app/_components/global/Text";
+import LinkButton from "@/app/_components/global/Button";
 import Image from "@/app/_components/global/Image";
+import { P, UnderlinedTitle } from "@/app/_components/global/Text";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 export default function About() {
   return (
@@ -65,7 +65,9 @@ export default function About() {
               </div>
             </div>
           </div>
-          <PrimaryLinkButton href="#">Baca lebih detail</PrimaryLinkButton>
+          <LinkButton variant={"primary"} href="#">
+            Baca lebih detail
+          </LinkButton>
         </div>
       </div>
     </SectionWrapper>

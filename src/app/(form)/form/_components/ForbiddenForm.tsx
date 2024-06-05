@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+
+import LinkButton from "@/app/_components/global/Button";
 import Image from "@/app/_components/global/Image";
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
 import { H2, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
@@ -29,7 +30,9 @@ export default function ForbiddenForm({ message }: { message?: string }) {
                   Hubungi pemilik formulir jika menurut Anda ini tidak benar
                 </P>
               </div>
-              <PrimaryLinkButton href="/">Kembali ke beranda</PrimaryLinkButton>
+              <LinkButton variant={"primary"} href="/">
+                Kembali ke beranda
+              </LinkButton>
             </div>
           </div>
         </SectionWrapper>

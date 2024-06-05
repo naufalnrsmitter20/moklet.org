@@ -1,5 +1,6 @@
-import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
 
 export const findSubmissions = async (filter?: Prisma.SubmissionWhereInput) => {
   return await prisma.submission.findMany({ where: filter });

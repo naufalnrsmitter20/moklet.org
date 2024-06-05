@@ -1,21 +1,23 @@
-import { H2, P } from "@/app/_components/global/Text";
-import React from "react";
-import { findForm } from "@/utils/database/form.query";
-import { nextGetServerSession } from "@/lib/next-auth";
-import { redirect, RedirectType, notFound } from "next/navigation";
-import Link from "next/link";
-import { findSubmissionWithForm } from "@/utils/database/submission.query";
-import Form from "../../_components/Form";
-import ForbiddenForm from "../../_components/ForbiddenForm";
 import { Metadata } from "next";
+import Link from "next/link";
+import { redirect, RedirectType, notFound } from "next/navigation";
+import React from "react";
+
+import { H2, P } from "@/app/_components/global/Text";
+import { nextGetServerSession } from "@/lib/next-auth";
 import { transformToArrayCheckbox } from "@/utils/atomics";
+import { findForm } from "@/utils/database/form.query";
+import { findSubmissionWithForm } from "@/utils/database/submission.query";
+
+import ForbiddenForm from "../../_components/ForbiddenForm";
+import Form from "../../_components/Form";
 
 type Props = {
   params: { id: string; id_submission: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let form = await findForm({ id: params.id });
+  const form = await findForm({ id: params.id });
 
   return {
     title: form?.title ?? "Not Found",
@@ -27,10 +29,7 @@ const page = async ({ params }: Props) => {
   const session = await nextGetServerSession();
   if (!session)
     return redirect(
-      "/auth/signin?callbackUrl=/form/" +
-        params.id +
-        "/" +
-        params.id_submission,
+      `/auth/signin?callbackUrl=/form/${params.id}/${params.id_submission}`,
       RedirectType.replace,
     );
 
@@ -72,7 +71,7 @@ const page = async ({ params }: Props) => {
       </div>
       <Form
         form={form}
-        a={session.user?.id!}
+        a={session.user?.id as string}
         b={params.id}
         answers={transformToArrayCheckbox(submission.fields)}
       />

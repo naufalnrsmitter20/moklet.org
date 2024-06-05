@@ -1,11 +1,12 @@
-import { PrimaryButton } from "@/app/_components/global/Button";
 import { useFormStatus } from "react-dom";
+
+import { Button } from "@/app/_components/global/Button";
 
 export default function FormButton() {
   const { pending } = useFormStatus();
 
   return (
-    <PrimaryButton isDisabled={pending}>
+    <Button variant={"primary"} isDisabled={pending}>
       <svg
         width="24"
         height="24"
@@ -29,6 +30,6 @@ export default function FormButton() {
         />
       </svg>
       Create Kirim
-    </PrimaryButton>
+    </Button>
   );
 }

@@ -1,11 +1,13 @@
 "use client";
-import { UserWithLastlog } from "@/types/entityRelations";
-import DataTable, { TableColumn } from "react-data-table-component";
-import { stringifyCompleteDate } from "@/utils/atomics";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import DataTable, { TableColumn } from "react-data-table-component";
 import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+import { toast } from "sonner";
+
 import { deleteUserById } from "@/actions/user";
+import { UserWithLastlog } from "@/types/entityRelations";
+import { stringifyCompleteDate } from "@/utils/atomics";
+
 import Modal from "./Modal";
 
 export default function UserTable({ data }: { data: UserWithLastlog[] }) {

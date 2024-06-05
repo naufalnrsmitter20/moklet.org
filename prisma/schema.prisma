@@ -169,3 +169,63 @@ model Link_Shortener_Count {
   Link        Link_Shortener @relation(fields: [id], references: [slug], onDelete: Cascade)
   click_count Int            @default(0)
 }
+
+enum Suborgan_Type {
+  OSIS
+  MPK
+  BDI
+  PALWAGA
+  PASKATEMA
+  TSBC
+  TSFC
+  TSVC
+  TSCC
+  PMR
+  MEMO
+  MAC
+  METIC
+  COMET
+}
+
+model Period_Year {
+  id         String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
+  start_date DateTime
+  period     String       @unique
+  suborgan   Suborgan[]
+  Organisasi Organisasi[]
+}
+
+model Suborgan {
+  id            String        @id @default(uuid()) @map("suborgan_id") @db.Char(36)
+  period_id     String
+  period        Period_Year   @relation(fields: [period_id], references: [id])
+  suborgan      Suborgan_Type
+  suborgan_name String
+  logo          String
+  description   String        @db.LongText
+  vision        String
+  mission       String
+  image         String
+  companion     String
+  structure     String        @db.LongText
+  contact       String
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+}
+
+model Organisasi {
+  id              String      @id @default(uuid()) @map("organisasi_id") @db.Char(36)
+  periode_id      String      @db.Char(36)
+  period          Period_Year @relation(fields: [periode_id], references: [id])
+  organisasi_name String
+  logo            String
+  description     String      @db.LongText
+  vision          String
+  mission         String
+  image           String
+  companion       String
+  structure       String      @db.LongText
+  contact         String
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+}

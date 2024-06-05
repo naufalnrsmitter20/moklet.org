@@ -1,11 +1,13 @@
-import Image from "@/app/_components/global/Image";
 import Link from "next/link";
+
+import Image from "@/app/_components/global/Image";
+
 import { H1, H2, P } from "../global/Text";
 import ArrowIcon from "../icons/ArrowIcon";
 
 export default function Header() {
   return (
-    <section className="min-h-[1000px] md:min-h-screen w-full">
+    <section className="min-h-[1000px] md:min-h-screen px-[6%] lg:px-[12.5%] xl:px-[124px]">
       <div className="w-full h-screen left-0 top-0 absolute bg-gradient-to-b from-primary-50 to-white -z-10"></div>
       <div className="relative h-full md:h-[605px] w-full my-auto py-[82px] md:py-0">
         <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 md:-translate-y-[75%]">

@@ -1,12 +1,14 @@
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { NewsArticle, WithContext } from "schema-dts";
+
 import Image from "@/app/_components/global/Image";
 import { Tags } from "@/app/_components/global/NewsFigure";
 import { H2, H3, H4, P } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 import { stringifyDate } from "@/utils/atomics";
 import { findPost, updatePost } from "@/utils/database/post.query";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+
 import GoBack from "./_components/BackButton";
 import MdViewer from "./_components/MdViewer";
 import Related from "./_components/RelatedNews";
@@ -93,7 +95,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="flex items-center gap-[40px]">
                   <div className="flex items-center gap-3">
                     <Image
-                      src={post?.user.user_pic!}
+                      src={post?.user.user_pic as string}
                       alt={post?.user.name + "'s Pfp"}
                       unoptimized
                       height={28}
@@ -117,7 +119,8 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
         <div className="flex flex-col gap-[52px] w-full">
           <H3>Berita Terkait</H3>
-          <Related tags={post?.tags!} />
+          {/* eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain */}
+          <Related currentPostId={post.id} tags={post?.tags!} />
         </div>
       </div>
       <script

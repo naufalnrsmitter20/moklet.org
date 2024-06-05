@@ -1,7 +1,9 @@
 "use server";
 
 import { createHash } from "crypto";
+
 import { redirect } from "next/navigation";
+
 import prisma from "@/lib/prisma";
 
 export default async function checkPass(formdata: FormData, slug: string) {
@@ -16,7 +18,7 @@ export default async function checkPass(formdata: FormData, slug: string) {
       update: { click_count: { increment: 1 } },
       create: { click_count: 1, id: slug },
     });
-    redirect(destinationLink?.target_url!);
+    redirect(destinationLink.target_url!);
   }
 
   return { message: "Kata sandi salah!" };

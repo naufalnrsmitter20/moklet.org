@@ -1,13 +1,19 @@
 "use client";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
+import { Field_Type } from "@prisma/client";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  MouseEvent,
+} from "react";
+import { FaTrash } from "react-icons/fa";
+
+import { Button } from "@/app/_components/global/Button";
 import { SelectField, TextField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
 import { FieldsWithOptions } from "@/types/entityRelations";
-import { Field_Type } from "@prisma/client";
-import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
-import { FaTrash } from "react-icons/fa";
-import { MouseEvent } from "react";
 
 export default function QuestionEdit({
   fields,
@@ -28,10 +34,10 @@ export default function QuestionEdit({
   function dropElement(e: React.DragEvent<HTMLDivElement>, index: number) {
     e.preventDefault();
 
-    let id = parseInt(e.dataTransfer.getData("index"));
+    const id = parseInt(e.dataTransfer.getData("index"));
 
     setFields((prev) => {
-      var array = [...prev];
+      const array = [...prev];
       array.splice(index > id ? index + 1 : index, 0, array[id]);
       array.splice(index < id ? id + 1 : id, 1);
       return array;
@@ -43,7 +49,7 @@ export default function QuestionEdit({
     if (!confirm("Apakah Anda yakin ingin menghapus ini?")) return;
 
     setFields((prev) => {
-      var array = [...prev];
+      const array = [...prev];
       array.splice(index, 1);
       return array;
     });
@@ -62,7 +68,7 @@ export default function QuestionEdit({
       return alert("Input tidak boleh kosong!");
     }
 
-    var questions = [...fields];
+    const questions = [...fields];
 
     questions[indexNum].options = Array.from(
       new Set([
@@ -86,7 +92,7 @@ export default function QuestionEdit({
     e.preventDefault();
 
     setFields((prev) => {
-      var array = [...prev];
+      const array = [...prev];
       array[index].options.splice(indexOption, 1);
       return array;
     });
@@ -102,7 +108,7 @@ export default function QuestionEdit({
     const props = name.split("_")[1] as FieldsProps;
 
     setFields((prev) => {
-      var array = [...prev];
+      const array = [...prev];
       (array[index][props] as FieldsProps) = (
         e.target.type == "checkbox"
           ? (e.target as HTMLInputElement).checked
@@ -185,7 +191,9 @@ export default function QuestionEdit({
                   />
                   <input type="hidden" name="index" value={index} />
                   <div>
-                    <PrimaryButton type="submit">Tambahkan</PrimaryButton>
+                    <Button variant={"primary"} type="submit">
+                      Tambahkan
+                    </Button>
                   </div>
                 </form>
                 <ul className="list-disc list-inside mt-2">
@@ -222,9 +230,9 @@ export default function QuestionEdit({
           </div>
         );
       })}
-      <PrimaryButton onClick={addQuestion} className="w-full">
+      <Button variant={"primary"} onClick={addQuestion} className="w-full">
         Tambah Pertanyaan
-      </PrimaryButton>
+      </Button>
     </div>
   );
 }

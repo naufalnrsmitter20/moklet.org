@@ -1,8 +1,10 @@
-import prisma from "@/lib/prisma";
-import { notFound, redirect } from "next/navigation";
-import PasswordPrompt from "./_components/PasswordPrompt";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
+
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
+import prisma from "@/lib/prisma";
+
+import PasswordPrompt from "./_components/PasswordPrompt";
 
 export default async function RedirectToTarget({
   params,
