@@ -120,7 +120,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         <div className="flex flex-col gap-[52px] w-full">
           <H3>Berita Terkait</H3>
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain */}
-          <Related tags={post?.tags!} />
+          <Related currentPostId={post.id} tags={post?.tags!} />
         </div>
       </div>
       <script
