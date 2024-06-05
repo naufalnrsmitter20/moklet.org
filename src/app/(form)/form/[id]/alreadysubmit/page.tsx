@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
+import LinkButton from "@/app/_components/global/Button";
 import Image from "@/app/_components/global/Image";
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
 import { H2 } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
@@ -23,7 +23,9 @@ export default function AlreadySubmit() {
           <div className="mb-11 text-center">
             <H2 className="mb-[18px]">Jawaban Anda telah terkirim</H2>
           </div>
-          <PrimaryLinkButton href="/">Kembali ke beranda</PrimaryLinkButton>
+          <LinkButton variant={"primary"} href="/">
+            Kembali ke beranda
+          </LinkButton>
         </div>
       </div>
     </SectionWrapper>

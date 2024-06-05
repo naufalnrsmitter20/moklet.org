@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 
-import { FullPrimaryLinkButton } from "@/app/_components/global/LinkButton";
+import LinkButton from "@/app/_components/global/Button";
 import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
@@ -24,8 +24,8 @@ export default async function PostPanel() {
           <P>Share your organ activity, event, or promotion </P>
         </div>
         <div>
-          <FullPrimaryLinkButton href="/admin/posts/create">
-            <div className="flex items-center">
+          <LinkButton variant={"primary"} href="/admin/posts/create">
+            <div className="flex items-center w-full">
               <svg
                 width="24"
                 height="24"
@@ -50,7 +50,7 @@ export default async function PostPanel() {
               </svg>
               Create Post
             </div>
-          </FullPrimaryLinkButton>
+          </LinkButton>
         </div>
       </div>
       <div>

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
+import { Button } from "@/app/_components/global/Button";
 import { P } from "@/app/_components/global/Text";
 import { protectedRoutes } from "@/utils/protectedRoutes";
 
@@ -74,9 +74,13 @@ export function Sidebar({ nav, session }: navbarParam) {
                   </Link>
                 </li>
               ))}
-              <PrimaryButton onClick={() => signOut()} className="w-full">
+              <Button
+                variant={"primary"}
+                onClick={() => signOut()}
+                className="w-full"
+              >
                 Log Out
-              </PrimaryButton>
+              </Button>
             </ul>
           </div>
         </div>

@@ -10,7 +10,7 @@ import {
 } from "react";
 import { FaTrash } from "react-icons/fa";
 
-import { PrimaryButton } from "@/app/_components/global/Button";
+import { Button } from "@/app/_components/global/Button";
 import { SelectField, TextField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
 import { FieldsWithOptions } from "@/types/entityRelations";
@@ -191,7 +191,9 @@ export default function QuestionEdit({
                   />
                   <input type="hidden" name="index" value={index} />
                   <div>
-                    <PrimaryButton type="submit">Tambahkan</PrimaryButton>
+                    <Button variant={"primary"} type="submit">
+                      Tambahkan
+                    </Button>
                   </div>
                 </form>
                 <ul className="list-disc list-inside mt-2">
@@ -228,9 +230,9 @@ export default function QuestionEdit({
           </div>
         );
       })}
-      <PrimaryButton onClick={addQuestion} className="w-full">
+      <Button variant={"primary"} onClick={addQuestion} className="w-full">
         Tambah Pertanyaan
-      </PrimaryButton>
+      </Button>
     </div>
   );
 }

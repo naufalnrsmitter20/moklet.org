@@ -16,7 +16,7 @@ export default function DeveloperFigure({
   dev,
 }: Readonly<{ dev: DeveloperData }>) {
   return (
-    <figure className="w-full lg:w-[29.5%] xl:w-[372px] flex flex-col gap-[32px] text-wrap">
+    <figure className="w-full lg:w-[214px] xl:w-[372px] flex flex-col gap-[32px] text-wrap">
       <div className="flex flex-col gap-2 text-wrap">
         <H4>{dev.name}</H4>
         <P>{dev.role}</P>
