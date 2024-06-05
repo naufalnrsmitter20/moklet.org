@@ -26,7 +26,7 @@ export default function Hero() {
         setIndex(0);
       }, 5000);
     else return;
-  }, [index]);
+  }, [index, isAuto]);
 
   return (
     <SectionWrapper id="hero">

@@ -1,11 +1,10 @@
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
-
 import Contact from "./components/parts/Contact";
 import Overview from "./components/parts/Overview";
 import VisiMisi from "./components/parts/VisiMisi";
 
-export default function Organ({ params }: { params: { slug: string } }) {
-  const organ = params.slug.toUpperCase();
+export default function Organ() {
+  // { params }: { params: { slug: string } }
+  // const organ = params.slug.toUpperCase();
 
   return (
     <>

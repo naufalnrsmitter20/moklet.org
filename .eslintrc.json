@@ -40,7 +40,10 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".ts", ".tsx"]
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   },
@@ -59,7 +62,10 @@
               "builtin",
               "external",
               "internal",
-              ["parent", "sibling"],
+              [
+                "parent",
+                "sibling"
+              ],
               "index",
               "object",
               "type"
@@ -71,7 +77,9 @@
                 "position": "after"
               }
             ],
-            "pathGroupsExcludedImportTypes": ["builtin"],
+            "pathGroupsExcludedImportTypes": [
+              "builtin"
+            ],
             "alphabetize": {
               "order": "asc",
               "caseInsensitive": true
@@ -84,7 +92,12 @@
     }
   ],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "lf"
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "import/order": [
       "error",
@@ -109,7 +122,10 @@
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
-        "aspects": ["invalidHref", "preferButton"]
+        "aspects": [
+          "invalidHref",
+          "preferButton"
+        ]
       }
     ],
     "@typescript-eslint/explicit-function-return-type": [
@@ -138,6 +154,9 @@
         "avoidEscape": true
       }
     ],
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ]
   }
 }
