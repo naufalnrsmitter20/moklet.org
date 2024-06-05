@@ -1,8 +1,44 @@
-import { MouseEventHandler, ReactNode } from "react";
-
+import Link, { LinkProps as NextLinkProps } from "next/link";
+import {
+  ComponentPropsWithoutRef,
+  HTMLAttributeAnchorTarget,
+  MouseEventHandler,
+  ReactNode,
+} from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import cn from "@/lib/clsx";
 
-interface ButtonProps {
+const buttonVariants = cva(
+  "inline-block rounded-full  transition-all duration-500",
+  {
+    variants: {
+      variant: {
+        primary:
+          "bg-primary-400 px-6 py-3 hover:bg-primary-200 text-base text-white disabled:text-neutral-500 disabled:bg-neutral-300",
+        secondary:
+          "border-primary-400 px-6 py-3 hover:bg-primary-50 text-base text-primary-400 disabled:bg-neutral-300 text-primary-400 disabled:text-neutral-500",
+        tertiary:
+          "text-base text-black hover:text-primary-400 text-black disabled:text-neutral-500",
+        quartiary:
+          "text-base px-6 py-3 text-primary-400 bg-white hover:bg-primary-50 disabled:bg-neutral-400 disabled:text-white",
+      },
+    },
+  },
+);
+
+interface LinkButtonProps
+  extends NextLinkProps,
+    VariantProps<typeof buttonVariants> {
+  children?: ReactNode;
+  href: string;
+  scroll?: boolean;
+  target?: HTMLAttributeAnchorTarget;
+  className?: string;
+}
+
+interface ButtonProps
+  extends ComponentPropsWithoutRef<"button">,
+    VariantProps<typeof buttonVariants> {
   children?: ReactNode;
   type?: "button" | "reset" | "submit";
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -10,106 +46,42 @@ interface ButtonProps {
   className?: string;
 }
 
-export function PrimaryButton({
+export default function LinkButton({
   children,
-  type,
-  onClick,
-  isDisabled,
-  className = "",
-}: Readonly<ButtonProps>) {
+  href,
+  variant,
+  className,
+  target,
+  scroll,
+}: Readonly<LinkButtonProps>) {
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={isDisabled}
-      className={cn(
-        "inline-block w-fit rounded-full bg-primary-400 px-6 py-3 h-[54px] transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300",
-        className,
-      )}
+    <Link
+      href={href}
+      className={cn(buttonVariants({ variant }), className)}
+      target={target}
+      scroll={scroll}
     >
-      <span
-        className={`text-base ${isDisabled ? "text-neutral-500" : "text-white"}`}
-      >
-        {children}
-      </span>
-    </button>
+      {children}
+    </Link>
   );
 }
 
-export function SecondaryButton({
+export function Button({
   children,
   type,
   onClick,
   isDisabled,
+  className,
+  variant,
 }: Readonly<ButtonProps>) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={isDisabled}
-      className="inline-block w-fit rounded-full border border-primary-400 hover:bg-primary-50 px-6 py-3 transition-all duration-500 disabled:border-none disabled:bg-neutral-300"
+      className={cn(buttonVariants({ variant }), className)}
     >
-      <span
-        className={cn(
-          `text-base ${isDisabled ? "text-neutral-500" : "text-primary-400"}`,
-        )}
-      >
-        {children}
-      </span>
-    </button>
-  );
-}
-
-export function TertiaryButton({
-  children,
-  type,
-  onClick,
-  isDisabled,
-}: Readonly<ButtonProps>) {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={isDisabled}
-      className={
-        "inline-block w-fit rounded-full border px-6 py-3 transition-all duration-500"
-      }
-    >
-      <span
-        className={cn(
-          `text-base ${
-            isDisabled
-              ? "text-neutral-500"
-              : "text-black hover:text-primary-400 transition-all"
-          }`,
-        )}
-      >
-        {children}
-      </span>
-    </button>
-  );
-}
-
-export function FullPrimaryButton({
-  children,
-  type,
-  onClick,
-  isDisabled,
-}: Readonly<ButtonProps>) {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={isDisabled}
-      className="inline-block rounded-full bg-primary-400 px-6 py-3 w-full transition-all duration-500 hover:bg-primary-500 disabled:bg-neutral-300"
-    >
-      <span
-        className={cn(
-          `text-base ${isDisabled ? "text-neutral-500" : "text-white"}`,
-        )}
-      >
-        {children}
-      </span>
+      {children}
     </button>
   );
 }

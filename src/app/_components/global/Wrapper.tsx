@@ -10,7 +10,10 @@ export function SectionWrapper({
   id,
 }: Readonly<SectionWrapperProps>) {
   return (
-    <section className="relative w-full py-[82px]" id={id}>
+    <section
+      className="relative w-full py-[82px] px-[6%] lg:px-[12.5%] xl:px-[124px]"
+      id={id}
+    >
       {children}
     </section>
   );
@@ -21,7 +24,10 @@ export function SmallSectionWrapper({
   id,
 }: Readonly<SectionWrapperProps>) {
   return (
-    <section className="w-full py-[32px] mt-[42px] xl:mt-0" id={id}>
+    <section
+      className="w-full py-[32px] mt-[42px] xl:mt-0 px-[6%] lg:px-[12.5%] xl:px-[124px]"
+      id={id}
+    >
       {children}
     </section>
   );

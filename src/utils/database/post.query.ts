@@ -36,7 +36,10 @@ export const findNewestPost = async (limit: number = 5) => {
   return await prisma.post.findMany({
     orderBy: { published_at: "desc" },
     take: limit,
-    include: { tags: true, user: { select: { name: true, user_pic: true } } },
+    include: {
+      tags: true,
+      user: { select: { name: true, user_pic: true, role: true } },
+    },
   });
 };
 

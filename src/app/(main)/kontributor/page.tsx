@@ -64,7 +64,7 @@ export default async function Developers() {
           </ol>
         </div>
 
-        <div className="w-full flex flex-wrap gap-x-0 lg:gap-x-[38px] gap-y-[62px]">
+        <div className="w-full flex flex-wrap gap-x-0 lg:gap-x-[38px] gap-y-[62px] justify-center">
           {sortData(devs).map((dev) => (
             <DeveloperFigure dev={dev} key={dev.name} />
           ))}

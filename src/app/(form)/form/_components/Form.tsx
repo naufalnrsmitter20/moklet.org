@@ -6,7 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { submitForm } from "@/actions/formAspirasi";
-import { PrimaryButton } from "@/app/_components/global/Button";
+import { Button } from "@/app/_components/global/Button";
 import {
   CheckboxField,
   RadioField,
@@ -162,9 +162,9 @@ export default function Form({ form, a, b, answers }: FormProps) {
           </div>
         ))}
       <div className="flex justify-between">
-        <PrimaryButton type="submit" isDisabled={loading}>
+        <Button variant={"primary"} type="submit" isDisabled={loading}>
           Kirim
-        </PrimaryButton>
+        </Button>
         <button
           type="reset"
           className="cursor-pointer text-neutral-500 hover:text-primary-500 transition-all"

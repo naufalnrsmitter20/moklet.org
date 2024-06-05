@@ -1,4 +1,4 @@
-import PrimaryLinkButton from "@/app/_components/global/LinkButton";
+import LinkButton from "@/app/_components/global/Button";
 import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { findFormsWithUser } from "@/utils/database/form.query";
@@ -20,7 +20,7 @@ export default async function Forms() {
           <H2 className="font-semibold">Formulir </H2>
           <P>Easily create online surveys, forms, quizzes </P>
         </div>
-        <PrimaryLinkButton href="/admin/form/new">
+        <LinkButton variant={"primary"} href="/admin/form/new">
           <div className="flex items-center">
             <svg
               width="24"
@@ -46,7 +46,7 @@ export default async function Forms() {
             </svg>
             Create Form
           </div>
-        </PrimaryLinkButton>
+        </LinkButton>
       </div>
       <Table data={forms} />
     </>

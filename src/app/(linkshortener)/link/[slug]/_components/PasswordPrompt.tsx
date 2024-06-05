@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaLock } from "react-icons/fa6";
 
 import checkPass from "@/actions/linkShortener";
-import { FullPrimaryButton } from "@/app/_components/global/Button";
+import { Button } from "@/app/_components/global/Button";
 import { TextField } from "@/app/_components/global/Input";
 import { H3, P } from "@/app/_components/global/Text";
 
@@ -41,7 +41,9 @@ export default function PasswordPrompt({ slug }: { slug: string }) {
                 placeholder="***********"
               />
               {error && <P className="text-primary-300 py-2">{error}</P>}
-              <FullPrimaryButton type="submit">Lanjutkan</FullPrimaryButton>
+              <Button variant={"primary"} className="w-full" type="submit">
+                Lanjutkan
+              </Button>
             </form>
           </div>
         </div>
