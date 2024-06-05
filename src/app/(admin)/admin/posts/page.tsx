@@ -5,6 +5,7 @@ import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findPosts } from "@/utils/database/post.query";
+
 import PostTable from "./_components/Table";
 
 export default async function PostPanel() {
