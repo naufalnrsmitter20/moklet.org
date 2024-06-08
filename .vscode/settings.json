@@ -3,6 +3,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
+  "editor.tabSize": 2,
   "css.validate": false,
   "scss.validate": false,
   "[typescriptreact]": {
