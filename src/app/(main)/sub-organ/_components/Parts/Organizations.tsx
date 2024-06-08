@@ -6,21 +6,21 @@ import Weight from "@/app/_components/icons/Weight";
 
 import OrganizationSection from "../OrganizationSection";
 
-export interface organs {
+export interface Suborgan {
   name: string;
   desc: string;
   image: string;
   href: string;
 }
 
-export interface organSections {
+export interface SuborganSection {
   sectionName: string;
   sectionDesc: string;
   sectionLogo: ReactElement;
-  sectionOrgans: organs[];
+  sectionOrgans: Suborgan[];
 }
 
-const organizations: organSections[] = [
+const organizations: SuborganSection[] = [
   {
     sectionName: "Olahraga",
     sectionLogo: <Weight />,

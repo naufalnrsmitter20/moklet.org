@@ -188,10 +188,10 @@ enum Suborgan_Type {
 }
 
 model Period_Year {
-  id         String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
-  period     String       @unique
-  suborgan   Suborgan[]
-  Organisasi Organisasi[]
+  id          String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
+  period      String       @unique
+  suborgans   Suborgan[]
+  organisasis Organisasi[]
 }
 
 model Suborgan {

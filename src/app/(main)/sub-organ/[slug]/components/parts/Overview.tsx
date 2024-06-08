@@ -19,13 +19,6 @@ export default function Overview() {
             </div>
           </div>
         </div>
-        <P className="">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          volutpat tellus quis urna gravida, quis ultrices arcu consequat.
-          Praesent aliquet ante molestie faucibus facilisis. Integer fermentum,
-          sapien ac tempor tempor, elit ipsum sollicitudin purus, vel sodales
-          erat dolor vitae nisl. Vivamus aliquet sit amet tortor at iaculis.
-        </P>
       </div>
     </SectionWrapper>
   );

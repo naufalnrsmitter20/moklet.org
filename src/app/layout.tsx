@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={montserrat.className}>
+      <body className={montserrat.className + " overflow-x-hidden"}>
         <NextAuthProvider>
           <Toaster />
           <ProgressBarProvider>{children}</ProgressBarProvider>

@@ -65,7 +65,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <LinkButton variant={"primary"} href="#">
+          <LinkButton variant={"primary"} className="w-fit" href="#">
             Baca lebih detail
           </LinkButton>
         </div>
