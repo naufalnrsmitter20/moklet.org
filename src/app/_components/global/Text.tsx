@@ -5,7 +5,7 @@ import cn from "@/lib/clsx";
 interface TextProps {
   children?: ReactNode;
   className?: string;
-  textClassName?: string
+  textClassName?: string;
   underlineClassName?: string;
 }
 
@@ -70,16 +70,23 @@ export function UnderlinedTitle({
   children,
   textClassName,
   underlineClassName,
-  className
+  className,
 }: Readonly<TextProps>) {
   return (
-    <div className={cn("flex flex-col items-start md:flex-row md:items-center justify-between gap-[18px] md:gap-0 mb-[18px]", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-start md:flex-row md:items-center justify-between gap-[18px] md:gap-0 mb-[18px]",
+        className,
+      )}
+    >
       <div className="relative">
-        <H2 className={cn("z-10 font-bold text-black", textClassName)}>{children}</H2>
+        <H2 className={cn("z-10 font-bold text-black", textClassName)}>
+          {children}
+        </H2>
         <div
           className={cn(
-            `absolute left-[3px] -z-10 h-[16px] bg-primary-100`,
-            underlineClassName
+            "absolute left-[3px] -z-10 h-[16px] bg-primary-100",
+            underlineClassName,
           )}
         ></div>
       </div>

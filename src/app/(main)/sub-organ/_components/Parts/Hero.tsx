@@ -1,11 +1,12 @@
 "use client";
 
+import { title } from "process";
+
 import { useEffect, useState } from "react";
 
 import Image from "@/app/_components/global/Image";
 import { H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import { title } from "process";
 
 export default function Hero() {
   const [index, setIndex] = useState<number>(0);
