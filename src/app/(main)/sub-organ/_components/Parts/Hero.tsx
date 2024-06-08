@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "@/app/_components/global/Image";
 import { H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
+import { title } from "process";
 
 export default function Hero() {
   const [index, setIndex] = useState<number>(0);
@@ -14,6 +15,21 @@ export default function Hero() {
     "https://placehold.co/1192x462?text=Hero1",
     "https://placehold.co/1192x462?text=Hero2",
     "https://placehold.co/1192x462?text=Hero3",
+  ];
+
+  const Items = [
+    {
+      title: "Lorem Ipsum",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper odio justo, vitae blandit lacus facilisis lobortis.",
+    },
+    {
+      title: "Lorem Ipsum",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper odio justo, vitae blandit lacus facilisis lobortis.",
+    },
+    {
+      title: "Lorem Ipsum",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper odio justo, vitae blandit lacus facilisis lobortis.",
+    },
   ];
 
   useEffect(() => {
@@ -31,7 +47,7 @@ export default function Hero() {
   return (
     <SectionWrapper id="hero">
       <div className="flex flex-col gap-16 w-full">
-        <div className="w-full h-[462px] rounded-2xl overflow-hidden">
+        <div className="w-full h-[243px] sm:h-[462px] rounded-2xl overflow-hidden">
           <Image
             src={photos[index]}
             alt=""
@@ -41,81 +57,35 @@ export default function Hero() {
             height={462}
           />
         </div>
-        <div className="flex gap-[62px] items-center h-[226px] w-full justify-between">
-          <figure
-            className={
-              "w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group"
-            }
-            onClick={() => {
-              setIsAuto(false);
-              setIndex(0);
-            }}
-          >
-            <div
-              className={`w-[62px] h-[62px] rounded-full transition-all duration-500 ${index === 0 ? "bg-primary-400" : "bg-neutral-500 group-hover:bg-neutral-400"}`}
-            ></div>
-            <div>
-              <H4
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 0 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem Ipsum
-              </H4>
-              <P
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 0 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-              </P>
-            </div>
-          </figure>
-          <figure
-            className="w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group"
-            onClick={() => {
-              setIsAuto(false);
-              setIndex(1);
-            }}
-          >
-            <div
-              className={`w-[62px] h-[62px] rounded-full transition-all duration-500 ${index === 1 ? "bg-primary-400" : "bg-neutral-500 group-hover:bg-neutral-400"}`}
-            ></div>
-            <div>
-              <H4
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 1 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem Ipsum
-              </H4>
-              <P
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 1 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-              </P>
-            </div>
-          </figure>
-          <figure
-            className="w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group"
-            onClick={() => {
-              setIsAuto(false);
-              setIndex(2);
-            }}
-          >
-            <div
-              className={`w-[62px] h-[62px] rounded-full transition-all duration-500 ${index === 2 ? "bg-primary-400" : "bg-neutral-500 group-hover:bg-neutral-400"}`}
-            ></div>
-            <div>
-              <H4
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 2 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem Ipsum
-              </H4>
-              <P
-                className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === 2 ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-              </P>
-            </div>
-          </figure>
+        <div className="flex flex-col sm:flex-row gap-[62px] items-center h-auto sm:h-[304px] lg:h-[226px] w-full justify-between">
+          {Items.map((item, i) => (
+            <figure
+              key={i}
+              className={
+                "w-full sm:w-[197px] xl:w-[356px] flex flex-col gap-[38px] hover:cursor-pointer group"
+              }
+              onClick={() => {
+                setIsAuto(false);
+                setIndex(i);
+              }}
+            >
+              <div
+                className={`w-[62px] h-[62px] rounded-full transition-all duration-500 ${index === i ? "bg-primary-400" : "bg-neutral-500 group-hover:bg-neutral-400"}`}
+              ></div>
+              <div>
+                <H4
+                  className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === i ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
+                >
+                  {item.title}
+                </H4>
+                <P
+                  className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === i ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
+                >
+                  {item.desc}
+                </P>
+              </div>
+            </figure>
+          ))}
         </div>
       </div>
     </SectionWrapper>

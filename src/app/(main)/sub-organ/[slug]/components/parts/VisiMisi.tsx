@@ -5,13 +5,13 @@ export default function VisiMisi() {
   return (
     <section
       id="visimisi"
-      className="py-[62px] px-[6%] lg:px-[12.5%] xl:px-[124px] flex gap-16 bg-primary-400 justify-between"
+      className="py-[62px] px-[6%] lg:px-[12.5%] xl:px-[124px] flex gap-16 flex-col xl:flex-row bg-primary-400 justify-between"
     >
-      <div className="flex gap-7">
-        <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center">
+      <div className="flex gap-7 w-full xl:w-[505px]">
+        <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center p-2">
           <OpenedBook />
         </div>
-        <div className="flex flex-col gap-2 w-[484px]">
+        <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Visi</H4>
           <P className="text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
@@ -19,11 +19,11 @@ export default function VisiMisi() {
           </P>
         </div>
       </div>
-      <div className="flex gap-7">
+      <div className="flex gap-7 w-full xl:w-[505px]">
         <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center">
           <OpenedBook />
         </div>
-        <div className="flex flex-col gap-2 w-[484px]">
+        <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Misi</H4>
           <P className="text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
