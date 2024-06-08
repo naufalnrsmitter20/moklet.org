@@ -23,8 +23,8 @@ export interface organSections {
 export default function OrganizationSection({ data }: { data: organSections }) {
   return (
     <SectionWrapper id={data.sectionName} key={data.sectionName}>
-      <div className="flex gap-[62px] justify-between">
-        <div className="w-[512px] flex flex-col gap-7">
+      <div className="flex flex-col lg:flex-row gap-[62px] justify-between">
+        <div className="w-full lg:w-[512px] flex flex-col gap-7">
           <div className="flex gap-[22px] items-center">
             <div className="bg-primary-50 rounded-full w-[62px] h-[62px] p-[19px] flex items-center justify-center">
               {data.sectionLogo}
@@ -33,7 +33,7 @@ export default function OrganizationSection({ data }: { data: organSections }) {
           </div>
           <P>{data.sectionDesc}</P>
         </div>
-        <div className="w-[618px] flex flex-col gap-[18px]">
+        <div className="w-full lg:w-[618px] flex flex-col gap-[18px]">
           {data.sectionOrgans.map((organ) => (
             <Link
               className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-neutral-500 duration-300"
