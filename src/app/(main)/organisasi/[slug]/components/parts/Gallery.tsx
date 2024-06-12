@@ -2,7 +2,7 @@ import Image from "@/app/_components/global/Image";
 import { P, UnderlinedTitle } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
-export default function OrgGallery({ Images }: { Images: string[] }) {
+export default function OrgGallery({ image }: { image: string }) {
   return (
     <SectionWrapper id="gallery">
       <div className="flex flex-col gap-[54px] w-full">
@@ -24,32 +24,15 @@ export default function OrgGallery({ Images }: { Images: string[] }) {
           </div>
         </div>
         <div className="flex gap-[18px] flex-col lg:flex-row items-center">
-          <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden">
+          <div className="w-full rounded-2xl overflow-hidden">
             <Image
-              src={Images[0]}
+              src={image}
               alt="Image"
               width={587}
               height={407}
               unoptimized
               className="w-full h-full"
             />
-          </div>
-          <div className="w-full lg:w-1/2 flex flex-wrap gap-[18px]">
-            {Images.slice(1).map((image, i) => (
-              <div
-                key={i}
-                className="w-full sm:w-[48.2%] lg:w-[45%] h-[50%] rounded-2xl overflow-hidden"
-              >
-                <Image
-                  src={image}
-                  alt="Image"
-                  width={284}
-                  height={194}
-                  unoptimized
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
           </div>
         </div>
       </div>

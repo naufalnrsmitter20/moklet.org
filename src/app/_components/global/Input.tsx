@@ -29,7 +29,7 @@ interface OptionFieldProps {
 }
 
 interface SelectFieldProps {
-  label: string;
+  label?: string;
   required?: boolean;
   options: { value: string; label: string }[];
   className?: string;

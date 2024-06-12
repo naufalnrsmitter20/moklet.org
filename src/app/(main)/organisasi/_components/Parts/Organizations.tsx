@@ -1,8 +1,6 @@
 import { ReactElement } from "react";
-
-import Book from "@/app/_components/icons/Book";
-import Language from "@/app/_components/icons/Language";
-import Weight from "@/app/_components/icons/Weight";
+import { FaGlobe } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
 
 import OrganizationSection from "../OrganizationSection";
 
@@ -22,8 +20,8 @@ export interface SuborganSection {
 
 const organizations: SuborganSection[] = [
   {
-    sectionName: "Olahraga",
-    sectionLogo: <Weight />,
+    sectionName: "Organisasi",
+    sectionLogo: <FaGlobe />,
     sectionDesc:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
     sectionOrgans: [
@@ -54,8 +52,8 @@ const organizations: SuborganSection[] = [
     ],
   },
   {
-    sectionName: "Seni & Bahasa",
-    sectionLogo: <Language />,
+    sectionName: "Sub-organisasi",
+    sectionLogo: <FaUserGroup />,
     sectionDesc:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
     sectionOrgans: [
@@ -79,26 +77,6 @@ const organizations: SuborganSection[] = [
       },
       {
         name: "BDI",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-        image: "https://placehold.co/62x62?text=Logo",
-        href: "#",
-      },
-    ],
-  },
-  {
-    sectionName: "Ilmu",
-    sectionLogo: <Book />,
-    sectionDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
-    sectionOrgans: [
-      {
-        name: "Palwaga",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-        image: "https://placehold.co/62x62?text=Logo",
-        href: "#",
-      },
-      {
-        name: "Comet",
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing",
         image: "https://placehold.co/62x62?text=Logo",
         href: "#",

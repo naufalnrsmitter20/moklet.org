@@ -17,7 +17,7 @@ interface NavOption {
 const navOptions: NavOption[] = [
   { title: "Beranda", href: "/" },
   { title: "Berita", href: "/berita" },
-  { title: "Sub-organ", href: "/sub-organ" },
+  { title: "Organisasi", href: "/organisasi" },
   { title: "Tentang", href: "/tentang" },
   { title: "Kontributor", href: "/kontributor" },
 ];

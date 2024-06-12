@@ -196,21 +196,22 @@ model Period_Year {
 }
 
 model Organisasi {
-  id              String          @id @default(uuid()) @map("suborgan_id") @db.Char(36)
-  period_id       String
-  period          Period_Year     @relation(fields: [period_id], references: [id])
-  organisasi      Organisasi_Type
-  organisasi_name String          @map("organisasi_name")
-  logo            String
-  description     String          @db.LongText
-  vision          String
-  mission         String
-  image           String
-  companion       String
-  structure       String          @db.LongText
-  contact         String
-  created_at      DateTime        @default(now())
-  updated_at      DateTime        @updatedAt
+  id                String          @id @default(uuid()) @map("suborgan_id") @db.Char(36)
+  period_id         String
+  period            Period_Year     @relation(fields: [period_id], references: [id])
+  organisasi        Organisasi_Type
+  organisasi_name   String          @map("organisasi_name")
+  logo              String
+  description       String          @db.LongText
+  vision            String
+  mission           String
+  image             String
+  image_description String
+  companion         String
+  structure         String          @db.LongText
+  contact           String
+  created_at        DateTime        @default(now())
+  updated_at        DateTime        @updatedAt
 
   @@unique([organisasi, period_id])
   @@map("Organisasi")
