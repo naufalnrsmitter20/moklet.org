@@ -31,12 +31,14 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
 
   useEffect(() => {
     if (
-      session?.user?.role! === "Admin" ||
-      session?.user?.role! === "SuperAdmin"
+      !(
+        session?.user?.role === "Admin" ||
+        session?.user?.role === "SuperAdmin") &&
+      session?.user?.role
     ) {
-      return;
+      setTag([{ label: session?.user?.role.toString(), value: session?.user?.role.toString() }]);
     }
-    setTag([{ label: session?.user?.role!, value: session?.user?.role! }]);
+
   }, [session?.user?.role]);
 
   return (

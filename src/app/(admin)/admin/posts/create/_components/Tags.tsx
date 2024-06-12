@@ -38,23 +38,26 @@ export default function Tags({
     switch (actionMeta.action) {
       case "remove-value":
       case "pop-value":
-        if (actionMeta.removedValue.value === session?.user?.role) {
+        if (actionMeta.removedValue.value === session?.user?.role.toString()) {
           return;
         }
         break;
       case "clear":
         newValue = tags
-          .filter((v) => v.tagName === session?.user?.role)
+          .filter((v) => v.tagName === session?.user?.role.toString())
           .map((tag) => ({ value: tag.tagName, label: tag.tagName }));
         break;
     }
 
+
     setState(
       newValue
-        .filter((v) => v.value === session?.user?.role)
-        .concat(newValue.filter((v) => v.value !== session?.user?.role)),
+        .filter((v) => v.value === session?.user?.role.toString())
+        .concat(newValue.filter((v) => v.value !== session?.user?.role.toString())),
     );
+
   };
+
 
   return (
     <div>
@@ -74,7 +77,7 @@ export default function Tags({
         onChange={onChange}
         name="tags"
         required
-        isClearable={options.some((v) => v.value !== session?.user?.role)}
+        isClearable={options.some((v) => v.value !== session?.user?.role.toString())}
         classNames={{
           control: () =>
             "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",
