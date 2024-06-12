@@ -25,23 +25,23 @@ export default function OrganizationSection({
           <P>{data.sectionDesc}</P>
         </div>
         <div className="w-full lg:w-[618px] flex flex-col gap-[18px]">
-          {data.sectionOrgans.map((organ) => (
+          {data.sectionOrgans.map((organisasi) => (
             <Link
               className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-primary-300 duration-300"
-              href={`/sub-organ/${organ.name}`}
-              key={organ.name}
+              href={`/organisasi/${organisasi.name}`}
+              key={organisasi.name}
             >
               <div className="flex items-center gap-[26px]">
                 <Image
-                  alt={organ.name}
-                  src={organ.image}
+                  alt={organisasi.name}
+                  src={organisasi.image}
                   width={62}
                   height={62}
                   unoptimized
                 />
                 <div className="flex flex-col gap-[6px]">
-                  <H4>{organ.name}</H4>
-                  <P>{organ.desc}</P>
+                  <H4>{organisasi.name}</H4>
+                  <P>{organisasi.desc}</P>
                 </div>
               </div>
               <ArrowRight className="group-hover:translate-x-1/4 transition-all duration-300" />

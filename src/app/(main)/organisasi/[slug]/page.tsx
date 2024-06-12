@@ -7,18 +7,12 @@ import RelatedNews from "./components/parts/RelatedNews";
 import Structure from "./components/parts/Stucture";
 import VisiMisi from "./components/parts/VisiMisi";
 
-const images = [
-  "https://placehold.co/750x500?text=1",
-  "https://placehold.co/750x500?text=2",
-  "https://placehold.co/750x500?text=3",
-  "https://placehold.co/750x500?text=4",
-  "https://placehold.co/750x500?text=5",
-];
+const image = "https://placehold.co/750x500?text=1";
 
 export default async function Organ({ params }: { params: { slug: string } }) {
-  const organ = params.slug.toUpperCase();
+  const organisasiName = params.slug.toUpperCase();
   const relatedNews = await findNewestPost(5, {
-    tags: { some: { tagName: organ } },
+    tags: { some: { tagName: organisasiName } },
   });
 
   return (
@@ -26,8 +20,8 @@ export default async function Organ({ params }: { params: { slug: string } }) {
       <Overview />
       <VisiMisi />
       <Structure />
-      <OrgGallery Images={images} />
-      <RelatedNews data={relatedNews} orgName={organ} />
+      <OrgGallery image={image} />
+      <RelatedNews data={relatedNews} orgName={organisasiName} />
       <Contact />
     </>
   );
