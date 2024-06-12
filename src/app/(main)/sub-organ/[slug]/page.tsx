@@ -1,4 +1,4 @@
-import { findNewestPost, findPosts } from "@/utils/database/post.query";
+import { findNewestPost } from "@/utils/database/post.query";
 
 import Contact from "./components/parts/Contact";
 import OrgGallery from "./components/parts/Gallery";
