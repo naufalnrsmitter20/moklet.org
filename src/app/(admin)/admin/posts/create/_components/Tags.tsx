@@ -49,15 +49,14 @@ export default function Tags({
         break;
     }
 
-
     setState(
       newValue
         .filter((v) => v.value === session?.user?.role.toString())
-        .concat(newValue.filter((v) => v.value !== session?.user?.role.toString())),
+        .concat(
+          newValue.filter((v) => v.value !== session?.user?.role.toString()),
+        ),
     );
-
   };
-
 
   return (
     <div>
@@ -77,7 +76,9 @@ export default function Tags({
         onChange={onChange}
         name="tags"
         required
-        isClearable={options.some((v) => v.value !== session?.user?.role.toString())}
+        isClearable={options.some(
+          (v) => v.value !== session?.user?.role.toString(),
+        )}
         classNames={{
           control: () =>
             "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",
