@@ -1,6 +1,7 @@
-import Saying from "./Saying";
 import { UnderlinedTitle } from "../../global/Text";
 import { SectionWrapper } from "../../global/Wrapper";
+
+import Saying from "./Saying";
 
 export default function Opinions() {
   return (

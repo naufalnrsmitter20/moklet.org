@@ -5,7 +5,7 @@ export default function Overview() {
   return (
     <SectionWrapper id={"TSVC"}>
       <div className="flex flex-col gap-[58px] w-full">
-        <div className="flex items-center gap-[72px] w-[658px]">
+        <div className="flex items-center gap-[72px] w-full lg:w-[658px]">
           <div className="flex flex-col gap-[44px]">
             <div className="bg-primary-50 rounded-full w-[106px] h-[106px] border border-primary-400 flex justify-center items-center"></div>
             <div className="flex flex-col gap-[18px]">

@@ -51,36 +51,7 @@
         "./src/_components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
       ],
-      "rules": {
-        "import/order": [
-          "error",
-          {
-            "groups": [
-              "builtin",
-              "external",
-              "internal",
-              ["parent", "sibling"],
-              "index",
-              "object",
-              "type"
-            ],
-            "pathGroups": [
-              {
-                "pattern": "./**/**\\.css",
-                "group": "type",
-                "position": "after"
-              }
-            ],
-            "pathGroupsExcludedImportTypes": ["builtin"],
-            "alphabetize": {
-              "order": "asc",
-              "caseInsensitive": true
-            },
-            "newlines-between": "always",
-            "warnOnUnassignedImports": true
-          }
-        ]
-      }
+      "rules": {}
     }
   ],
   "rules": {

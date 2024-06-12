@@ -13,7 +13,7 @@ export default function VisiMisi() {
         <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center">
           <OpenedBook />
         </div>
-        <div className="flex flex-col gap-2 w-[484px]">
+        <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Visi</H4>
           <P className="text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
@@ -25,7 +25,7 @@ export default function VisiMisi() {
         <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center">
           <OpenedBook />
         </div>
-        <div className="flex flex-col gap-2 w-[484px]">
+        <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Misi</H4>
           <P className="text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla

@@ -11,9 +11,10 @@ import Image from "@/app/_components/global/Image";
 import { TextArea, TextField } from "@/app/_components/global/Input";
 import { PostWithTagsAndUser, TagWithPostCount } from "@/types/entityRelations";
 
-import Tags from "./Tags";
 import Editor from "../../_components/MdEditor";
 import FormButton from "../../_components/parts/SubmitButton";
+
+import Tags from "./Tags";
 
 export default function EditForm({
   tags,

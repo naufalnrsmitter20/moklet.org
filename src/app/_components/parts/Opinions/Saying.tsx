@@ -1,5 +1,6 @@
-import PersonData, { PersonDataProps } from "./PersonData";
 import { P } from "../../global/Text";
+
+import PersonData, { PersonDataProps } from "./PersonData";
 
 interface SayingProps {
   personData: PersonDataProps;
