@@ -170,7 +170,7 @@ model Link_Shortener_Count {
   click_count Int            @default(0)
 }
 
-enum Suborgan_Type {
+enum Organisasi_Type {
   OSIS
   MPK
   BDI
@@ -185,47 +185,33 @@ enum Suborgan_Type {
   MAC
   METIC
   COMET
+
+  @@map("Organisasi_Type")
 }
 
 model Period_Year {
   id          String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
   period      String       @unique
-  suborgans   Suborgan[]
   organisasis Organisasi[]
 }
 
-model Suborgan {
-  id            String        @id @default(uuid()) @map("suborgan_id") @db.Char(36)
-  period_id     String
-  start_date    DateTime
-  period        Period_Year   @relation(fields: [period_id], references: [id])
-  suborgan      Suborgan_Type
-  suborgan_name String
-  logo          String
-  description   String        @db.LongText
-  vision        String
-  mission       String
-  image         String
-  companion     String
-  structure     String        @db.LongText
-  contact       String
-  created_at    DateTime      @default(now())
-  updated_at    DateTime      @updatedAt
-}
-
 model Organisasi {
-  id              String      @id @default(uuid()) @map("organisasi_id") @db.Char(36)
-  periode_id      String      @db.Char(36)
-  period          Period_Year @relation(fields: [periode_id], references: [id])
-  organisasi_name String
+  id              String          @id @default(uuid()) @map("suborgan_id") @db.Char(36)
+  period_id       String
+  period          Period_Year     @relation(fields: [period_id], references: [id])
+  organisasi      Organisasi_Type
+  organisasi_name String          @map("organisasi_name")
   logo            String
-  description     String      @db.LongText
+  description     String          @db.LongText
   vision          String
   mission         String
   image           String
   companion       String
-  structure       String      @db.LongText
+  structure       String          @db.LongText
   contact         String
-  created_at      DateTime    @default(now())
-  updated_at      DateTime    @updatedAt
+  created_at      DateTime        @default(now())
+  updated_at      DateTime        @updatedAt
+
+  @@unique([organisasi, period_id])
+  @@map("Organisasi")
 }
