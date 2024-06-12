@@ -31,7 +31,6 @@ export default function EditForm({
     value: tag.tagName,
     label: tag.tagName,
   }));
-  console.log(selected);
   const [tag, setTag] = useState<MultiValue<{ value: string; label: string }>>(
     [],
   );

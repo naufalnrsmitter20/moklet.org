@@ -1,14 +1,22 @@
-import { Suborgan_Type } from "@prisma/client";
+import { Organisasi_Type } from "@prisma/client";
 
-import { findSubOrgan } from "@/utils/database/subOrgan.query";
-// eslint-disable-next-line prettier/prettier
+import { findOrganisasi } from "@/utils/database/organisasi.query";
+import { findLatestPeriod } from "@/utils/database/period.query";
+
 export default async function Edit({
   params,
 }: {
-  params: { suborgan: string };
+  params: { organisasi: string };
 }) {
-  // eslint-disable-next-line prettier/prettier
-  // const data = await findSubOrgan({
-  //   suborgan: params.suborgan as Suborgan_Type,
-  // });
+  const latestPeriod = await findLatestPeriod();
+  const organisasi = await findOrganisasi({
+    organisasi_period_id: {
+      period_id: latestPeriod.id,
+      organisasi: params.organisasi as Organisasi_Type,
+    },
+  });
+
+  console.log(organisasi);
+
+  return <></>;
 }

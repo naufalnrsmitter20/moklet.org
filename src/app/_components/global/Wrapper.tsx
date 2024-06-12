@@ -1,19 +1,20 @@
 import { ReactNode } from "react";
 
+import cn from "@/lib/clsx";
+
 interface SectionWrapperProps {
   children?: ReactNode;
   id: string;
+  className?: string;
 }
 
 export function SectionWrapper({
   children,
   id,
+  className,
 }: Readonly<SectionWrapperProps>) {
   return (
-    <section
-      className="relative w-full py-[82px] px-[6%] lg:px-[12.5%] xl:px-[124px]"
-      id={id}
-    >
+    <section className={cn("relative w-full py-[82px]", className)} id={id}>
       {children}
     </section>
   );
@@ -22,10 +23,11 @@ export function SectionWrapper({
 export function SmallSectionWrapper({
   children,
   id,
+  className,
 }: Readonly<SectionWrapperProps>) {
   return (
     <section
-      className="w-full py-[32px] mt-[42px] xl:mt-0 px-[6%] lg:px-[12.5%] xl:px-[124px]"
+      className={cn("w-full py-[32px] mt-[42px] xl:mt-0", className)}
       id={id}
     >
       {children}

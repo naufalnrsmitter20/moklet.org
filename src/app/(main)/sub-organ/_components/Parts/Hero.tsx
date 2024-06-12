@@ -1,7 +1,5 @@
 "use client";
 
-import { title } from "process";
-
 import { useEffect, useState } from "react";
 
 import Image from "@/app/_components/global/Image";
@@ -80,7 +78,9 @@ export default function Hero() {
                   {item.title}
                 </H4>
                 <P
-                  className={`flex flex-col gap-3 text-wrap transition-all duration-300 ${index === i ? "text-black" : "text-neutral-500 group-hover:text-neutral-400"}`}
+                  className={
+                    "flex flex-col gap-3 text-wrap transition-all duration-300 text-neutral-500 group-hover:text-neutral-400"
+                  }
                 >
                   {item.desc}
                 </P>

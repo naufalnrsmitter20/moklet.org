@@ -1,26 +1,17 @@
 import Link from "next/link";
-import { ReactElement } from "react";
 
 import Image from "@/app/_components/global/Image";
 import { H2, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 
-export interface organs {
-  name: string;
-  desc: string;
-  image: string;
-  href: string;
-}
+import { SuborganSection } from "./Parts/Organizations";
 
-export interface organSections {
-  sectionName: string;
-  sectionDesc: string;
-  sectionLogo: ReactElement;
-  sectionOrgans: organs[];
-}
-
-export default function OrganizationSection({ data }: { data: organSections }) {
+export default function OrganizationSection({
+  data,
+}: {
+  data: SuborganSection;
+}) {
   return (
     <SectionWrapper id={data.sectionName} key={data.sectionName}>
       <div className="flex flex-col lg:flex-row gap-[62px] justify-between">
@@ -36,7 +27,7 @@ export default function OrganizationSection({ data }: { data: organSections }) {
         <div className="w-full lg:w-[618px] flex flex-col gap-[18px]">
           {data.sectionOrgans.map((organ) => (
             <Link
-              className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-neutral-500 duration-300"
+              className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-primary-300 duration-300"
               href={`/sub-organ/${organ.name}`}
               key={organ.name}
             >

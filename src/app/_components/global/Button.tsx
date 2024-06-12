@@ -10,7 +10,7 @@ import {
 import cn from "@/lib/clsx";
 
 const buttonVariants = cva(
-  "inline-block rounded-full  transition-all duration-500",
+  "inline-block rounded-full transition-all duration-500",
   {
     variants: {
       variant: {
