@@ -12,10 +12,11 @@ import Image from "@/app/_components/global/Image";
 import { TextArea, TextField } from "@/app/_components/global/Input";
 import { TagWithPostCount } from "@/types/entityRelations";
 
-import Tags from "./Tags";
 import Modal from "../../_components/ImageModal";
 import Editor from "../../_components/MdEditor";
 import FormButton from "../../_components/parts/SubmitButton";
+
+import Tags from "./Tags";
 
 export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
   const [tag, setTag] =
