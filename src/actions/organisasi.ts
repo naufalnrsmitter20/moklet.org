@@ -30,6 +30,7 @@ export async function suborganCreate(data: FormData) {
     const companion = data.get("companion") as string;
     const structure = data.get("structure") as string;
     const contact = data.get("contact") as string;
+    const imageDescription = data.get("image_description") as string;
 
     const image = data.get("image") as File;
     const logo = data.get("logo") as File;
@@ -55,6 +56,7 @@ export async function suborganCreate(data: FormData) {
       structure: structure,
       contact: contact,
       period: period,
+      image_description: imageDescription,
     });
   } catch (e) {
     console.log(e);
