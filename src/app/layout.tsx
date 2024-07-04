@@ -3,9 +3,10 @@ import { Montserrat } from "next/font/google";
 import Toaster from "./_components/main/CustomToaster";
 import { NextAuthProvider } from "./_components/main/NextAuthProvider";
 import ProgressBarProvider from "./_components/main/ProgressBarProvider";
-import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
+
+import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
