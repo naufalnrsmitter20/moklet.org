@@ -54,7 +54,7 @@ const socialMedias: FootOption[] = [
 
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between px-[6%] lg:px-[12.5%] xl:px-[124px]">
+    <footer className="flex items-center justify-between w-full">
       <div className="mb-[42px] mt-[82px] flex flex-col xl:flex-row w-full justify-between gap-[62px] lg:gap-[80px]">
         <div className="w-full xl:w-1/3">
           <div className="flex flex-col gap-[59px]">

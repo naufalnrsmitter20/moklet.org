@@ -22,7 +22,7 @@ export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
       <div className="flex gap-[12px] items-center justify-between w-full mt-[30px] lg:mt-0">
         <TextField
           placeholder="Cari berita di moklet.org..."
-          className="w-[90%]"
+          className="w-[88%]"
           value={query}
           handleChange={(e) => {
             handleSearch(e.target.value);
@@ -37,7 +37,7 @@ export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
         />
         <Button
           variant={"primary"}
-          className="w-[54px] h-[54px] flex justify-center items-center px-0 py-0"
+          className="w-[54px] h-[54px] md:hidden flex justify-center items-center px-0 py-0"
           onClick={() => {
             router.push(`/berita/search?q=${query}`);
           }}
@@ -46,7 +46,7 @@ export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
         </Button>
         <Button
           variant={"primary"}
-          className="h-[54px] flex justify-center items-center"
+          className="h-[54px] md:flex hidden justify-center items-center"
           onClick={() => {
             router.push(`/berita/search?q=${query}`);
           }}

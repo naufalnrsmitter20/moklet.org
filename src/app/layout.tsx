@@ -15,13 +15,13 @@ const robots =
 
 export const metadata: Metadata = {
   title: {
-    default: "Moklet Organization",
+    default: "Moklet's Organization",
     template: "%s | Moklet.org",
   },
   description:
     "A one doorway to explore Moklet's organizations' creativity and innovations",
   keywords: "moklet.org, Moklet, Moklet.org, Telkom, SMK, Malang",
-  authors: { name: "MokletDev", url: "https://mokletdev.vercel.app" },
+  authors: { name: "MokletDev", url: "https://dev.moklet.org" },
   creator: "MokletDev Team",
   publisher: "SMK Telkom Malang",
   robots: robots,
@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={montserrat.className}>
+      <body className={montserrat.className + " overflow-x-hidden"}>
         <NextAuthProvider>
           <Toaster />
           <ProgressBarProvider>{children}</ProgressBarProvider>

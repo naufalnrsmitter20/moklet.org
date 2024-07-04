@@ -2,11 +2,10 @@ import { MetadataRoute } from "next";
 
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findPosts } from "@/utils/database/post.query";
-import { PaginatedResult } from "@/utils/paginator";
 
 // TODO: Add all public routes to sitemap
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = (await findPosts()) as PaginatedResult<PostWithTagsAndUser>;
+  const posts = (await findPosts()) as PostWithTagsAndUser[];
 
   const conventionalRoutes = [
     "/berita",
@@ -26,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       | "weekly",
   }));
 
-  const postsRoutes = posts.data.map((post) => ({
+  const postsRoutes = posts.map((post) => ({
     url: `${process.env.NEXTAUTH_URL}/blog/${post.slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "yearly" as

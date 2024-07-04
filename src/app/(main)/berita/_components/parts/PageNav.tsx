@@ -18,6 +18,8 @@ export default function PageNav({
       <LinkButton
         variant={"primary"}
         href={`/berita?page=${currentPage <= 1 ? currentPage : currentPage - 1}`}
+        scroll={false}
+        className="p-3"
       >
         <ArrowLeft />
       </LinkButton>
@@ -31,6 +33,8 @@ export default function PageNav({
       <LinkButton
         variant={"primary"}
         href={`/berita?page=${currentPage >= totalPage ? currentPage : currentPage + 1}`}
+        scroll={false}
+        className="p-3"
       >
         <ArrowRight />
       </LinkButton>

@@ -32,7 +32,7 @@ export default function Form({ form, a, b, answers }: FormProps) {
     const checkboxes = form?.querySelectorAll(
       "input[type=checkbox][data-required=true]",
     );
-    const checkboxLength = checkboxes?.length || 0;
+    const checkboxLength = checkboxes?.length ?? 0;
     const firstCheckbox = checkboxLength > 0 ? checkboxes?.[0] : null;
 
     function init() {
