@@ -51,7 +51,8 @@ CREATE TABLE `_PostToTag` (
     `A` CHAR(36) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_PostToTag_AB_unique`(`A`, `B`),
+    PRIMARY KEY (`A`),
+    UNIQUE INDEX `_PostToTag_AB_unique`(`B`),
     INDEX `_PostToTag_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
