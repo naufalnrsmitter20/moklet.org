@@ -132,24 +132,25 @@ export const authOptions: AuthOptions = {
     },
     async jwt({ token, user }) {
       if (user?.email) {
-        const userdb = await findUser({ email: user?.email as string });
-        token.id = userdb?.id || "";
-        token.role = userdb?.role || "Guest";
-        token.name = userdb?.name || token?.name;
-        token.user_pic = userdb?.user_pic as string;
+        const userdb = await findUser({ email: user.email });
+        if (!userdb) return token;
+        token.id = userdb?.id;
+        token.role = userdb?.role;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token.email && session.user) {
-        session.user.role = token?.role || "Guest";
-        session.user.id = token?.id as string;
-        session.user.user_pic = token?.user_pic as string;
-        session.user.name = token?.name as string;
+      if (token.id && session.user) {
+        const userdb = await findUser({ id: token.id });
+        session.user.role = userdb?.role || "Guest";
+        session.user.user_pic = userdb?.user_pic as string;
+        session.user.name = userdb?.name as string;
+        session.user.email = userdb?.email as string;
+        session.user.id = userdb?.id as string;
         await updateUser(
-          { email: token.email },
+          { id: token.id },
           {
-            user_pic: session.user.image ?? undefined,
+            user_pic: token.image ?? undefined,
             userAuth: { update: { last_login: new Date() } },
           },
         );
