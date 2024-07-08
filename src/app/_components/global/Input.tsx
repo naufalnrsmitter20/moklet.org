@@ -68,10 +68,10 @@ export function TextField({
           {label}
         </label>
       )}
-      <div>
+      <div className="relative">
         {type == "password" && (
           <button
-            className="absolute right-6 mt-4 flex items-center px-2 text-neutral-400 hover:text-neutral-500 transition-all"
+            className="absolute right-3 mt-4 flex items-center px-2 text-neutral-400 hover:text-neutral-500 transition-all"
             type="button"
             onClick={() => setShowPassword(!showPassword)}
           >
@@ -160,6 +160,9 @@ export function SelectField({
         onChange={handleChange}
         disabled={disabled}
       >
+        <option value="" disabled hidden>
+          Pilih
+        </option>
         {options &&
           options.map((option, index) => (
             <option value={option.value} key={index}>

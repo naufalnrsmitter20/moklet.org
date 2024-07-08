@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { toast } from "sonner";
@@ -47,11 +47,12 @@ export default function FormEditContent({
     const action = await saveForm(
       { ...formData, fields: questions },
       isNewForm,
+      JSON.stringify(questions) != JSON.stringify(form.fields),
     );
     if (action?.error) return toast.error(action.message, { id: toastId });
     toast.success(action?.message, { id: toastId });
     setSaved(true);
-    router.push("/admin/form");
+    router.refresh();
   }
 
   async function clearResponse() {
@@ -102,7 +103,7 @@ export default function FormEditContent({
             onChange={(e) =>
               setFormData({
                 ...formData,
-                is_open: e.target.value === "true",
+                is_open: e.target.checked,
               })
             }
           />
@@ -121,7 +122,7 @@ export default function FormEditContent({
             onChange={(e) =>
               setFormData({
                 ...formData,
-                allow_edit: e.target.value === "true",
+                allow_edit: e.target.checked,
               })
             }
           />
@@ -140,7 +141,7 @@ export default function FormEditContent({
             onChange={(e) =>
               setFormData({
                 ...formData,
-                submit_once: e.target.value === "true",
+                submit_once: e.target.checked,
               })
             }
           />

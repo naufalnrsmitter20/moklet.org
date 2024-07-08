@@ -16,14 +16,21 @@ import {
 import { FormWithFields } from "@/types/entityRelations";
 import { formToJSON } from "@/utils/atomics";
 
-type FormProps = {
+interface FormProps {
   form: FormWithFields;
   a: string;
   b: string;
   answers?: Submission_Field[];
-};
+  submission_id?: string;
+}
 
-export default function Form({ form, a, b, answers }: FormProps) {
+export default function Form({
+  form,
+  a,
+  b,
+  answers,
+  submission_id,
+}: FormProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -76,12 +83,7 @@ export default function Form({ form, a, b, answers }: FormProps) {
           : [{ name: key, value: value }];
       });
 
-      const submission = await submitForm(
-        a,
-        b,
-        arrayAnswers,
-        answers?.[0].submission_id,
-      );
+      const submission = await submitForm(a, b, arrayAnswers, submission_id);
       if (submission.success) {
         toast.success("Jawaban terkirim!", {
           id: toastId,
@@ -98,7 +100,6 @@ export default function Form({ form, a, b, answers }: FormProps) {
       });
     }
   }
-
   return (
     <form className="block mx-auto p-6" onSubmit={handleSubmit} id="formApp">
       {form.fields &&

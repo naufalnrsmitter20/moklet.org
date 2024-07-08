@@ -1,9 +1,15 @@
-import Organizations from "./_components/Parts/Organizations";
+import {
+  findLatestPeriod,
+  findPeriodWithoutOrganisasi,
+} from "@/utils/database/periodYear.query";
+import { redirect } from "next/navigation";
 
 export default async function OrganisasiPage() {
-  return (
-    <>
-      <Organizations />
-    </>
-  );
+  let activePeriod = await findPeriodWithoutOrganisasi({ is_active: true });
+
+  if (!activePeriod) {
+    activePeriod = await findLatestPeriod();
+  }
+
+  return redirect(`/organisasi/${activePeriod.period}`);
 }

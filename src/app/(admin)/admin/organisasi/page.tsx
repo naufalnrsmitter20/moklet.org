@@ -1,9 +1,33 @@
-import { H1 } from "@/app/_components/global/Text";
+import { H1, H2, P } from "@/app/_components/global/Text";
+import { nextGetServerSession } from "@/lib/next-auth";
+import {
+  findAllPeriod,
+  findLatestPeriod,
+} from "@/utils/database/periodYear.query";
+import { redirect } from "next/navigation";
+import Select from "./_components/Select";
 
-export default function SuborAdmin() {
+export default async function SuborAdmin() {
+  const session = await nextGetServerSession();
+  const latestPeriod = await findLatestPeriod();
+  const allPeriod = await findAllPeriod();
+
+  const { user } = session!;
+
+  if (!user?.role.includes("Admin"))
+    return redirect(
+      `/admin/organisasi/${user?.role || ""}/${latestPeriod.period}`,
+    );
+
   return (
     <>
-      <H1>TOLONG DISLICE</H1>
+      <div>
+        <H2 className="font-semibold">Organization Information</H2>
+        <P>Introduce your organization&apos;s profile to the world!</P>
+      </div>
+      <div className="flex items-center justify-between my-4">
+        <Select allPeriod={allPeriod} user={user} />
+      </div>
     </>
   );
 }

@@ -14,6 +14,7 @@ import { Button } from "@/app/_components/global/Button";
 import { SelectField, TextField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
 import { FieldsWithOptions } from "@/types/entityRelations";
+import { arrayMove } from "@/utils/atomics";
 
 export default function QuestionEdit({
   fields,
@@ -37,10 +38,9 @@ export default function QuestionEdit({
     const id = parseInt(e.dataTransfer.getData("index"));
 
     setFields((prev) => {
-      const array = [...prev];
-      array.splice(index > id ? index + 1 : index, 0, array[id]);
-      array.splice(index < id ? id + 1 : id, 1);
-      return array;
+      const arr = [...prev];
+      arrayMove(arr, id, index);
+      return arr;
     });
   }
 
@@ -82,6 +82,7 @@ export default function QuestionEdit({
     );
 
     setFields(questions);
+    inputOption.value = "";
   }
 
   function removeOption(
@@ -101,6 +102,8 @@ export default function QuestionEdit({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
+    e.preventDefault();
+
     type FieldsProps = keyof (typeof fields)[0];
     const name = e.target.name;
     const value = e.target.value;
@@ -114,9 +117,23 @@ export default function QuestionEdit({
           ? (e.target as HTMLInputElement).checked
           : value
       ) as FieldsProps;
+
       return array;
     });
+  };
+
+  const handleLabelChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     e.preventDefault();
+
+    const name = e.target.name;
+    const value = e.target.value;
+    const index = parseInt(name.split("_")[0]);
+
+    const tempFields = fields;
+    tempFields[index].label = value;
+    setFields(tempFields);
   };
 
   function addQuestion(e: MouseEvent<HTMLButtonElement>) {
@@ -142,7 +159,7 @@ export default function QuestionEdit({
       {fields.map((item, index) => {
         return (
           <div
-            key={item.id + "_" + index}
+            key={item.id + "_" + index + "_" + Math.random()}
             className="p-4 bg-white rounded-md flex flex-col gap-2 cursor-move transition-all"
             draggable
             onDragStart={(e) => dragElement(e, index)}
@@ -176,7 +193,7 @@ export default function QuestionEdit({
               type="text"
               value={item.label}
               required
-              handleChange={handleChange}
+              handleChange={handleLabelChange}
             />
             {["radio", "checkbox"].includes(item.type) && (
               <div>

@@ -36,7 +36,7 @@ export default function SubOrgan() {
             <SubOrganCount count={2} title="Bidang Seni & Bahasa" />
             <SubOrganCount count={5} title="Bidang Lainnya" />
           </div>
-          <LinkButton variant={"primary"} href="#">
+          <LinkButton variant={"primary"} href="/organisasi">
             Explorasi lebih jauh
           </LinkButton>
         </div>

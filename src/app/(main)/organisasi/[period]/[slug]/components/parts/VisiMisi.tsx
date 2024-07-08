@@ -2,7 +2,13 @@ import { H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import OpenedBook from "@/app/_components/icons/OpenedBook";
 
-export default function VisiMisi() {
+export default function VisiMisi({
+  visi,
+  misi,
+}: {
+  visi: string;
+  misi: string;
+}) {
   return (
     <SectionWrapper
       id="visimisi"
@@ -15,10 +21,7 @@ export default function VisiMisi() {
         </div>
         <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Visi</H4>
-          <P className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-            ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-          </P>
+          <P className="text-white text-wrap w-[100%] break-words">{visi}</P>
         </div>
       </div>
       <div className="flex gap-7 w-full md:w-[48%]">
@@ -27,10 +30,7 @@ export default function VisiMisi() {
         </div>
         <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Misi</H4>
-          <P className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-            ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-          </P>
+          <P className="text-white text-wrap w-[100%] break-words">{misi}</P>
         </div>
       </div>
     </SectionWrapper>

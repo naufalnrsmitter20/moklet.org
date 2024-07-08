@@ -75,7 +75,7 @@ export async function postCreate(
     const upload = await imageUploader(Buffer.from(ABuffer));
     delete session?.user?.image;
 
-    await createPost({
+    const newPost = await createPost({
       slug: slug,
       content: MD,
       title: title,
@@ -91,7 +91,7 @@ export async function postCreate(
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
 
-    return { message: "Success" };
+    return { message: "Success", result: { id: newPost.id } };
   } catch (e) {
     console.log(e);
     return { error: true, message: "Gagal menambahkan berita!" };

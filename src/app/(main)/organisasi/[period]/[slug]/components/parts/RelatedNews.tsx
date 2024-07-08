@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { NewsFigure } from "@/app/_components/global/NewsFigure";
-import { UnderlinedTitle } from "@/app/_components/global/Text";
+import { UnderlinedTitle, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
@@ -31,9 +31,11 @@ export default function RelatedNews({
         </div>
         <div className="w-full overflow-x-none">
           <div className="flex flex-col md:flex-row w-full justify-between gap-[36px]">
-            {data.map((post) => (
-              <NewsFigure key={post.id} post={post} />
-            ))}
+            {data.length !== 0 ? (
+              data.map((post) => <NewsFigure key={post.id} post={post} />)
+            ) : (
+              <P>Belum ada berita apa-apa, nih...</P>
+            )}
           </div>
         </div>
       </div>
