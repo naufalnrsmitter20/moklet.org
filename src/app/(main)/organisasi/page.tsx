@@ -1,4 +1,4 @@
-import Maintenance from "@/app/unauthorized/page";
+import Maintenance from "@/app/maintenance/page";
 import {
   findLatestPeriod,
   findPeriodWithoutOrganisasi,
