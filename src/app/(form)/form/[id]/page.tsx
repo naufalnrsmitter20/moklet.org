@@ -33,7 +33,7 @@ const page = async ({ params }: Props) => {
   if (userAgent?.toLocaleLowerCase()?.includes("whatsapp")) return <></>;
   if (!session)
     return redirect(
-      "/auth/signin?callbackUrl=/form/" + params.id,
+      "/api/auth/signin?callbackUrl=/form/" + params.id,
       RedirectType.replace,
     );
 
@@ -66,7 +66,7 @@ const page = async ({ params }: Props) => {
         <P className="mt-4 font-medium">{session.user?.name}</P>{" "}
         <Link
           className="hover:cursor-pointer text-info-500 hover:text-info-700 transition-all"
-          href={"/auth/signout?callbackUrl=/form/" + params.id}
+          href={"/api/auth/signout?callbackUrl=/form/" + params.id}
         >
           Ganti akun
         </Link>
