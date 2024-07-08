@@ -2,7 +2,6 @@
 
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth/next";
 import { MultiValue } from "react-select";
 
 import { imageUploader } from "@/actions/fileUploader";
@@ -12,6 +11,7 @@ import {
   createPost,
   deletePost,
 } from "@/utils/database/post.query";
+import { nextGetServerSession } from "@/lib/next-auth";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function uploadInsert(data: Record<string, any>) {
@@ -59,7 +59,10 @@ export async function postCreate(
   MD: string,
   tags: MultiValue<{ value: string; label: string }>,
 ) {
-  const session = await getServerSession();
+  const session = await nextGetServerSession();
+
+  if (!session?.user?.id) return { error: true, message: "Unauthorized" };
+
   try {
     const title = data.get("title") as string;
     const slug = data.get("slug") as string;
@@ -73,7 +76,6 @@ export async function postCreate(
     const image = data.get("thumbnail") as File;
     const ABuffer = await image.arrayBuffer();
     const upload = await imageUploader(Buffer.from(ABuffer));
-    delete session?.user?.image;
 
     const newPost = await createPost({
       slug: slug,
@@ -83,7 +85,7 @@ export async function postCreate(
       thumbnail: upload.data?.url as string,
       reaction: [],
       tags: { connectOrCreate: tag },
-      user: { connect: session?.user },
+      user_id: session?.user?.id,
       created_at: new Date(),
       updated_at: new Date(),
       published: false,
@@ -104,7 +106,7 @@ export async function postUpdate(
   tags: MultiValue<{ value: string; label: string }>,
   id: string,
 ) {
-  const session = await getServerSession();
+  const session = await nextGetServerSession();
   try {
     const title = data.get("title") as string;
     const slug = data.get("slug") as string;
@@ -138,7 +140,7 @@ export async function postUpdate(
     );
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
-    revalidatePath(`/admin/posts/${id}`);
+    revalidatePath(`/admin/posts/[id]`);
     return { message: "Success" };
   } catch (e) {
     console.log(e);
@@ -158,7 +160,7 @@ export async function updatePostStatus(current_state: boolean, id: string) {
     );
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
-    revalidatePath(`/admin/posts/${id}`);
+    revalidatePath(`/admin/posts/[id]`);
     return { message: "Berhasil megupdate post!" };
   } catch (e) {
     console.log(e);
@@ -171,7 +173,7 @@ export async function postDelete(id: string) {
     await deletePost(id);
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
-    revalidatePath(`/admin/posts/${id}`);
+    revalidatePath(`/admin/posts/[id]`);
     return { message: "Berhasil menghapus post!" };
   } catch (e) {
     console.log(e);
