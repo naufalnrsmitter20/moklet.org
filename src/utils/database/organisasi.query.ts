@@ -5,7 +5,8 @@ import prisma from "@/lib/prisma";
 export const findOrganisasis = async (filter?: Prisma.OrganisasiWhereInput) => {
   return await prisma.organisasi.findMany({
     where: filter,
-    orderBy: { created_at: "desc" },
+    include: { period: true },
+    orderBy: { updated_at: "desc" },
   });
 };
 

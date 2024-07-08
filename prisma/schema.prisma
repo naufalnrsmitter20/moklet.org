@@ -50,6 +50,7 @@ model User {
   forms            Form[]
   form_submissions Submission[]
   Link_Shortener   Link_Shortener[]
+  Twibbon          Twibbon[]
 }
 
 model User_Auth {
@@ -184,6 +185,7 @@ enum Organisasi_Type {
   MAC
   METIC
   COMET
+  PUSTEL
 
   @@map("Organisasi_Type")
 }
@@ -191,6 +193,7 @@ enum Organisasi_Type {
 model Period_Year {
   id          String       @id @default(uuid()) @map("periode_year_id") @db.Char(36)
   period      String       @unique
+  is_active   Boolean      @default(false)
   organisasis Organisasi[]
 }
 
@@ -199,19 +202,39 @@ model Organisasi {
   period_id         String
   period            Period_Year     @relation(fields: [period_id], references: [id])
   organisasi        Organisasi_Type
+  is_suborgan       Boolean
   organisasi_name   String          @map("organisasi_name")
   logo              String
   description       String          @db.LongText
-  vision            String
-  mission           String
+  vision            String?
+  mission           String?
   image             String
   image_description String
   companion         String
-  structure         String          @db.LongText
   contact           String
+  structure         String          @db.LongText
   created_at        DateTime        @default(now())
   updated_at        DateTime        @updatedAt
 
   @@unique([organisasi, period_id])
   @@map("Organisasi")
+}
+
+enum TwibbonType {
+  PHOTO
+  VIDEO
+}
+
+model Twibbon {
+  id         String      @id @default(uuid())
+  title      String
+  frame_url  String
+  slug       String      @unique
+  user       User        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String
+  color_key  String?
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  caption    String?     @db.LongText
+  type       TwibbonType @default(PHOTO)
 }
