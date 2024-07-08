@@ -6,10 +6,10 @@ import { H1, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 export const metadata: Metadata = {
-  title: "Page under maintenance",
+  title: "Akses ditolak",
 };
 
-export default async function Maintenance() {
+export default async function Unauthorized() {
   return (
     <SectionWrapper id="success">
       <div className="flex flex-col justify-center items-center gap-20 px-5 py-[22px]">
@@ -21,10 +21,10 @@ export default async function Maintenance() {
         />
         <div className="flex flex-col items-center justify-center">
           <div className="mb-11 text-center">
-            <H1 className="mb-[18px]">Halaman sedang dalam perbaikan</H1>
+            <H1 className="mb-[18px]">Tidak Dapat Mengakses Halaman</H1>
             <P>
-              Silahkan kembali lagi nanti. Hubungi Admin jika menurut Anda ini
-              tidak benar.
+              Anda tidak memiliki akses pada halaman ini, harap masuk akun Anda
+              atau kembali ke beranda kami.
             </P>
           </div>
           <LinkButton variant={"primary"} href="/">

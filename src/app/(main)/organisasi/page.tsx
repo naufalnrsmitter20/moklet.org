@@ -1,3 +1,4 @@
+import Maintenance from "@/app/unauthorized/page";
 import {
   findLatestPeriod,
   findPeriodWithoutOrganisasi,
@@ -10,6 +11,8 @@ export default async function OrganisasiPage() {
   if (!activePeriod) {
     activePeriod = await findLatestPeriod();
   }
+
+  if (!activePeriod) return <Maintenance />;
 
   return redirect(`/organisasi/${activePeriod.period}`);
 }
