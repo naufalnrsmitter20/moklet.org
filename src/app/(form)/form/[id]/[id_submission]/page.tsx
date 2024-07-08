@@ -5,7 +5,10 @@ import React from "react";
 
 import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
-import { transformToArrayCheckbox } from "@/utils/atomics";
+import {
+  stringifyCompleteDate,
+  transformToArrayCheckbox,
+} from "@/utils/atomics";
 import { findForm } from "@/utils/database/form.query";
 import { findSubmissionWithForm } from "@/utils/database/submission.query";
 
@@ -68,12 +71,23 @@ const page = async ({ params }: Props) => {
         <P className="text-red-500 text-sm mt-4">
           * Menunjukkan pertanyaan yang wajib diisi
         </P>
+        <P className="text-sm mt-2">
+          Saat ini Anda sedang mengedit jawaban yang sudah dikirim pada{" "}
+          <strong>
+            {stringifyCompleteDate(submission.updated_at).replace(
+              /at/,
+              "pukul",
+            )}
+          </strong>
+          .
+        </P>
       </div>
       <Form
         form={form}
         a={session.user?.id as string}
         b={params.id}
         answers={transformToArrayCheckbox(submission.fields)}
+        submission_id={params.id_submission}
       />
     </div>
   );

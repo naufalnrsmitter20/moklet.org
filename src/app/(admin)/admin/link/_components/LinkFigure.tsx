@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGlobeAsia } from "react-icons/fa";
 import { toast } from "sonner";
 
@@ -18,18 +18,28 @@ import {
   UserIcon,
 } from "./Icons";
 import Modal from "./Modal";
+import ClipboardJS from "clipboard";
 
 export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [buttonText, setButtonText] = useState("Copy");
-  function copyToClipboard() {
-    navigator.clipboard.writeText("go.moklet.org/" + link.slug);
-    setButtonText("Copied!");
 
-    setTimeout(() => {
-      setButtonText("Copy");
-    }, 4000);
-  }
+  useEffect(() => {
+    const clipboard = new ClipboardJS(".copy");
+
+    clipboard.on("success", function (e) {
+      e.clearSelection();
+      alert("Link berhasil disalin!");
+    });
+
+    clipboard.on("error", function (e) {
+      console.log("Error copying text");
+    });
+
+    return () => {
+      clipboard.destroy();
+    };
+  }, []);
 
   async function deleteAction(slug: string) {
     if (!confirm("Anda yakin ingin menghapus item ini?")) return;
@@ -49,8 +59,8 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
           <div className="text-wrap">
             <H3 className="lg:text-[28px] text-[20px]">
               <span
-                onClick={() => copyToClipboard()}
-                className="text-black text-wrap break-all hover:text-gray-8 font-semibold hover:cursor-pointer transition-all duration-500 cursor-pointer"
+                data-clipboard-text={"https://go.moklet.org/" + link.slug}
+                className="copy text-black text-wrap break-all hover:text-gray-8 font-semibold hover:cursor-pointer transition-all duration-500 cursor-pointer"
               >
                 {"go.moklet.org/" + link.slug}
               </span>
@@ -78,13 +88,13 @@ export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
       </div>
       <div className="flex items-center gap-2 md:pt-1 pt-5">
         <button
-          onClick={() => copyToClipboard()}
-          className="group border border-primary-400 px-6 py-3 rounded-xl hover:bg-primary-400/50 transition-all duration-500"
+          data-clipboard-text={"https://go.moklet.org/" + link.slug}
+          className="copy group border border-primary-400 px-6 py-3 rounded-xl hover:bg-primary-400/50 transition-all duration-500"
         >
           <span className="flex items-center gap-2 transition-all duration-500">
             <CopyIcon />
             <P className="text-lg font-semibold text-primary-400  transition-all duration-500">
-              {buttonText}
+              Copy
             </P>
           </span>
         </button>

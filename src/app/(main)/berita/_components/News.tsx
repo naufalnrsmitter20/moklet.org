@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { NewsFigure } from "@/app/_components/global/NewsFigure";
-import { H2, H4 } from "@/app/_components/global/Text";
+import { H2, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
 import { findPosts } from "@/utils/database/post.query";
@@ -14,13 +14,13 @@ export default async function News({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) {
-  const page = parseInt(searchParams.page ?? "1");
+  let page = parseInt(searchParams.page ?? "1");
   const paginatedPosts = (await findPosts(
     { published: true },
     page,
   )) as PaginatedResult<PostWithTagsAndUser>;
 
-  if (page > paginatedPosts.meta.lastPage || page < 0) notFound();
+  if (page > paginatedPosts.meta.lastPage || page < 0) page = 0;
 
   return (
     <SectionWrapper id="News">
@@ -33,15 +33,21 @@ export default async function News({
         </H2>
 
         <div className="w-full flex flex-wrap gap-y-[62px] gap-1 justify-between">
-          {paginatedPosts.data.map((post) => (
-            <NewsFigure post={post} key={post.id} />
-          ))}
+          {paginatedPosts.data.length !== 0 ? (
+            paginatedPosts.data.map((post) => (
+              <NewsFigure post={post} key={post.id} />
+            ))
+          ) : (
+            <P>Belum ada berita apa-apa, nih...</P>
+          )}
         </div>
       </div>
-      <PageNav
-        currentPage={paginatedPosts.meta.currentPage}
-        totalPage={paginatedPosts.meta.lastPage}
-      />
+      {paginatedPosts.data.length !== 0 && (
+        <PageNav
+          currentPage={paginatedPosts.meta.currentPage}
+          totalPage={paginatedPosts.meta.lastPage}
+        />
+      )}
     </SectionWrapper>
   );
 }

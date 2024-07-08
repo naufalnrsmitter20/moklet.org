@@ -12,7 +12,7 @@ export default function PageNav({
   currentPage: number;
   totalPage: number;
 }) {
-  if (currentPage > totalPage) return notFound();
+  if (currentPage > totalPage) currentPage = totalPage;
   return (
     <div className="flex gap-[34px] justify-center items-center">
       <LinkButton

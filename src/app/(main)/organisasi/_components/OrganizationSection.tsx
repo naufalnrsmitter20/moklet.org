@@ -9,8 +9,10 @@ import { SuborganSection } from "./Parts/Organizations";
 
 export default function OrganizationSection({
   data,
+  period,
 }: {
   data: SuborganSection;
+  period: string;
 }) {
   return (
     <SectionWrapper id={data.sectionName} key={data.sectionName}>
@@ -28,20 +30,24 @@ export default function OrganizationSection({
           {data.sectionOrgans.map((organisasi) => (
             <Link
               className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-primary-300 duration-300"
-              href={`/organisasi/${organisasi.name}`}
-              key={organisasi.name}
+              href={`/organisasi/${period}/${organisasi.organisasi}`}
+              key={organisasi.organisasi_name}
             >
               <div className="flex items-center gap-[26px]">
                 <Image
-                  alt={organisasi.name}
-                  src={organisasi.image}
+                  alt={organisasi.organisasi_name}
+                  src={organisasi.logo}
                   width={62}
                   height={62}
                   unoptimized
                 />
                 <div className="flex flex-col gap-[6px]">
-                  <H4>{organisasi.name}</H4>
-                  <P>{organisasi.desc}</P>
+                  <H4>{organisasi.organisasi_name}</H4>
+                  <P>
+                    {organisasi.description.length > 50
+                      ? `${organisasi.description.substring(0, 47)}...`
+                      : organisasi.description}
+                  </P>
                 </div>
               </div>
               <ArrowRight className="group-hover:translate-x-1/4 transition-all duration-300" />

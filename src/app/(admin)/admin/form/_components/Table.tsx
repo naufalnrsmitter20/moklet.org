@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
 import { FaRegCopy, FaRegTrashAlt, FaLink, FaComment } from "react-icons/fa";
 import { toast } from "sonner";
+import ClipboardJS from "clipboard";
 
 import { cloneForm, deleteForm } from "@/actions/formAdmin";
 import { FormWithFieldsAndUser } from "@/types/entityRelations";
@@ -15,14 +16,15 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
   const router = useRouter();
 
   const now = new Date().getTime();
+
   const columns: TableColumn<FormWithFieldsAndUser>[] = [
     {
       name: "Link",
       cell: (row: FormWithFieldsAndUser) => (
         <button
-          onClick={() => copyToClipboard(row.id)}
           title="Copy Link"
-          className="p-2 bg-slate-500 rounded-md text-white hover:bg-slate-700 transition-all"
+          data-clipboard-text={`${window.location.origin}/form/${row.id}`}
+          className="copy p-2 bg-slate-500 rounded-md text-white hover:bg-slate-700 transition-all"
         >
           <FaLink />
         </button>
@@ -100,11 +102,6 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
     },
   ];
 
-  function copyToClipboard(id: string) {
-    navigator.clipboard.writeText("https://moklet.org/form/" + id);
-    alert("Link berhasil disalin!");
-  }
-
   async function formDelete(id: string) {
     if (
       !confirm(
@@ -126,11 +123,25 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
     if (action.error) return toast.error(action.message, { id: toastId });
     toast.success(action.message, { id: toastId });
     router.refresh();
-    // router.push(`/admin/form/${action.data?.id}`);
   }
 
   useEffect(() => {
     setLoader(false);
+
+    const clipboard = new ClipboardJS(".copy");
+
+    clipboard.on("success", function (e) {
+      e.clearSelection();
+      alert("Link berhasil disalin!");
+    });
+
+    clipboard.on("error", function (e) {
+      console.log("Error copying text");
+    });
+
+    return () => {
+      clipboard.destroy();
+    };
   }, []);
 
   if (loader) return <div>Loading</div>;

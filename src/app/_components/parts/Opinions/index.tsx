@@ -57,16 +57,12 @@ export default function Opinions() {
           <div className="flex w-full md:w-[25%] justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
             <Saying
               personData={{
-                name: "Budi Prasetyo",
-                role: "Ketua METIC 2024",
+                name: "Reyza Daffa W.",
+                role: "Anggota Pustel 2023/2024",
                 image:
-                  "https://i.scdn.co/image/ab67616d00001e02f99ee9d6d91c399522b0baf9",
+                  "https://res.cloudinary.com/mokletorg/image/upload/v1720278762/assets/testimoni/reja.jpg",
               }}
-              saying="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  ullamcorper odio justo, vitae blandit lacus facilisis lobortis.
-                  Nulla facilisi. Nunc sodales magna nec ante hendrerit, et
-                  vulputate elit fermentum. magna nec ante hendrerit, et vulputate
-                  elit fermentum."
+              saying="Pustel memberikan saya banyak pembelajaran dan pengalaman dalam mengurus Perpustakaan SMK Telkom Malang. Saya disana banyak belajar tentang dunia literasi, cara merawat buku, mendata masuk dan keluarnya buku peminjaman, dan juga cara bekerja sama dengan rekan rekan untuk merawat perpustakaan agar tetap terjaga dan nyaman."
             />
           </div>
         </div>

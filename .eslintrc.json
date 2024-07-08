@@ -39,9 +39,7 @@
       "version": "detect"
     },
     "import/resolver": {
-      "node": {
-        "extensions": [".ts", ".tsx"]
-      }
+      "node": true
     }
   },
   "overrides": [
@@ -56,40 +54,14 @@
   ],
   "rules": {
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "endOfLine": "auto"
       }
     ],
     "react/react-in-jsx-scope": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type"
-        ],
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ],
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "aspects": ["invalidHref", "preferButton"]
-      }
-    ],
     "@typescript-eslint/explicit-function-return-type": [
-      "off",
+      "warn",
       {
         "allowExpressions": true,
         "allowTypedFunctionExpressions": true
@@ -105,15 +77,8 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "no-unused-expressions": "warn",
-    "quotes": [
-      "error",
-      "double",
-      {
-        "avoidEscape": true
-      }
-    ],
-    "comma-dangle": ["error", "always-multiline"]
+    "react/no-children-prop": "warn"
   }
 }

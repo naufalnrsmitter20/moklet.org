@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 
 import { SubmissionWithUserAndFields } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
+import { stringifyCompleteDate } from "@/utils/atomics";
 
 export default function ResponsesTable({
   data,
@@ -31,7 +31,7 @@ export default function ResponsesTable({
     {
       name: "Submitted at",
       selector: (row: SubmissionWithUserAndFields) =>
-        stringifyDate(row.created_at),
+        stringifyCompleteDate(row.created_at),
       sortable: true,
     },
     {
@@ -39,7 +39,7 @@ export default function ResponsesTable({
       selector: (row: SubmissionWithUserAndFields) =>
         row.updated_at.getTime() === row.created_at.getTime()
           ? "No re-submission"
-          : stringifyDate(row.updated_at),
+          : stringifyCompleteDate(row.updated_at),
       sortable: true,
     },
   ];

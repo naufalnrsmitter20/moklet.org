@@ -111,8 +111,33 @@ export const transformToArrayCheckbox = (inputArray: Array<any>) => {
         ? group.value.concat(value)
         : [group.value, value];
     } else {
-      acc.push({ field_id, value: [value] });
+      acc.push({ field_id, value });
     }
     return acc;
   }, []);
 };
+
+export function arrayMove<T>(
+  arr: T[],
+  oldIndex: number,
+  newIndex: number,
+): T[] {
+  if (newIndex >= arr.length) {
+    let k = newIndex - arr.length + 1;
+    while (k--) {
+      arr.push(undefined as unknown as T);
+    }
+  }
+  arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+  return arr; // for testing
+}
+
+export function slugify(str: string, separator = "-") {
+  str = str.replace(/^\s+|\s+$/g, ""); // trim leading/trailing white space
+  str = str.toLowerCase(); // convert string to lowercase
+  str = str
+    .replace(/[^a-z0-9 -]/g, "") // remove any non-alphanumeric characters
+    .replace(/\s+/g, separator) // replace spaces with hyphens
+    .replace(/-+/g, separator); // remove consecutive hyphens
+  return str;
+}

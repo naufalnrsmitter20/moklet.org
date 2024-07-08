@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 import { nextGetServerSession } from "@/lib/next-auth";
 import prisma from "@/lib/prisma";
-import { FormWithFields } from "@/types/entityRelations";
+import { FormWithFields, FormWithSubmissions } from "@/types/entityRelations";
 import { findForm, findFormWithSubmission } from "@/utils/database/form.query";
 import generateRandomSlug from "@/utils/randomSlug";
 
@@ -22,11 +22,15 @@ export const deleteForm = async (form_id: string) => {
   }
 };
 
-export const saveForm = async (data: FormWithFields, is_new = false) => {
+export const saveForm = async (
+  data: FormWithFields,
+  is_new = false,
+  isFieldsEdited = false,
+) => {
   try {
     const session = await nextGetServerSession();
     const { user } = session!;
-
+    console.log(isFieldsEdited);
     if (!is_new) {
       const form = await findFormWithSubmission({ id: data.id });
 
@@ -35,17 +39,8 @@ export const saveForm = async (data: FormWithFields, is_new = false) => {
         return { error: false, message: "Forbidden access" };
       }
 
-      const fieldsToDelete = form?.fields.filter(
-        (item) => data.fields.findIndex((field) => item.id == field.id) == -1,
-      );
-
-      // Delete unused fields
-      await prisma.field.deleteMany({
-        where: { OR: fieldsToDelete.map((item) => ({ id: item.id })) },
-      });
-
       // reject if the form has respondents
-      if (form.submissions.length) {
+      if (form.submissions.length && isFieldsEdited) {
         return {
           error: true,
           message: "Hapus data responden untuk mengedit formulir",
@@ -60,48 +55,69 @@ export const saveForm = async (data: FormWithFields, is_new = false) => {
         data: { ...updateInput },
       });
 
-      await Promise.all(
-        fields.map(async (field, index) => {
-          if (field.options.length) {
-            await prisma.field_Option.deleteMany({
-              where: { field_id: field.id },
+      if (isFieldsEdited) {
+        const fieldsToDelete = form?.fields.filter(
+          (item) => data.fields.findIndex((field) => item.id == field.id) == -1,
+        );
+
+        // Delete unused fields
+        await prisma.field.deleteMany({
+          where: { OR: fieldsToDelete.map((item) => ({ id: item.id })) },
+        });
+
+        await Promise.all(
+          fields.map(async (field, index) => {
+            if (field.options.length) {
+              await prisma.field_Option.deleteMany({
+                where: { field_id: field.id },
+              });
+            }
+
+            const newField = {
+              ...field,
+              fieldNumber: index + 1,
+              form_id: data.id,
+              options: undefined,
+            };
+
+            if (field.id === 0) {
+              field.id = (
+                await prisma.field.create({
+                  data: { ...newField, id: undefined },
+                })
+              ).id;
+            } else {
+              await prisma.field.update({
+                where: { id: newField.id },
+                data: newField,
+              });
+            }
+            const options = field.options.map((option) => {
+              return { ...option, id: undefined, field_id: field.id };
             });
-          }
-          const options = field.options.map((option) => {
-            return { ...option, id: undefined };
-          });
 
-          await prisma.field_Option.createMany({ data: options });
-
-          const newField = {
-            ...field,
-            fieldNumber: index + 1,
-            form_id: data.id,
-            options: undefined,
-          };
-
-          if (field.id === 0) {
-            await prisma.field.create({ data: { ...newField, id: undefined } });
-          } else {
-            await prisma.field.update({
-              where: { id: newField.id },
-              data: newField,
-            });
-          }
-        }),
-      );
+            await prisma.field_Option.createMany({ data: options });
+          }),
+        );
+      }
 
       revalidatePath("/admin/form");
       revalidatePath("/admin/form/[id]");
       return {
         error: false,
         message: "Berhasil menyimpan formulir",
+        data: { id: data.id },
       };
     } else {
       const { _count, fields, ...formData } = data;
-      const createInput = formData;
+      const createInput: Prisma.FormUncheckedCreateInput = formData;
+
       const createdForm = await prisma.form.create({
-        data: { ...createInput, id: generateRandomSlug() },
+        data: {
+          ...createInput,
+          id: generateRandomSlug(),
+          user_id: user?.id || "",
+        },
       });
 
       await Promise.all(
@@ -151,12 +167,14 @@ export const cloneForm = async (id: string) => {
     });
     if (!form) throw new Error("Form tidak dimukan");
 
+    const createFormInput = { ...form, _count: undefined };
+
     if (user?.role !== "SuperAdmin" && user?.id != form.user_id) {
       return { error: false, message: "Forbidden access" };
     }
 
     const newForm: Prisma.FormUncheckedCreateInput = {
-      ...form,
+      ...createFormInput,
       id: generateRandomSlug(),
       title: "Salinan " + form.title,
       created_at: new Date(),

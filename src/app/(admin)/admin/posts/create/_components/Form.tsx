@@ -26,7 +26,7 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState(
-    "https://www.waterfieldtechnologies.com/wp-content/uploads/2019/02/placeholder-image-gray-3x2-300x200.png",
+    "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
 
   useEffect(() => {
@@ -51,11 +51,11 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
       <form
         action={async (data) => {
           const result = await postCreate(data, value, tag!);
-          if (result.error) {
-            return toast.error(result.message);
+          if (result.error || !result.result?.id) {
+            return toast.error(result.message || "Failed to create post");
           }
           toast.success(result.message);
-          redirect("/admin/posts");
+          redirect(`/admin/posts/${result.result?.id}`);
         }}
         className="flex flex-col gap-y-3"
       >
@@ -77,7 +77,7 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
         <TextArea
           label="Deskripsi"
           name="desc"
-          placeholder="berita tentang bblaballala"
+          placeholder="blablabla bla bla"
           required
         />
         <TextField

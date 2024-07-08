@@ -27,7 +27,7 @@ export function SmallSectionWrapper({
 }: Readonly<SectionWrapperProps>) {
   return (
     <section
-      className={cn("w-full py-[32px] mt-[42px] xl:mt-0", className)}
+      className={cn("w-full py-[32px] pt-[42px] xl:mt-0", className)}
       id={id}
     >
       {children}

@@ -65,3 +65,15 @@ export type TagWithPostCount = Prisma.TagGetPayload<{
 export type UserWithLastlog = Prisma.UserGetPayload<{
   include: { userAuth: { select: { last_login: true } } };
 }>;
+
+export type OrganizationWithPeriod = Prisma.OrganisasiGetPayload<{
+  include: { period: true };
+}>;
+
+export type PeriodWithOrganisasi = Prisma.Period_YearGetPayload<{
+  include: { organisasis: { select: { organisasi: true; id: true } } };
+}>;
+
+export type TwibbonWithUser = Prisma.TwibbonGetPayload<{
+  include: { user: true };
+}>;

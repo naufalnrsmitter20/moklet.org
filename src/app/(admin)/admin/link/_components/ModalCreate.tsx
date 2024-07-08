@@ -20,7 +20,7 @@ export default function ModalCreate({
   async function create(formdata: FormData) {
     const toastId = toast.loading("Loading...");
     const result = await addLink(formdata);
-    if (!result.error) {
+    if (result.error) {
       toast.error(result.message, { id: toastId });
       return ref.current?.reset();
     }

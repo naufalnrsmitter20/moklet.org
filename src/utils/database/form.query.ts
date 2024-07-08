@@ -13,7 +13,7 @@ export const findForm = async (filter: Prisma.FormWhereInput) => {
   return await prisma.form.findFirst({
     where: filter,
     include: {
-      fields: { include: { options: true } },
+      fields: { include: { options: true }, orderBy: { fieldNumber: "asc" } },
       _count: { select: { submissions: true } },
     },
   });

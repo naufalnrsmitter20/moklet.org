@@ -1,4 +1,5 @@
 import { Roles } from "@prisma/client";
+import { MdAccessTimeFilled } from "react-icons/md";
 
 export interface ProtectedRoutes {
   title: string;
@@ -79,8 +80,17 @@ export const protectedRoutes: ProtectedRoutes[] = [
     roles: "All",
   },
   {
-    title: "Sub-Organ Setup",
-    path: "/admin/sub-organ",
+    title: "Twibbon",
+    path: "/admin/twibbon",
+    regex: /\/admin\/twibbon(\/|)[A-Za-z]?/i,
+    icon: `
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25px" width="25px" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M20 4h-4l-4-4-4 4H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H4V6h4.52l3.52-3.5L15.52 6H20v14zM6 18h12V8H6v10zm2-8h8v6H8v-6z"></path></svg>
+    `,
+    roles: "All",
+  },
+  {
+    title: "Info Organ Setup",
+    path: "/admin/organisasi",
     regex: /\/admin\/sub-organ(\/|)[A-Za-z]?/i,
     icon: `
     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,6 +115,20 @@ export const protectedRoutes: ProtectedRoutes[] = [
     </svg>
     `,
     roles: ["SuperAdmin", "Admin", "MPK"],
+  },
+  {
+    title: "Period Config",
+    path: "/admin/period-config",
+    regex: /\/admin\/period-config(\/|)[A-Za-z]?/i,
+    icon: `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25px" width="25px" xmlns="http://www.w3.org/2000/svg"><g id="Calendar"><path d="M18.438,4.954H16.5c0-0.346,0-0.691,0-1.036c0-0.124,0-0.248,0-0.372c0-0.262-0.23-0.512-0.5-0.5
+    c-0.271,0.012-0.5,0.22-0.5,0.5c0,0.469,0,0.939,0,1.408h-7c0-0.346,0-0.691,0-1.036c0-0.124,0-0.248,0-0.372
+    c0-0.262-0.23-0.512-0.5-0.5c-0.271,0.012-0.5,0.22-0.5,0.5c0,0.469,0,0.939,0,1.408H5.562c-1.378,0-2.5,1.122-2.5,2.5v11
+    c0,1.379,1.122,2.5,2.5,2.5h12.875c1.379,0,2.5-1.121,2.5-2.5v-11C20.938,6.076,19.816,4.954,18.438,4.954z M5.562,5.954H7.5
+    c0,0.073,0,0.147,0,0.22c0,0.124,0,0.248,0,0.372c0,0.262,0.23,0.512,0.5,0.5c0.271-0.012,0.5-0.22,0.5-0.5c0-0.197,0-0.394,0-0.592
+    h7c0,0.073,0,0.147,0,0.22c0,0.124,0,0.248,0,0.372c0,0.262,0.23,0.512,0.5,0.5c0.271-0.012,0.5-0.22,0.5-0.5
+    c0-0.197,0-0.394,0-0.592h1.937c0.827,0,1.5,0.673,1.5,1.5v1.584H4.062V7.454C4.062,6.627,4.735,5.954,5.562,5.954z M18.438,19.954
+    H5.562c-0.827,0-1.5-0.673-1.5-1.5v-8.416h15.875v8.416C19.938,19.281,19.265,19.954,18.438,19.954z"></path></g></svg>`,
+    roles: ["SuperAdmin", "Admin"],
   },
   {
     title: "Users",
