@@ -32,7 +32,7 @@ const page = async ({ params }: Props) => {
   const session = await nextGetServerSession();
   if (!session)
     return redirect(
-      `/auth/signin?callbackUrl=/form/${params.id}/${params.id_submission}`,
+      `/api/auth/signin?callbackUrl=/form/${params.id}/${params.id_submission}`,
       RedirectType.replace,
     );
 
@@ -64,7 +64,7 @@ const page = async ({ params }: Props) => {
         <P className="mt-4 font-medium">{session.user?.name}</P>{" "}
         <Link
           className="hover:cursor-pointer text-info-500 hover:text-info-700 transition-all"
-          href={"/auth/signout?callbackUrl=/form/" + params.id}
+          href={"/api/auth/signout?callbackUrl=/form/" + params.id}
         >
           Ganti akun
         </Link>
