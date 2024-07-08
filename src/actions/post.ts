@@ -90,6 +90,9 @@ export async function postCreate(
       updated_at: new Date(),
       published: false,
     });
+
+    if (!newPost) return { error: true, message: "Gagal membuat post!" };
+
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
 
@@ -107,6 +110,8 @@ export async function postUpdate(
   id: string,
 ) {
   const session = await nextGetServerSession();
+
+  if (!session?.user?.id) return { error: true, message: "Unauthorized" };
   try {
     const title = data.get("title") as string;
     const slug = data.get("slug") as string;
@@ -124,10 +129,8 @@ export async function postUpdate(
       upload = await imageUploader(Buffer.from(ABuffer));
     }
 
-    delete session?.user?.image;
-
-    await updatePost(
-      { id: id },
+    const update = await updatePost(
+      { id: id, user_id: session?.user.id },
       {
         slug: slug ?? undefined,
         content: MD ?? undefined,
@@ -138,6 +141,7 @@ export async function postUpdate(
         updated_at: new Date(),
       },
     );
+    if (!update) return { error: true, message: "Gagal update post!" };
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
     revalidatePath(`/admin/posts/[id]`);

@@ -39,6 +39,9 @@ export const upsertPeriod = async (id: string | null, data: FormData) => {
     }
 
     revalidatePath("/admin/period-config");
+    revalidatePath("/organisasi");
+    revalidatePath("/organisasi/[period]");
+    revalidatePath("/organisasi/[period]/[slug]");
     return { message: "Berhasil disimpan!", error: false };
   } catch (e) {
     console.error(e);
@@ -63,6 +66,9 @@ export const deletePeriodById = async (id: string) => {
     if (!del) throw new Error("Delete failed");
 
     revalidatePath("/admin/period-config");
+    revalidatePath("/organisasi");
+    revalidatePath("/organisasi/[period]");
+    revalidatePath("/organisasi/[period]/[slug]");
     return { message: "Berhasil dihapus!", error: false };
   } catch (e) {
     console.error(e);

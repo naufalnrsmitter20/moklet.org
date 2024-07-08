@@ -69,7 +69,7 @@ export const findPost = async (filter: Prisma.PostWhereInput) => {
     },
   });
 };
-export const createPost = async (data: Prisma.PostCreateInput) => {
+export const createPost = async (data: Prisma.PostUncheckedCreateInput) => {
   return await prisma.post.create({ data });
 };
 

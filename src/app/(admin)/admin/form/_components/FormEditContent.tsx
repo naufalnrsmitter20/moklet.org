@@ -52,7 +52,7 @@ export default function FormEditContent({
     if (action?.error) return toast.error(action.message, { id: toastId });
     toast.success(action?.message, { id: toastId });
     setSaved(true);
-    router.refresh();
+    router.push(`/admin/form/${action.data?.id}`);
   }
 
   async function clearResponse() {
