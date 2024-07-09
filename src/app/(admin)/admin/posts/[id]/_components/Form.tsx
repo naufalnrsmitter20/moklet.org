@@ -94,12 +94,7 @@ export default function EditForm({
         value={slug}
         placeholder="berita-paling-panas-2024"
       />
-      <Tags
-        tags={tags}
-        setState={setTag}
-        selected={tag}
-        role={post.user?.role}
-      />
+      <Tags tags={tags} setState={setTag} state={tag} role={post.user?.role} />
       <div className="flex flex-col">
         <label htmlFor="thumbnail" className="">
           Thumbnail
