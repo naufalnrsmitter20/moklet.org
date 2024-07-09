@@ -29,7 +29,7 @@ export default async function Edit({ params }: { params: { id: string } }) {
           <H1>Edit Post</H1>
           <PublishButton state={data.published} id={data.id} />
         </div>
-        <EditForm tags={Tags} post={data!} />
+        <EditForm tags={Tags} post={data} />
       </div>
     );
 

@@ -164,7 +164,7 @@ export async function updatePostStatus(current_state: boolean, id: string) {
     );
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
-    revalidatePath(`/admin/posts/[id]`);
+    revalidatePath(`/admin/posts/[id]`, "page");
     return { message: "Berhasil megupdate post!" };
   } catch (e) {
     console.log(e);
