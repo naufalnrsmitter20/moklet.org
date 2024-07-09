@@ -24,16 +24,16 @@ export default function OrganizationSection({
             </div>
             <H2>{data.sectionName}</H2>
           </div>
-          <P>{data.sectionDesc}</P>
+          <P className="text-justify md:text-left">{data.sectionDesc}</P>
         </div>
         <div className="w-full lg:w-[618px] flex flex-col gap-[18px]">
           {data.sectionOrgans.map((organisasi) => (
             <Link
-              className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-[42px] group transition-all hover:border-primary-300 duration-300"
+              className="w-full rounded-xl border p-[22px] border-neutral-400 flex items-center justify-between gap-0 md:gap-[42px] group transition-all hover:border-primary-300 duration-300"
               href={`/organisasi/${period}/${organisasi.organisasi}`}
               key={organisasi.organisasi_name}
             >
-              <div className="flex items-center gap-[26px]">
+              <div className="w-full flex items-center gap-8">
                 <Image
                   alt={organisasi.organisasi_name}
                   src={organisasi.logo}
@@ -42,9 +42,9 @@ export default function OrganizationSection({
                   unoptimized
                   className="w-[62px] h-[62px] object-cover"
                 />
-                <div className="flex flex-col gap-[6px]">
-                  <H4>{organisasi.organisasi_name}</H4>
-                  <P>
+                <div className="flex flex-col gap-[6px] w-[80%]">
+                  <H4>{organisasi.organisasi}</H4>
+                  <P className="hidden md:block">
                     {organisasi.description.length > 50
                       ? `${organisasi.description.substring(0, 47)}...`
                       : organisasi.description}

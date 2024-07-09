@@ -31,6 +31,7 @@ enum Roles {
   MAC
   METIC
   COMET
+  DA
   Guest
 }
 
@@ -186,6 +187,7 @@ enum Organisasi_Type {
   METIC
   COMET
   PUSTEL
+  DA
 
   @@map("Organisasi_Type")
 }

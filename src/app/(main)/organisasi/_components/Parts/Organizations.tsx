@@ -51,20 +51,20 @@ export default async function Organizations({
       sectionName: "Organisasi",
       sectionLogo: <FaGlobe className="w-[42px] h-[42px]" />,
       sectionDesc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
+        "Struktur organisasi siswa, berbagai kegiatan yang dijalankan, serta peran penting Organisasi dalam membentuk kepemimpinan siswa di SMK Telkom Malang.",
       sectionOrgans: organ,
     },
     {
       sectionName: "Sub-organisasi",
       sectionLogo: <FaUserGroup className="w-[42px] h-[42px]" />,
       sectionDesc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
+        "Sub-Organisasi di Moklet.org adalah bagian penting dari organisasi siswa di SMK Telkom Malang, yang menampilkan beragam kegiatan dan inovasi yang dijalankan di bawah pengawasan OSIS dan MPK.",
       sectionOrgans: subOrgan,
     },
   ];
 
   return (
-    <div className="pt-[60px] md:pt-0">
+    <div className="pt-[20px] md:pt-0">
       <PeriodSelect period={period} periods={periods} />
       {organizations.map((org) => (
         <OrganizationSection data={org} key={org.sectionName} period={period} />

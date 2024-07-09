@@ -23,7 +23,7 @@ export default function About() {
                 Portal Kegiatan Organisasi dan Sub-Organisasi di Moklet
               </UnderlinedTitle>
               <P>
-                moklet.org merupakan sebuah portal informasi yang berisikan
+                Moklet.org merupakan sebuah portal informasi yang berisikan
                 kegiatan-kegiatan yang dilakukan oleh organisasi dan
                 sub-organisasi di Moklet (SMK Telkom Malang).
               </P>
@@ -65,7 +65,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <LinkButton variant={"primary"} className="w-fit" href="/organisasi">
+          <LinkButton variant={"primary"} className="w-fit" href="/tentang">
             Baca lebih detail
           </LinkButton>
         </div>
