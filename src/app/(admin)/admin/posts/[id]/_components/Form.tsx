@@ -46,6 +46,7 @@ export default function EditForm({
       });
     }
     setTag(selected);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.role]);
 
   return (
