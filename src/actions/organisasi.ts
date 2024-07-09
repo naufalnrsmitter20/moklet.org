@@ -78,6 +78,7 @@ export async function organisasiUpsert({
     revalidatePath("/organisasi");
     revalidatePath("/organisasi/[period]");
     revalidatePath("/organisasi/[period]/[slug]");
+    revalidatePath("/admin/period-config");
     return { error: false, message: "Sukses update data" };
   } catch (e) {
     console.log(e);
