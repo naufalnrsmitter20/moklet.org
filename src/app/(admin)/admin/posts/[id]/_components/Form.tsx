@@ -18,10 +18,10 @@ import Tags from "./Tags";
 export default function EditForm({
   tags,
   post,
-}: {
+}: Readonly<{
   tags: TagWithPostCount[];
   post: PostWithTagsAndUser;
-}) {
+}>) {
   const [value, setValue] = useState(post.content);
   const [image, setImage] = useState(post.thumbnail);
   const [slug, setSlug] = useState(post.slug);
@@ -36,8 +36,9 @@ export default function EditForm({
 
   useEffect(() => {
     if (
-      selected.map((i) => i.value).indexOf(post.user.role.toString()) === -1 &&
-      !(session?.user?.role === "Admin" || session?.user?.role === "SuperAdmin")
+      session?.user?.role &&
+      selected.findIndex((i) => i.value === session?.user?.role) === -1 &&
+      !session?.user?.role.includes("Admin")
     ) {
       selected.unshift({
         label: post.user.role.toString(),
@@ -45,7 +46,7 @@ export default function EditForm({
       });
     }
     setTag(selected);
-  }, [post.user.role, selected, session?.user?.role]);
+  }, [session?.user?.role]);
 
   return (
     <form
