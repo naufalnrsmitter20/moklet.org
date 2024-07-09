@@ -38,16 +38,16 @@ export default async function Edit({
   let organization = await findOrganisasi({
     organisasi_period_id: {
       period_id: periode.id,
-      organisasi: params.organisasi as Organisasi_Type,
+      organisasi: params.organisasi,
     },
   });
 
   if (!organization) {
-    const findNewest = allPeriod[0].organisasis.find(
-      (item) => item.organisasi == organisasi,
+    const findNewest = allPeriod.find((item) =>
+      item.organisasis.find((org) => org.organisasi == organisasi),
     );
-    if (findNewest) {
-      organization = await findOrganisasi({ id: findNewest.id });
+    if (findNewest?.organisasis[0]) {
+      organization = await findOrganisasi({ id: findNewest.organisasis[0].id });
       organization!.id = "";
     } else
       organization = {
