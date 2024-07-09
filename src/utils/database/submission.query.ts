@@ -22,7 +22,10 @@ export const findSubmissionWithForm = async (
       fields: true,
       form: {
         include: {
-          fields: { include: { options: true } },
+          fields: {
+            include: { options: true },
+            orderBy: { fieldNumber: "asc" },
+          },
           _count: { select: { submissions: true } },
         },
       },

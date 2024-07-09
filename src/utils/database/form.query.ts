@@ -26,7 +26,7 @@ export const findFormWithSubmission = async (filter: Prisma.FormWhereInput) => {
       submissions: {
         include: { user: true, fields: { include: { field: true } } },
       },
-      fields: { include: { options: true } },
+      fields: { include: { options: true }, orderBy: { fieldNumber: "asc" } },
       user: true,
     },
   });
@@ -37,7 +37,7 @@ export const findFormsWithUser = async (filter?: Prisma.FormWhereInput) => {
     where: filter,
     orderBy: { created_at: "desc" },
     include: {
-      fields: { orderBy: { fieldNumber: "desc" }, include: { options: true } },
+      fields: { orderBy: { fieldNumber: "asc" }, include: { options: true } },
       user: { select: { name: true } },
       _count: { select: { submissions: true } },
     },

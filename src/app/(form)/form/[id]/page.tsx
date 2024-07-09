@@ -38,7 +38,7 @@ const page = async ({ params }: Props) => {
     );
 
   const form = await findForm({ id: params.id });
-  console.log(form)
+  console.log(form);
 
   if (!form) return notFound();
   if (!form.is_open) return <ForbiddenForm />;
