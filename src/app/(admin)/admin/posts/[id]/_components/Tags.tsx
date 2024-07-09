@@ -1,13 +1,16 @@
 "use client";
 
 import { Roles, Tag } from "@prisma/client";
+import { Session } from "next-auth";
 import { Dispatch, SetStateAction } from "react";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { toast } from "sonner";
 
+import { createTag } from "@/actions/post";
 import { TagWithPostCount } from "@/types/entityRelations";
 
-interface SelectTag {
+interface selectTag {
   value: string;
   label: string;
 }
@@ -15,43 +18,43 @@ interface SelectTag {
 export default function Tags({
   tags,
   setState,
-  selected,
+  state,
   role,
-}: {
+}: Readonly<{
   tags: TagWithPostCount[];
   setState: Dispatch<
     SetStateAction<MultiValue<{ value: string; label: string }>>
   >;
-  selected: MultiValue<{ value: string; label: string }>;
+  state: MultiValue<selectTag> | undefined;
   role: Roles;
-}) {
+}>) {
   const options = tags.map((option: Tag) => ({
     value: option.tagName,
     label: option.tagName,
   }));
 
   const onChange = (
-    newValue: OnChangeValue<SelectTag, true>,
-    actionMeta: ActionMeta<SelectTag>,
+    newValue: OnChangeValue<selectTag, true>,
+    actionMeta: ActionMeta<selectTag>,
   ) => {
     switch (actionMeta.action) {
       case "remove-value":
       case "pop-value":
-        if (actionMeta.removedValue.value === role.toString()) {
+        if (actionMeta.removedValue.value === role) {
           return;
         }
         break;
       case "clear":
         newValue = tags
-          .filter((v) => v.tagName === role.toString())
+          .filter((v) => v.tagName === role)
           .map((tag) => ({ value: tag.tagName, label: tag.tagName }));
         break;
     }
 
     setState(
       newValue
-        .filter((v) => v.value === role.toString())
-        .concat(newValue.filter((v) => v.value !== role.toString())),
+        .filter((v) => v.value === role)
+        .concat(newValue.filter((v) => v.value !== role)),
     );
   };
 
@@ -68,12 +71,12 @@ export default function Tags({
       <CreatableSelect
         isMulti
         unstyled
+        value={state}
         options={options}
-        isClearable={options.some((v) => v.value !== role.toString())}
         onChange={onChange}
-        value={selected}
         name="tags"
         required
+        isClearable={options.some((v) => v.value !== role)}
         classNames={{
           control: () =>
             "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",
@@ -84,6 +87,23 @@ export default function Tags({
           menuList: () => "text-base flex flex-col gap-1",
           option: () =>
             "hover:bg-neutral-300 hover:cursor-pointer transition-all duration-500 rounded-lg p-2",
+        }}
+        onCreateOption={async (inputValue: string) => {
+          const toastId = toast.loading("Membuat Tag....");
+          const result = await createTag(inputValue);
+          if (result.error) {
+            return toast.error(result.message, { id: toastId });
+          }
+
+          const newValue = result.tag?.tagName;
+          if (newValue) {
+            setState(
+              state
+                ? [...state, { value: newValue, label: newValue }]
+                : [{ value: newValue, label: newValue }],
+            );
+          }
+          toast.success(result.message, { id: toastId });
         }}
       />
     </div>
