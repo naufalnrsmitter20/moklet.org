@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 import Image from "@/app/_components/global/Image";
-
-import { H1, H2, P } from "../global/Text";
-import ArrowIcon from "../icons/ArrowIcon";
+import { H1, H2, P } from "@/app/_components/global/Text";
+import ArrowIcon from "@/app/_components/icons/ArrowIcon";
 
 export default function Header() {
   return (

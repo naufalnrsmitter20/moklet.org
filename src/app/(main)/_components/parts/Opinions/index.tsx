@@ -1,6 +1,5 @@
-import { UnderlinedTitle } from "../../global/Text";
-import { SectionWrapper } from "../../global/Wrapper";
-
+import { UnderlinedTitle } from "@/app/_components/global/Text";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import Saying from "./Saying";
 
 export default function Opinions() {

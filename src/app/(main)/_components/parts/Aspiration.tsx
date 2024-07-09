@@ -1,9 +1,8 @@
+import { Button } from "@/app/_components/global/Button";
+import { TextArea, TextField } from "@/app/_components/global/Input";
+import { H2, P } from "@/app/_components/global/Text";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import EclipseIcon from "@/app/_components/icons/EclipseIcon";
-
-import { Button } from "../global/Button";
-import { TextArea, TextField } from "../global/Input";
-import { H2, P } from "../global/Text";
-import { SectionWrapper } from "../global/Wrapper";
 
 export default function Aspiration() {
   return (

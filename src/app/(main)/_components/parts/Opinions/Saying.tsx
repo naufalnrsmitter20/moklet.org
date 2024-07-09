@@ -1,5 +1,4 @@
-import { P } from "../../global/Text";
-
+import { P } from "@/app/_components/global/Text";
 import PersonData, { PersonDataProps } from "./PersonData";
 
 interface SayingProps {

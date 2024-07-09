@@ -24,7 +24,12 @@ export function H1({ children, className }: Readonly<TextProps>) {
 
 export function P({ children, className }: Readonly<TextProps>) {
   return (
-    <p className={cn("text-neutral-500 leading-[160%]", className)}>
+    <p
+      className={cn(
+        "text-neutral-500 leading-[160%] text-sm sm:text-base",
+        className,
+      )}
+    >
       {children}
     </p>
   );

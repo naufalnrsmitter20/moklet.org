@@ -30,11 +30,19 @@ export default async function News({
           Berita Terbaru Organisasi dan Sub Organ Moklet
         </H2>
 
-        <div className="w-full flex flex-wrap gap-y-[62px] gap-1 justify-between">
+        <div
+          className="w-full flex flex-wrap gap-y-[62px] gap-1 justify-between"
+          id="news-container"
+        >
           {paginatedPosts.data.length !== 0 ? (
-            paginatedPosts.data.map((post) => (
-              <NewsFigure post={post} key={post.id} />
-            ))
+            <>
+              {paginatedPosts.data.map((post) => (
+                <NewsFigure post={post} key={post.id} />
+              ))}
+              {paginatedPosts.data.length % 2 === 0 && (
+                <div className="hidden md:block md:w-[31.2%]"></div>
+              )}
+            </>
           ) : (
             <P>Belum ada berita apa-apa, nih...</P>
           )}

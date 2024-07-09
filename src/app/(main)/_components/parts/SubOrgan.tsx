@@ -1,8 +1,7 @@
+import LinkButton from "@/app/_components/global/Button";
 import Image from "@/app/_components/global/Image";
-
-import LinkButton from "../global/Button";
-import { H1, P, UnderlinedTitle } from "../global/Text";
-import { SectionWrapper } from "../global/Wrapper";
+import { H1, P, UnderlinedTitle } from "@/app/_components/global/Text";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 function SubOrganCount({
   count,
