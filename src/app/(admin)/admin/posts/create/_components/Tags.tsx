@@ -96,6 +96,15 @@ export default function Tags({
           if (result.error) {
             return toast.error(result.message, { id: toastId });
           }
+
+          const newValue = result.tag?.tagName;
+          if (newValue) {
+            setState(
+              state
+                ? [...state, { value: newValue, label: newValue }]
+                : [{ value: newValue, label: newValue }],
+            );
+          }
           toast.success(result.message, { id: toastId });
         }}
       />

@@ -23,15 +23,20 @@ export default function Modal({
 
   async function update(formdata: FormData) {
     const toastId = toast.loading("Loading...");
-    const frameUrl = formdata.get("frame_url") as File;
+    try {
+      const frameUrl = formdata.get("frame_url") as File;
 
-    if (frameUrl.name == "") formdata.delete("frame_url");
+      if (frameUrl.name == "") formdata.delete("frame_url");
 
-    const result = await upsertTwibbon(data?.id as string, formdata);
-    if (!result.error) {
-      toast.success(result.message, { id: toastId });
-      setIsOpenModal(false);
-    } else toast.error(result.message, { id: toastId });
+      const result = await upsertTwibbon(data?.id as string, formdata);
+      if (result?.error) {
+        toast.success(result.message, { id: toastId });
+        setIsOpenModal(false);
+      } else toast.error(result.message, { id: toastId });
+    } catch (e) {
+      console.error(e);
+      toast.error("File terlalu besar!", { id: toastId });
+    }
   }
 
   return (
