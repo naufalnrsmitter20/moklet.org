@@ -4,13 +4,12 @@ import DataTable, { TableColumn } from "react-data-table-component";
 import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
 import { toast } from "sonner";
 
-import { deleteUserById } from "@/actions/user";
-import { Organisasi_Type, Period_Year } from "@prisma/client";
+import { Organisasi_Type } from "@prisma/client";
 
-import Modal from "./Modal";
+import { deletePeriodById } from "@/actions/periodConfig";
 import cn from "@/lib/clsx";
 import { PeriodWithOrganisasi } from "@/types/entityRelations";
-import { deletePeriodById } from "@/actions/periodConfig";
+import Modal from "./Modal";
 
 export default function PeriodTable({
   data,

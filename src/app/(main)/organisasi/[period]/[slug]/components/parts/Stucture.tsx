@@ -1,7 +1,5 @@
-import Image from "@/app/_components/global/Image";
-import { P } from "@/app/_components/global/Text";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import MdViewer from "@/app/(main)/berita/[slug]/_components/MdViewer";
+import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 export default function Structure({ structure }: { structure: string }) {
   return (

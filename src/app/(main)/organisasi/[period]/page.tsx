@@ -1,4 +1,3 @@
-import { Organisasi_Type } from "@prisma/client";
 import { notFound } from "next/navigation";
 import Organizations from "../_components/Parts/Organizations";
 

@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-
 import ArrowLeft from "@/app/(main)/berita/_components/icons/ArrowLeft";
 import ArrowRight from "@/app/(main)/berita/_components/icons/ArrowRight";
 import LinkButton from "@/app/_components/global/Button";

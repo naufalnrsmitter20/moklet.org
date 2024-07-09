@@ -13,14 +13,14 @@ export default async function PostPanel() {
   const posts = (await findPosts(
     session?.user?.role === "Admin" || session?.user?.role === "SuperAdmin"
       ? {}
-      : { user: { role: session?.user?.role! } },
+      : { user: { role: session?.user?.role } },
   )) as PostWithTagsAndUser[];
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between mb-5">
         <div>
-          <H2 className="font-semibold">Posts Blog </H2>
+          <H2 className="font-semibold">Posts Panel</H2>
           <P>Share your organ activity, event, or promotion </P>
         </div>
         <div>

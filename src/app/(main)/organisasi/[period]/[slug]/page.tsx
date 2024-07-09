@@ -32,7 +32,10 @@ export default async function Organ({
   if (!organisasi) return notFound();
 
   const relatedNews = await findNewestPost(5, {
-    tags: { some: { tagName: organisasiType } },
+    AND: {
+      tags: { some: { tagName: organisasiType } },
+      published: true,
+    },
   });
 
   return (

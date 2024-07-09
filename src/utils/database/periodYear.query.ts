@@ -1,4 +1,4 @@
-import { Organisasi_Type, Period_Year, Prisma } from "@prisma/client";
+import { Period_Year, Prisma } from "@prisma/client";
 
 import prisma from "@/lib/prisma";
 

@@ -1,4 +1,3 @@
-import { SelectField } from "@/app/_components/global/Input";
 import { H2, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import Image from "next/image";

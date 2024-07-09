@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 import { nextGetServerSession } from "@/lib/next-auth";
 import prisma from "@/lib/prisma";
-import { FormWithFields, FormWithSubmissions } from "@/types/entityRelations";
+import { FormWithFields } from "@/types/entityRelations";
 import { findForm, findFormWithSubmission } from "@/utils/database/form.query";
 import generateRandomSlug from "@/utils/randomSlug";
 
@@ -48,6 +48,7 @@ export const saveForm = async (
         };
       }
 
+      // eslint-disable-next-line no-unused-vars
       const { _count, fields, ...formData } = data;
       const updateInput = formData;
 
@@ -110,6 +111,7 @@ export const saveForm = async (
         data: { id: data.id },
       };
     } else {
+      // eslint-disable-next-line no-unused-vars
       const { _count, fields, ...formData } = data;
       const createInput: Prisma.FormUncheckedCreateInput = formData;
 

@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-
 import { NewsFigure } from "@/app/_components/global/NewsFigure";
 import { H2, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";

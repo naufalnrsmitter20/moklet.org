@@ -46,12 +46,17 @@ export default function EditForm({
       });
     }
     setTag(selected);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.role]);
 
   return (
     <form
       action={async (data) => {
         const toastId = toast.loading("Loading...");
+
+        const thumbnailUrl = data.get("thumbnail") as File;
+        if (thumbnailUrl.name === "") data.delete("thumbnail");
+
         const result = await postUpdate(data, value, tag, post.id);
         if (result.error) {
           return toast.error(result.message, { id: toastId });
@@ -67,7 +72,7 @@ export default function EditForm({
         required={true}
         handleChange={(e) => {
           const splitString = e.currentTarget.value
-            .replace(/[^a-zA-Z0-9 ]/g, "")
+            .replace(/[^a-zA-Z0-9]/g, "")
             .toLowerCase()
             .split(" ");
           const slug = splitString.join("-");
@@ -89,7 +94,12 @@ export default function EditForm({
         value={slug}
         placeholder="berita-paling-panas-2024"
       />
-      <Tags tags={tags} setState={setTag} state={tag} role={post?.user?.role} />
+      <Tags
+        tags={tags}
+        setState={setTag}
+        selected={tag}
+        role={post.user?.role}
+      />
       <div className="flex flex-col">
         <label htmlFor="thumbnail" className="">
           Thumbnail

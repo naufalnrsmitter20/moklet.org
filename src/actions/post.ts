@@ -136,7 +136,7 @@ export async function postUpdate(
         content: MD ?? undefined,
         title: title ?? undefined,
         description: description ?? undefined,
-        thumbnail: upload!.data?.url ?? undefined,
+        thumbnail: upload?.data?.url ?? undefined,
         tags: { connectOrCreate: tag },
         updated_at: new Date(),
       },
