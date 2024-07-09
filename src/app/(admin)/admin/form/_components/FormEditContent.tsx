@@ -52,7 +52,7 @@ export default function FormEditContent({
     if (action?.error) return toast.error(action.message, { id: toastId });
     toast.success(action?.message, { id: toastId });
     setSaved(true);
-    router.refresh();
+    router.push(`/admin/form/${action.data?.id}`);
   }
 
   async function clearResponse() {
@@ -116,6 +116,7 @@ export default function FormEditContent({
             type="checkbox"
             name="allow_edit"
             value="true"
+            disabled={!formData.submit_once}
             defaultChecked={formData.allow_edit}
             className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
             id="allow_edit"
@@ -135,7 +136,8 @@ export default function FormEditContent({
             type="checkbox"
             name="submit_once"
             value="true"
-            defaultChecked={formData.submit_once}
+            disabled={formData.allow_edit}
+            defaultChecked={formData.allow_edit || formData.submit_once}
             className="w-5 h-5 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
             id="submit_once"
             onChange={(e) =>

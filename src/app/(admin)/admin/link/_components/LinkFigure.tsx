@@ -20,9 +20,10 @@ import {
 import Modal from "./Modal";
 import ClipboardJS from "clipboard";
 
-export default function LinkFigure({ link }: { link: LinkWithCountAndUser }) {
+export default function LinkFigure({
+  link,
+}: Readonly<{ link: LinkWithCountAndUser }>) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [buttonText, setButtonText] = useState("Copy");
 
   useEffect(() => {
     const clipboard = new ClipboardJS(".copy");

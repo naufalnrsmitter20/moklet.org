@@ -159,7 +159,7 @@ export default function QuestionEdit({
       {fields.map((item, index) => {
         return (
           <div
-            key={item.id + "_" + index + "_" + Math.random()}
+            key={item.id + "_" + index + "_" + item.fieldNumber}
             className="p-4 bg-white rounded-md flex flex-col gap-2 cursor-move transition-all"
             draggable
             onDragStart={(e) => dragElement(e, index)}

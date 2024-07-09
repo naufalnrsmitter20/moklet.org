@@ -15,6 +15,7 @@ import { deleteFormById } from "./";
 export const deleteForm = async (form_id: string) => {
   try {
     await deleteFormById(form_id);
+    revalidatePath("/admin/form");
     return { error: false, message: "Sukses menghapus formulir" };
   } catch (e) {
     console.error(e);
@@ -210,6 +211,7 @@ export const cloneForm = async (id: string) => {
 
     await prisma.field_Option.createMany({ data: options.flat(1) });
 
+    revalidatePath("/admin/form");
     return {
       error: false,
       message: "Berhasil membuat salian",
@@ -224,6 +226,8 @@ export const cloneForm = async (id: string) => {
 export const deleteSubmission = async (id: string) => {
   try {
     await prisma.submission.deleteMany({ where: { form_id: id } });
+
+    revalidatePath("/admin/form");
     return { error: false, message: "Berhasil menghapus jawaban" };
   } catch (e) {
     console.error(e);

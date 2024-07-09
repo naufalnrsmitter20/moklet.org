@@ -37,19 +37,22 @@ export const updateUserWithId = async (id: string | null, data: FormData) => {
         },
       });
       if (!create) throw new Error("Update failed");
-    } else if (findEmail) {
-      const update = await updateUser(
-        { id: id || findEmail.id },
-        {
-          email: email || findEmail.email,
-          name: name || findEmail.name,
-          role: role || findEmail.role,
-          userAuth: {
-            update: { password: password ? encrypt(password) : undefined },
+    } else if (id) {
+      const findUserWithId = await findUser({ id });
+      if (findUserWithId) {
+        const update = await updateUser(
+          { id: id ?? findUserWithId.id },
+          {
+            email: email ?? findUserWithId.email,
+            name: name ?? findUserWithId.name,
+            role: role ?? findUserWithId.role,
+            userAuth: {
+              update: { password: password ? encrypt(password) : undefined },
+            },
           },
-        },
-      );
-      if (!update) throw new Error("Update failed");
+        );
+        if (!update) throw new Error("Update failed");
+      } else throw new Error("Update failed");
     }
 
     revalidatePath("/admin/users");

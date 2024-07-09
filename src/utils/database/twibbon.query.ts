@@ -6,6 +6,7 @@ export const findAllTwibbon = async (filter?: Prisma.TwibbonWhereInput) => {
   return await prisma.twibbon.findMany({
     where: filter,
     include: { user: true },
+    orderBy: { created_at: "desc" },
   });
 };
 

@@ -7,6 +7,7 @@ import {
   FaEdit,
   FaList,
   FaPaperPlane,
+  FaRegFileExcel,
   FaUser,
 } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
@@ -22,16 +23,17 @@ import {
   PieChartSummary,
 } from "./_components/ResponsesSummary";
 import ResponsesTable from "./_components/Table";
+import LinkButton from "@/app/_components/global/Button";
 
 function StatsCard({
   title,
   stats,
   Icon,
-}: {
+}: Readonly<{
   title: string;
   stats: string;
   Icon: ReactNode;
-}) {
+}>) {
   return (
     <div className="w-full md:w-[30%] px-8 py-4 flex items-center justify-between bg-neutral-200 rounded-xl">
       <div className="w-[80%] block">
@@ -45,9 +47,9 @@ function StatsCard({
 
 export default async function FormResponses({
   params,
-}: {
+}: Readonly<{
   params: { id: string };
-}) {
+}>) {
   const form = (await findFormWithSubmission({
     id: params.id,
   })) as FormWithSubmissions;
@@ -61,19 +63,31 @@ export default async function FormResponses({
   return (
     <>
       <div className="w-full mb-8">
-        <H2 className="font-semibold mb-5">
-          {form.submissions.length ? (
-            <>
-              Respon untuk{" "}
-              <span className="text-primary-500">{form.title}</span>
-            </>
-          ) : (
-            <>
-              Belum ada respon untuk{" "}
-              <span className="text-primary-500">{form.title}</span>
-            </>
-          )}
-        </H2>
+        <div className="flex md:flex-row flex-col md:items-center mb-5 md:justify-between">
+          <H2 className="font-semibold">
+            {form.submissions.length ? (
+              <>
+                Respon untuk{" "}
+                <span className="text-primary-500">{form.title}</span>
+              </>
+            ) : (
+              <>
+                Belum ada respon untuk{" "}
+                <span className="text-primary-500">{form.title}</span>
+              </>
+            )}
+          </H2>
+          <LinkButton
+            href="responses/excel"
+            variant={"primary"}
+            className="text-center flex gap-2 items-center"
+            disabledProgressBar
+            target="_blank"
+          >
+            <FaRegFileExcel />
+            Download Excel
+          </LinkButton>
+        </div>
         <div className="flex flex-wrap items-center justify-between gap-y-4">
           <StatsCard
             title="Total Responden"

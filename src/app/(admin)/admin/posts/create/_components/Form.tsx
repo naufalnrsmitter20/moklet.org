@@ -66,7 +66,7 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
           required={true}
           handleChange={(e) => {
             const splitString = e.currentTarget.value
-              .replace(/[^a-zA-Z0-9   ]/g, "")
+              .replace(/[^a-zA-Z0-9 ]/g, "")
               .toLowerCase()
               .split(" ");
             const slug = splitString.join("-");

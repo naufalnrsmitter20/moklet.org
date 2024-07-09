@@ -89,10 +89,12 @@ export default function Form({
           id: toastId,
         });
         router.push(`/form/${b}/alreadysubmit`);
-      } else
-        toast.error("Terjadi kesalahan", {
+      } else {
+        toast.error(submission.message, {
           id: toastId,
         });
+        setLoading(false);
+      }
     } catch (e) {
       setLoading(false);
       toast.error((e as Error).message, {
@@ -100,68 +102,60 @@ export default function Form({
       });
     }
   }
+
   return (
     <form className="block mx-auto p-6" onSubmit={handleSubmit} id="formApp">
-      {form.fields &&
-        form.fields.map((field) => (
-          <div key={field.id}>
-            {["email", "text", "password", "number"].includes(field.type) && (
-              <TextField
-                type={field.type as string}
-                label={field.label}
-                name={field.id.toString()}
-                placeholder={"Jawaban Anda"}
-                className="mb-6 w-full"
-                required={field.required}
-                value={
-                  answers?.find((item) => item.field_id == field.id)?.value
-                }
-              />
-            )}
-            {field.type === "longtext" && (
-              <TextArea
-                label={field.label}
-                name={field.id.toString()}
-                placeholder={"Jawaban Anda"}
-                className="mb-6 w-full"
-                required={field.required}
-                value={
-                  answers?.find((item) => item.field_id == field.id)?.value
-                }
-              />
-            )}
-            {field.type === "radio" && (
-              <RadioField
-                label={field.label}
-                name={field.id.toString()}
-                options={field.options.map((item) => ({
-                  id: item.field_id + "_" + item.id,
-                  value: item.value,
-                }))}
-                className="mb-6 w-full"
-                required={field.required}
-                value={
-                  answers?.find((item) => item.field_id === field.id)?.value
-                }
-              />
-            )}
-            {field.type === "checkbox" && (
-              <CheckboxField
-                label={field.label}
-                name={field.id.toString()}
-                options={field.options.map((item) => ({
-                  id: item.field_id + "_" + item.id,
-                  value: item.value,
-                }))}
-                className="mb-6 w-full"
-                required={field.required}
-                value={
-                  answers?.find((item) => item.field_id == field.id)?.value
-                }
-              />
-            )}
-          </div>
-        ))}
+      {form.fields?.map((field) => (
+        <div key={field.id}>
+          {["email", "text", "password", "number"].includes(field.type) && (
+            <TextField
+              type={field.type as string}
+              label={field.label}
+              name={field.id.toString()}
+              placeholder={"Jawaban Anda"}
+              className="mb-6 w-full"
+              required={field.required}
+              value={answers?.find((item) => item.field_id == field.id)?.value}
+            />
+          )}
+          {field.type === "longtext" && (
+            <TextArea
+              label={field.label}
+              name={field.id.toString()}
+              placeholder={"Jawaban Anda"}
+              className="mb-6 w-full"
+              required={field.required}
+              value={answers?.find((item) => item.field_id == field.id)?.value}
+            />
+          )}
+          {field.type === "radio" && (
+            <RadioField
+              label={field.label}
+              name={field.id.toString()}
+              options={field.options.map((item) => ({
+                id: item.field_id + "_" + item.id,
+                value: item.value,
+              }))}
+              className="mb-6 w-full"
+              required={field.required}
+              value={answers?.find((item) => item.field_id === field.id)?.value}
+            />
+          )}
+          {field.type === "checkbox" && (
+            <CheckboxField
+              label={field.label}
+              name={field.id.toString()}
+              options={field.options.map((item) => ({
+                id: item.field_id + "_" + item.id,
+                value: item.value,
+              }))}
+              className="mb-6 w-full"
+              required={field.required}
+              value={answers?.find((item) => item.field_id == field.id)?.value}
+            />
+          )}
+        </div>
+      ))}
       <div className="flex justify-between">
         <Button variant={"primary"} type="submit" isDisabled={loading}>
           Kirim

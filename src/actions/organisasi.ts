@@ -1,6 +1,6 @@
 "use server";
 
-import { Prisma, Organisasi_Type } from "@prisma/client";
+import { Organisasi_Type } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import {
   createOrganisasi,
@@ -74,6 +74,11 @@ export async function organisasiUpsert({
         },
       );
     }
+
+    revalidatePath("/organisasi");
+    revalidatePath("/organisasi/[period]");
+    revalidatePath("/organisasi/[period]/[slug]");
+    revalidatePath("/admin/period-config");
     return { error: false, message: "Sukses update data" };
   } catch (e) {
     console.log(e);

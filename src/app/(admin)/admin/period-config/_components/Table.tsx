@@ -10,6 +10,7 @@ import { Organisasi_Type, Period_Year } from "@prisma/client";
 import Modal from "./Modal";
 import cn from "@/lib/clsx";
 import { PeriodWithOrganisasi } from "@/types/entityRelations";
+import { deletePeriodById } from "@/actions/periodConfig";
 
 export default function PeriodTable({
   data,
@@ -61,7 +62,7 @@ export default function PeriodTable({
       cell: (row) => (
         <div className="flex gap-2">
           <button
-            onClick={() => editUser(row)}
+            onClick={() => editPeriod(row)}
             title="Edit User"
             className="bg-blue-100 text-blue-800 text-xs font-medium me-2 p-2.5 rounded hover:text-white  hover:bg-blue-700 transition-all"
           >
@@ -79,7 +80,7 @@ export default function PeriodTable({
     },
   ];
 
-  function editUser(data: PeriodWithOrganisasi) {
+  function editPeriod(data: PeriodWithOrganisasi) {
     setModalData(data);
     setIsOpenModal(true);
   }
@@ -87,7 +88,7 @@ export default function PeriodTable({
   async function deleteAction(id: string) {
     if (!confirm("Anda yakin ingin menghapus item ini?")) return;
     const toastId = toast.loading("Loading...");
-    const result = await deleteUserById(id);
+    const result = await deletePeriodById(id);
     if (!result.error) toast.success(result.message, { id: toastId });
     else toast.error(result.message, { id: toastId });
   }
