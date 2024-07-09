@@ -41,7 +41,8 @@
     "schema-dts": "^1.1.2",
     "sonner": "^1.4.41",
     "styled-components": "^6.1.8",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "write-excel-file": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
