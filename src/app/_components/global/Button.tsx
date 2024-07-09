@@ -35,6 +35,8 @@ interface LinkButtonProps
   scroll?: boolean;
   target?: HTMLAttributeAnchorTarget;
   className?: string;
+  download?: boolean;
+  disabledProgressBar?: boolean;
 }
 
 interface ButtonProps
@@ -54,6 +56,8 @@ export default function LinkButton({
   className,
   target,
   scroll,
+  download,
+  disabledProgressBar,
 }: Readonly<LinkButtonProps>) {
   return (
     <Link
@@ -61,6 +65,8 @@ export default function LinkButton({
       className={cn(buttonVariants({ variant }), className)}
       target={target}
       scroll={scroll}
+      download={download}
+      data-disable-nprogress={disabledProgressBar}
     >
       {children}
     </Link>

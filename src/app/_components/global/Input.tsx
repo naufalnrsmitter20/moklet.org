@@ -1,7 +1,12 @@
 "use client";
 
-import { ChangeEvent, KeyboardEventHandler, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  ChangeEvent,
+  KeyboardEventHandler,
+  SyntheticEvent,
+  useState,
+} from "react";
+import { FaEye, FaEyeSlash, FaTrash } from "react-icons/fa";
 
 import cn from "@/lib/clsx";
 
@@ -195,26 +200,44 @@ export function RadioField({
           {label}
         </label>
       )}
-      {options &&
-        options.map((option) => (
-          <div className="flex gap-x-4 cursor-pointer" key={option.id}>
-            <input
-              type="radio"
-              name={name}
-              defaultChecked={option.value === value}
-              value={option.value}
-              className="w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear"
-              id={option.id}
-              required={required}
-              disabled={disabled}
-            />
-            <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
-              {option.value}
-            </label>
-          </div>
-        ))}
+      {options?.map((option) => (
+        <div className="flex gap-x-4 cursor-pointer" key={option.id}>
+          <input
+            type="radio"
+            name={name}
+            defaultChecked={option.value === value}
+            value={option.value}
+            className="w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear"
+            id={option.id}
+            required={required}
+            disabled={disabled}
+          />
+          <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
+            {option.value}
+          </label>
+        </div>
+      ))}
+      {!required && (
+        <button
+          onClick={(e) => uncheckRadio(name)}
+          type="button"
+          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-500 rounded-lg text-sm p-1 mr-auto items-center transition-all"
+        >
+          <FaTrash />
+        </button>
+      )}
     </div>
   );
+}
+
+function uncheckRadio(name: string) {
+  const findCheckedInput = document.querySelector(
+    `input[name="${name}"]:checked`,
+  ) as HTMLInputElement;
+
+  if (findCheckedInput) {
+    findCheckedInput.checked = false;
+  }
 }
 
 export function CheckboxField({
