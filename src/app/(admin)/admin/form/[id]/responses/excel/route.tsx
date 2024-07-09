@@ -1,8 +1,8 @@
-import writeXlsxFile from "write-excel-file/node";
 import { FormWithSubmissions } from "@/types/entityRelations";
 import { transformToArrayCheckbox } from "@/utils/atomics";
 import { findFormWithSubmission } from "@/utils/database/form.query";
 import { NextRequest, NextResponse } from "next/server";
+import writeXlsxFile from "write-excel-file/node";
 
 export async function GET(
   req: NextRequest,
@@ -95,7 +95,9 @@ export async function GET(
 
   const data = [headerRow, ...dataRow];
 
-  const buffer = await writeXlsxFile(data as any, { buffer: true });
+  const buffer = await writeXlsxFile(data as unknown as never, {
+    buffer: true,
+  });
 
   const response = new NextResponse(buffer);
   response.headers.set(

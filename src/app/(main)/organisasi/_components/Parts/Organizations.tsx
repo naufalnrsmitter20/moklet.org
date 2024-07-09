@@ -2,18 +2,11 @@ import { ReactElement } from "react";
 import { FaGlobe } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
-import OrganizationSection from "../OrganizationSection";
-import { SelectField } from "@/app/_components/global/Input";
-import { findAllPeriod } from "@/utils/database/periodYear.query";
-import { redirect } from "next/navigation";
-import PeriodSelect from "../PeriodSelect";
 import { OrganizationWithPeriod } from "@/types/entityRelations";
-import Link from "next/link";
-import { H2, H4, P } from "@/app/_components/global/Text";
-import Image from "@/app/_components/global/Image";
-import ArrowRight from "@/app/_components/icons/ArrowRight";
+import { findAllPeriod } from "@/utils/database/periodYear.query";
 import { Organisasi } from "@prisma/client";
+import OrganizationSection from "../OrganizationSection";
+import PeriodSelect from "../PeriodSelect";
 
 export interface Suborgan {
   name: string;

@@ -12,5 +12,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AdminLayout children={children} />;
+  return <AdminLayout>{children}</AdminLayout>;
 }

@@ -1,11 +1,11 @@
 "use client";
-import Link from "next/link";
+import ClipboardJS from "clipboard";
 import { useRouter } from "next-nprogress-bar";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
-import { FaRegCopy, FaRegTrashAlt, FaLink, FaComment } from "react-icons/fa";
+import { FaComment, FaLink, FaRegCopy, FaRegTrashAlt } from "react-icons/fa";
 import { toast } from "sonner";
-import ClipboardJS from "clipboard";
 
 import { cloneForm, deleteForm } from "@/actions/formAdmin";
 import { FormWithFieldsAndUser } from "@/types/entityRelations";
@@ -135,7 +135,8 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
       alert("Link berhasil disalin!");
     });
 
-    clipboard.on("error", function (e) {
+    // eslint-disable-next-line no-unused-vars
+    clipboard.on("error", function (_e) {
       console.log("Error copying text");
     });
 

@@ -1,4 +1,4 @@
-import { H1, H2, P } from "@/app/_components/global/Text";
+import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import {
   findAllPeriod,

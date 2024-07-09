@@ -97,7 +97,8 @@ export default function TwibbonTable({ data }: { data: TwibbonWithUser[] }) {
       alert("Link berhasil disalin!");
     });
 
-    clipboard.on("error", function (e) {
+    // eslint-disable-next-line no-unused-vars
+    clipboard.on("error", function (_e) {
       console.log("Error copying text");
     });
 

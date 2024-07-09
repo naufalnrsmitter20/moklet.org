@@ -1,7 +1,7 @@
 "use client";
 
 import { SelectField } from "@/app/_components/global/Input";
-import { Organisasi, Organisasi_Type, Period_Year } from "@prisma/client";
+import { Organisasi_Type, Period_Year } from "@prisma/client";
 import { Session } from "next-auth";
 import { useRouter } from "next-nprogress-bar";
 

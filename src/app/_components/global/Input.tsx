@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  ChangeEvent,
-  KeyboardEventHandler,
-  SyntheticEvent,
-  useState,
-} from "react";
+import { ChangeEvent, KeyboardEventHandler, useState } from "react";
 import { FaEye, FaEyeSlash, FaTrash } from "react-icons/fa";
 
 import cn from "@/lib/clsx";
@@ -219,7 +214,7 @@ export function RadioField({
       ))}
       {!required && (
         <button
-          onClick={(e) => uncheckRadio(name)}
+          onClick={() => uncheckRadio(name)}
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-red-500 rounded-lg text-sm p-1 mr-auto items-center transition-all"
         >

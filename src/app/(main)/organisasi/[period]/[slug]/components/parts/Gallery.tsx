@@ -1,5 +1,5 @@
 import Image from "@/app/_components/global/Image";
-import { P, H2 } from "@/app/_components/global/Text";
+import { H2 } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 
 export default function OrgGallery({

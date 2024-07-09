@@ -20,18 +20,17 @@ export default async function Edit({ params }: { params: { id: string } }) {
     if (session?.user?.role !== data?.user?.role || !session)
       return redirect("/unauthorized");
   }
-  const Tags = (await findAllTags()) as TagWithPostCount[];
+  const tags = (await findAllTags()) as TagWithPostCount[];
 
-  if (data)
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between">
-          <H1>Edit Post</H1>
-          <PublishButton state={data.published} id={data.id} />
-        </div>
-        <EditForm tags={Tags} post={data} />
+  if (!data) return notFound();
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between">
+        <H1>Edit Post</H1>
+        <PublishButton state={data.published} id={data.id} />
       </div>
-    );
-
-  return notFound();
+      <EditForm tags={tags} post={data} />
+    </div>
+  );
 }

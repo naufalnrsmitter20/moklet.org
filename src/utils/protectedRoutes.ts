@@ -1,5 +1,4 @@
 import { Roles } from "@prisma/client";
-import { MdAccessTimeFilled } from "react-icons/md";
 
 export interface ProtectedRoutes {
   title: string;

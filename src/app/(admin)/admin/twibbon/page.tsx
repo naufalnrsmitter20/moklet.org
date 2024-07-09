@@ -1,13 +1,9 @@
-import React from "react";
-
 import { H2, P } from "@/app/_components/global/Text";
 
+import { nextGetServerSession } from "@/lib/next-auth";
+import { findAllTwibbon } from "@/utils/database/twibbon.query";
 import AddTwibbon from "./_components/AddPeriod";
 import TwibbonTable from "./_components/Table";
-import { Period_Year } from "@prisma/client";
-import { findAllPeriod } from "@/utils/database/periodYear.query";
-import { findAllTwibbon } from "@/utils/database/twibbon.query";
-import { nextGetServerSession } from "@/lib/next-auth";
 
 export default async function PeriodPage() {
   const session = await nextGetServerSession();
