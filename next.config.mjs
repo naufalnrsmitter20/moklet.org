@@ -14,7 +14,7 @@ const nextConfig = {
     serverActions: {
       allowedForwardedHosts: ["go.moklet.org"],
       allowedOrigins: ["https://go.moklet.org"],
-      bodySizeLimit: "5mb",
+      bodySizeLimit: "10mb",
     },
   },
 };
