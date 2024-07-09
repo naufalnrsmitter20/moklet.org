@@ -49,14 +49,14 @@ export default async function Organizations({
   const organizations: SuborganSection[] = [
     {
       sectionName: "Organisasi",
-      sectionLogo: <FaGlobe />,
+      sectionLogo: <FaGlobe className="w-[42px] h-[42px]" />,
       sectionDesc:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
       sectionOrgans: organ,
     },
     {
       sectionName: "Sub-organisasi",
-      sectionLogo: <FaUserGroup />,
+      sectionLogo: <FaUserGroup className="w-[42px] h-[42px]" />,
       sectionDesc:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tellus quis urna gravida. Quis ultrices arcu consequat. Praesent aliquet ante molestie faucibus facilisis. Integer fermentum, sapien ac.",
       sectionOrgans: subOrgan,

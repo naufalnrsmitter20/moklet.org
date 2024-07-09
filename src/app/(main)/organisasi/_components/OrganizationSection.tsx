@@ -19,7 +19,7 @@ export default function OrganizationSection({
       <div className="flex flex-col lg:flex-row gap-[62px] justify-between">
         <div className="w-full lg:w-[512px] flex flex-col gap-7">
           <div className="flex gap-[22px] items-center">
-            <div className="bg-primary-50 rounded-full w-[62px] h-[62px] p-[19px] flex items-center justify-center">
+            <div className="bg-primary-50 rounded-full w-[62px] h-[62px] flex items-center justify-center">
               {data.sectionLogo}
             </div>
             <H2>{data.sectionName}</H2>
@@ -40,6 +40,7 @@ export default function OrganizationSection({
                   width={62}
                   height={62}
                   unoptimized
+                  className="w-[62px] h-[62px] object-cover"
                 />
                 <div className="flex flex-col gap-[6px]">
                   <H4>{organisasi.organisasi_name}</H4>
