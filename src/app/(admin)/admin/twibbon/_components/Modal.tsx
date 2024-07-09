@@ -23,6 +23,10 @@ export default function Modal({
 
   async function update(formdata: FormData) {
     const toastId = toast.loading("Loading...");
+    const frameUrl = formdata.get("frame_url") as File;
+
+    if (frameUrl.name == "") formdata.delete("frame_url");
+
     const result = await upsertTwibbon(data?.id as string, formdata);
     if (!result.error) {
       toast.success(result.message, { id: toastId });
