@@ -15,6 +15,7 @@ import { SelectField, TextField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
 import { FieldsWithOptions } from "@/types/entityRelations";
 import { arrayMove } from "@/utils/atomics";
+import { toast } from "sonner";
 
 export default function QuestionEdit({
   fields,
@@ -65,7 +66,7 @@ export default function QuestionEdit({
     const indexNum = parseInt(index.value);
 
     if (!inputOption.value || inputOption.value == "") {
-      return alert("Input tidak boleh kosong!");
+      return toast.error("Input tidak boleh kosong!");
     }
 
     const questions = [...fields];
