@@ -24,7 +24,7 @@ export default function Overview({
                 alt={`Logo ${organisasi_name}`}
                 width={106}
                 height={106}
-                className="rounded-full border-primary-500 w-[100px] h-[100px] md:w-[120px] md:h-[120px] object-cover border-2"
+                className="rounded-full w-[100px] h-[100px] md:w-[120px] md:h-[120px] object-cover border-2"
               />
               <P className="px-4 py-3 border-neutral-500 border rounded-full w-[50%] md:w-[20%] text-center h-fit">
                 Periode {period.replace(/-/, " / ")}
