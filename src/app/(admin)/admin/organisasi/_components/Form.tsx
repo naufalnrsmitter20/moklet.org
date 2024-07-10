@@ -39,11 +39,11 @@ export default function Form({
       action={async (data) => {
         const toastId = toast.loading("Loading....");
 
-        const logo = data.get("logo") as File;
-        const photo = data.get("photo") as File;
+        const logo = data.get("logo") as File | undefined;
+        const photo = data.get("photo") as File | undefined;
 
-        if (logo.name === "") data.delete("logo");
-        if (photo.name === "") data.delete("photo");
+        if (logo?.name === "") data.delete("logo");
+        if (photo?.name === "") data.delete("photo");
 
         const result = await organisasiUpsert({
           data,
