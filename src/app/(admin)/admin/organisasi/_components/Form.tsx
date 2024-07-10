@@ -26,11 +26,11 @@ export default function Form({
   const router = useRouter();
   const [structure, setStructure] = useState(organisasi.structure || "");
   const [logo, setLogo] = useState(
-    organisasi.logo ||
+    organisasi.logo ??
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   const [image, setImage] = useState(
-    organisasi.image ||
+    organisasi.image ??
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   return (

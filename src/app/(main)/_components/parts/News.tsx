@@ -6,8 +6,7 @@ import { UnderlinedTitle, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-
-import { NewsFigure } from "../global/NewsFigure";
+import { NewsFigure } from "@/app/_components/global/NewsFigure";
 
 export default function News({
   latestPosts,
@@ -31,11 +30,19 @@ export default function News({
           </Link>
         </div>
         <div className="w-full overflow-x-none">
-          <div className="flex flex-col md:flex-row w-full justify-between gap-[36px]">
+          <div
+            className="flex flex-col md:flex-row w-full justify-between gap-[36px]"
+            id="news-container"
+          >
             {latestPosts.length !== 0 ? (
-              latestPosts.map((post) => (
-                <NewsFigure key={post.id} post={post} />
-              ))
+              <>
+                {latestPosts.map((post) => (
+                  <NewsFigure key={post.id} post={post} />
+                ))}
+                {latestPosts.length % 2 === 0 && (
+                  <div className="w-full md:w-[31.2%]"></div>
+                )}
+              </>
             ) : (
               <P>Belum ada berita apa-apa, nih...</P>
             )}

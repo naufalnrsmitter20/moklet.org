@@ -39,7 +39,7 @@ export const findNewestPost = async (
   return await prisma.post.findMany({
     orderBy: { published_at: "desc" },
     take: limit,
-    where,
+    where: { ...where, published: true },
     include: {
       tags: true,
       user: { select: { name: true, user_pic: true, role: true } },

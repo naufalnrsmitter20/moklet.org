@@ -18,15 +18,15 @@ export default function Overview({
       <div className="flex flex-col gap-[58px] w-full">
         <div className="w-full flex flex-col gap-[18px]">
           <div className="block">
-            <div className="flex justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
               <Image
                 src={logo}
                 alt={`Logo ${organisasi_name}`}
                 width={106}
                 height={106}
-                className="rounded-full border-primary-500 w-[120px] h-[120px] object-cover border-2"
+                className="rounded-full border-primary-500 w-[100px] h-[100px] md:w-[120px] md:h-[120px] object-cover border-2"
               />
-              <P className="px-4 py-3 border-neutral-500 border rounded-full w-[45%] md:w-[20%] text-center h-fit">
+              <P className="px-4 py-3 border-neutral-500 border rounded-full w-[50%] md:w-[20%] text-center h-fit">
                 Periode {period.replace(/-/, " / ")}
               </P>
             </div>
