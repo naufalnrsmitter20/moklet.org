@@ -132,7 +132,7 @@ export default function FormTable({ data }: { data: FormWithFieldsAndUser[] }) {
 
     clipboard.on("success", function (e) {
       e.clearSelection();
-      alert("Link berhasil disalin!");
+      toast.success("Link berhasil disalin!");
     });
 
     // eslint-disable-next-line no-unused-vars

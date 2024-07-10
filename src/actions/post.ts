@@ -95,6 +95,8 @@ export async function postCreate(
 
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
+    revalidatePath("/organisasi/[period]/[slug]");
+    revalidatePath("/");
 
     return { message: "Success", result: { id: newPost.id } };
   } catch (e) {
@@ -130,7 +132,12 @@ export async function postUpdate(
     }
 
     const update = await updatePost(
-      { id: id, user_id: session?.user.id },
+      {
+        id: id,
+        user_id: !session?.user.role.includes("Admin")
+          ? session?.user.id
+          : undefined,
+      },
       {
         slug: slug ?? undefined,
         content: MD ?? undefined,
@@ -143,12 +150,14 @@ export async function postUpdate(
     );
     if (!update) return { error: true, message: "Gagal update post!" };
     revalidatePath("/berita");
+    revalidatePath("/");
     revalidatePath("/admin/posts");
+    revalidatePath("/organisasi/[period]/[slug]");
     revalidatePath(`/admin/posts/[id]`);
     return { message: "Success" };
   } catch (e) {
     console.log(e);
-    return { error: true, message: "Gagal menambahkan berita!" };
+    return { error: true, message: "Gagal update berita!" };
   }
 }
 
@@ -164,7 +173,9 @@ export async function updatePostStatus(current_state: boolean, id: string) {
     );
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
+    revalidatePath("/organisasi/[period]/[slug]");
     revalidatePath(`/admin/posts/[id]`, "page");
+    revalidatePath("/");
     return { message: "Berhasil megupdate post!" };
   } catch (e) {
     console.log(e);
@@ -178,6 +189,8 @@ export async function postDelete(id: string) {
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
     revalidatePath(`/admin/posts/[id]`);
+    revalidatePath("/organisasi/[period]/[slug]");
+    revalidatePath("/");
     return { message: "Berhasil menghapus post!" };
   } catch (e) {
     console.log(e);

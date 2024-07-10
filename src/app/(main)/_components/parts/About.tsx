@@ -19,7 +19,7 @@ export default function About() {
         <div className="flex w-full max-w-[680px] flex-col">
           <div className="mb-11">
             <div className="mb-[42px]">
-              <UnderlinedTitle underlineClassName="w-[65px] md:w-[100px] top-4 md:top-[24px]">
+              <UnderlinedTitle underlineClassName="w-[74px] md:w-[110px] top-4 md:top-[24px]">
                 Portal Kegiatan Organisasi dan Sub-Organisasi di Moklet
               </UnderlinedTitle>
               <P>

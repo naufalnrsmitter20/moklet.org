@@ -16,7 +16,7 @@ export default async function TopNews() {
         <H2 className="text-wrap hidden w-full sm:block">
           Berita Terpopuler Organisasi & Sub-organ Moklet
         </H2>
-        <div className="flex flex-col gap-y-[42px] items-center justify-between w-full md:flex-row flex-wrap">
+        <div className="flex flex-col gap-y-[42px] items-start md:items-center justify-between w-full md:flex-row flex-wrap">
           {popularNews.length !== 0 ? (
             popularNews.map((post) => (
               <WideNewsFigure post={post} key={post.id} />

@@ -31,20 +31,17 @@ export async function organisasiUpsert({
     const image_description = data.get("image_description") as string;
     const is_suborgan = data.get("is_suborgan") == "true";
 
-    const image = data.get("image") as File;
-    const logo = data.get("logo") as File;
-
-    if (!image.name) data.delete("image");
-    if (!logo.name) data.delete("logo");
+    const image = data.get("image") as File | undefined;
+    const logo = data.get("logo") as File | undefined;
 
     let uploadedImage;
     let uploadedLogo;
 
-    if (image.name) {
+    if (image) {
       const imageBuffer = await image.arrayBuffer();
       uploadedImage = await uploadImage(Buffer.from(imageBuffer));
     }
-    if (logo.name) {
+    if (logo) {
       const logoBuffer = await logo.arrayBuffer();
       uploadedLogo = await uploadImage(Buffer.from(logoBuffer));
     }
@@ -61,11 +58,11 @@ export async function organisasiUpsert({
       contact,
       image_description,
     };
-    if (id == null) {
+    if (id == null || id === "") {
       await createOrganisasi({
         ...organisasiInput,
-        image: uploadedImage?.data?.url || "",
-        logo: uploadedLogo?.data?.url || "",
+        image: uploadedImage?.data?.url as string,
+        logo: uploadedLogo?.data?.url as string,
         period: { connect: { period } },
       });
     } else {
@@ -73,8 +70,8 @@ export async function organisasiUpsert({
         { id },
         {
           ...organisasiInput,
-          image: uploadedImage?.data?.url as string | undefined,
-          logo: uploadedLogo?.data?.url as string | undefined,
+          image: uploadedImage?.data?.url,
+          logo: uploadedLogo?.data?.url,
         },
       );
     }

@@ -21,16 +21,16 @@ const footToS: FootOption[] = [
 
 const mainMenus: FootOption[] = [
   { title: "Berita", href: "/berita" },
-  { title: "Sub-organ", href: "/sub-organ" },
+  { title: "Organisasi", href: "/organisasi" },
   { title: "Tentang", href: "/tentang" },
-  { title: "Developer", href: "/developer" },
+  { title: "Kontributor", href: "/kontributor" },
 ];
 
 const usefulLinks: FootOption[] = [
   { title: "Profil Sekolah", href: "https://www.smktelkom-mlg.sch.id" },
   { title: "PPDB Moklet", href: "https://ppdb.smktelkom-mlg.sch.id" },
   { title: "YPT", href: "https://ypt.or.id/" },
-  { title: "MokletDev", href: "#" },
+  { title: "MokletDev", href: "https://github.com/mokletdev" },
 ];
 
 const socialMedias: FootOption[] = [
