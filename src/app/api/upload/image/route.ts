@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-import { imageUploader } from "@/actions/fileUploader";
+import { uploadImage } from "@/actions/fileUploader";
 import { nextGetServerSession } from "@/lib/next-auth";
 import {
   badRequest,
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const fileArrayBuffer = await file.arrayBuffer();
     const fileBuffer = Buffer.from(new Uint8Array(fileArrayBuffer));
 
-    const uploader = await imageUploader(fileBuffer);
+    const uploader = await uploadImage(fileBuffer);
 
     if (!uploader || uploader.error) {
       if (uploader.message.includes("not allowed"))
