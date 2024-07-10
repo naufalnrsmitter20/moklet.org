@@ -54,6 +54,7 @@ export default async function Organ({
         image={organisasi.image}
         organisasi_name={organisasi.organisasi}
         period={period.period}
+        image_description={organisasi.image_description}
       />
       <RelatedNews data={relatedNews} orgName={organisasiType} />
       <Contact data={organisasi} />
