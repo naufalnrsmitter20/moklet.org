@@ -95,6 +95,7 @@ export async function postCreate(
 
     revalidatePath("/berita");
     revalidatePath("/admin/posts");
+    revalidatePath("/");
 
     return { message: "Success", result: { id: newPost.id } };
   } catch (e) {
