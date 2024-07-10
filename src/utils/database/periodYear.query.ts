@@ -1,15 +1,21 @@
-import { Period_Year, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 import prisma from "@/lib/prisma";
 
-export const findLatestPeriod = async () => {
-  const latestPeriodYear = await prisma.period_Year.findMany({});
+export const findLatestPeriod = async (isActive?: boolean) => {
+  let latestPeriodYear = await prisma.period_Year.findMany({});
 
   latestPeriodYear.sort((a, b) => {
     return parseInt(b.period.split("/")[0]) - parseInt(a.period.split("/")[0]);
   });
 
-  return latestPeriodYear[0] as Period_Year;
+  if (isActive != undefined) {
+    latestPeriodYear = latestPeriodYear.filter(
+      (period) => period.is_active == isActive,
+    );
+  }
+
+  return latestPeriodYear[0];
 };
 
 export const findAllPeriod = async (filter?: Prisma.Period_YearWhereInput) => {
