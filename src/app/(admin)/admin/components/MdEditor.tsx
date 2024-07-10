@@ -1,7 +1,7 @@
 /* eslint-disable */
 "use client";
 
-import { P } from "@/app/_components/global/Text";
+import { fileSizeToMb } from "@/utils/atomics";
 import MDEditor, {
   commands,
   bold,
@@ -47,6 +47,10 @@ export default function Editor({
         const result = await getImage();
         if (!result) return alert("Failed to load image");
 
+        const imageSizeInMb = fileSizeToMb(result.size);
+        if (imageSizeInMb >= 4.3)
+          return toast.error("Ukuran file terlalu besar!");
+
         const data = new FormData();
 
         data.append("file", result!);
@@ -57,12 +61,12 @@ export default function Editor({
         }).then((res) => res.json());
 
         if (upload.status != 201) {
-          toast.error("Failed upload image", { id: toastId });
+          toast.error("Gagal upload gambar!", { id: toastId });
           alert(upload.message);
         } else {
           const modifyText = `![user image](${upload.data?.url})\n`;
           api.replaceSelection(modifyText);
-          toast.success("Success upload image", { id: toastId });
+          toast.success("Sukses upload gambar", { id: toastId });
         }
         insertImageRef!.current!.value = "";
       }
@@ -91,8 +95,7 @@ export default function Editor({
   return (
     <>
       <div data-color-mode="light">
-        <label>Struktur Organisasi</label>
-        <P>*teks/upload image</P>
+        <label>Text Editor</label>
         <input
           type="file"
           hidden

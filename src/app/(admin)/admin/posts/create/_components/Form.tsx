@@ -13,10 +13,11 @@ import { TextArea, TextField } from "@/app/_components/global/Input";
 import { TagWithPostCount } from "@/types/entityRelations";
 
 import Modal from "../../_components/ImageModal";
-import Editor from "../../_components/MdEditor";
+import Editor from "@/app/(admin)/admin/components/MdEditor";
 import FormButton from "../../_components/parts/SubmitButton";
 
 import Tags from "./Tags";
+import { fileSizeToMb } from "@/utils/atomics";
 
 export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
   const [tag, setTag] =
@@ -50,9 +51,21 @@ export default function PostForm({ tags }: { tags: TagWithPostCount[] }) {
       {isOpen && <Modal setIsOpenModal={setIsOpen} />}
       <form
         action={async (data) => {
+          const toastId = toast.loading("Loading...");
           const result = await postCreate(data, value, tag!);
+
+          const thumbnail = data.get("thumbnail") as File;
+          const thumbnailSizeInMb = thumbnail
+            ? fileSizeToMb(thumbnail.size)
+            : 0;
+
+          if (thumbnailSizeInMb >= 4.3)
+            return toast.error("Ukuran file terlalu besar!", { id: toastId });
+
           if (result.error || !result.result?.id) {
-            return toast.error(result.message || "Failed to create post");
+            return toast.error(result.message || "Failed to create post", {
+              id: toastId,
+            });
           }
           toast.success(result.message);
           redirect(`/admin/posts/${result.result?.id}`);

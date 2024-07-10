@@ -141,3 +141,9 @@ export function slugify(str: string, separator = "-") {
     .replace(/-+/g, separator); // remove consecutive hyphens
   return str;
 }
+
+//#region file size converter
+export function fileSizeToMb(fileSize: number) {
+  return parseFloat((fileSize / (1024 * 1024)).toFixed(2));
+}
+//#endregion

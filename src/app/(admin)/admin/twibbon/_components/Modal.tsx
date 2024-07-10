@@ -11,6 +11,7 @@ import FormButton from "./part/SubmitButton";
 import { TwibbonWithUser } from "@/types/entityRelations";
 import Image from "@/app/_components/global/Image";
 import { upsertTwibbon } from "@/actions/twibbon";
+import { fileSizeToMb } from "@/utils/atomics";
 
 export default function Modal({
   setIsOpenModal,
@@ -27,6 +28,10 @@ export default function Modal({
       const frameUrl = formdata.get("frame_url") as File;
 
       if (frameUrl.name === "") formdata.delete("frame_url");
+      else {
+        const fileSize = fileSizeToMb(frameUrl.size);
+        if (fileSize > 4.3) toast.error("File terlalu besar!", { id: toastId });
+      }
 
       const result = await upsertTwibbon(data?.id as string, formdata);
       if (result?.error) {

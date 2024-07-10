@@ -7,12 +7,13 @@ import {
 } from "@/app/_components/global/Input";
 import { Organisasi, Organisasi_Type } from "@prisma/client";
 import { useState } from "react";
-import Editor from "./MdEditor";
+import Editor from "@/app/(admin)/admin/components/MdEditor";
 import Image from "@/app/_components/global/Image";
 import { organisasiUpsert } from "@/actions/organisasi";
 import { toast } from "sonner";
 import SubmitButton from "@/app/_components/global/SubmitButton";
 import { useRouter } from "next-nprogress-bar";
+import { fileSizeToMb } from "@/utils/atomics";
 
 export default function Form({
   organisasi,
@@ -44,6 +45,13 @@ export default function Form({
 
         if (logo?.name === "") data.delete("logo");
         if (image?.name === "") data.delete("image");
+
+        const logoSizeInMb = logo ? fileSizeToMb(logo.size) : 0;
+        const imageSizeInMb = image ? fileSizeToMb(image.size) : 0;
+
+        if (logoSizeInMb + imageSizeInMb > 4.3) {
+          return toast.error("Ukuran file terlalu besar!", { id: toastId });
+        }
 
         const result = await organisasiUpsert({
           data,
