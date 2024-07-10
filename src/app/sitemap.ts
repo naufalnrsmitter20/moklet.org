@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const conventionalRoutes = [
     "/berita",
-    "/sub-organ",
+    "/organisasi",
     "/tentang",
     "/kontributor",
   ].map((route) => ({
