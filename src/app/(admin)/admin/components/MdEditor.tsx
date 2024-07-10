@@ -49,7 +49,9 @@ export default function Editor({
 
         const imageSizeInMb = fileSizeToMb(result.size);
         if (imageSizeInMb >= 4.3)
-          return toast.error("Ukuran file terlalu besar!");
+          return toast.error(
+            "Ukuran file terlalu besar! Ukuran maximum 4,3 MB",
+          );
 
         const data = new FormData();
 

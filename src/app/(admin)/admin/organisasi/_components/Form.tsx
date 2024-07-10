@@ -50,7 +50,10 @@ export default function Form({
         const imageSizeInMb = image ? fileSizeToMb(image.size) : 0;
 
         if (logoSizeInMb + imageSizeInMb > 4.3) {
-          return toast.error("Ukuran file terlalu besar!", { id: toastId });
+          return toast.error(
+            "Ukuran file terlalu besar! Ukuran maximum 4,3 MB",
+            { id: toastId },
+          );
         }
 
         const result = await organisasiUpsert({

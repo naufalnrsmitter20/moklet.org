@@ -30,7 +30,10 @@ export default function Modal({
       if (frameUrl.name === "") formdata.delete("frame_url");
       else {
         const fileSize = fileSizeToMb(frameUrl.size);
-        if (fileSize > 4.3) toast.error("File terlalu besar!", { id: toastId });
+        if (fileSize > 4.3)
+          toast.error("File terlalu besar! Ukuran maximum 4,3 MB", {
+            id: toastId,
+          });
       }
 
       const result = await upsertTwibbon(data?.id as string, formdata);
@@ -40,7 +43,7 @@ export default function Modal({
       } else toast.error(result.message, { id: toastId });
     } catch (e) {
       console.error(e);
-      toast.error("File terlalu besar!", { id: toastId });
+      toast.error("File terlalu besar! Ukuran maximum 4,3 MB", { id: toastId });
     }
   }
 

@@ -60,7 +60,10 @@ export default function EditForm({
 
         const thumbnailSizeInMb = thumbnail ? fileSizeToMb(thumbnail.size) : 0;
         if (thumbnailSizeInMb >= 4.3)
-          return toast.error("Ukuran file terlalu besar!", { id: toastId });
+          return toast.error(
+            "Ukuran file terlalu besar! Ukuran maximum 4,3 MB",
+            { id: toastId },
+          );
 
         const result = await postUpdate(data, value, tag, post.id);
         if (result.error) {
