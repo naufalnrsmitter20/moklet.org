@@ -90,7 +90,7 @@ export function UnderlinedTitle({
         </H2>
         <div
           className={cn(
-            "absolute left-[3px] -z-10 h-[16px] bg-primary-100",
+            "absolute left-[2px] -z-10 h-[16px] bg-primary-100",
             underlineClassName,
           )}
         ></div>

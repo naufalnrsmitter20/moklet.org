@@ -34,28 +34,28 @@ export default function Header() {
           width={383}
           height={510}
           alt="Header's image"
-          className="absolute left-0 hidden md:block top-[100px] -z-10"
+          className="absolute left-0 hidden xl:block top-[100px] -z-10"
         />
         <Image
           src={"/images/Header-2.png"}
           width={383}
           height={510}
           alt="Header's image"
-          className="absolute right-0 hidden md:block top-[80px] -z-10"
+          className="absolute right-0 hidden xl:block top-[80px] -z-10"
         />
         <Image
           src={"/images/Header-3.png"}
           width={383}
           height={510}
           alt="Header's image"
-          className="absolute left-0 block md:hidden top-[550px] -z-10"
+          className="absolute left-0 block xl:hidden top-[550px] -z-10"
         />
         <Image
           src={"/images/Header-4.png"}
           width={383}
           height={510}
           alt="Header's image"
-          className="absolute right-0 block md:hidden top-[400px] -z-10"
+          className="absolute right-0 block xl:hidden top-[400px] -z-10"
         />
       </div>
     </section>

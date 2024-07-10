@@ -6,7 +6,7 @@ export default function Opinions() {
   return (
     <SectionWrapper id="pendapat">
       <div className="flex flex-col justify-center">
-        <UnderlinedTitle underlineClassName="w-[135px] md:w-[210px] top-4 md:top-[24px]">
+        <UnderlinedTitle underlineClassName="w-[154px] md:w-[232px] top-4 md:top-[24px]">
           Kata Mereka yang Berorganisasi di Moklet
         </UnderlinedTitle>
         <div className="mt-[54px] flex flex-col md:flex-row gap-[18px] w-full">
