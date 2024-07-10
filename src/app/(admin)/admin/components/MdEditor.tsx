@@ -45,7 +45,7 @@ export default function Editor({
     execute: async (_, api: TextAreaTextApi) => {
       if (insertImageRef.current) {
         const result = await getImage();
-        if (!result) return alert("Failed to load image");
+        if (!result) return toast.error("Failed to load image");
 
         const imageSizeInMb = fileSizeToMb(result.size);
         if (imageSizeInMb >= 4.3)
@@ -63,8 +63,9 @@ export default function Editor({
         }).then((res) => res.json());
 
         if (upload.status != 201) {
-          toast.error("Gagal upload gambar!", { id: toastId });
-          alert(upload.message);
+          toast.error("Ukuran file terlalu besar! Ukuran maximum 4,3 MB", {
+            id: toastId,
+          });
         } else {
           const modifyText = `![user image](${upload.data?.url})\n`;
           api.replaceSelection(modifyText);
