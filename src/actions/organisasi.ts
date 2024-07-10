@@ -58,7 +58,7 @@ export async function organisasiUpsert({
       contact,
       image_description,
     };
-    if (id == null) {
+    if (id == null || id === "") {
       await createOrganisasi({
         ...organisasiInput,
         image: uploadedImage?.data?.url as string,

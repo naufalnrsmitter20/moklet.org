@@ -26,11 +26,11 @@ export default function Form({
   const router = useRouter();
   const [structure, setStructure] = useState(organisasi.structure || "");
   const [logo, setLogo] = useState(
-    organisasi.logo ??
+    organisasi.logo ||
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   const [image, setImage] = useState(
-    organisasi.image ??
+    organisasi.image ||
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   return (
@@ -40,14 +40,14 @@ export default function Form({
         const toastId = toast.loading("Loading....");
 
         const logo = data.get("logo") as File | undefined;
-        const photo = data.get("photo") as File | undefined;
+        const image = data.get("image") as File | undefined;
 
         if (logo?.name === "") data.delete("logo");
-        if (photo?.name === "") data.delete("photo");
+        if (image?.name === "") data.delete("image");
 
         const result = await organisasiUpsert({
           data,
-          id: organisasi.id ?? null,
+          id: organisasi.id || null,
           period,
           structure,
           organisasiType,
@@ -81,7 +81,7 @@ export default function Form({
       />
       <div className="flex flex-col">
         <label
-          htmlFor="thumbnail"
+          htmlFor="logo"
           className="after:text-red-500 after:content-['*']"
         >
           Logo
@@ -90,7 +90,7 @@ export default function Form({
           className="w-[100px] h-[100px] rounded-2xl object-cover mb-2"
           width={100}
           height={100}
-          alt="Foto Organisasi"
+          alt="Logo Organisasi"
           src={logo}
           unoptimized
         />
@@ -101,6 +101,7 @@ export default function Form({
           }}
           accept="image/*"
           name="logo"
+          id="logo"
           required={!organisasi.id}
           className="border border-neutral-500 border-dotted rounded-xl py-5 px-3"
         />
@@ -114,7 +115,7 @@ export default function Form({
       ></TextArea>
       <div className="flex flex-col">
         <label
-          htmlFor="thumbnail"
+          htmlFor="image"
           className="after:text-red-500 after:content-['*']"
         >
           Photo
