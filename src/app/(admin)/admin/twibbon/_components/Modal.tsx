@@ -26,7 +26,7 @@ export default function Modal({
     try {
       const frameUrl = formdata.get("frame_url") as File;
 
-      if (frameUrl.name == "") formdata.delete("frame_url");
+      if (frameUrl.name === "") formdata.delete("frame_url");
 
       const result = await upsertTwibbon(data?.id as string, formdata);
       if (result?.error) {
