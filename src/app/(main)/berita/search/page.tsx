@@ -22,7 +22,7 @@ export default async function Search({
   return (
     <SmallSectionWrapper id="search">
       <GoBack />
-      <div>
+      <div className="mt-0 md:mt-8">
         <SearchBar query={searchParams.q} className="pt-0" />
         <div className="">
           <H2 className="mb-[52px]">

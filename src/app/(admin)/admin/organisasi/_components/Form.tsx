@@ -38,9 +38,16 @@ export default function Form({
       className="flex flex-col gap-y-3 my-2"
       action={async (data) => {
         const toastId = toast.loading("Loading....");
+
+        const logo = data.get("logo") as File;
+        const photo = data.get("photo") as File;
+
+        if (logo.name === "") data.delete("logo");
+        if (photo.name === "") data.delete("photo");
+
         const result = await organisasiUpsert({
           data,
-          id: organisasi.id || null,
+          id: organisasi.id ?? null,
           period,
           structure,
           organisasiType,
