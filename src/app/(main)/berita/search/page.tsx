@@ -23,7 +23,7 @@ export default async function Search({
     <SmallSectionWrapper id="search">
       <GoBack />
       <div>
-        <SearchBar query={searchParams.q} />
+        <SearchBar query={searchParams.q} className="pt-0" />
         <div className="">
           <H2 className="mb-[52px]">
             Menampilkan hasil pencarian untuk &quot;

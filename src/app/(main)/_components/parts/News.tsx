@@ -17,7 +17,7 @@ export default function News({
     <SectionWrapper id="berita">
       <div className="flex w-full flex-col gap-[54px]">
         <div className="flex flex-col items-start md:flex-row md:items-center justify-between gap-[18px] md:gap-0">
-          <UnderlinedTitle underlineClassName="w-[65px] md:w-[100px] top-4 md:top-[24px]">
+          <UnderlinedTitle underlineClassName="w-[72px] md:w-[110px] top-4 md:top-[24px]">
             Berita Terbaru Organisasi & Sub-organisasi
           </UnderlinedTitle>
           <Link href="/berita">

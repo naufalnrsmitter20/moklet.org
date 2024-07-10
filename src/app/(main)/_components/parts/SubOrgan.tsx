@@ -21,7 +21,7 @@ export default function SubOrgan() {
       <div className="flex flex-col-reverse md:flex-row gap-[72px] md:gap-0 w-full items-start md:items-center justify-start md:justify-between">
         <div className="w-full max-w-3xl">
           <div className="mb-[42px]">
-            <UnderlinedTitle underlineClassName="w-[145px] md:w-[220px] top-4 md:top-[24px]">
+            <UnderlinedTitle underlineClassName="w-[166px] md:w-[249px] top-4 md:top-[24px]">
               Kembangkan Bakat di Sub-organ
             </UnderlinedTitle>
             <P>

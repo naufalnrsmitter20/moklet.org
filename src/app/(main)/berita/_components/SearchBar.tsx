@@ -9,7 +9,10 @@ import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
 
 import Search from "./icons/Search";
 
-export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
+export function SearchBar({
+  query: q,
+  className,
+}: Readonly<{ query?: string; className?: string }>) {
   const router = useRouter();
   const [query, setQuery] = useState<string>(q ?? "");
 
@@ -18,7 +21,7 @@ export function SearchBar({ query: q }: Readonly<{ query?: string }>) {
   }
 
   return (
-    <SmallSectionWrapper id="SearchBar">
+    <SmallSectionWrapper id="SearchBar" className={className}>
       <div className="flex gap-[12px] items-center justify-between w-full mt-[30px] lg:mt-0">
         <TextField
           placeholder="Cari berita di moklet.org..."
