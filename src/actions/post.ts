@@ -132,7 +132,12 @@ export async function postUpdate(
     }
 
     const update = await updatePost(
-      { id: id, user_id: session?.user.id },
+      {
+        id: id,
+        user_id: !session?.user.role.includes("Admin")
+          ? session?.user.id
+          : undefined,
+      },
       {
         slug: slug ?? undefined,
         content: MD ?? undefined,
