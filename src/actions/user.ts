@@ -37,25 +37,20 @@ export const updateUserWithId = async (id: string | null, data: FormData) => {
         },
       });
       if (!create) throw new Error("Update failed");
-    } else if (id) {
-      const findUserWithId = await findUser({ id });
-      if (findUserWithId) {
-        const update = await updateUser(
-          { id: id ?? findUserWithId.id },
-          {
-            email: email ?? findUserWithId.email,
-            name: name ?? findUserWithId.name,
-            role: role ?? findUserWithId.role,
-            userAuth: {
-              update: { password: password ? encrypt(password) : undefined },
-            },
-          },
-        );
-        if (!update) throw new Error("Update failed");
-      } else throw new Error("Update failed");
+    } else if (id || findEmail) {
+      const update = await updateUser(id ? { id } : { email }, {
+        email: email ?? undefined,
+        name: name ?? undefined,
+        role: role ?? undefined,
+        userAuth: {
+          update: { password: password ? encrypt(password) : undefined },
+        },
+      });
+      if (!update) throw new Error("Update failed");
     }
 
     revalidatePath("/admin/users");
+    revalidatePath("/", "layout");
     return { message: "Berhasil disimpan!", error: false };
   } catch (e) {
     console.error(e);
@@ -80,6 +75,7 @@ export const deleteUserById = async (id: string) => {
     if (!del) throw new Error("Delete failed");
 
     revalidatePath("/admin/users");
+    revalidatePath("/", "layout");
     return { message: "Berhasil dihapus!", error: false };
   } catch (e) {
     console.error(e);
