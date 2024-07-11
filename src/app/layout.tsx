@@ -25,8 +25,9 @@ export const metadata: Metadata = {
   authors: { name: "MokletDev", url: "https://dev.moklet.org" },
   creator: "MokletDev Team",
   publisher: "SMK Telkom Malang",
+  icons: "https://www.moklet.org/logogram.png",
   openGraph: {
-    images: "https://www.moklet.org/horizontal.svg",
+    images: "https://www.moklet.org/horizontal.png",
   },
   robots: robots,
 };
