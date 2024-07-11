@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/tentang",
     "/kontributor",
   ].map((route) => ({
-    url: `${process.env.URL ?? "https://moklet.org"}/${route}`,
+    url: `${process.env.URL ?? "https://www.moklet.org"}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly" as
       | "yearly"
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const postsRoutes = posts.map((post) => ({
-    url: `${process.env.URL ?? "https://www.moklet.org"}/blog/${post.slug}`,
+    url: `${process.env.URL ?? "https://www.moklet.org"}/berita/${post.slug}`,
     lastModified: new Date(post.updated_at).toISOString(),
     changeFrequency: "yearly" as
       | "yearly"
@@ -49,3 +49,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...postsRoutes,
   ];
 }
+
+export const revalidate = 7200;
