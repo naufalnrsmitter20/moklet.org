@@ -147,3 +147,9 @@ export function fileSizeToMb(fileSize: number) {
   return parseFloat((fileSize / (1024 * 1024)).toFixed(2));
 }
 //#endregion
+
+export function trimName(name: string) {
+  const splitName = name.split(" ");
+  const trimmedName = splitName[0] + " " + splitName[1];
+  return trimmedName;
+}

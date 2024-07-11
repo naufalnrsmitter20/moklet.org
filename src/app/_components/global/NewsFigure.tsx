@@ -2,7 +2,7 @@ import { Tag } from "@prisma/client";
 import Link from "next/link";
 
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
+import { stringifyDate, trimName } from "@/utils/atomics";
 
 import Image from "./Image";
 
@@ -61,7 +61,9 @@ export function NewsFigure({ post }: Readonly<{ post: PostWithTagsAndUser }>) {
               width={28}
               className="h-7 w-7 object-cover rounded-full"
             />
-            <span className="text-base text-black">{post.user.name}</span>
+            <span className="text-base text-black">
+              {trimName(post.user.name)}
+            </span>
           </div>
           <span className="text-neutral-500">
             {post.published_at && stringifyDate(post.published_at)}
