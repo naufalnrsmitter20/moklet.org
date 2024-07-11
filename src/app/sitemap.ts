@@ -13,9 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/tentang",
     "/kontributor",
   ].map((route) => ({
-    url: `${process.env.NEXTAUTH_URL}/${route}`,
+    url: `${process.env.URL ?? "https://moklet.org"}/${route}`,
     lastModified: new Date().toISOString(),
-    changeFrequency: "yearly" as
+    changeFrequency: "monthly" as
       | "yearly"
       | "monthly"
       | "never"
@@ -26,8 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const postsRoutes = posts.map((post) => ({
-    url: `${process.env.NEXTAUTH_URL}/blog/${post.slug}`,
-    lastModified: new Date().toISOString(),
+    url: `${process.env.URL ?? "https://www.moklet.org"}/blog/${post.slug}`,
+    lastModified: new Date(post.updated_at).toISOString(),
     changeFrequency: "yearly" as
       | "yearly"
       | "monthly"
@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: `${process.env.NEXTAUTH_URL}/`,
+      url: `${process.env.URL ?? "https://www.moklet.org"}/`,
       lastModified: new Date().toISOString(),
       priority: 1,
       changeFrequency: "never",
