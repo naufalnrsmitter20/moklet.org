@@ -6,7 +6,7 @@ import {
   createOrganisasi,
   updateOrganisasi,
 } from "@/utils/database/organisasi.query";
-import { imageUploader } from "./fileUploader";
+import { uploadImage } from "./fileUploader";
 
 export async function organisasiUpsert({
   data,
@@ -33,16 +33,17 @@ export async function organisasiUpsert({
 
     const image = data.get("image") as File;
     const logo = data.get("logo") as File;
-    let uploadImage;
-    let uploadLogo;
+
+    let uploadedImage;
+    let uploadedLogo;
 
     if (image) {
       const imageBuffer = await image.arrayBuffer();
-      uploadImage = await imageUploader(Buffer.from(imageBuffer));
+      uploadedImage = await uploadImage(Buffer.from(imageBuffer));
     }
     if (logo) {
       const logoBuffer = await logo.arrayBuffer();
-      uploadLogo = await imageUploader(Buffer.from(logoBuffer));
+      uploadedLogo = await uploadImage(Buffer.from(logoBuffer));
     }
 
     const organisasiInput = {
@@ -60,8 +61,8 @@ export async function organisasiUpsert({
     if (id == null) {
       await createOrganisasi({
         ...organisasiInput,
-        image: uploadImage?.data?.url || "",
-        logo: uploadLogo?.data?.url || "",
+        image: uploadedImage?.data?.url as string,
+        logo: uploadedLogo?.data?.url as string,
         period: { connect: { period } },
       });
     } else {
@@ -69,8 +70,8 @@ export async function organisasiUpsert({
         { id },
         {
           ...organisasiInput,
-          image: uploadImage?.data?.url as string | undefined,
-          logo: uploadLogo?.data?.url as string | undefined,
+          image: uploadedImage?.data?.url,
+          logo: uploadedLogo?.data?.url,
         },
       );
     }

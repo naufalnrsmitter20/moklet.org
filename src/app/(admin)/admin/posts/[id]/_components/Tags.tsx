@@ -1,7 +1,6 @@
 "use client";
 
 import { Roles, Tag } from "@prisma/client";
-import { Session } from "next-auth";
 import { Dispatch, SetStateAction } from "react";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";

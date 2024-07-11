@@ -45,7 +45,7 @@ export default function Editor({
       if (insertImageRef.current) {
         const toastId = toast.loading("Uploading image...");
         const result = await getImage();
-        if (!result) return alert("Failed to load image");
+        if (!result) return toast.error("Failed to load image");
 
         const data = new FormData();
 
@@ -58,7 +58,6 @@ export default function Editor({
 
         if (upload.status != 201) {
           toast.error("Failed upload image", { id: toastId });
-          alert(upload.message);
         } else {
           const modifyText = `![user image](${upload.data?.url})\n`;
           api.replaceSelection(modifyText);

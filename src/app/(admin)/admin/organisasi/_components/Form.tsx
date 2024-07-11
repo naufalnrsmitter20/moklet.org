@@ -26,11 +26,11 @@ export default function Form({
   const router = useRouter();
   const [structure, setStructure] = useState(organisasi.structure || "");
   const [logo, setLogo] = useState(
-    organisasi.logo ||
+    organisasi.logo ??
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   const [image, setImage] = useState(
-    organisasi.image ||
+    organisasi.image ??
       "https://res.cloudinary.com/mokletorg/image/upload/v1720188074/assets/image_placeholder.png",
   );
   return (
@@ -38,9 +38,16 @@ export default function Form({
       className="flex flex-col gap-y-3 my-2"
       action={async (data) => {
         const toastId = toast.loading("Loading....");
+
+        const logo = data.get("logo") as File;
+        const photo = data.get("photo") as File;
+
+        if (logo.name === "") data.delete("logo");
+        if (photo.name === "") data.delete("photo");
+
         const result = await organisasiUpsert({
           data,
-          id: organisasi.id || null,
+          id: organisasi.id ?? null,
           period,
           structure,
           organisasiType,

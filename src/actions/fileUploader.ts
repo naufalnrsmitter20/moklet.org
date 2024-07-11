@@ -5,7 +5,7 @@ import { UploadApiResponse } from "cloudinary";
 import cloudinary from "@/lib/cloudinary";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function imageUploader(file: Buffer | any) {
+export async function uploadImage(file: Buffer | any) {
   try {
     const upload: UploadApiResponse | undefined = await new Promise(
       (resolve, reject) => {
