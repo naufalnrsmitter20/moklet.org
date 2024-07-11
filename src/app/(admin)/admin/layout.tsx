@@ -14,3 +14,5 @@ export default function RootLayout({
 }) {
   return <AdminLayout>{children}</AdminLayout>;
 }
+
+export const revalidate = 900;
