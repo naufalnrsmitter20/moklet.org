@@ -15,12 +15,13 @@ const robots =
 
 export const metadata: Metadata = {
   title: {
-    default: "Moklet's Organization",
+    default: "Moklet's Organization - SMK Telkom Malang",
     template: "%s | Moklet.org",
   },
   description:
-    "A one doorway to explore Moklet's organizations' creativity and innovations",
-  keywords: "moklet.org, Moklet, Moklet.org, Telkom, SMK, Malang",
+    "A one doorway to explore Moklet's (SMK Telkom Malang) organizations' creativity and innovations",
+  keywords:
+    "moklet.org, Moklet, Moklet.org, Telkom, SMK, Malang, SMK Telkom Malang",
   authors: { name: "MokletDev", url: "https://dev.moklet.org" },
   creator: "MokletDev Team",
   publisher: "SMK Telkom Malang",
