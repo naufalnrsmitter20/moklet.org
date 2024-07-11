@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/"],
     },
-    sitemap: `${process.env.NEXTAUTH_URL}/sitemap.xml`,
+    sitemap: `${process.env.URL ?? "https://www.moklet.org"}/sitemap.xml`,
   };
 }

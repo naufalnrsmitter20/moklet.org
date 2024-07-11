@@ -29,13 +29,15 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     authors: { name: post.user.name },
-    creator: post.user.name,
     openGraph: {
-      url: `https://moklet.org/berita/${post.slug}`,
+      url: `${process.env.URL ?? "https://www.moklet.org/berita/"}${post.slug}`,
       images: post.thumbnail,
       title: post.title,
       description: post.description,
       type: "article",
+      publishedTime: new Date(post.published_at!).toISOString(),
+      modifiedTime: new Date(post.updated_at).toISOString(),
+      authors: post.user.name,
     },
     robots: "max-image-preview:large",
     keywords:
