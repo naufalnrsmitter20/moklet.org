@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import Image from "@/app/_components/global/Image";
 import { PostWithTagsAndUser } from "@/types/entityRelations";
-import { stringifyDate } from "@/utils/atomics";
+import { stringifyDate, trimName } from "@/utils/atomics";
 
 export function WideNewsFigure({
   post,
@@ -42,7 +42,9 @@ export function WideNewsFigure({
               width={28}
               className="h-7 w-7 object-cover rounded-full"
             />
-            <span className="text-base text-black">{post.user.name}</span>
+            <span className="text-base text-black">
+              {trimName(post.user.name)}
+            </span>
           </div>
           <span className="text-neutral-500">
             {post.published_at && stringifyDate(post.published_at)}
