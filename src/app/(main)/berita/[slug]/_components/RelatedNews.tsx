@@ -21,12 +21,12 @@ export default async function Related({
 
   return (
     <div className="flex flex-col gap-[62px] w-full">
-      {relatedPosts ? (
-        relatedPosts.map((post) => (
+      {relatedPosts?.length !== 0 ? (
+        relatedPosts?.map((post) => (
           <RelatedNewsFigure post={post} key={post.id} />
         ))
       ) : (
-        <P>No related news</P>
+        <P>Belum ada berita lainnya...</P>
       )}
     </div>
   );
