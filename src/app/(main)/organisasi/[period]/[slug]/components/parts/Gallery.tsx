@@ -25,7 +25,7 @@ export default function OrgGallery({
           </div>
         </div>
         <div className="flex gap-[18px] flex-col lg:flex-row items-center">
-          <div className="w-full rounded-2xl overflow-hidden h-[600px]">
+          <div className="w-full rounded-2xl overflow-hidden h-[280px] sm:h-[310px] md:h-[390px] lg:h-[460px] xl:h-[520px] 2xl:h-[580px]">
             <Image
               src={image}
               alt="Image"
