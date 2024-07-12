@@ -44,7 +44,7 @@ export default function OrganizationSection({
                 />
                 <div className="flex flex-col gap-[6px] w-[80%]">
                   <H4>{organisasi.organisasi}</H4>
-                  <P className="line-clamp-1 block">{organisasi.description}</P>
+                  <P className="line-clamp-1">{organisasi.description}</P>
                 </div>
               </div>
               <ArrowRight className="group-hover:translate-x-1/4 transition-all duration-300" />
