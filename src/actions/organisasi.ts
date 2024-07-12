@@ -31,8 +31,8 @@ export async function organisasiUpsert({
     const image_description = data.get("image_description") as string;
     const is_suborgan = data.get("is_suborgan") == "true";
 
-    const image = data.get("image") as File;
-    const logo = data.get("logo") as File;
+    const image = data.get("image") as File | undefined;
+    const logo = data.get("logo") as File | undefined;
 
     let uploadedImage;
     let uploadedLogo;
@@ -58,7 +58,7 @@ export async function organisasiUpsert({
       contact,
       image_description,
     };
-    if (id == null) {
+    if (id == null || id === "") {
       await createOrganisasi({
         ...organisasiInput,
         image: uploadedImage?.data?.url as string,

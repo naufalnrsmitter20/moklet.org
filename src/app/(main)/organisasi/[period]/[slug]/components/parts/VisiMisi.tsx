@@ -30,7 +30,9 @@ export default function VisiMisi({
         </div>
         <div className="flex flex-col gap-2 w-[291px] sm:w-[85%] xl:w-[425px]">
           <H4 className="text-white">Misi</H4>
-          <P className="text-white text-wrap w-[100%] break-words">{misi}</P>
+          <pre className="text-white text-wrap w-[100%] break-words leading-[160%] text-sm sm:text-base">
+            {misi}
+          </pre>
         </div>
       </div>
     </SectionWrapper>
