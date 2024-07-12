@@ -10,10 +10,8 @@ export const findOrganisasis = async (filter?: Prisma.OrganisasiWhereInput) => {
   });
 };
 
-export const findOrganisasi = async (
-  filter: Prisma.OrganisasiWhereUniqueInput,
-) => {
-  return await prisma.organisasi.findUnique({ where: filter });
+export const findOrganisasi = async (filter: Prisma.OrganisasiWhereInput) => {
+  return await prisma.organisasi.findFirst({ where: filter });
 };
 
 export const createOrganisasi = async (data: Prisma.OrganisasiCreateInput) => {

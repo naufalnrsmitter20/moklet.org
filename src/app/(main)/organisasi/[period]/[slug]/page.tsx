@@ -11,21 +11,36 @@ import Overview from "./components/parts/Overview";
 import RelatedNews from "./components/parts/RelatedNews";
 import Structure from "./components/parts/Stucture";
 import VisiMisi from "./components/parts/VisiMisi";
+import { Metadata } from "next";
 
-export default async function Organ({
-  params,
-}: {
+interface Props {
   params: { slug: string; period: string };
-}) {
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const organisasiType = params.slug.toUpperCase() as Organisasi_Type;
+  const organisasi = await findOrganisasi({
+    organisasi: organisasiType,
+    period: {
+      period: params.period,
+    },
+  });
+
+  return {
+    title: organisasi?.organisasi_name ?? "Not Found",
+    description: organisasi?.description,
+  };
+}
+
+export default async function Organ({ params }: Readonly<Props>) {
   const organisasiType = params.slug.toUpperCase() as Organisasi_Type;
   const period = await findPeriod({ period: params.period });
 
   if (!period) return notFound();
 
   const organisasi = await findOrganisasi({
-    organisasi_period_id: {
-      organisasi: organisasiType,
-      period_id: period.id,
+    organisasi: organisasiType,
+    period: {
+      period: params.period,
     },
   });
 
