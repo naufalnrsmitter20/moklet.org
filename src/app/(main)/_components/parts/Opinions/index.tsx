@@ -15,8 +15,8 @@ export default function Opinions() {
               <div className="flex w-full md:w-1/2 items-center justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
                 <Saying
                   personData={{
-                    name: "Rina Setiawan",
-                    role: "Pembimbing Media Moklet",
+                    name: "Lorem ipsum",
+                    role: "Lorem ipsum dolor",
                     image:
                       "https://i.scdn.co/image/ab67616d00001e02f99ee9d6d91c399522b0baf9",
                   }}
@@ -27,29 +27,24 @@ export default function Opinions() {
               <div className="flex w-full md:w-1/2 items-center justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
                 <Saying
                   personData={{
-                    name: "Ibani Hillabi",
-                    role: "Ketua PASKATEMA 2023/2024",
+                    name: "Duan Tangguh M. P.",
+                    role: "Ketua MEMO 2023/2024",
                     image:
-                      "https://i.scdn.co/image/ab67616d00001e02f99ee9d6d91c399522b0baf9",
+                      "https://res.cloudinary.com/mokletorg/image/upload/v1720768436/assets/testimoni/duan_avfss1.webp",
                   }}
-                  saying="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nulla ullamcorper odio justo."
+                  saying="Media Moklet atau biasa kita sapa dengan nama MeMo ini bener-bener jadi salah satu primadona buat anak-anak yang hobi banget di bidang multimedia, mulai dari acara, konten dan kegiatannya top semua pokoknya."
                 />
               </div>
             </div>
             <div className="flex w-full items-center justify-center rounded-2xl border border-neutral-400 px-[28px] py-[32px]">
               <Saying
                 personData={{
-                  name: "Pandhu Arya",
-                  role: "Ketua Sregginllallik Periode 2023/2024",
+                  name: "Ijlal Windhi Saputra",
+                  role: "Ketua OSIS Masa Bakti 2021/2022",
                   image:
-                    "https://i.scdn.co/image/ab67616d00001e02f99ee9d6d91c399522b0baf9",
+                    "https://res.cloudinary.com/mokletorg/image/upload/v1720767929/assets/testimoni/Ijlal_Windhi_Saputra_fqdnzb_yu6d9y.jpg",
                 }}
-                saying="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  ullamcorper odio justo, vitae blandit lacus facilisis
-                  lobortis. Nulla facilisi. Nunc sodales magna nec ante
-                  hendrerit, et vulputate elit fermentum. magna nec ante
-                  hendrerit, et vulputate elit fermentum."
+                saying="Saya sangat bangga dengan semangat dan dedikasi seluruh anggota OSIS serta organisasi lainnya di SMK Telkom Malang. Melalui kolaborasi dan berbagai kegiatan bersama, kami berhasil menciptakan lingkungan sekolah yang inspiratif dan inovatif. Pengalaman ini tidak hanya memperkuat rasa kebersamaan di antara siswa, tetapi juga membentuk karakter dan kepemimpinan yang kuat. Saya berharap OSIS dan organisasi lainnya di SMK Telkom Malang terus berkontribusi positif dalam mengembangkan potensi siswa di masa depan."
               />
             </div>
           </div>
