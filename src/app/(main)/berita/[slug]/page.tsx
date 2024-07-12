@@ -74,7 +74,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
               <H2 className="text-wrap hidden lg:block mb-8">{post?.title}</H2>
               <H4 className="text-wrap block lg:hidden mb-8">{post?.title}</H4>
               <div className="w-full flex md:items-center gap-2 md:gap-0 flex-col md:flex-row md:justify-between">
-                <div className="max-w-full flex items-center justify-between md:w-[40%]">
+                <div className="max-w-full flex items-center justify-between md:gap-8 md:w-[40%]">
                   <div className="flex items-center gap-3">
                     <Image
                       src={post?.user.user_pic as string}
