@@ -25,3 +25,7 @@
 .wmde-markdown p {
   @apply text-neutral-500;
 }
+
+pre {
+  font-family: inherit;
+}
