@@ -5,23 +5,27 @@ import { findPeriod } from "@/utils/database/periodYear.query";
 import { findNewestPost } from "@/utils/database/post.query";
 import { notFound } from "next/navigation";
 
-import Contact from "./components/parts/Contact";
-import OrgGallery from "./components/parts/Gallery";
-import Overview from "./components/parts/Overview";
-import RelatedNews from "./components/parts/RelatedNews";
-import Structure from "./components/parts/Stucture";
-import VisiMisi from "./components/parts/VisiMisi";
 import { Metadata } from "next";
+import Contact from "./_components/parts/Contact";
+import OrgGallery from "./_components/parts/Gallery";
+import Overview from "./_components/parts/Overview";
+import RelatedNews from "./_components/parts/RelatedNews";
+import Structure from "./_components/parts/Stucture";
+import VisiMisi from "./_components/parts/VisiMisi";
 
 interface Props {
   params: { slug: string; period: string };
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const organisasiType = params.slug.toUpperCase() as Organisasi_Type;
+  const period = await findPeriod({ period: params.period });
+
+  if (!period) return { title: "Not Found" };
+
   const organisasi = await findOrganisasi({
-    organisasi: organisasiType,
-    period: {
-      period: params.period,
+    organisasi_period_id: {
+      organisasi: organisasiType,
+      period_id: period?.id,
     },
   });
 
@@ -38,9 +42,9 @@ export default async function Organ({ params }: Readonly<Props>) {
   if (!period) return notFound();
 
   const organisasi = await findOrganisasi({
-    organisasi: organisasiType,
-    period: {
-      period: params.period,
+    organisasi_period_id: {
+      organisasi: organisasiType,
+      period_id: period.id,
     },
   });
 

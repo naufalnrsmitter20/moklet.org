@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Organizations from "../_components/Parts/Organizations";
+import Organizations from "./_components/Parts/Organizations";
 
 import { findOrganisasis } from "@/utils/database/organisasi.query";
 import { findPeriod } from "@/utils/database/periodYear.query";
