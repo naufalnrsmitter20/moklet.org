@@ -14,9 +14,5 @@ export default async function OrganisasiByPeriod({
 
   const organisasis = await findOrganisasis({ period_id: period.id });
 
-  return (
-    <>
-      <Organizations period={period.period} data={organisasis} />
-    </>
-  );
+  return <Organizations period={period.period} data={organisasis} />;
 }

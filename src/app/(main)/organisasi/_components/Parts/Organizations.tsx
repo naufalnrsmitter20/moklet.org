@@ -8,14 +8,14 @@ import { Organisasi } from "@prisma/client";
 import OrganizationSection from "../OrganizationSection";
 import PeriodSelect from "../PeriodSelect";
 
-export interface Suborgan {
+export interface OrganisasiProps {
   name: string;
   desc: string;
   image: string;
   href: string;
 }
 
-export interface SuborganSection {
+export interface OrganisasiSection {
   sectionName: string;
   sectionDesc: string;
   sectionLogo: ReactElement;
@@ -46,7 +46,7 @@ export default async function Organizations({
     return a.is_suborgan;
   });
 
-  const organizations: SuborganSection[] = [
+  const organizations: OrganisasiSection[] = [
     {
       sectionName: "Organisasi",
       sectionLogo: <FaGlobe className="w-[42px] h-[42px]" />,
