@@ -17,6 +17,14 @@ interface Props {
   params: { slug: string; period: string };
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  if (
+    !Object.values(Organisasi_Type).includes(params.slug as Organisasi_Type)
+  ) {
+    return {
+      title: "Not Found",
+    };
+  }
+
   const organisasiType = params.slug.toUpperCase() as Organisasi_Type;
   const period = await findPeriod({ period: params.period });
 
@@ -32,10 +40,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: organisasi?.organisasi_name ?? "Not Found",
     description: organisasi?.description,
+    openGraph: {
+      images: organisasi?.logo,
+    },
   };
 }
 
 export default async function Organ({ params }: Readonly<Props>) {
+  if (!Object.values(Organisasi_Type).includes(params.slug as Organisasi_Type))
+    return notFound();
+
   const organisasiType = params.slug.toUpperCase() as Organisasi_Type;
   const period = await findPeriod({ period: params.period });
 
