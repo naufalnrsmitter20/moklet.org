@@ -2,7 +2,7 @@ import { Organisasi_Type } from "@prisma/client";
 
 import { findOrganisasi } from "@/utils/database/organisasi.query";
 import {
-  findAllPeriodOrganization,
+  findAllPeriodsWithOrganisasi,
   findPeriod,
 } from "@/utils/database/periodYear.query";
 import { notFound } from "next/navigation";
@@ -26,7 +26,7 @@ export default async function Edit({
   const periode = await findPeriod({ period });
   if (!periode) return notFound();
 
-  const allPeriod = await findAllPeriodOrganization();
+  const allPeriod = await findAllPeriodsWithOrganisasi();
   allPeriod.sort((a, b) => {
     return parseInt(b.period.split("-")[0]) - parseInt(a.period.split("-")[0]);
   });

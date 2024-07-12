@@ -4,11 +4,11 @@ import { H2, P } from "@/app/_components/global/Text";
 
 import AddPeriod from "./_components/AddPeriod";
 import PeriodTable from "./_components/Table";
-import { findAllPeriodOrganization } from "@/utils/database/periodYear.query";
+import { findAllPeriodsWithOrganisasi } from "@/utils/database/periodYear.query";
 import { PeriodWithOrganisasi } from "@/types/entityRelations";
 
 export default async function PeriodPage() {
-  const users: PeriodWithOrganisasi[] = await findAllPeriodOrganization({});
+  const users: PeriodWithOrganisasi[] = await findAllPeriodsWithOrganisasi({});
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
