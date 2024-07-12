@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       images: organisasi?.logo,
     },
+    keywords: `${organisasi?.organisasi}, organisasi, SMK, Telkom, Malang, ${organisasi?.organisasi_name.split(" ").join(", ")}`,
   };
 }
 

@@ -36,8 +36,10 @@ export default async function Edit({
   );
 
   let organization = await findOrganisasi({
-    period_id: periode.id,
-    organisasi: organisasi.toLocaleUpperCase() as Organisasi_Type,
+    organisasi_period_id: {
+      period_id: periode.id,
+      organisasi: organisasi.toLocaleUpperCase() as Organisasi_Type,
+    },
   });
 
   if (!organization) {
