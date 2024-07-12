@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import SubmitButton from "@/app/_components/global/SubmitButton";
 import { useRouter } from "next-nprogress-bar";
 import { fileSizeToMb } from "@/utils/atomics";
+import { P } from "@/app/_components/global/Text";
 
 export default function Form({
   organisasi,
@@ -188,11 +189,15 @@ export default function Form({
         placeholder={`Misi organisasi ${organisasi.organisasi}`}
         value={organisasi.mission!}
       />
+      <P className="text-black first-letter:capitalize after:text-red-500 after:content-['*']">
+        Struktur Organisasi
+      </P>
       <Editor
         value={structure}
         onChange={(data) => {
           setStructure(data!);
         }}
+        label="Upload gambar/ketik"
       />
       <SubmitButton />
     </form>

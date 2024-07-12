@@ -28,12 +28,14 @@ import { toast } from "sonner";
 export default function Editor({
   value,
   onChange,
+  label,
 }: {
   value: string;
   onChange: (
     value?: string | undefined,
     event?: ChangeEvent<HTMLTextAreaElement> | undefined,
   ) => void;
+  label?: string;
 }) {
   const insertImageRef = useRef<HTMLInputElement>(null);
 
@@ -96,48 +98,47 @@ export default function Editor({
   }
 
   return (
-    <>
-      <div data-color-mode="light">
-        <label>Text Editor</label>
-        <input
-          type="file"
-          hidden
-          name="insertImage"
-          ref={insertImageRef}
-          accept="image/gif,image/jpeg,image/jpg,image/png,image/webp,image/svg"
-        />
-        <MDEditor
-          value={value}
-          onChange={onChange}
-          className=""
-          height={600}
-          style={{
-            backgroundColor: "#fff",
-            color: "#000",
-            fontFamily: "inherit",
-            padding: 0,
-          }}
-          commands={[
-            bold,
-            italic,
-            strikethrough,
-            hr,
-            title,
-            divider,
-            link,
-            quote,
-            code,
-            codeBlock,
-            comment,
-            insertImage,
-            table,
-            divider,
-            unorderedListCommand,
-            orderedListCommand,
-            checkedListCommand,
-          ]}
-        />
-      </div>
-    </>
+    <div data-color-mode="light">
+      <label htmlFor="textEditor">{label ?? "Text Editor"}</label>
+      <input
+        type="file"
+        hidden
+        name="insertImage"
+        ref={insertImageRef}
+        accept="image/gif,image/jpeg,image/jpg,image/png,image/webp,image/svg"
+      />
+      <MDEditor
+        value={value}
+        onChange={onChange}
+        className=""
+        height={600}
+        style={{
+          backgroundColor: "#fff",
+          color: "#000",
+          fontFamily: "inherit",
+          padding: 0,
+        }}
+        id="textEditor"
+        commands={[
+          bold,
+          italic,
+          strikethrough,
+          hr,
+          title,
+          divider,
+          link,
+          quote,
+          code,
+          codeBlock,
+          comment,
+          insertImage,
+          table,
+          divider,
+          unorderedListCommand,
+          orderedListCommand,
+          checkedListCommand,
+        ]}
+      />
+    </div>
   );
 }
