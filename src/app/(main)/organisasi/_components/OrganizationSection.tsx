@@ -5,13 +5,13 @@ import { H2, H4, P } from "@/app/_components/global/Text";
 import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import ArrowRight from "@/app/_components/icons/ArrowRight";
 
-import { SuborganSection } from "./Parts/Organizations";
+import { OrganisasiSection } from "./Parts/Organizations";
 
 export default function OrganizationSection({
   data,
   period,
 }: {
-  data: SuborganSection;
+  data: OrganisasiSection;
   period: string;
 }) {
   return (
@@ -44,11 +44,7 @@ export default function OrganizationSection({
                 />
                 <div className="flex flex-col gap-[6px] w-[80%]">
                   <H4>{organisasi.organisasi}</H4>
-                  <P className="hidden md:block">
-                    {organisasi.description.length > 50
-                      ? `${organisasi.description.substring(0, 47)}...`
-                      : organisasi.description}
-                  </P>
+                  <P className="line-clamp-1 block">{organisasi.description}</P>
                 </div>
               </div>
               <ArrowRight className="group-hover:translate-x-1/4 transition-all duration-300" />
