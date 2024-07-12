@@ -1,3 +1,3 @@
 -- AlterTable
-ALTER TABLE `organisasi` MODIFY `mission` LONGTEXT NULL,
+ALTER TABLE `Organisasi` MODIFY `mission` LONGTEXT NULL,
     MODIFY `vision` LONGTEXT NULL;
