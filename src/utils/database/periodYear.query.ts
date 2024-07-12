@@ -18,13 +18,13 @@ export const findLatestPeriod = async (isActive?: boolean) => {
   return latestPeriodYear[0];
 };
 
-export const findAllPeriod = async (filter?: Prisma.Period_YearWhereInput) => {
+export const findAllPeriods = async (filter?: Prisma.Period_YearWhereInput) => {
   return await prisma.period_Year.findMany({
     where: filter,
   });
 };
 
-export const findAllPeriodOrganization = async (
+export const findAllPeriodsWithOrganisasi = async (
   filter?: Prisma.Period_YearWhereInput,
 ) => {
   return await prisma.period_Year.findMany({

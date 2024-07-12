@@ -1,7 +1,7 @@
 import { H2, P } from "@/app/_components/global/Text";
 import { nextGetServerSession } from "@/lib/next-auth";
 import {
-  findAllPeriod,
+  findAllPeriods,
   findLatestPeriod,
 } from "@/utils/database/periodYear.query";
 import { redirect } from "next/navigation";
@@ -10,7 +10,7 @@ import Select from "./_components/Select";
 export default async function SuborAdmin() {
   const session = await nextGetServerSession();
   const latestPeriod = await findLatestPeriod();
-  const allPeriod = await findAllPeriod();
+  const allPeriod = await findAllPeriods();
 
   const { user } = session!;
 
