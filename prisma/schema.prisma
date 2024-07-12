@@ -209,8 +209,8 @@ model Organisasi {
   organisasi_name   String          @map("organisasi_name")
   logo              String
   description       String          @db.LongText
-  vision            String?
-  mission           String?
+  vision            String?         @db.LongText
+  mission           String?         @db.LongText
   image             String
   image_description String
   companion         String

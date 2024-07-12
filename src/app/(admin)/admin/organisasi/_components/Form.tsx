@@ -174,16 +174,14 @@ export default function Form({
         placeholder={`Link sosial media ${organisasi.organisasi}`}
         value={organisasi.contact}
       />
-      <TextField
-        type="text"
+      <TextArea
         label="Visi"
         name="vision"
         required={false}
         placeholder={`Visi organisasi ${organisasi.organisasi}`}
         value={organisasi.vision!}
       />
-      <TextField
-        type="text"
+      <TextArea
         label="Misi"
         name="mission"
         required={false}
