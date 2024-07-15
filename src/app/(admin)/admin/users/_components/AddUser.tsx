@@ -3,11 +3,14 @@
 import { useState } from "react";
 
 import Modal from "./Modal";
-export default function AddUser() {
+import { Session } from "next-auth";
+export default function AddUser({ session }: { session: Session | null }) {
   const [showModalCreate, setShowModalCreate] = useState(false);
   return (
     <>
-      {showModalCreate && <Modal setIsOpenModal={setShowModalCreate} />}
+      {showModalCreate && (
+        <Modal setIsOpenModal={setShowModalCreate} session={session} />
+      )}
       <button
         onClick={() => setShowModalCreate(true)}
         className="inline-block w-fit rounded-full bg-primary-400 px-6 py-3 transition-all duration-500 hover:bg-primary-200"

@@ -6,21 +6,28 @@ import { findAllUsers } from "@/utils/database/user.query";
 
 import AddUser from "./_components/AddUser";
 import UserTable from "./_components/Table";
+import { nextGetServerSession } from "@/lib/next-auth";
 
 export default async function UsersPage() {
+  const session = await nextGetServerSession();
+  const { user } = session!;
+
   const users: UserWithLastlog[] = await findAllUsers({
-    NOT: { role: "Guest" },
+    AND: [
+      { NOT: { role: "Guest" } },
+      { role: user?.role === "SuperAdmin" ? undefined : user?.role },
+    ],
   });
   return (
-    <div>
+    <>
       <div className="flex items-center justify-between mb-5">
         <div>
           <H2 className="font-semibold">User Managements</H2>
           <P>Change roles and permisson </P>
         </div>
-        <AddUser />
+        <AddUser session={session} />
       </div>
-      <UserTable data={users} />
-    </div>
+      <UserTable data={users} session={session} />
+    </>
   );
 }

@@ -85,7 +85,10 @@ export function TextField({
           placeholder={placeholder}
           onChange={handleChange}
           id={name}
-          className="w-full rounded-full border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500"
+          className={cn(
+            "w-full rounded-full border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 focus:outline-none transition-all duration-500",
+            disabled ? "cursor-not-allowed" : "",
+          )}
           required={required}
           onKeyDown={onKeyDown}
           disabled={disabled}
@@ -122,7 +125,10 @@ export function TextArea({
         required={required}
         defaultValue={value}
         id={name}
-        className="h-[144px] rounded-2xl border border-neutral-400 px-[18px] focus:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500"
+        className={cn(
+          "h-[144px] rounded-2xl border border-neutral-400 px-[18px] focus:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500",
+          disabled ? "cursor-not-allowed" : "",
+        )}
         disabled={disabled}
       />
     </div>
@@ -154,7 +160,10 @@ export function SelectField({
       <select
         name={name}
         defaultValue={value}
-        className="rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500"
+        className={cn(
+          "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-400 focus:outline-none transition-all duration-500",
+          disabled ? "cursor-not-allowed" : "",
+        )}
         id={name}
         required={required}
         onChange={handleChange}
@@ -202,7 +211,10 @@ export function RadioField({
             name={name}
             defaultChecked={option.value === value}
             value={option.value}
-            className="w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear"
+            className={cn(
+              "w-5 h-5 cursor-pointer accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all ease-linear",
+              disabled ? "cursor-not-allowed" : "",
+            )}
             id={option.id}
             required={required}
             disabled={disabled}
@@ -256,24 +268,26 @@ export function CheckboxField({
           {label}
         </label>
       )}
-      {options &&
-        options.map((option) => (
-          <div className="flex gap-x-4 cursor-pointer" key={option.id}>
-            <input
-              type="checkbox"
-              name={name}
-              value={option.value}
-              defaultChecked={value?.includes(option.value)}
-              className="w-4 h-4 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all"
-              id={option.id}
-              data-required={required}
-              disabled={disabled}
-            />
-            <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
-              {option.value}
-            </label>
-          </div>
-        ))}
+      {options?.map((option) => (
+        <div className="flex gap-x-4 cursor-pointer" key={option.id}>
+          <input
+            type="checkbox"
+            name={name}
+            value={option.value}
+            defaultChecked={value?.includes(option.value)}
+            className={cn(
+              "w-4 h-4 cursor-pointer bg-white text-primary-500 accent-primary-500 shrink-0 mt-0.5 border-gray-200 rounded focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none transition-all",
+              disabled ? "cursor-not-allowed" : "",
+            )}
+            id={option.id}
+            data-required={required}
+            disabled={disabled}
+          />
+          <label htmlFor={option.id} className="cursor-pointer text-sm ms-2">
+            {option.value}
+          </label>
+        </div>
+      ))}
     </div>
   );
 }

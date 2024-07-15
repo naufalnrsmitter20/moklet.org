@@ -46,7 +46,7 @@ export default function Navbar({ session }: { session: Session | null }) {
         </button>
       </div>
       <div
-        className={`block xl:hidden py-3 w-full z-[800] bg-white transition-all duration-500 ${isExpanded ? "mt-0" : " -mt-[650px]"}`}
+        className={`block xl:hidden py-3 w-full z-[800] bg-white transition-all duration-500 overflow-y-auto ${isExpanded ? "mt-0" : " -mt-[1000px]"}`}
       >
         <div className="flex flex-col gap-8 text-start justify-start items-start my-[21px] mx-5">
           <ul className="space-y-4 pb-2 w-full">
@@ -66,6 +66,7 @@ export default function Navbar({ session }: { session: Session | null }) {
               <li key={index}>
                 <Link
                   href={item.path}
+                  onClick={() => setIsExpanded(false)}
                   className={
                     (pathname.includes(item.path) ? "bg-red-100 " : "") +
                     "group flex items-center rounded-lg p-2 text-base font-normal text-primary-400 hover:bg-red-200 transition-all"
