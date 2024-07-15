@@ -9,8 +9,15 @@ import { UserWithLastlog } from "@/types/entityRelations";
 import { stringifyCompleteDate } from "@/utils/atomics";
 
 import Modal from "./Modal";
+import { Session } from "next-auth";
 
-export default function UserTable({ data }: { data: UserWithLastlog[] }) {
+export default function UserTable({
+  data,
+  session,
+}: {
+  data: UserWithLastlog[];
+  session: Session | null;
+}) {
   const [loader, setLoader] = useState(true);
   const [modalData, setModalData] = useState<UserWithLastlog | null>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -85,7 +92,11 @@ export default function UserTable({ data }: { data: UserWithLastlog[] }) {
   return (
     <div className="p-2 rounded-md bg-white">
       {isOpenModal && (
-        <Modal setIsOpenModal={setIsOpenModal} data={modalData} />
+        <Modal
+          setIsOpenModal={setIsOpenModal}
+          data={modalData}
+          session={session}
+        />
       )}
       <DataTable columns={columns} data={data} pagination highlightOnHover />
     </div>

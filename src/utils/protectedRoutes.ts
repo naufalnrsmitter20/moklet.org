@@ -141,6 +141,6 @@ export const protectedRoutes: ProtectedRoutes[] = [
       <path d="M18.3398 20.5C19.0598 20.35 19.7398 20.06 20.2998 19.63C21.8598 18.46 21.8598 16.53 20.2998 15.36C19.7498 14.94 19.0798 14.66 18.3698 14.5" stroke="#E04E4E" strokeWidth="1.5" strokeLinecap="round" stroke-linejoin="round"/>
     </svg>
     `,
-    roles: ["SuperAdmin"],
+    roles: "All",
   },
 ];
