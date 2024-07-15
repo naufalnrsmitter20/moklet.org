@@ -27,7 +27,7 @@ export default function AdminLayout({
       />
       <div
         id="main-content"
-        className="relative h-full w-full overflow-y-auto focus:overflow-y-auto hover:overflow-y-auto ps-2 lg:ps-24 py-4 lg:ml-64 mt-[90px] lg:mt-0"
+        className="relative min-h-full w-full overflow-y-auto ps-2 lg:ps-24 py-4 lg:ml-64 mt-[90px] lg:mt-0"
       >
         <nav className="w-full overflow-x-clip rounded-lg align-middle p-2 font-sans text-lg lg:text-xl capitalize md:p-3">
           <ul className="flex">
@@ -68,8 +68,8 @@ export default function AdminLayout({
             })}
           </ul>
         </nav>
-        <main>
-          <div className="px-4 pt-6 min-h-screen lg:min-h-full">{children}</div>
+        <main className="pb-16">
+          <div className="px-4 pt-4 min-h-fit overflow-y-auto">{children}</div>
         </main>
       </div>
     </main>

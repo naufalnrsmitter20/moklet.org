@@ -15,15 +15,25 @@ import { encrypt } from "@/utils/encryption";
 export const updateUserWithId = async (id: string | null, data: FormData) => {
   try {
     const session = await nextGetServerSession();
-    if (session?.user?.role != "SuperAdmin")
-      return { error: true, message: "Unauthorized" };
+    const userRole = session?.user?.role;
 
     const email = data.get("email") as string;
     const name = data.get("name") as string;
     const role = data.get("role") as Roles;
     const password = data.get("password") as string;
 
+    if (userRole !== "SuperAdmin" && role !== userRole) {
+      return { error: true, message: "Unauthorized" };
+    }
+
     const findEmail = await findUser({ email });
+    if (id && userRole !== "SuperAdmin") {
+      const findById = await findUser({ id });
+
+      if (findById?.role !== userRole) {
+        return { error: true, message: "Unauthorized" };
+      }
+    }
 
     if (id == null && !findEmail) {
       const create = await createUser({
@@ -31,7 +41,7 @@ export const updateUserWithId = async (id: string | null, data: FormData) => {
         name,
         role,
         user_pic:
-          "https://res.cloudinary.com/mokletorg/image/upload/f_auto,q_auto/user",
+          "https://res.cloudinary.com/mokletorg/image/upload/v1710992405/user.svg",
         userAuth: {
           create: { password: password ? encrypt(password) : undefined },
         },
@@ -68,7 +78,7 @@ export const deleteUserById = async (id: string) => {
   try {
     const session = await nextGetServerSession();
     if (session?.user?.role != "SuperAdmin")
-      return { error: true, message: "Unauthorized" };
+      return { error: true, message: "Only SuperAdmin!" };
 
     const del = await deleteUser(id);
 

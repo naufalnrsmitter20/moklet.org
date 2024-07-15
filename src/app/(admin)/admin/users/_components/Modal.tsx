@@ -2,6 +2,7 @@ import { Roles } from "@prisma/client";
 import { Dispatch, SetStateAction } from "react";
 import { FaX } from "react-icons/fa6";
 import { toast } from "sonner";
+import { Session } from "next-auth";
 
 import { updateUserWithId } from "@/actions/user";
 import { TextField, SelectField } from "@/app/_components/global/Input";
@@ -13,9 +14,11 @@ import FormButton from "./part/SubmitButton";
 export default function Modal({
   setIsOpenModal,
   data,
+  session,
 }: {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   data?: UserWithLastlog | null;
+  session: Session | null;
 }) {
   async function update(formdata: FormData) {
     const toastId = toast.loading("Loading...");
@@ -25,6 +28,9 @@ export default function Modal({
       setIsOpenModal(false);
     } else toast.error(result.message, { id: toastId });
   }
+
+  const role = session?.user?.role;
+
   return (
     <div className="bg-gray-300/50 fixed w-full lg:w-[calc(100%-20rem)] z-10 justify-center items-center top-0 right-0 h-full m-auto">
       <div className="relative p-4 w-full h-full max-w-2xl max-h-full m-auto top-20">
@@ -56,11 +62,15 @@ export default function Modal({
                 placeholder="xx@smktelkom-mlg.sch.id"
                 required
               />
+              {role !== "SuperAdmin" && (
+                <input name="role" type="hidden" value={role} />
+              )}
               <SelectField
                 label="Role"
                 name="role"
                 required
-                value={data?.role}
+                value={data?.role ?? role}
+                disabled={role !== "SuperAdmin"}
                 options={Object.values(Roles).map((role) => ({
                   label: role,
                   value: role,
