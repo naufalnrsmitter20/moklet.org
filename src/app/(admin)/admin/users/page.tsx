@@ -12,7 +12,7 @@ export default async function UsersPage() {
     NOT: { role: "Guest" },
   });
   return (
-    <div>
+    <>
       <div className="flex items-center justify-between mb-5">
         <div>
           <H2 className="font-semibold">User Managements</H2>
@@ -21,6 +21,6 @@ export default async function UsersPage() {
         <AddUser />
       </div>
       <UserTable data={users} />
-    </div>
+    </>
   );
 }
