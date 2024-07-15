@@ -1,4 +1,5 @@
 import { Montserrat } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import Toaster from "./_components/main/CustomToaster";
 import { NextAuthProvider } from "./_components/main/NextAuthProvider";
@@ -44,6 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      {process.env.APP_ENV === "production" && process.env.GA_ID && (
+        <GoogleAnalytics gaId={process.env.GA_ID} />
+      )}
       <body className={montserrat.className + " overflow-x-hidden"}>
         <NextAuthProvider>
           <Toaster />
