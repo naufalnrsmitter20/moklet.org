@@ -3,13 +3,10 @@
 import LinkButton, { Button } from "@/app/_components/global/Button";
 import { SelectField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import { getDateMonths } from "@/utils/atomics";
 import { Event } from "@prisma/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import CreatableSelect from "react-select/creatable";
-import { toast } from "sonner";
 import EventModal from "./EventModal";
 
 const organisasis = [

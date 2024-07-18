@@ -2,22 +2,14 @@
 
 import {
   ChangeEvent,
-  Dispatch,
   HTMLInputTypeAttribute,
-  InputHTMLAttributes,
   KeyboardEventHandler,
-  SetStateAction,
   useState,
 } from "react";
 import { FaEye, FaEyeSlash, FaTrash } from "react-icons/fa";
 
 import cn from "@/lib/clsx";
-import OptionTypeBase, {
-  GroupBase,
-  OptionsOrGroups,
-  SingleValue,
-} from "react-select";
-import Select from "react-select";
+import OptionTypeBase from "react-select";
 
 interface InputProps {
   label?: string;

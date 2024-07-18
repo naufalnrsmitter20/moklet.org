@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import { FaX } from "react-icons/fa6";
 
-import { H3, P } from "@/app/_components/global/Text";
+import { upsertEvent } from "@/actions/event";
 import { TextField } from "@/app/_components/global/Input";
 import SubmitButton from "@/app/_components/global/SubmitButton";
+import { H3, P } from "@/app/_components/global/Text";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
-import { upsertEvent } from "@/actions/event";
 
 export default function EventModal({
   setIsOpenModal,
@@ -17,7 +17,7 @@ export default function EventModal({
 
   async function submitForm(data: FormData) {
     const toastId = toast.loading("Membuat Tag....");
-    const result = await upsertEvent(data, session?.user?.id!);
+    const result = await upsertEvent(data, session?.user?.id || "");
     if (result.success) {
       setIsOpenModal(false);
       return toast.success(result.message, { id: toastId });

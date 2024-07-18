@@ -5,9 +5,7 @@ import Editor from "@/app/(admin)/admin/components/MdEditor";
 import { TextField } from "@/app/_components/global/Input";
 import SubmitButton from "@/app/_components/global/SubmitButton";
 import { H3 } from "@/app/_components/global/Text";
-import { SectionWrapper } from "@/app/_components/global/Wrapper";
 import { Session } from "next-auth";
-import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -28,7 +26,7 @@ export default function AspirationForm({
     const toastId = toast.loading("Mengirim Aspirasi...");
     const result = await submitAspiration(
       data,
-      session.user?.id!,
+      session.user?.id || "",
       aspiration,
       type,
       recipient,
