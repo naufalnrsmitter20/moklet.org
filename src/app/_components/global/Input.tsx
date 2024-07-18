@@ -1,9 +1,23 @@
 "use client";
 
-import { ChangeEvent, KeyboardEventHandler, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  KeyboardEventHandler,
+  SetStateAction,
+  useState,
+} from "react";
 import { FaEye, FaEyeSlash, FaTrash } from "react-icons/fa";
 
 import cn from "@/lib/clsx";
+import OptionTypeBase, {
+  GroupBase,
+  OptionsOrGroups,
+  SingleValue,
+} from "react-select";
+import Select from "react-select";
 
 interface InputProps {
   label?: string;
@@ -40,7 +54,12 @@ interface SelectFieldProps {
 }
 
 interface TextFieldProps extends InputProps {
-  type: "email" | "text" | "password" | "number" | string;
+  type: HTMLInputTypeAttribute | undefined;
+}
+
+export interface OptionType extends OptionTypeBase {
+  value?: string;
+  label?: string;
 }
 
 export function TextField({
