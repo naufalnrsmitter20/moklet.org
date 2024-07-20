@@ -16,7 +16,7 @@ export default function EventModal({
   const { data: session } = useSession();
 
   async function submitForm(data: FormData) {
-    const toastId = toast.loading("Membuat Tag....");
+    const toastId = toast.loading("Membuat Event...");
     const result = await upsertEvent(data, session?.user?.id || "");
     if (result.success) {
       setIsOpenModal(false);

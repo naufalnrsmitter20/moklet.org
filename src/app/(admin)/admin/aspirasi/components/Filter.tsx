@@ -5,12 +5,13 @@ import { SelectField } from "@/app/_components/global/Input";
 import { H4, P } from "@/app/_components/global/Text";
 import { getDateMonths } from "@/utils/atomics";
 import { Event } from "@prisma/client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
 import EventModal from "./EventModal";
+import { FaRegFileExcel } from "react-icons/fa";
 
 const organisasis = [
-  "PILIH",
   "OSIS",
   "MPK",
   "BDI",
@@ -29,7 +30,6 @@ const organisasis = [
 ].map((a) => ({ label: a, value: a }));
 
 const units = [
-  "PILIH",
   "KURIKULUM",
   "KESISWAAN",
   "SARPRA",
@@ -54,7 +54,6 @@ export default function Filter({ event }: { event: Event[] }) {
   const to = searchParams.get("to");
   const dateMax = getDateMonths(new Date(from || ""), 6);
   const events = event.map((a) => ({ label: a.event_name, value: a.id }));
-  events.unshift({ label: "PILIH", value: "PILIH" });
 
   return (
     <>
@@ -68,9 +67,6 @@ export default function Filter({ event }: { event: Event[] }) {
               options={organisasis}
               value={organ || undefined}
               handleChange={(e) => {
-                if (e.target.value === "PILIH") {
-                  return;
-                }
                 router.push(
                   pathName +
                     `?organisasi=${e.target.value.toLowerCase()}&from=${from || ""}&to=${to || ""}`,
@@ -88,9 +84,6 @@ export default function Filter({ event }: { event: Event[] }) {
               value={unit || undefined}
               options={units}
               handleChange={(e) => {
-                if (e.target.value === "PILIH") {
-                  return;
-                }
                 router.push(
                   pathName + `?unit=${e.target.value.toLowerCase()}&`,
                   { scroll: false },
@@ -106,10 +99,8 @@ export default function Filter({ event }: { event: Event[] }) {
               <SelectField
                 name="event"
                 options={events}
+                value={eventQuery || ""}
                 handleChange={(e) => {
-                  if (e.target.value === "PILIH") {
-                    return;
-                  }
                   router.push(
                     pathName +
                       `?event=${e.target.value}&from=${from || ""}&to=${to || ""}`,
@@ -137,7 +128,7 @@ export default function Filter({ event }: { event: Event[] }) {
                   onChange={(e) =>
                     router.push(
                       pathName +
-                        `?${organ ? "organisasi" : "unit"}=${organ ? organ : unit}&from=${e.target.value}&to=${to || ""}`,
+                        `?${organ ? "organisasi" : "unit"}=${organ || unit}&from=${e.target.value}&to=${to || ""}`,
                       { scroll: false },
                     )
                   }
@@ -158,7 +149,7 @@ export default function Filter({ event }: { event: Event[] }) {
                   onChange={(e) =>
                     router.push(
                       pathName +
-                        `?${organ ? "organisasi" : "unit"}=${organ ? organ : unit}&from=${from || ""}&to=${e.target.value}`,
+                        `?${organ ? "organisasi" : "unit"}=${organ || unit}&from=${from || ""}&to=${e.target.value}`,
                       { scroll: false },
                     )
                   }
@@ -168,9 +159,21 @@ export default function Filter({ event }: { event: Event[] }) {
           </div>
         )}
         {(organ || unit || from || to || eventQuery) && (
-          <LinkButton variant={"tertiary"} href={"/admin/aspirasi"}>
-            clear filters
-          </LinkButton>
+          <div className="flex justify-between">
+            <LinkButton variant={"tertiary"} href={"/admin/aspirasi"}>
+              clear filters
+            </LinkButton>
+            <LinkButton
+              href={"aspirasi/excel?" + searchParams.toString()}
+              variant={"primary"}
+              className="text-center flex gap-2 items-center"
+              disabledProgressBar
+              target="_blank"
+            >
+              <FaRegFileExcel />
+              Download Excel
+            </LinkButton>
+          </div>
         )}
       </section>
     </>
