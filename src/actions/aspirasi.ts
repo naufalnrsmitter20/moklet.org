@@ -8,7 +8,6 @@ import {
   findAllAspirations,
 } from "@/utils/database/aspiration.query";
 import { nextGetServerSession } from "@/lib/next-auth";
-import { AspirationWithUser } from "@/types/entityRelations";
 
 export type aspirationType = "ORGANISASI" | "SEKOLAH" | "EVENT";
 
@@ -74,7 +73,6 @@ export const getAspirations = async ({
 }) => {
   try {
     let query: Prisma.AspirasiWhereInput | undefined;
-
     if (
       organisasi &&
       organisasi != "" &&
@@ -101,6 +99,7 @@ export const getAspirations = async ({
       query = {
         event: { id: event },
       };
+
     if (!query) return { count: 0, data: [] };
 
     const aspirations = await findAllAspirations(query, take, skip);

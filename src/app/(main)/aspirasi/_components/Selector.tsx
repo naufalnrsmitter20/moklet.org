@@ -4,7 +4,6 @@ import { aspirationType } from "@/actions/aspirasi";
 import { SelectField } from "@/app/_components/global/Input";
 import { P } from "@/app/_components/global/Text";
 import { SmallSectionWrapper } from "@/app/_components/global/Wrapper";
-import { stringifyDate } from "@/utils/atomics";
 import { Event } from "@prisma/client";
 import { Dispatch, SetStateAction } from "react";
 import Select from "react-select";
@@ -37,7 +36,7 @@ const units = [
   "GURU",
 ].map((a) => ({ label: a, value: a }));
 
-const types = ["ORGANISASI", "SEKOLAH", "EVENT"].map((a) => ({
+const types = ["ORGANISASI", "EVENT", "SEKOLAH"].map((a) => ({
   label: a,
   value: a,
 }));
