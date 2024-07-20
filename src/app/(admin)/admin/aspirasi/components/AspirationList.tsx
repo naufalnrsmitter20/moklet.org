@@ -12,10 +12,10 @@ const NUMBER_OF_ASPIRATIONS_TO_FETCH = 20;
 
 export default function AspirationList() {
   const [aspirations, setAspirations] = useState<AspirationWithUser[]>([]);
-  const [loadingState, setLoadingState] = useState(true);
+  const [loadingState, setLoadingState] = useState(false);
   const [count, setCount] = useState(0);
   const [offset, setOffset] = useState(0);
-
+  const { ref, inView } = useInView();
   const searchParams = useSearchParams();
 
   const filter = {
@@ -25,8 +25,6 @@ export default function AspirationList() {
     from: searchParams.get("from") ?? undefined,
     to: searchParams.get("to") ?? undefined,
   };
-
-  const { ref, inView } = useInView();
 
   const loadMoreAspirations = async () => {
     const findAspirations = await getAspirations({
@@ -44,14 +42,14 @@ export default function AspirationList() {
   };
 
   const loadAspirations = async () => {
-    setLoadingState(true);
+    setLoadingState(false);
     const findAspirations = await getAspirations({
       take: NUMBER_OF_ASPIRATIONS_TO_FETCH,
       ...filter,
     });
 
-    if (findAspirations.count <= NUMBER_OF_ASPIRATIONS_TO_FETCH)
-      setLoadingState(false);
+    if (findAspirations.count > NUMBER_OF_ASPIRATIONS_TO_FETCH)
+      setLoadingState(true);
 
     setAspirations(findAspirations.data);
     setOffset(findAspirations.data.length);
@@ -70,10 +68,12 @@ export default function AspirationList() {
 
   return (
     <>
-      <H3>Menunjukkan {count} aspirasi</H3>
-      {aspirations.map((a) => (
-        <AspirationFigure data={a} key={a.id} />
-      ))}
+      <H3>Total {count} aspirasi</H3>
+      <div className="flex flex-col gap-2">
+        {aspirations.map((a) => (
+          <AspirationFigure data={a} key={a.id} />
+        ))}
+      </div>
       {loadingState && (
         <div className="w-full flex justify-center overflow-hidden" ref={ref}>
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]">
