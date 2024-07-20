@@ -35,10 +35,13 @@ export async function GET(req: NextRequest) {
     };
 
   if (!query!)
-    return {
-      success: false,
-      message: "Bad Request",
-    };
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Bad Request",
+      },
+      { status: 400 },
+    );
 
   const aspirations = await findAllAspirationsWithEvent(query);
 
