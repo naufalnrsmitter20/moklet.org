@@ -19,7 +19,7 @@ export default function AspirationList() {
   const searchParams = useSearchParams();
 
   const filter = {
-    organanisasi: searchParams.get("organisasi") ?? undefined,
+    organisasi: searchParams.get("organisasi") ?? undefined,
     event: searchParams.get("event") ?? undefined,
     unit: searchParams.get("unit") ?? undefined,
     from: searchParams.get("from") ?? undefined,
@@ -47,6 +47,7 @@ export default function AspirationList() {
       take: NUMBER_OF_ASPIRATIONS_TO_FETCH,
       ...filter,
     });
+    console.log(filter);
 
     if (findAspirations.count > NUMBER_OF_ASPIRATIONS_TO_FETCH)
       setLoadingState(true);
