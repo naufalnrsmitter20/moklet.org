@@ -11,12 +11,10 @@ import { toast } from "sonner";
 
 export default function AspirationForm({
   recipient,
-  session,
   type,
   eventName,
 }: {
   recipient: string;
-  session: Session;
   type: aspirationType;
   eventName: string;
 }) {
@@ -24,13 +22,7 @@ export default function AspirationForm({
   const ref = useRef<HTMLFormElement>(null);
   async function submitForm(data: FormData) {
     const toastId = toast.loading("Mengirim Aspirasi...");
-    const result = await submitAspiration(
-      data,
-      session.user?.id || "",
-      aspiration,
-      type,
-      recipient,
-    );
+    const result = await submitAspiration(data, aspiration, type, recipient);
 
     if (!result.success) {
       return toast.error(result.message, { id: toastId });
@@ -54,11 +46,11 @@ export default function AspirationForm({
                 name="judulAspirasi"
                 required
                 label="Judul Aspirasi"
-                placeholder="Organisasi X Kinerjanya Kurang"
+                placeholder="Judul Aspirasi Anda"
               />
               <Editor
-                onChange={(e) => {
-                  setAspiration(e || "");
+                onChange={(value) => {
+                  setAspiration(value ?? "");
                 }}
                 value={aspiration}
                 label="Isi Aspirasi"

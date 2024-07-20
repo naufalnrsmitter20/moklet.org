@@ -1,18 +1,26 @@
 "use server";
 
-import { Organisasi_Type, UnitSekolah } from "@prisma/client";
+import { Organisasi_Type, Prisma, UnitSekolah } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { createAspiration } from "@/utils/database/aspiration.query";
+import {
+  countAllAspirations,
+  createAspiration,
+  findAllAspirations,
+} from "@/utils/database/aspiration.query";
+import { nextGetServerSession } from "@/lib/next-auth";
+import { AspirationWithUser } from "@/types/entityRelations";
 
-export type aspirationType = "PILIH" | "ORGANISASI" | "SEKOLAH" | "EVENT";
+export type aspirationType = "ORGANISASI" | "SEKOLAH" | "EVENT";
 
 export async function submitAspiration(
   data: FormData,
-  userId: string,
   pesan_aspirasi: string,
   type: aspirationType,
   recipent: string,
 ) {
+  const session = await nextGetServerSession();
+  if (!session?.user) return { success: false, message: "Unauthorized" };
+
   const judul_aspirasi = (data.get("judulAspirasi") as string) || "";
   try {
     await createAspiration({
@@ -29,7 +37,7 @@ export async function submitAspiration(
       pesan_aspirasi,
       user: {
         connect: {
-          id: userId,
+          id: session.user.id,
         },
       },
     });
@@ -46,3 +54,61 @@ export async function submitAspiration(
     };
   }
 }
+
+export const getAspirations = async ({
+  take,
+  skip,
+  to,
+  from,
+  organisasi,
+  unit,
+  event,
+}: {
+  take?: number;
+  skip?: number;
+  to?: string;
+  from?: string;
+  organisasi?: string;
+  unit?: string;
+  event?: string;
+}) => {
+  try {
+    let query: Prisma.AspirasiWhereInput | undefined;
+
+    if (
+      organisasi &&
+      organisasi != "" &&
+      to &&
+      to != "" &&
+      from &&
+      from != ""
+    ) {
+      const organ = organisasi.toUpperCase() as Organisasi_Type;
+      query = {
+        organisasi: organ,
+        created_at: { gte: new Date(from), lte: new Date(to + "T23:59:59Z") },
+      };
+    }
+    if (unit && unit != "" && from && from != "" && to && to != "") {
+      const unitQ = unit.toUpperCase() as UnitSekolah;
+      query = {
+        unit_sekolah: unitQ,
+        created_at: { gte: new Date(from), lte: new Date(to + "T23:59:59Z") },
+      };
+    }
+
+    if (event && event != "")
+      query = {
+        event: { id: event },
+      };
+    if (!query) return { count: 0, data: [] };
+
+    const aspirations = await findAllAspirations(query, take, skip);
+    const count = await countAllAspirations(query);
+
+    return { data: aspirations, count };
+  } catch (error: unknown) {
+    console.log(error);
+    throw new Error(`An error happened: ${error}`);
+  }
+};

@@ -10,7 +10,6 @@ import { Dispatch, SetStateAction } from "react";
 import Select from "react-select";
 
 const organisasis = [
-  "PILIH",
   "OSIS",
   "MPK",
   "BDI",
@@ -29,7 +28,6 @@ const organisasis = [
 ].map((a) => ({ label: a, value: a }));
 
 const units = [
-  "PILIH",
   "KURIKULUM",
   "KESISWAAN",
   "SARPRA",
@@ -39,7 +37,7 @@ const units = [
   "GURU",
 ].map((a) => ({ label: a, value: a }));
 
-const types = ["PILIH", "ORGANISASI", "SEKOLAH", "EVENT"].map((a) => ({
+const types = ["ORGANISASI", "SEKOLAH", "EVENT"].map((a) => ({
   label: a,
   value: a,
 }));
@@ -62,95 +60,79 @@ export default function Selector({
   event: Event[];
 }) {
   const events = event.map((a) => ({
-    label: a.event_name + " - " + stringifyDate(a.date),
+    label: a.event_name,
     value: a.id,
   }));
 
-  events.unshift({ label: "PILIH", value: "PILIH" });
-
   return (
-    <>
-      <SmallSectionWrapper id="Selector" className="flex flex-col gap-5">
+    <SmallSectionWrapper id="Selector" className="flex flex-col gap-5">
+      <div>
+        <P className="pb-2">Pilih Tipe Penerima</P>
+        <SelectField
+          value={type}
+          name="type"
+          options={types}
+          handleChange={(e) => {
+            setType(e.currentTarget.value as aspirationType);
+          }}
+        />
+      </div>
+      {type === "ORGANISASI" && (
         <div>
-          <P className="pb-2">Pilih Tipe Penerima</P>
+          <P className="pb-2">Pilih Organisasi</P>
           <SelectField
-            value={type}
-            name="type"
-            options={types}
+            name="organisasi"
+            options={organisasis}
+            required
             handleChange={(e) => {
-              if (e.currentTarget.value === "PILIH") {
-                return setType(undefined), setRecipient(undefined);
-              }
-              setType(e.currentTarget.value as aspirationType);
+              setRecipient(e.currentTarget.value);
             }}
           />
         </div>
-        {type === "ORGANISASI" && (
-          <div>
-            <P className="pb-2">Pilih Organisasi</P>
-            <SelectField
-              name="organisasi"
-              options={organisasis}
-              required
-              handleChange={(e) => {
-                if (e.currentTarget.value === "PILIH") {
-                  return setRecipient(undefined);
-                }
-                setRecipient(e.currentTarget.value);
-              }}
-            />
-          </div>
-        )}
-        {type === "SEKOLAH" && (
-          <div>
-            <P className="pb-2">Pilih Unit Sekolah</P>
-            <SelectField
-              name="organisasi"
-              options={units}
-              required
-              handleChange={(e) => {
-                if (e.currentTarget.value === "PILIH") {
-                  return setRecipient(undefined);
-                }
-                setRecipient(e.currentTarget.value);
-              }}
-            />
-          </div>
-        )}
-        {type === "EVENT" && (
-          <div>
-            <P className="pb-2">Pilih Event</P>
-            <Select
-              options={events}
-              unstyled
-              required
-              classNames={{
-                control: () =>
-                  "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",
-                menu: () =>
-                  "bg-white rounded-lg px-[18px] py-[14px] border border-neutral-400",
-                multiValue: () =>
-                  "bg-primary-400 px-4 py-2 text-white rounded-2xl",
-                valueContainer: () => "flex gap-2",
-                menuList: () => "text-base flex flex-col gap-1",
-                option: () =>
-                  "hover:bg-neutral-300 hover:cursor-pointer transition-all duration-500 rounded-lg p-2",
-              }}
-              onChange={(e) => {
-                if (e?.value === "PILIH") {
-                  return setRecipient(undefined), setEventName(undefined);
-                }
-                setRecipient(e?.value);
-                setEventName(
-                  events.filter((a) => {
-                    return a.value === e?.value;
-                  })[0].label,
-                );
-              }}
-            />
-          </div>
-        )}
-      </SmallSectionWrapper>
-    </>
+      )}
+      {type === "SEKOLAH" && (
+        <div>
+          <P className="pb-2">Pilih Unit Sekolah</P>
+          <SelectField
+            name="organisasi"
+            options={units}
+            required
+            handleChange={(e) => {
+              setRecipient(e.currentTarget.value);
+            }}
+          />
+        </div>
+      )}
+      {type === "EVENT" && (
+        <div>
+          <P className="pb-2">Pilih Event</P>
+          <Select
+            options={events}
+            unstyled
+            required
+            classNames={{
+              control: () =>
+                "rounded-xl border border-neutral-400 px-[18px] active:border-black hover:border-black py-[14px] text-black placeholder-neutral-500 bg-white focus:outline-none transition-all duration-500",
+              menu: () =>
+                "bg-white rounded-lg px-[18px] py-[14px] border border-neutral-400",
+              multiValue: () =>
+                "bg-primary-400 px-4 py-2 text-white rounded-2xl",
+              valueContainer: () => "flex gap-2",
+              menuList: () => "text-base flex flex-col gap-1",
+              option: () =>
+                "hover:bg-neutral-300 hover:cursor-pointer transition-all duration-500 rounded-lg p-2",
+            }}
+            onChange={(e) => {
+              setRecipient(e?.value);
+              setEventName(
+                events.filter((a) => {
+                  return a.value === e?.value;
+                })[0].label,
+              );
+            }}
+          />
+        </div>
+      )}
+    </SmallSectionWrapper>
   );
 }

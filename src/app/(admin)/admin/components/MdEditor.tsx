@@ -29,6 +29,7 @@ export default function Editor({
   value,
   onChange,
   label,
+  fileUpload,
 }: {
   value: string;
   onChange: (
@@ -36,6 +37,7 @@ export default function Editor({
     event?: ChangeEvent<HTMLTextAreaElement> | undefined,
   ) => void;
   label?: string;
+  fileUpload?: boolean;
 }) {
   const insertImageRef = useRef<HTMLInputElement>(null);
 
@@ -97,6 +99,27 @@ export default function Editor({
     });
   }
 
+  const commands = [
+    bold,
+    italic,
+    strikethrough,
+    hr,
+    title,
+    divider,
+    link,
+    quote,
+    code,
+    codeBlock,
+    comment,
+
+    table,
+    divider,
+    unorderedListCommand,
+    orderedListCommand,
+    checkedListCommand,
+  ];
+  if (fileUpload) commands.push(insertImage);
+
   return (
     <div data-color-mode="light">
       <label htmlFor="textEditor">{label ?? "Text Editor"}</label>
@@ -119,25 +142,7 @@ export default function Editor({
           padding: 0,
         }}
         id="textEditor"
-        commands={[
-          bold,
-          italic,
-          strikethrough,
-          hr,
-          title,
-          divider,
-          link,
-          quote,
-          code,
-          codeBlock,
-          comment,
-          insertImage,
-          table,
-          divider,
-          unorderedListCommand,
-          orderedListCommand,
-          checkedListCommand,
-        ]}
+        commands={commands}
       />
     </div>
   );

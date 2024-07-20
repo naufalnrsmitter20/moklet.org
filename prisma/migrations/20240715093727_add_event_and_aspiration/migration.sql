@@ -5,7 +5,7 @@
 
 */
 -- AlterTable
-ALTER TABLE `organisasi` MODIFY `organisasi` ENUM('OSIS', 'MPK', 'BDI', 'PALWAGA', 'PASKATEMA', 'TSBC', 'TSFC', 'TSVC', 'PMR', 'MEMO', 'MAC', 'METIC', 'COMET', 'PUSTEL', 'DA') NOT NULL;
+ALTER TABLE `Organisasi` MODIFY `organisasi` ENUM('OSIS', 'MPK', 'BDI', 'PALWAGA', 'PASKATEMA', 'TSBC', 'TSFC', 'TSVC', 'PMR', 'MEMO', 'MAC', 'METIC', 'COMET', 'PUSTEL', 'DA') NOT NULL;
 
 -- CreateTable
 CREATE TABLE `Event` (
