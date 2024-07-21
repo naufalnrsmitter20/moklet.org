@@ -169,6 +169,7 @@ export default function Filter({ event }: { event: Event[] }) {
               className="text-center flex gap-2 items-center"
               disabledProgressBar
               target="_blank"
+              prefetch={false}
             >
               <FaRegFileExcel />
               Download Excel
