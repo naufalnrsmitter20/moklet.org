@@ -8,7 +8,7 @@ import {
   updateTwibbon,
 } from "@/utils/database/twibbon.query";
 import { slugify } from "@/utils/atomics";
-import { uploadImage } from ".";
+import { uploadImageCloudinary } from ".";
 
 export const upsertTwibbon = async (id: string | null, data: FormData) => {
   try {
@@ -25,7 +25,7 @@ export const upsertTwibbon = async (id: string | null, data: FormData) => {
 
     if (frame_url) {
       const imageBuffer = await frame_url.arrayBuffer();
-      uploadFrame = await uploadImage(Buffer.from(imageBuffer));
+      uploadFrame = await uploadImageCloudinary(Buffer.from(imageBuffer));
     }
 
     const slug = slugify(title, "");
