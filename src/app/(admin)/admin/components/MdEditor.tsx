@@ -29,7 +29,7 @@ export default function Editor({
   value,
   onChange,
   label,
-  fileUpload,
+  hostType = "CLOUDINARY",
 }: {
   value: string;
   onChange: (
@@ -37,7 +37,7 @@ export default function Editor({
     event?: ChangeEvent<HTMLTextAreaElement> | undefined,
   ) => void;
   label?: string;
-  fileUpload?: boolean;
+  hostType?: "CLOUDINARY" | "IMGBB";
 }) {
   const insertImageRef = useRef<HTMLInputElement>(null);
 
@@ -60,6 +60,7 @@ export default function Editor({
         const data = new FormData();
 
         data.append("file", result!);
+        data.append("hostType", hostType);
         const toastId = toast.loading("Uploading image...");
         const upload = await fetch("/api/upload/image", {
           method: "POST",
@@ -111,14 +112,13 @@ export default function Editor({
     code,
     codeBlock,
     comment,
-
+    insertImage,
     table,
     divider,
     unorderedListCommand,
     orderedListCommand,
     checkedListCommand,
   ];
-  if (fileUpload) commands.push(insertImage);
 
   return (
     <div data-color-mode="light">

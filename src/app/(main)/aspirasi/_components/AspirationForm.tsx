@@ -54,6 +54,7 @@ export default function AspirationForm({
                 }}
                 value={aspiration}
                 label="Isi Aspirasi"
+                hostType="IMGBB"
               />
             </div>
             <div className="w-full flex justify-end">
