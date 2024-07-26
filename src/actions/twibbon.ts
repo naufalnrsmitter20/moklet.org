@@ -15,7 +15,7 @@ export const upsertTwibbon = async (id: string | null, data: FormData) => {
     const session = await nextGetServerSession();
 
     if (!session || !session.user)
-      return { error: true, message: "Unauthorize" };
+      return { success: false, message: "Unauthorize" };
 
     const title = data.get("title") as string;
     const frame_url = data.get("frame_url") as File;
@@ -59,7 +59,7 @@ export const upsertTwibbon = async (id: string | null, data: FormData) => {
 
     revalidatePath("/admin/twibbon");
     revalidatePath("/twbn/[slug]");
-    return { message: "Berhasil disimpan!", error: false };
+    return { message: "Berhasil disimpan!", success: true };
   } catch (e) {
     console.error(e);
     const error = e as Error;
@@ -67,7 +67,7 @@ export const upsertTwibbon = async (id: string | null, data: FormData) => {
       message: error.message.includes("PRIMARY")
         ? "Judul sudah ada!"
         : "Gagal mengubah data",
-      error: true,
+      success: false,
     };
   }
 };
