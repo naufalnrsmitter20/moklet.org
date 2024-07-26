@@ -37,7 +37,7 @@ export default function Modal({
       }
 
       const result = await upsertTwibbon(data?.id as string, formdata);
-      if (result?.error) {
+      if (result?.success) {
         toast.success(result.message, { id: toastId });
         setIsOpenModal(false);
       } else toast.error(result.message, { id: toastId });
