@@ -101,7 +101,7 @@ export default function Modal({
               <TextArea
                 name="caption"
                 value={data?.caption || undefined}
-                label="Caption"
+                label="Caption Template"
               />
             </div>
             <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b justify-end">
