@@ -1,16 +1,40 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
     const posts = await prisma.post.findMany({
-      include: {
+      where: {
+        published: true,
+      },
+      select: {
+        title: true,
+        content: true,
+        created_at: true,
+        updated_at: true,
         tags: true,
-        user: true,
+        description: true,
+        published: true,
+        slug: true,
+        view_count: true,
+        reaction: true,
+        thumbnail: true,
+        published_at: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
+            role: true,
+            user_pic: true,
+          },
+        },
       },
     });
+
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
-    throw new Error((error as Error).message);
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 500 },
+    );
   }
 }
